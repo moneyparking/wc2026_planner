@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from models.enums import LinkType, Scope, SectionId, SKU
 from models.specs import LinkSpec, PageSpec
 
@@ -19,6 +20,7 @@ def build_premium_static_pages() -> list[PageSpec]:
         (8, "free_sticker_sample", "Free Sticker Sample", "Preview the full 500-file sticker pack", SectionId.ONBOARDING, "upsell_sample", Scope.SHARED_ALL, "icons_gift_001.png"),
         (9, "tournament_overview", "Tournament Overview", "48 teams, 12 groups, 104 matches", SectionId.TOURNAMENT_HUB, "tournament_overview", Scope.SHARED_ALL, "icons_globe_001.png"),
     ]
+
     pages: list[PageSpec] = []
     for page_number, page_id, title, subtitle, section, template, scope, icon in rows:
         links: tuple[LinkSpec, ...] = tuple()
@@ -37,7 +39,21 @@ def build_premium_static_pages() -> list[PageSpec]:
                 _link("dashboard.bracket", "Bracket", 3, 25, "dashboard.card.bracket"),
                 _link("dashboard.party", "Party", 3, 45, "dashboard.card.party"),
             )
-        pages.append(PageSpec(page_number, page_id, title, subtitle, section, template, scope, icon, links=links, qa_tags=("sticky_nav",)))
+
+        pages.append(
+            PageSpec(
+                page_number,
+                page_id,
+                title,
+                subtitle,
+                section,
+                template,
+                scope,
+                icon,
+                links=links,
+                qa_tags=("sticky_nav",),
+            )
+        )
     return pages
 
 
@@ -46,20 +62,77 @@ def build_group_pages() -> list[PageSpec]:
     for index, group in enumerate("ABCDEFGHIJKL"):
         page_number = 10 + index
         first_match = 1 + index * 6
-        links = tuple(_link(f"group_{group.lower()}.match_{match_id:03d}", f"Match {match_id:03d}", page_number, 70 + match_id, f"group.fixture.{match_id:03d}") for match_id in range(first_match, first_match + 6))
-        pages.append(PageSpec(page_number, f"group_{group.lower()}_tracker", f"Group {group} Tracker", "Live standings without chaos", SectionId.TOURNAMENT_HUB, "group_tracker", Scope.SHARED_ALL, "icons_table_001.png", ("icons_team_badge_generic_001.png",), links, f"groups.{group}", ("group_tracker", "sticky_nav", "dark_write_plate")))
+        links = tuple(
+            _link(
+                f"group_{group.lower()}.match_{match_id:03d}",
+                f"Match {match_id:03d}",
+                page_number,
+                70 + match_id,
+                f"group.fixture.{match_id:03d}",
+            )
+            for match_id in range(first_match, first_match + 6)
+        )
+        pages.append(
+            PageSpec(
+                page_number,
+                f"group_{group.lower()}_tracker",
+                f"Group {group} Tracker",
+                "Live standings without chaos",
+                SectionId.TOURNAMENT_HUB,
+                "group_tracker",
+                Scope.SHARED_ALL,
+                "icons_table_001.png",
+                ("icons_team_badge_generic_001.png",),
+                links,
+                f"groups.{group}",
+                ("group_tracker", "sticky_nav", "dark_write_plate"),
+            )
+        )
     return pages
 
 
 def build_match_index_pages() -> list[PageSpec]:
     pages: list[PageSpec] = []
     for page_number, first_match, last_match in ((22, 1, 36), (23, 37, 72), (24, 73, 104)):
-        links = tuple(_link(f"match_index_{first_match:03d}_{last_match:03d}.match_{match_id:03d}", f"Match {match_id:03d}", page_number, 70 + match_id, f"match_index.row.{match_id:03d}") for match_id in range(first_match, last_match + 1))
-        pages.append(PageSpec(page_number, f"match_index_{first_match:03d}_{last_match:03d}", f"Match Index {first_match:03d}–{last_match:03d}", "Tap any row to jump to its dedicated match log", SectionId.TOURNAMENT_HUB, "match_index", Scope.SHARED_ALL, "icons_list_001.png", ("icons_link_001.png",), links, f"match_index.{first_match:03d}_{last_match:03d}", ("match_index", "full_row_links", "sticky_nav")))
+        links = tuple(
+            _link(
+                f"match_index_{first_match:03d}_{last_match:03d}.match_{match_id:03d}",
+                f"Match {match_id:03d}",
+                page_number,
+                70 + match_id,
+                f"match_index.row.{match_id:03d}",
+            )
+            for match_id in range(first_match, last_match + 1)
+        )
+        pages.append(
+            PageSpec(
+                page_number,
+                f"match_index_{first_match:03d}_{last_match:03d}",
+                f"Match Index {first_match:03d}–{last_match:03d}",
+                "Tap any row to jump to its dedicated match log",
+                SectionId.TOURNAMENT_HUB,
+                "match_index",
+                Scope.SHARED_ALL,
+                "icons_list_001.png",
+                ("icons_link_001.png",),
+                links,
+                f"match_index.{first_match:03d}_{last_match:03d}",
+                ("match_index", "full_row_links", "sticky_nav"),
+            )
+        )
     return pages
 
 
-def _page(page_number: int, page_id: str, title: str, section: SectionId, template: str, scope: Scope, icon: str, subtitle: str = "Premium planner template") -> PageSpec:
+def _page(
+    page_number: int,
+    page_id: str,
+    title: str,
+    section: SectionId,
+    template: str,
+    scope: Scope,
+    icon: str,
+    subtitle: str = "Premium planner template",
+) -> PageSpec:
     return PageSpec(page_number, page_id, title, subtitle, section, template, scope, icon, qa_tags=("sticky_nav",))
 
 
@@ -86,18 +159,80 @@ def build_explicit_pages_25_70() -> list[PageSpec]:
         (43, "mvp_race", "MVP Race", SectionId.STATS_PREDICTIONS, "mvp_race", Scope.PREMIUM_ONLY, "icons_mvp_001.png"),
         (44, "knockout_prediction_review", "Knockout Prediction Review", SectionId.STATS_PREDICTIONS, "prediction_review", Scope.PREMIUM_ONLY, "icons_review_001.png"),
     ]
+
     pages = [_page(*row) for row in rows]
-    party_titles = {45: "Watch Party Planner", 46: "Matchday Checklist", 47: "Office Pool Setup", 48: "Office Pool Scoreboard", 49: "Group Chat Prompts", 50: "Bingo Rules"}
+
+    party_titles = {
+        45: "Watch Party Planner",
+        46: "Matchday Checklist",
+        47: "Office Pool Setup",
+        48: "Office Pool Scoreboard",
+        49: "Group Chat Prompts",
+        50: "Bingo Rules",
+    }
     for page_number in range(45, 59):
         is_bingo = page_number >= 51
-        pages.append(_page(page_number, f"party_page_{page_number:03d}", f"Bingo Card {page_number - 50}" if is_bingo else party_titles[page_number], SectionId.WATCH_PARTY_OFFICE_POOL, "bingo_card" if is_bingo else "party_tool", Scope.PREMIUM_ONLY if page_number in {46, 47, 48, 49, 55, 56, 57, 58} else Scope.SHARED_PREMIUM_STANDARD, "icons_bingo_card_001.png" if is_bingo else "icons_party_001.png"))
-    sticker_titles = {59: "Sticker Index", 60: "Jersey + Flag Catalog", 61: "Event Sticker Catalog", 62: "Tactics Sticker Catalog", 63: "Bingo Dot Sticker Sheet", 64: "Planner Icons Catalog", 65: "Sticker Placement Examples"}
+        pages.append(
+            _page(
+                page_number,
+                f"party_page_{page_number:03d}",
+                f"Bingo Card {page_number - 50}" if is_bingo else party_titles[page_number],
+                SectionId.WATCH_PARTY_OFFICE_POOL,
+                "bingo_card" if is_bingo else "party_tool",
+                Scope.PREMIUM_ONLY if page_number in {46, 47, 48, 49, 55, 56, 57, 58} else Scope.SHARED_PREMIUM_STANDARD,
+                "icons_bingo_card_001.png" if is_bingo else "icons_party_001.png",
+            )
+        )
+
+    sticker_titles = {
+        59: "Sticker Index",
+        60: "Jersey + Flag Catalog",
+        61: "Event Sticker Catalog",
+        62: "Tactics Sticker Catalog",
+        63: "Bingo Dot Sticker Sheet",
+        64: "Planner Icons Catalog",
+        65: "Sticker Placement Examples",
+    }
     for page_number in range(59, 66):
-        pages.append(_page(page_number, f"sticker_page_{page_number:03d}", sticker_titles[page_number], SectionId.STICKER_WORKFLOW, "usage_examples" if page_number == 65 else "sticker_catalog_grid", Scope.PREMIUM_ONLY if page_number in {62, 63, 64} else Scope.SHARED_PREMIUM_STANDARD, "icons_sticker_001.png"))
-    note_titles = {66: "Replay Watchlist", 67: "Favorite Moments Log", 68: "Final Recap", 69: "Review / Support CTA", 70: "License + IP Disclaimer"}
-    note_templates = {66: "watchlist", 67: "memory_log", 68: "final_recap", 69: "support_cta", 70: "legal_disclaimer"}
+        pages.append(
+            _page(
+                page_number,
+                f"sticker_page_{page_number:03d}",
+                sticker_titles[page_number],
+                SectionId.STICKER_WORKFLOW,
+                "usage_examples" if page_number == 65 else "sticker_catalog_grid",
+                Scope.PREMIUM_ONLY if page_number in {62, 63, 64} else Scope.SHARED_PREMIUM_STANDARD,
+                "icons_sticker_001.png",
+            )
+        )
+
+    note_titles = {
+        66: "Replay Watchlist",
+        67: "Favorite Moments Log",
+        68: "Final Recap",
+        69: "Review / Support CTA",
+        70: "License + IP Disclaimer",
+    }
+    note_templates = {
+        66: "watchlist",
+        67: "memory_log",
+        68: "final_recap",
+        69: "support_cta",
+        70: "legal_disclaimer",
+    }
     for page_number in range(66, 71):
-        pages.append(_page(page_number, f"notes_memory_{page_number:03d}", note_titles[page_number], SectionId.NOTES_MEMORY, note_templates[page_number], Scope.PREMIUM_ONLY if page_number in {66, 67, 69} else Scope.SHARED_ALL, "icons_notes_001.png"))
+        pages.append(
+            _page(
+                page_number,
+                f"notes_memory_{page_number:03d}",
+                note_titles[page_number],
+                SectionId.NOTES_MEMORY,
+                note_templates[page_number],
+                Scope.PREMIUM_ONLY if page_number in {66, 67, 69} else Scope.SHARED_ALL,
+                "icons_notes_001.png",
+            )
+        )
+
     return pages
 
 
@@ -106,13 +241,50 @@ def build_match_log_pages() -> list[PageSpec]:
     for match_id in range(1, 105):
         page_number = 70 + match_id
         back_target = 22 if match_id <= 36 else 23 if match_id <= 72 else 24
-        links = (_link(f"match_log_{match_id:03d}.back_to_index", "Back to Match Index", page_number, back_target, "match_log.back_to_index"),)
-        pages.append(PageSpec(page_number, f"match_log_{match_id:03d}", f"Match {match_id:03d}", "Score, prediction, tactics, event timeline and recap", SectionId.MATCH_LOGS, "dedicated_match_log", Scope.SHARED_PREMIUM_STANDARD, "icons_match_001.png", ("icons_goal_001.png", "icons_var_001.png", "icons_card_001.png", "icons_save_001.png"), links, f"fixtures.match_{match_id:03d}", ("match_log", "dedicated_match_log", "sticky_nav", "dark_write_plate")))
+        links = (
+            _link(
+                f"match_log_{match_id:03d}.back_to_index",
+                "Back to Match Index",
+                page_number,
+                back_target,
+                "match_log.back_to_index",
+            ),
+        )
+        pages.append(
+            PageSpec(
+                page_number,
+                f"match_log_{match_id:03d}",
+                f"Match {match_id:03d}",
+                "Score, prediction, tactics, event timeline and recap",
+                SectionId.MATCH_LOGS,
+                "dedicated_match_log",
+                Scope.SHARED_PREMIUM_STANDARD,
+                "icons_match_001.png",
+                ("icons_goal_001.png", "icons_var_001.png", "icons_card_001.png", "icons_save_001.png"),
+                links,
+                f"fixtures.match_{match_id:03d}",
+                ("match_log", "dedicated_match_log", "sticky_nav", "dark_write_plate"),
+            )
+        )
     return pages
 
 
 def build_dark_note_pages() -> list[PageSpec]:
-    return [PageSpec(page_number, f"dark_notes_{page_number - 174:02d}", f"Dark Notes {page_number - 174}", "High-contrast writing page", SectionId.DARK_NOTES, "dark_notes", Scope.PREMIUM_ONLY, "icons_notes_001.png", ("icons_pen_001.png",), qa_tags=("dark_notes", "sticky_nav", "dark_write_plate")) for page_number in range(175, 185)]
+    return [
+        PageSpec(
+            page_number,
+            f"dark_notes_{page_number - 174:02d}",
+            f"Dark Notes {page_number - 174}",
+            "High-contrast writing page",
+            SectionId.DARK_NOTES,
+            "dark_notes",
+            Scope.PREMIUM_ONLY,
+            "icons_notes_001.png",
+            ("icons_pen_001.png",),
+            qa_tags=("dark_notes", "sticky_nav", "dark_write_plate"),
+        )
+        for page_number in range(175, 185)
+    ]
 
 
 def build_premium_page_registry() -> tuple[PageSpec, ...]:
@@ -127,6 +299,23 @@ def build_premium_page_registry() -> tuple[PageSpec, ...]:
 
 
 def build_page_registry(sku: SKU) -> tuple[PageSpec, ...]:
-    if sku != SKU.PREMIUM:
-        raise NotImplementedError("Premium page registry is implemented first")
-    return build_premium_page_registry()
+    if sku == SKU.PREMIUM:
+        return build_premium_page_registry()
+
+    from registries.sku_derivation import (
+        build_minimal_page_registry,
+        build_standard_page_registry,
+        validate_derived_page_registry,
+    )
+
+    if sku == SKU.STANDARD:
+        pages = build_standard_page_registry()
+        validate_derived_page_registry(pages, 144)
+        return pages
+
+    if sku == SKU.MINIMAL:
+        pages = build_minimal_page_registry()
+        validate_derived_page_registry(pages, 84)
+        return pages
+
+    raise ValueError(f"Unsupported SKU: {sku}")

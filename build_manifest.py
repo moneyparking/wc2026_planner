@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from models.enums import Scope, SectionId, SKU
 from models.specs import IconSpec, RenderManifest, SectionSpec
 from product_config import get_sku_config
@@ -8,7 +9,17 @@ from registries.page_registry import build_page_registry
 
 
 def build_section_specs(config) -> tuple[SectionSpec, ...]:
-    return tuple(SectionSpec(SectionId(section.section_id.value), section.title, section.start_page, section.end_page, section.count, Scope.SHARED_ALL) for section in config.sections)
+    return tuple(
+        SectionSpec(
+            SectionId(section.section_id.value),
+            section.title,
+            section.start_page,
+            section.end_page,
+            section.count,
+            Scope.SHARED_ALL,
+        )
+        for section in config.sections
+    )
 
 
 def build_icon_specs_from_pages(pages) -> tuple[IconSpec, ...]:
@@ -17,7 +28,10 @@ def build_icon_specs_from_pages(pages) -> tuple[IconSpec, ...]:
         if page.primary_icon:
             filenames.add(page.primary_icon)
         filenames.update(page.secondary_icons)
-    return tuple(IconSpec(filename.replace(".png", ""), filename, filename.split("_")[0], Scope.SHARED_ALL, 300, True) for filename in sorted(filenames))
+    return tuple(
+        IconSpec(filename.replace(".png", ""), filename, filename.split("_")[0], Scope.SHARED_ALL, 300, True)
+        for filename in sorted(filenames)
+    )
 
 
 def build_render_manifest(active_sku: SKU = SKU.PREMIUM) -> RenderManifest:
@@ -26,8 +40,10 @@ def build_render_manifest(active_sku: SKU = SKU.PREMIUM) -> RenderManifest:
     sections = build_section_specs(config)
     links = build_hyperlink_registry(pages, active_sku)
     icons = build_icon_specs_from_pages(pages)
+
     validate_templates({page.template_id for page in pages})
     validate_hyperlink_registry(links, config.total_pages)
+
     manifest = RenderManifest(
         sku=config.name,
         display_name=config.display_name,
@@ -58,10 +74,19 @@ def build_render_manifest(active_sku: SKU = SKU.PREMIUM) -> RenderManifest:
     return manifest
 
 
+def build_all_manifests() -> dict[SKU, RenderManifest]:
+    return {
+        SKU.PREMIUM: build_render_manifest(SKU.PREMIUM),
+        SKU.STANDARD: build_render_manifest(SKU.STANDARD),
+        SKU.MINIMAL: build_render_manifest(SKU.MINIMAL),
+    }
+
+
 if __name__ == "__main__":
-    m = build_render_manifest(SKU.PREMIUM)
-    print(f"SKU: {m.sku}")
-    print(f"Pages: {m.total_pages}")
-    print(f"Page specs: {len(m.pages)}")
-    print(f"Links: {len(m.links)}")
-    print(f"Icons: {len(m.icons)}")
+    for sku, manifest in build_all_manifests().items():
+        print(f"SKU: {manifest.sku}")
+        print(f"Pages: {manifest.total_pages}")
+        print(f"Page specs: {len(manifest.pages)}")
+        print(f"Links: {len(manifest.links)}")
+        print(f"Icons: {len(manifest.icons)}")
+        print("---")
