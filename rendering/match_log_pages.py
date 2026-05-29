@@ -1,0 +1,2 @@
+from __future__ import annotations
+from rendering.simple_templates import SimpleTemplateRenderer as MatchLogPageRenderer
