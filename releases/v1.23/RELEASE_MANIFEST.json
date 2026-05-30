@@ -1,0 +1,33 @@
+{
+  "product": "WC2026 Matchday No Chaos Ultimate",
+  "version": "1.23",
+  "release_name": "Premium Mobile App Jersey Token System",
+  "repository": "moneyparking/wc2026_planner",
+  "branch": "release/v1.23-premium-jersey-system",
+  "target_tag": "v1.23-premium-jersey-system",
+  "qa": {
+    "status": "PASS",
+    "pages_rendered": 128,
+    "blank_like_pages": 0,
+    "hyperlinks": 1261,
+    "flattened_hyperlinks": 0,
+    "nav_links_per_page": "9/9",
+    "nav_rect_mismatches": 0,
+    "link_overlaps": 0,
+    "bad_destinations": 0,
+    "match_logs_clickable": "104/104",
+    "png_stickers_checked": 389,
+    "png_alpha_channel_pass": "389/389",
+    "png_300dpi_pass": "389/389",
+    "goodnotes_pdf_size_mb": 0.748,
+    "buyer_zip_size_mb": 3.816
+  },
+  "release_assets": [
+    "WC2026_Matchday_No_Chaos_Ultimate_V1.23_GoodNotes_Hyperlinked.pdf",
+    "WC2026_Matchday_No_Chaos_Ultimate_V1.23_Flattened_Compatibility.pdf",
+    "WC2026_Matchday_No_Chaos_Ultimate_V1.23_Buyer_Files.zip",
+    "WC2026_Matchday_No_Chaos_V1.23_DualTone_Jersey_Sticker_Icon_Pack_300DPI_PNG_SVG.zip",
+    "WC2026_Matchday_No_Chaos_Ultimate_V1.23_Quick_Start_Guide.pdf",
+    "PHASE_1.23_VISUAL_QA_CONTACT_SHEET.jpg"
+  ]
+}
