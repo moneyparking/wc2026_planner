@@ -1,15 +1,17 @@
 # QA Final Buyer Package Report
 
-Generated: 2026-06-06T16:08:45Z
+Generated: 2026-06-06T16:47:29Z
 
 ## Buyer ZIP QA
 
 - ZIP name: `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip`
-- ZIP size: 20353597 bytes (19.41 MiB)
-- SHA256: `26628532610050cdfb2a63dc2f3044676ca732dbbc72859161b88959961ed791`
+- ZIP size: 20353596 bytes (19.41 MiB)
+- SHA256: `014c5bf335131776ff1855c7bdd7909c6f2097bcffc1a255e279e7dd0c8ffeee`
 - Under 20 MiB: PASS
 - Under 20,000,000 bytes: FAIL
 - Buyer-facing names clean: PASS
+- Duplicate filename pass/fail: PASS
+- Hidden system file pass/fail: PASS
 
 ### Buyer ZIP File List
 
@@ -30,7 +32,10 @@ Fonts embedded check is structural only. Link touch target checks apply to detec
 
 ## Sticker QA
 
-- Source ZIP selected: repaired sticker ZIP from `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip`; selected over FIX9 source because prior sticker QA found the FIX9 pack had one zero-byte broken PNG while the repaired pack has 306 valid PNGs.
+- Preferred source checked: `04_AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_Sticker_Pack_300DPI_PNG.zip` - 6013334 bytes, SHA256 `51c3c2ee564a4f47bcae82b0bf598e3d99cacaa1d93dca39bc8f63339a74d6c4`.
+- Preferred source result: 307 PNG entries, 306 valid PNGs, 1 broken PNG, 0 hidden files, 0 duplicate filenames.
+- Preferred source broken entries: `04_Digital_Sticker_Pack/icons/icons_match_043.png`.
+- Source ZIP selected: repaired sticker ZIP from `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip`; selected over preferred FIX9 source because the FIX9 pack contains one zero-byte broken PNG while the repaired pack has 306 valid transparent PNGs.
 - Final sticker ZIP name: `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip`
 - Final sticker count: 306
 - Final sticker ZIP SHA256: `9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e`
@@ -48,6 +53,8 @@ Fonts embedded check is structural only. Link touch target checks apply to detec
 - ZIP size: 1099909 bytes (1.05 MiB)
 - SHA256: `7eb5b79ab7ad214b0e1d6b730ad14ba8038653eb82db8ea1b35dadeaf5c037b0`
 - Contains exactly 2 MP4 files: PASS
+- Duplicate filename pass/fail: PASS
+- Hidden system file pass/fail: PASS
 
 - `01_AI_Bracket_War_Room_2026_Planner_Etsy_Video.mp4`: 15.0s, 1080x1080, H.264, audio stream present: no, 0.61 MiB.
 - `02_AI_Bracket_War_Room_2026_Sticker_Pack_Etsy_Video.mp4`: 12.0s, 1080x1080, H.264, audio stream present: no, 0.47 MiB.

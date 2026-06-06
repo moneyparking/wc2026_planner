@@ -12,8 +12,8 @@ This repository is synchronized with the final commercial product state for **AI
 
 `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip`
 
-- Size: 20353597 bytes (19.41 MiB)
-- SHA256: `26628532610050cdfb2a63dc2f3044676ca732dbbc72859161b88959961ed791`
+- Size: 20353596 bytes (19.41 MiB)
+- SHA256: `014c5bf335131776ff1855c7bdd7909c6f2097bcffc1a255e279e7dd0c8ffeee`
 - QA status: PASS with note that the ZIP is below 20 MiB and above 20,000,000 bytes.
 
 Buyer-facing contents:
@@ -32,6 +32,8 @@ Buyer-facing contents:
 - Size: 5997858 bytes (5.72 MiB)
 - SHA256: `9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e`
 - Folders: `/flags`, `/icons`, `/jerseys`
+- Preferred FIX9 source checked: `04_AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_Sticker_Pack_300DPI_PNG.zip` - 307 PNG entries, 306 valid PNGs, one broken zero-byte PNG.
+- Sticker decision: shipped the repaired 306-PNG pack because it improves quality over the preferred FIX9 source by removing the broken PNG.
 - QA status: PASS
 
 ## Final Etsy video package

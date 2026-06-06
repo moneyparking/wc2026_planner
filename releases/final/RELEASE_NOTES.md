@@ -1,10 +1,10 @@
 # AI Bracket War Room 2026 - Final Release Notes
 
-Generated: 2026-06-06T16:08:45Z
+Generated: 2026-06-06T16:47:29Z
 
 ## Final Artifacts
 
-- `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip` - 20353597 bytes, SHA256 `26628532610050cd...`
+- `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip` - 20353596 bytes, SHA256 `014c5bf335131776...`
 - `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip` - 5997858 bytes, 306 PNG stickers, SHA256 `9fce7391d2d1c5d8...`
 - `AI_Bracket_War_Room_2026_Etsy_Videos.zip` - 1099909 bytes, SHA256 `7eb5b79ab7ad214b...`
 
@@ -23,6 +23,7 @@ The final buyer ZIP contains:
 - Buyer ZIP naming: PASS
 - PDF structural QA: PASS with measured page/link counts in QA report
 - Sticker ZIP: PASS, 306 valid transparent PNG files in `/flags`, `/icons`, and `/jerseys`
+- Preferred FIX9 source compared: PASS, rejected because it contains one broken zero-byte PNG entry.
 - Etsy video ZIP: PASS, exactly two 1080 x 1080 H.264 MP4 videos, no audio streams detected
 - IP boundary: PASS by filename scan and release specification review
 

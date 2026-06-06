@@ -27,6 +27,7 @@ SOURCE_BUYER_ZIP = DOWNLOADS / "AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPD
 SOURCE_VIDEO_ZIP = DOWNLOADS / "AI_Bracket_War_Room_2026_Etsy_Videos_From_Specs_15s.zip"
 SOURCE_NO_CIRCLES_VIDEO_ZIP = DOWNLOADS / "AI_Bracket_War_Room_2026_Button_Press_Videos_No_Circles.zip"
 STICKER_QA_ZIP = DOWNLOADS / "AI_Bracket_War_Room_2026_STICKER_SELECTION_DEV_QA.zip"
+SOURCE_FIX9_STICKER_ZIP = DOWNLOADS / "04_AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_Sticker_Pack_300DPI_PNG.zip"
 
 BUYER_ZIP_NAME = "AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip"
 VIDEO_ZIP_NAME = "AI_Bracket_War_Room_2026_Etsy_Videos.zip"
@@ -314,6 +315,17 @@ def sticker_qa(sticker_zip_bytes: bytes) -> dict:
     }
 
 
+def sticker_zip_qa(path: Path) -> dict:
+    data = path.read_bytes()
+    qa = sticker_qa(data)
+    return {
+        "name": path.name,
+        "size_bytes": len(data),
+        "sha256": sha256_bytes(data),
+        "qa": qa,
+    }
+
+
 def mp4_atoms(data: bytes, start: int = 0, end: int | None = None):
     if end is None:
         end = len(data)
@@ -406,9 +418,23 @@ def zip_bytes(entries: list[tuple[str, bytes]]) -> bytes:
     return out.getvalue()
 
 
+def package_name_checks(names: list[str]) -> dict:
+    base_names = Counter(Path(name).name.lower() for name in names)
+    hidden_files = [
+        name
+        for name in names
+        if any(part.startswith(".") or part in ("__MACOSX", "Thumbs.db", "desktop.ini") for part in Path(name).parts)
+    ]
+    return {
+        "duplicate_filenames": sorted(name for name, count in base_names.items() if count > 1),
+        "hidden_files": hidden_files,
+    }
+
+
 def write_markdown(report: dict) -> None:
     buyer = report["buyer_zip"]
     sticker = report["sticker_zip"]
+    preferred = report["preferred_fix9_sticker_zip"]
     videos = report["video_zip"]
     pdf_rows = "\n".join(
         f"- `{p['name']}`: {p['page_count']} pages, {p['blank_like_page_count']} blank-like, "
@@ -425,6 +451,8 @@ def write_markdown(report: dict) -> None:
         f"audio stream present: {'yes' if v['audio_stream_present'] else 'no'}, {size_mb(v['size_bytes'])}."
         for v in report["video_qa"]
     )
+    preferred_bad = preferred["qa"]["bad_png"]
+    preferred_bad_summary = ", ".join(f"`{item['path']}`" for item in preferred_bad) if preferred_bad else "none"
     markdown = f"""# QA Final Buyer Package Report
 
 Generated: {report['generated_at']}
@@ -437,6 +465,8 @@ Generated: {report['generated_at']}
 - Under 20 MiB: {'PASS' if buyer['under_20_mib'] else 'FAIL'}
 - Under 20,000,000 bytes: {'PASS' if buyer['under_20_decimal_mb'] else 'FAIL'}
 - Buyer-facing names clean: PASS
+- Duplicate filename pass/fail: {'PASS' if not buyer['name_checks']['duplicate_filenames'] else 'FAIL'}
+- Hidden system file pass/fail: {'PASS' if not buyer['name_checks']['hidden_files'] else 'FAIL'}
 
 ### Buyer ZIP File List
 
@@ -450,7 +480,10 @@ Fonts embedded check is structural only. Link touch target checks apply to detec
 
 ## Sticker QA
 
-- Source ZIP selected: repaired sticker ZIP from `{SOURCE_BUYER_ZIP.name}`; selected over FIX9 source because prior sticker QA found the FIX9 pack had one zero-byte broken PNG while the repaired pack has 306 valid PNGs.
+- Preferred source checked: `{preferred['name']}` - {preferred['size_bytes']} bytes, SHA256 `{preferred['sha256']}`.
+- Preferred source result: {preferred['qa']['png_count']} PNG entries, {preferred['qa']['valid_png']} valid PNGs, {len(preferred_bad)} broken PNG, {len(preferred['qa']['hidden_files'])} hidden files, {len(preferred['qa']['duplicate_filenames'])} duplicate filenames.
+- Preferred source broken entries: {preferred_bad_summary}.
+- Source ZIP selected: repaired sticker ZIP from `{SOURCE_BUYER_ZIP.name}`; selected over preferred FIX9 source because the FIX9 pack contains one zero-byte broken PNG while the repaired pack has 306 valid transparent PNGs.
 - Final sticker ZIP name: `{STICKER_ZIP_NAME}`
 - Final sticker count: {sticker['qa']['valid_png']}
 - Final sticker ZIP SHA256: `{sticker['sha256']}`
@@ -468,6 +501,8 @@ Fonts embedded check is structural only. Link touch target checks apply to detec
 - ZIP size: {videos['size_bytes']} bytes ({size_mb(videos['size_bytes'])})
 - SHA256: `{videos['sha256']}`
 - Contains exactly 2 MP4 files: PASS
+- Duplicate filename pass/fail: {'PASS' if not videos['name_checks']['duplicate_filenames'] else 'FAIL'}
+- Hidden system file pass/fail: {'PASS' if not videos['name_checks']['hidden_files'] else 'FAIL'}
 
 {video_rows}
 
@@ -526,6 +561,7 @@ The final buyer ZIP contains:
 - Buyer ZIP naming: PASS
 - PDF structural QA: PASS with measured page/link counts in QA report
 - Sticker ZIP: PASS, 306 valid transparent PNG files in `/flags`, `/icons`, and `/jerseys`
+- Preferred FIX9 source compared: PASS, rejected because it contains one broken zero-byte PNG entry.
 - Etsy video ZIP: PASS, exactly two 1080 x 1080 H.264 MP4 videos, no audio streams detected
 - IP boundary: PASS by filename scan and release specification review
 
@@ -565,6 +601,8 @@ Buyer-facing contents:
 - Size: {sticker['size_bytes']} bytes ({size_mb(sticker['size_bytes'])})
 - SHA256: `{sticker['sha256']}`
 - Folders: `/flags`, `/icons`, `/jerseys`
+- Preferred FIX9 source checked: `{preferred['name']}` - {preferred['qa']['png_count']} PNG entries, {preferred['qa']['valid_png']} valid PNGs, one broken zero-byte PNG.
+- Sticker decision: shipped the repaired 306-PNG pack because it improves quality over the preferred FIX9 source by removing the broken PNG.
 - QA status: PASS
 
 ## Final Etsy video package
@@ -636,6 +674,7 @@ def main() -> None:
 
     pdfs = [pdf_qa(data, name) for name, data in buyer_entries if name.endswith(".pdf")]
     sticker_report = sticker_qa(sticker_zip)
+    preferred_fix9_report = sticker_zip_qa(SOURCE_FIX9_STICKER_ZIP)
     video_reports = [mp4_qa(data, name) for name, data in video_entries]
 
     report = {
@@ -646,6 +685,7 @@ def main() -> None:
             "sha256": sha256(buyer_zip_path),
             "under_20_mib": buyer_zip_path.stat().st_size <= 20 * 1024 * 1024,
             "under_20_decimal_mb": buyer_zip_path.stat().st_size <= 20_000_000,
+            "name_checks": package_name_checks([name for name, _ in buyer_entries]),
             "files": [{"name": name, "size_bytes": len(data), "sha256": sha256_bytes(data)} for name, data in buyer_entries],
         },
         "sticker_zip": {
@@ -654,10 +694,12 @@ def main() -> None:
             "sha256": sha256_bytes(sticker_zip),
             "qa": sticker_report,
         },
+        "preferred_fix9_sticker_zip": preferred_fix9_report,
         "video_zip": {
             "name": VIDEO_ZIP_NAME,
             "size_bytes": video_zip_path.stat().st_size,
             "sha256": sha256(video_zip_path),
+            "name_checks": package_name_checks([name for name, _ in video_entries]),
         },
         "pdf_qa": pdfs,
         "video_qa": video_reports,

@@ -1,11 +1,15 @@
 {
-  "generated_at": "2026-06-06T16:08:45Z",
+  "generated_at": "2026-06-06T16:47:29Z",
   "buyer_zip": {
     "name": "AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip",
-    "size_bytes": 20353597,
-    "sha256": "26628532610050cdfb2a63dc2f3044676ca732dbbc72859161b88959961ed791",
+    "size_bytes": 20353596,
+    "sha256": "014c5bf335131776ff1855c7bdd7909c6f2097bcffc1a255e279e7dd0c8ffeee",
     "under_20_mib": true,
     "under_20_decimal_mb": false,
+    "name_checks": {
+      "duplicate_filenames": [],
+      "hidden_files": []
+    },
     "files": [
       {
         "name": "01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf",
@@ -20,7 +24,7 @@
       {
         "name": "03_AI_Bracket_War_Room_2026_Google_Sheets_Tracker_Access_Guide.pdf",
         "size_bytes": 3549,
-        "sha256": "b029c00fabb0b393f3026fd4cdeeadfad5ff43bb26cbbc961170da01c5507b15"
+        "sha256": "5069809936af96db39cd1f6968d38de08c7f37b96f6623fd9c5ad686efebafbb"
       },
       {
         "name": "04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip",
@@ -64,10 +68,48 @@
       "ip_filename_hits": []
     }
   },
+  "preferred_fix9_sticker_zip": {
+    "name": "04_AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_Sticker_Pack_300DPI_PNG.zip",
+    "size_bytes": 6013334,
+    "sha256": "51c3c2ee564a4f47bcae82b0bf598e3d99cacaa1d93dca39bc8f63339a74d6c4",
+    "qa": {
+      "files_total": 307,
+      "png_count": 307,
+      "valid_png": 306,
+      "bad_png": [
+        {
+          "path": "04_Digital_Sticker_Pack/icons/icons_match_043.png",
+          "error": "cannot identify image file <_io.BytesIO object at 0x0000018DF671F010>",
+          "size_bytes": 0
+        }
+      ],
+      "folders": {
+        "04_Digital_Sticker_Pack": 307
+      },
+      "dimensions": {
+        "(512, 512)": 306
+      },
+      "modes": {
+        "RGBA": 306
+      },
+      "dpi": {
+        "(299.9994, 299.9994)": 306
+      },
+      "alpha_png": 306,
+      "transparent_png": 306,
+      "duplicate_filenames": [],
+      "hidden_files": [],
+      "ip_filename_hits": []
+    }
+  },
   "video_zip": {
     "name": "AI_Bracket_War_Room_2026_Etsy_Videos.zip",
     "size_bytes": 1099909,
-    "sha256": "7eb5b79ab7ad214b0e1d6b730ad14ba8038653eb82db8ea1b35dadeaf5c037b0"
+    "sha256": "7eb5b79ab7ad214b0e1d6b730ad14ba8038653eb82db8ea1b35dadeaf5c037b0",
+    "name_checks": {
+      "duplicate_filenames": [],
+      "hidden_files": []
+    }
   },
   "pdf_qa": [
     {
