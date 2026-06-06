@@ -1,12 +1,12 @@
 # QA Final Buyer Package Report
 
-Generated: 2026-06-06T17:29:38Z
+Generated: 2026-06-06T17:51:52Z
 
 ## Buyer ZIP QA
 
 - ZIP name: `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip`
-- ZIP size: 20387357 bytes (19.44 MiB)
-- SHA256: `b60e9655cef44b4f8224dfc9b4e401912fd44bfc9442571995f7f1fbff318f10`
+- ZIP size: 20395219 bytes (19.45 MiB)
+- SHA256: `853a3dd92bf8ce4d991935abcec53efae690978e8ea218b43572ac2d7a731de7`
 - Under 20 MiB: PASS
 - Under 20,000,000 bytes: FAIL
 - Duplicate filename pass/fail: PASS
@@ -16,7 +16,7 @@ Generated: 2026-06-06T17:29:38Z
 
 - `01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf` - 10408460 bytes (9.93 MiB)
 - `02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf` - 10202469 bytes (9.73 MiB)
-- `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx` - 46507 bytes (0.04 MiB)
+- `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx` - 54509 bytes (0.05 MiB)
 - `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip` - 5997858 bytes (5.72 MiB)
 - `05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf` - 39090 bytes (0.04 MiB)
 
@@ -39,7 +39,7 @@ Generated: 2026-06-06T17:29:38Z
 ## Spreadsheet QA
 
 - XLSX filename: `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx`
-- SHA256: `cf48fa68d5c343e9f83f3502de1d02d777b9b6f4a3f1548f5d1e222d60b37f37`
+- SHA256: `ee73e74fb7e08cde04132d08000ace99a2b89b3a31ea6e6aec31b5f47089cc62`
 - Workbook sheet names: `START_HERE`, `BRACKET_WAR_ROOM`, `MATCH_PLANNER`, `FRIENDS_LEAGUE`, `AnnexC_495_STATIC`, `QA_STATIC_CHECK`
 - Expected workbook sheets present: PASS
 - Static workbook confirmation: PASS
@@ -75,7 +75,7 @@ The workbook is described as a Spreadsheet Engine XLSX, Excel-compatible spreads
 
 - 1. `01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf` - 10408460 bytes, SHA256 `c3e84f8f65d6d847f784c115edefe37b80a45207956d5ce4af3f6bd6aa733793`
 - 2. `02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf` - 10202469 bytes, SHA256 `e2304fe6b17044d1c495be36dcac8a86d1dbf96c35bc24efe162720ae9fc47d4`
-- 3. `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine_XLSX.zip` - 36465 bytes, SHA256 `c045add23f6b49dbd4ea06360e3bf2ba9941bf364010edba02e28ef48a66c293`
+- 3. `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine_XLSX.zip` - 44327 bytes, SHA256 `f831ed6a91ae38dd46859c73959e9c97472c968b27bafc899c488286eb582d7a`
 - 4. `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip` - 5997858 bytes, SHA256 `9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e`
 - 5. `05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf` - 39090 bytes, SHA256 `11b990173690bf836f75d8ba40dc87b1e5ddfea3e1a05444df252d4eb046f791`
 

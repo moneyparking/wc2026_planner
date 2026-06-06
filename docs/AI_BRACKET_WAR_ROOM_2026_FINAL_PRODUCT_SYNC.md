@@ -208,11 +208,11 @@ This sync patch updates repository documentation/state. Binary artifacts such as
 
 ## Final production artifact lock
 
-Generated: 2026-06-06T17:29:38Z
+Generated: 2026-06-06T17:51:52Z
 
-- Buyer ZIP: `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip` - 20387357 bytes, SHA256 `b60e9655cef44b4f8224dfc9b4e401912fd44bfc9442571995f7f1fbff318f10`, QA PASS for repository/hackathon delivery under 20 MiB.
+- Buyer ZIP: `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip` - 20395219 bytes, SHA256 `853a3dd92bf8ce4d991935abcec53efae690978e8ea218b43572ac2d7a731de7`, QA PASS for repository/hackathon delivery under 20 MiB.
 - Strict 20,000,000-byte status: FAIL; Etsy split-upload files and manifest created.
-- Spreadsheet: `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx` - real static XLSX spreadsheet engine included, SHA256 `cf48fa68d5c343e9f83f3502de1d02d777b9b6f4a3f1548f5d1e222d60b37f37`.
+- Spreadsheet: `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx` - real static XLSX spreadsheet engine included, SHA256 `ee73e74fb7e08cde04132d08000ace99a2b89b3a31ea6e6aec31b5f47089cc62`.
 - Sticker ZIP: `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip` - 306 valid transparent PNG stickers, SHA256 `9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e`, QA PASS.
 - Sticker patch: previous broken zero-byte sticker entry was removed/replaced; final sticker count is 306, not 307.
 - Etsy video ZIP: `AI_Bracket_War_Room_2026_Etsy_Videos.zip` - 1099909 bytes, SHA256 `7eb5b79ab7ad214b0e1d6b730ad14ba8038653eb82db8ea1b35dadeaf5c037b0`, QA PASS.

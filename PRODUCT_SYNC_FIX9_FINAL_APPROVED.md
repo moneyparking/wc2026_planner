@@ -12,8 +12,8 @@ This repository is synchronized with the final commercial product state for **AI
 
 `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip`
 
-- Size: 20387357 bytes (19.44 MiB)
-- SHA256: `b60e9655cef44b4f8224dfc9b4e401912fd44bfc9442571995f7f1fbff318f10`
+- Size: 20395219 bytes (19.45 MiB)
+- SHA256: `853a3dd92bf8ce4d991935abcec53efae690978e8ea218b43572ac2d7a731de7`
 - Under 20 MiB: PASS
 - Under 20,000,000 bytes: FAIL
 
@@ -21,7 +21,7 @@ Buyer-facing contents:
 
 - `01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf` - 10408460 bytes (9.93 MiB)
 - `02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf` - 10202469 bytes (9.73 MiB)
-- `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx` - 46507 bytes (0.04 MiB)
+- `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx` - 54509 bytes (0.05 MiB)
 - `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip` - 5997858 bytes (5.72 MiB)
 - `05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf` - 39090 bytes (0.04 MiB)
 
@@ -40,8 +40,8 @@ Buyer-facing contents:
 
 `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx`
 
-- Size: 46507 bytes (0.04 MiB)
-- SHA256: `cf48fa68d5c343e9f83f3502de1d02d777b9b6f4a3f1548f5d1e222d60b37f37`
+- Size: 54509 bytes (0.05 MiB)
+- SHA256: `ee73e74fb7e08cde04132d08000ace99a2b89b3a31ea6e6aec31b5f47089cc62`
 - Sheets: START_HERE, BRACKET_WAR_ROOM, MATCH_PLANNER, FRIENDS_LEAGUE, AnnexC_495_STATIC, QA_STATIC_CHECK
 - Type: static offline tournament tracker and Excel-compatible spreadsheet bonus.
 - No cloud spreadsheet automation or app integration is claimed.

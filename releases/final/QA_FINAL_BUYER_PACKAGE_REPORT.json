@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-06T17:29:38Z",
+  "generated_at": "2026-06-06T17:51:52Z",
   "buyer_zip": {
     "name": "AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip",
-    "size_bytes": 20387357,
-    "sha256": "b60e9655cef44b4f8224dfc9b4e401912fd44bfc9442571995f7f1fbff318f10",
+    "size_bytes": 20395219,
+    "sha256": "853a3dd92bf8ce4d991935abcec53efae690978e8ea218b43572ac2d7a731de7",
     "under_20_mib": true,
     "under_20_decimal_bytes": false,
     "name_checks": {
@@ -23,8 +23,8 @@
       },
       {
         "name": "03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx",
-        "size_bytes": 46507,
-        "sha256": "cf48fa68d5c343e9f83f3502de1d02d777b9b6f4a3f1548f5d1e222d60b37f37"
+        "size_bytes": 54509,
+        "sha256": "ee73e74fb7e08cde04132d08000ace99a2b89b3a31ea6e6aec31b5f47089cc62"
       },
       {
         "name": "04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip",
@@ -72,8 +72,8 @@
   },
   "spreadsheet": {
     "name": "03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx",
-    "size_bytes": 46507,
-    "sha256": "cf48fa68d5c343e9f83f3502de1d02d777b9b6f4a3f1548f5d1e222d60b37f37",
+    "size_bytes": 54509,
+    "sha256": "ee73e74fb7e08cde04132d08000ace99a2b89b3a31ea6e6aec31b5f47089cc62",
     "sheet_names": [
       "START_HERE",
       "BRACKET_WAR_ROOM",
@@ -157,8 +157,8 @@
       {
         "upload_order": 3,
         "name": "03_AI_Bracket_War_Room_2026_Spreadsheet_Engine_XLSX.zip",
-        "size_bytes": 36465,
-        "sha256": "c045add23f6b49dbd4ea06360e3bf2ba9941bf364010edba02e28ef48a66c293"
+        "size_bytes": 44327,
+        "sha256": "f831ed6a91ae38dd46859c73959e9c97472c968b27bafc899c488286eb582d7a"
       },
       {
         "upload_order": 4,
