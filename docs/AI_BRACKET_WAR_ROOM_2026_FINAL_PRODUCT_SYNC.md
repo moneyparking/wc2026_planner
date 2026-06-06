@@ -44,7 +44,7 @@ Expected buyer-facing contents:
 ```text
 01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf
 02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf
-03_AI_Bracket_War_Room_2026_Google_Sheets_Tracker_Access_Guide.pdf
+03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx
 04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip
 05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf
 ```
@@ -121,7 +121,7 @@ Planner video sequence:
 
 1. Hero screen: planner open on realistic iPad 13
 2. Tap/depress navigation button into main planner dashboard
-3. Tap/depress Google Sheets access button
+3. Tap/depress Spreadsheet Engine XLSX access button
 4. Tap/depress 104 matches section
 5. Tap/depress Friends League section
 6. End frame: full product stack with buyer value copy
@@ -208,11 +208,14 @@ This sync patch updates repository documentation/state. Binary artifacts such as
 
 ## Final production artifact lock
 
-Generated: 2026-06-06T16:47:29Z
+Generated: 2026-06-06T17:29:38Z
 
-- Buyer ZIP: `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip` - 20353596 bytes, SHA256 `014c5bf335131776...`, QA PASS.
-- Sticker ZIP: `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip` - 306 valid transparent PNG stickers, SHA256 `9fce7391d2d1c5d8...`, QA PASS.
-- Etsy video ZIP: `AI_Bracket_War_Room_2026_Etsy_Videos.zip` - 1099909 bytes, SHA256 `7eb5b79ab7ad214b...`, QA PASS.
+- Buyer ZIP: `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip` - 20387357 bytes, SHA256 `b60e9655cef44b4f8224dfc9b4e401912fd44bfc9442571995f7f1fbff318f10`, QA PASS for repository/hackathon delivery under 20 MiB.
+- Strict 20,000,000-byte status: FAIL; Etsy split-upload files and manifest created.
+- Spreadsheet: `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx` - real static XLSX spreadsheet engine included, SHA256 `cf48fa68d5c343e9f83f3502de1d02d777b9b6f4a3f1548f5d1e222d60b37f37`.
+- Sticker ZIP: `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip` - 306 valid transparent PNG stickers, SHA256 `9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e`, QA PASS.
+- Sticker patch: previous broken zero-byte sticker entry was removed/replaced; final sticker count is 306, not 307.
+- Etsy video ZIP: `AI_Bracket_War_Room_2026_Etsy_Videos.zip` - 1099909 bytes, SHA256 `7eb5b79ab7ad214b0e1d6b730ad14ba8038653eb82db8ea1b35dadeaf5c037b0`, QA PASS.
 - Release folder: `releases/final/`
 
-The buyer ZIP is below 20 MiB and above 20,000,000 bytes. If Etsy's upload UI enforces a strict decimal threshold, use a release asset or split-upload workflow documented by the seller before upload.
+The package uses clean fan-made assets only and includes no official tournament IP assets. Unofficial fan-made digital download. Not affiliated with or endorsed by FIFA, World Cup, national teams, leagues, clubs, sponsors, broadcasters, or players. No official logos, crests, sponsor marks, player likenesses, or protected tournament emblems are included.

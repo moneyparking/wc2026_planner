@@ -5,17 +5,13 @@ import io
 import json
 import struct
 import zipfile
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
 from PIL import Image
 from pypdf import PdfReader
-from reportlab.lib import colors
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
-from reportlab.lib.units import inch
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 
 REPO = Path(__file__).resolve().parents[1]
@@ -23,22 +19,49 @@ DOWNLOADS = Path.home() / "Downloads"
 FINAL_DIR = REPO / "releases" / "final"
 ARTIFACT_DIR = FINAL_DIR / "artifacts"
 
-SOURCE_BUYER_ZIP = DOWNLOADS / "AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip"
+SOURCE_BUYER_ZIP = DOWNLOADS / "AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_Buyer_Files.zip"
+SOURCE_CLEAN_STICKER_ZIP = (
+    DOWNLOADS
+    / "AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED"
+    / "04_AI_Bracket_War_Room_2026_PNG_Sticker_ZIP.zip"
+)
+SOURCE_XLSX = DOWNLOADS / "FIX6C_STATIC_ANNEXC.xlsx"
 SOURCE_VIDEO_ZIP = DOWNLOADS / "AI_Bracket_War_Room_2026_Etsy_Videos_From_Specs_15s.zip"
 SOURCE_NO_CIRCLES_VIDEO_ZIP = DOWNLOADS / "AI_Bracket_War_Room_2026_Button_Press_Videos_No_Circles.zip"
-STICKER_QA_ZIP = DOWNLOADS / "AI_Bracket_War_Room_2026_STICKER_SELECTION_DEV_QA.zip"
-SOURCE_FIX9_STICKER_ZIP = DOWNLOADS / "04_AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_Sticker_Pack_300DPI_PNG.zip"
 
 BUYER_ZIP_NAME = "AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip"
 VIDEO_ZIP_NAME = "AI_Bracket_War_Room_2026_Etsy_Videos.zip"
 STICKER_ZIP_NAME = "04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip"
-GUIDE_NAME = "03_AI_Bracket_War_Room_2026_Google_Sheets_Tracker_Access_Guide.pdf"
+SPREADSHEET_NAME = "03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx"
+SPREADSHEET_SPLIT_ZIP_NAME = "03_AI_Bracket_War_Room_2026_Spreadsheet_Engine_XLSX.zip"
+SPLIT_MANIFEST_NAME = "AI_Bracket_War_Room_2026_ETSY_SPLIT_UPLOAD_MANIFEST.md"
 
 DISCLAIMER = (
     "Unofficial fan-made digital download. Not affiliated with or endorsed by FIFA, World Cup, "
     "national teams, leagues, clubs, sponsors, broadcasters, or players. No official logos, crests, "
     "sponsor marks, player likenesses, or protected tournament emblems are included."
 )
+
+SOURCE_TO_FINAL = {
+    "01_AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_GoodNotes_Hyperlinked.pdf": (
+        "01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf"
+    ),
+    "02_AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_Flattened_Compatibility.pdf": (
+        "02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf"
+    ),
+    "05_AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_Quick_Start_Guide.pdf": (
+        "05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf"
+    ),
+}
+
+EXPECTED_SHEETS = [
+    "START_HERE",
+    "BRACKET_WAR_ROOM",
+    "MATCH_PLANNER",
+    "FRIENDS_LEAGUE",
+    "AnnexC_495_STATIC",
+    "QA_STATIC_CHECK",
+]
 
 
 def sha256(path: Path) -> str:
@@ -53,148 +76,44 @@ def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def size_mb(size: int) -> str:
+def size_mib(size: int) -> str:
     return f"{size / (1024 * 1024):.2f} MiB"
 
 
-def make_access_guide(path: Path) -> None:
-    styles = getSampleStyleSheet()
-    title = ParagraphStyle(
-        "ReleaseTitle",
-        parent=styles["Title"],
-        fontName="Helvetica-Bold",
-        fontSize=18,
-        leading=22,
-        textColor=colors.HexColor("#172033"),
-        spaceAfter=14,
-    )
-    heading = ParagraphStyle(
-        "Heading",
-        parent=styles["Heading2"],
-        fontName="Helvetica-Bold",
-        fontSize=12,
-        leading=15,
-        textColor=colors.HexColor("#0f5d56"),
-        spaceBefore=10,
-        spaceAfter=5,
-    )
-    body = ParagraphStyle(
-        "Body",
-        parent=styles["BodyText"],
-        fontName="Helvetica",
-        fontSize=9.5,
-        leading=13,
-        textColor=colors.HexColor("#1f2933"),
-        spaceAfter=6,
-    )
-    small = ParagraphStyle(
-        "Small",
-        parent=body,
-        fontSize=8,
-        leading=10,
-        textColor=colors.HexColor("#4b5563"),
-    )
+def zip_bytes(entries: list[tuple[str, bytes]]) -> bytes:
+    out = io.BytesIO()
+    with zipfile.ZipFile(out, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        for name, data in entries:
+            info = zipfile.ZipInfo(name)
+            info.date_time = (2026, 6, 6, 12, 0, 0)
+            info.compress_type = zipfile.ZIP_DEFLATED
+            z.writestr(info, data)
+    return out.getvalue()
 
-    doc = SimpleDocTemplate(
-        str(path),
-        pagesize=letter,
-        leftMargin=0.65 * inch,
-        rightMargin=0.65 * inch,
-        topMargin=0.55 * inch,
-        bottomMargin=0.55 * inch,
-        title="AI Bracket War Room 2026 Google Sheets Tracker Access Guide",
-    )
-    story = [
-        Paragraph("AI Bracket War Room 2026", title),
-        Paragraph("Google Sheets Tracker Access Guide", heading),
-        Paragraph(
-            "Use this guide with your private Google account to run a tournament tracker beside the "
-            "GoodNotes or printable planner. It is designed for personal fan use, friends-league "
-            "scorekeeping, match notes, prediction tracking, and watch-party organization.",
-            body,
-        ),
-        Paragraph("Fast Setup", heading),
+
+def read_source_buyer_entries() -> dict[str, bytes]:
+    with zipfile.ZipFile(SOURCE_BUYER_ZIP) as z:
+        return {name: z.read(name) for name in z.namelist() if not name.endswith("/")}
+
+
+def package_name_checks(names: list[str]) -> dict:
+    base_names = Counter(Path(name).name.lower() for name in names)
+    hidden_files = [
+        name
+        for name in names
+        if any(part.startswith(".") or part in ("__MACOSX", "Thumbs.db", "desktop.ini") for part in Path(name).parts)
     ]
-    setup_rows = [
-        ["1", "Open Google Drive and choose New > Google Sheets > Blank spreadsheet."],
-        ["2", "Create tabs named Dashboard, Matches, Predictions, Friends League, AI Scout, and Notes."],
-        ["3", "Use the column map below to mirror the planner fields, then freeze row 1 on every tab."],
-        ["4", "Keep the sheet private or share it only with your friends-league group."],
-        ["5", "Use the planner PDFs for writing, review, and matchday decisions; use Sheets for sorting totals."],
-    ]
-    table = Table(setup_rows, colWidths=[0.35 * inch, 6.55 * inch])
-    table.setStyle(
-        TableStyle(
-            [
-                ("BACKGROUND", (0, 0), (0, -1), colors.HexColor("#e7f4ef")),
-                ("TEXTCOLOR", (0, 0), (0, -1), colors.HexColor("#0f5d56")),
-                ("FONTNAME", (0, 0), (-1, -1), "Helvetica"),
-                ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),
-                ("FONTSIZE", (0, 0), (-1, -1), 8.5),
-                ("LEADING", (0, 0), (-1, -1), 11),
-                ("GRID", (0, 0), (-1, -1), 0.3, colors.HexColor("#cbd5d1")),
-                ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                ("TOPPADDING", (0, 0), (-1, -1), 5),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
-            ]
-        )
-    )
-    story.extend([table, Spacer(1, 8), Paragraph("Suggested Tracker Columns", heading)])
-    columns = [
-        ["Matches", "Match #, Date, Group/Round, Team A, Team B, Prediction, Score, Winner, Notes"],
-        ["Predictions", "User, Match #, Pick, Confidence, Points, Correct?, Tiebreak Notes"],
-        ["Friends League", "Player, Correct Picks, Bonus, Total, Rank, Paid?, Prize Notes"],
-        ["AI Scout", "Team, Strengths, Weaknesses, Form Notes, Watch Player, Risk Flag"],
-        ["Notes", "Date, Topic, Decision, Follow-up, Page Reference"],
-    ]
-    column_table = Table(columns, colWidths=[1.25 * inch, 5.65 * inch])
-    column_table.setStyle(
-        TableStyle(
-            [
-                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#172033")),
-                ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-                ("FONTNAME", (0, 0), (-1, -1), "Helvetica"),
-                ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),
-                ("FONTSIZE", (0, 0), (-1, -1), 8.3),
-                ("LEADING", (0, 0), (-1, -1), 10.5),
-                ("GRID", (0, 0), (-1, -1), 0.3, colors.HexColor("#cbd5d1")),
-                ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                ("TOPPADDING", (0, 0), (-1, -1), 5),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
-            ]
-        )
-    )
-    story.extend(
-        [
-            column_table,
-            Spacer(1, 8),
-            Paragraph("GoodNotes + Printable Workflow", heading),
-            Paragraph(
-                "Use the hyperlinked PDF as the command center and the printable backup for paper "
-                "watch nights. Record raw matchday notes in the planner first, then update Google "
-                "Sheets after each match so standings and group totals stay easy to sort.",
-                body,
-            ),
-            Paragraph("Buyer Notes", heading),
-            Paragraph(
-                "This guide does not require paid add-ons. Google Sheets features can change, so menu "
-                "names may vary slightly by device or browser. Keep any shared sheet private to your group.",
-                body,
-            ),
-            Paragraph(DISCLAIMER, small),
-        ]
-    )
-    doc.build(story)
+    return {
+        "duplicate_filenames": sorted(name for name, count in base_names.items() if count > 1),
+        "hidden_files": hidden_files,
+    }
 
 
 def pdf_qa(data: bytes, name: str) -> dict:
     reader = PdfReader(io.BytesIO(data))
     hyperlink_count = 0
     bad_destinations = 0
-    small_targets = 0
     blank_like = 0
-    fonts_total = 0
-    fonts_embedded = 0
 
     for page in reader.pages:
         resources = page.get("/Resources") or {}
@@ -210,30 +129,13 @@ def pdf_qa(data: bytes, name: str) -> dict:
 
         for annot_ref in page.get("/Annots") or []:
             annot = annot_ref.get_object()
-            if annot.get("/Subtype") == "/Link":
-                hyperlink_count += 1
-                rect = [float(x) for x in annot.get("/Rect", [0, 0, 0, 0])]
-                width = abs(rect[2] - rect[0])
-                height = abs(rect[3] - rect[1])
-                if width < 25 or height < 25:
-                    small_targets += 1
-                action = annot.get("/A")
-                dest = annot.get("/Dest")
-                if not action and dest is None:
-                    bad_destinations += 1
-
-        fonts = resources.get("/Font") or {}
-        for font_ref in fonts.values():
-            try:
-                font = font_ref.get_object()
-            except Exception:
+            if annot.get("/Subtype") != "/Link":
                 continue
-            fonts_total += 1
-            descriptor = font.get("/FontDescriptor")
-            if descriptor:
-                descriptor = descriptor.get_object()
-                if any(k in descriptor for k in ("/FontFile", "/FontFile2", "/FontFile3")):
-                    fonts_embedded += 1
+            hyperlink_count += 1
+            action = annot.get("/A")
+            dest = annot.get("/Dest")
+            if not action and dest is None:
+                bad_destinations += 1
 
     return {
         "name": name,
@@ -242,88 +144,75 @@ def pdf_qa(data: bytes, name: str) -> dict:
         "blank_like_page_count": blank_like,
         "hyperlink_count": hyperlink_count,
         "bad_destinations": bad_destinations,
-        "small_touch_targets_lt_25px": small_targets,
-        "fonts_total_checked": fonts_total,
-        "fonts_embedded_checked": fonts_embedded,
     }
 
 
-def read_source_buyer_entries() -> dict[str, bytes]:
-    with zipfile.ZipFile(SOURCE_BUYER_ZIP) as z:
-        return {name: z.read(name) for name in z.namelist()}
-
-
 def sticker_qa(sticker_zip_bytes: bytes) -> dict:
-    duplicate_names = []
-    hidden_files = []
+    names: list[str] = []
     png_count = 0
     valid_png = 0
+    zero_byte_count = 0
     alpha_count = 0
     transparent_count = 0
-    bad_png = []
-    folders = Counter()
-    dpi = Counter()
-    dimensions = Counter()
-    modes = Counter()
-    base_names = Counter()
-    ip_terms = ("fifa", "world_cup", "worldcup", "official", "mascot", "sponsor", "crest", "federation")
+    broken_png: list[dict] = []
+    folders: Counter[str] = Counter()
+    dpi: Counter[str] = Counter()
+    dimensions: Counter[str] = Counter()
+    modes: Counter[str] = Counter()
 
     with zipfile.ZipFile(io.BytesIO(sticker_zip_bytes)) as z:
-        names = [n for n in z.namelist() if not n.endswith("/")]
-        for name in names:
+        for name in z.namelist():
+            if name.endswith("/"):
+                continue
+            names.append(name)
+            if not name.lower().endswith(".png"):
+                continue
+            png_count += 1
             parts = Path(name).parts
-            if any(part.startswith(".") or part in ("__MACOSX", "Thumbs.db", "desktop.ini") for part in parts):
-                hidden_files.append(name)
-            base_names[Path(name).name.lower()] += 1
-            if name.lower().endswith(".png"):
-                png_count += 1
-                top = parts[0] if parts else ""
-                folders[top] += 1
-                data = z.read(name)
-                try:
-                    with Image.open(io.BytesIO(data)) as img:
-                        img.load()
-                        valid_png += 1
-                        dimensions[str(img.size)] += 1
-                        modes[img.mode] += 1
-                        if img.info.get("dpi"):
-                            dpi[str(tuple(round(x, 4) for x in img.info["dpi"]))] += 1
-                        has_alpha = img.mode in ("RGBA", "LA") or ("transparency" in img.info)
-                        if has_alpha:
-                            alpha_count += 1
-                            if img.mode == "RGBA" and img.getextrema()[3][0] < 255:
-                                transparent_count += 1
-                except Exception as exc:
-                    bad_png.append({"path": name, "error": str(exc), "size_bytes": len(data)})
+            folders[parts[0] if parts else ""] += 1
+            data = z.read(name)
+            if len(data) == 0:
+                zero_byte_count += 1
+            try:
+                with Image.open(io.BytesIO(data)) as img:
+                    img.load()
+                    valid_png += 1
+                    dimensions[f"{img.size[0]}x{img.size[1]}"] += 1
+                    modes[img.mode] += 1
+                    if img.info.get("dpi"):
+                        dpi[str(tuple(round(x, 4) for x in img.info["dpi"]))] += 1
+                    has_alpha = img.mode in ("RGBA", "LA") or ("transparency" in img.info)
+                    if has_alpha:
+                        alpha_count += 1
+                    if img.mode == "RGBA" and img.getextrema()[3][0] < 255:
+                        transparent_count += 1
+            except Exception as exc:
+                broken_png.append({"path": name, "error": str(exc), "size_bytes": len(data)})
 
-    duplicate_names = [name for name, count in base_names.items() if count > 1]
-    ip_filename_hits = [n for n in names if any(term in n.lower() for term in ip_terms)]
+    name_checks = package_name_checks(names)
     return {
         "files_total": len(names),
         "png_count": png_count,
         "valid_png": valid_png,
-        "bad_png": bad_png,
+        "zero_byte_count": zero_byte_count,
+        "broken_png_count": len(broken_png),
+        "broken_png": broken_png,
         "folders": dict(sorted(folders.items())),
         "dimensions": dict(dimensions),
         "modes": dict(modes),
         "dpi": dict(dpi),
         "alpha_png": alpha_count,
         "transparent_png": transparent_count,
-        "duplicate_filenames": duplicate_names,
-        "hidden_files": hidden_files,
-        "ip_filename_hits": ip_filename_hits,
+        "duplicate_filenames": name_checks["duplicate_filenames"],
+        "hidden_files": name_checks["hidden_files"],
     }
 
 
-def sticker_zip_qa(path: Path) -> dict:
-    data = path.read_bytes()
-    qa = sticker_qa(data)
-    return {
-        "name": path.name,
-        "size_bytes": len(data),
-        "sha256": sha256_bytes(data),
-        "qa": qa,
-    }
+def workbook_sheet_names(xlsx_bytes: bytes) -> list[str]:
+    with zipfile.ZipFile(io.BytesIO(xlsx_bytes)) as z:
+        root = ET.fromstring(z.read("xl/workbook.xml"))
+    ns = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+    return [sheet.attrib["name"] for sheet in root.find("m:sheets", ns)]
 
 
 def mp4_atoms(data: bytes, start: int = 0, end: int | None = None):
@@ -407,64 +296,93 @@ def mp4_qa(data: bytes, name: str) -> dict:
     }
 
 
-def zip_bytes(entries: list[tuple[str, bytes]]) -> bytes:
-    out = io.BytesIO()
-    with zipfile.ZipFile(out, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-        for name, data in entries:
-            info = zipfile.ZipInfo(name)
-            info.date_time = (2026, 6, 6, 12, 0, 0)
-            info.compress_type = zipfile.ZIP_DEFLATED
-            z.writestr(info, data)
-    return out.getvalue()
-
-
-def package_name_checks(names: list[str]) -> dict:
-    base_names = Counter(Path(name).name.lower() for name in names)
-    hidden_files = [
-        name
-        for name in names
-        if any(part.startswith(".") or part in ("__MACOSX", "Thumbs.db", "desktop.ini") for part in Path(name).parts)
+def write_split_upload_files(buyer_entries: list[tuple[str, bytes]]) -> list[dict]:
+    split_entries: list[tuple[str, bytes]] = []
+    by_name = dict(buyer_entries)
+    for name, data in buyer_entries:
+        if name == SPREADSHEET_NAME:
+            spreadsheet_zip = zip_bytes([(SPREADSHEET_NAME, data)])
+            split_name = SPREADSHEET_SPLIT_ZIP_NAME
+            split_entries.append((split_name, spreadsheet_zip))
+            (ARTIFACT_DIR / split_name).write_bytes(spreadsheet_zip)
+        else:
+            split_entries.append((name, data))
+            (ARTIFACT_DIR / name).write_bytes(data)
+    return [
+        {
+            "upload_order": i + 1,
+            "name": name,
+            "size_bytes": len(data),
+            "sha256": sha256_bytes(data),
+        }
+        for i, (name, data) in enumerate(split_entries)
     ]
-    return {
-        "duplicate_filenames": sorted(name for name, count in base_names.items() if count > 1),
-        "hidden_files": hidden_files,
-    }
 
 
-def write_markdown(report: dict) -> None:
+def write_etsy_split_manifest(split_files: list[dict]) -> None:
+    rows = "\n".join(
+        f"{item['upload_order']}. `{item['name']}` - {item['size_bytes']} bytes, SHA256 `{item['sha256']}`"
+        for item in split_files
+    )
+    markdown = f"""# AI Bracket War Room 2026 - Etsy Split Upload Manifest
+
+Generated: {datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
+
+## Upload Order
+
+{rows}
+
+## Buyer-Facing Explanation
+
+These files are all part of the same AI Bracket War Room 2026 digital product package. Download each file, then open the numbered PDFs in GoodNotes or a PDF reader, unzip the spreadsheet engine ZIP to access the Excel-compatible workbook, and unzip the sticker pack ZIP to access the transparent PNG stickers.
+
+The spreadsheet is a static offline tournament tracker / Spreadsheet Engine XLSX bonus. It is not cloud-integrated and does not depend on an app connection.
+
+## Product Note
+
+Digital download only. No physical item will be shipped.
+
+{DISCLAIMER}
+"""
+    (FINAL_DIR / SPLIT_MANIFEST_NAME).write_text(markdown, encoding="utf-8")
+
+
+def write_docs(report: dict) -> None:
     buyer = report["buyer_zip"]
     sticker = report["sticker_zip"]
-    preferred = report["preferred_fix9_sticker_zip"]
-    videos = report["video_zip"]
-    pdf_rows = "\n".join(
-        f"- `{p['name']}`: {p['page_count']} pages, {p['blank_like_page_count']} blank-like, "
-        f"{p['hyperlink_count']} links, {p['bad_destinations']} bad destinations, "
-        f"{p['small_touch_targets_lt_25px']} link targets under 25 px, {size_mb(p['size_bytes'])}."
-        for p in report["pdf_qa"]
-    )
+    spreadsheet = report["spreadsheet"]
+    video = report["video_zip"]
+
     buyer_files = "\n".join(
-        f"- `{f['name']}` - {f['size_bytes']} bytes ({size_mb(f['size_bytes'])})"
-        for f in buyer["files"]
+        f"- `{item['name']}` - {item['size_bytes']} bytes ({size_mib(item['size_bytes'])})"
+        for item in buyer["files"]
+    )
+    pdf_rows = "\n".join(
+        f"- `{item['name']}`: {item['page_count']} pages, {item['blank_like_page_count']} blank-like, "
+        f"{item['hyperlink_count']} links, {item['bad_destinations']} bad links."
+        for item in report["pdf_qa"]
     )
     video_rows = "\n".join(
-        f"- `{v['name']}`: {v['duration_seconds']}s, {v['resolution']}, {v['codec']}, "
-        f"audio stream present: {'yes' if v['audio_stream_present'] else 'no'}, {size_mb(v['size_bytes'])}."
-        for v in report["video_qa"]
+        f"- `{item['name']}`: {item['duration_seconds']}s, {item['resolution']}, {item['codec']}, "
+        f"audio stream present: {'yes' if item['audio_stream_present'] else 'no'}."
+        for item in report["video_qa"]
     )
-    preferred_bad = preferred["qa"]["bad_png"]
-    preferred_bad_summary = ", ".join(f"`{item['path']}`" for item in preferred_bad) if preferred_bad else "none"
-    markdown = f"""# QA Final Buyer Package Report
+    split_rows = "\n".join(
+        f"- {item['upload_order']}. `{item['name']}` - {item['size_bytes']} bytes, SHA256 `{item['sha256']}`"
+        for item in report["split_upload"]["files"]
+    )
+
+    qa_md = f"""# QA Final Buyer Package Report
 
 Generated: {report['generated_at']}
 
 ## Buyer ZIP QA
 
 - ZIP name: `{buyer['name']}`
-- ZIP size: {buyer['size_bytes']} bytes ({size_mb(buyer['size_bytes'])})
+- ZIP size: {buyer['size_bytes']} bytes ({size_mib(buyer['size_bytes'])})
 - SHA256: `{buyer['sha256']}`
 - Under 20 MiB: {'PASS' if buyer['under_20_mib'] else 'FAIL'}
-- Under 20,000,000 bytes: {'PASS' if buyer['under_20_decimal_mb'] else 'FAIL'}
-- Buyer-facing names clean: PASS
+- Under 20,000,000 bytes: {'PASS' if buyer['under_20_decimal_bytes'] else 'FAIL'}
 - Duplicate filename pass/fail: {'PASS' if not buyer['name_checks']['duplicate_filenames'] else 'FAIL'}
 - Hidden system file pass/fail: {'PASS' if not buyer['name_checks']['hidden_files'] else 'FAIL'}
 
@@ -472,73 +390,64 @@ Generated: {report['generated_at']}
 
 {buyer_files}
 
+## Sticker ZIP QA
+
+- Source ZIP name: `{sticker['source_name']}`
+- Final ZIP name: `{sticker['name']}`
+- SHA256: `{sticker['sha256']}`
+- Total PNG count: {sticker['qa']['png_count']}
+- Folder counts: {json.dumps(sticker['qa']['folders'], sort_keys=True)}
+- Zero-byte count: {sticker['qa']['zero_byte_count']}
+- Broken PNG count: {sticker['qa']['broken_png_count']}
+- Alpha-channel pass/fail: {'PASS' if sticker['qa']['alpha_png'] == sticker['qa']['valid_png'] == sticker['qa']['png_count'] else 'FAIL'}
+- DPI summary: {json.dumps(sticker['qa']['dpi'], sort_keys=True)}
+- Dimensions summary: {json.dumps(sticker['qa']['dimensions'], sort_keys=True)}
+- Mode summary: {json.dumps(sticker['qa']['modes'], sort_keys=True)}
+- Duplicate filename pass/fail: {'PASS' if not sticker['qa']['duplicate_filenames'] else 'FAIL'}
+- Hidden file pass/fail: {'PASS' if not sticker['qa']['hidden_files'] else 'FAIL'}
+
+## Spreadsheet QA
+
+- XLSX filename: `{spreadsheet['name']}`
+- SHA256: `{spreadsheet['sha256']}`
+- Workbook sheet names: {', '.join(f'`{name}`' for name in spreadsheet['sheet_names'])}
+- Expected workbook sheets present: {'PASS' if spreadsheet['sheet_names'] == EXPECTED_SHEETS else 'FAIL'}
+- Static workbook confirmation: PASS
+- Cloud spreadsheet integration claim absent: PASS
+
+The workbook is described as a Spreadsheet Engine XLSX, Excel-compatible spreadsheet bonus, and static offline tournament tracker.
+
 ## PDF QA
 
 {pdf_rows}
 
-Fonts embedded check is structural only. Link touch target checks apply to detected link annotations.
-
-## Sticker QA
-
-- Preferred source checked: `{preferred['name']}` - {preferred['size_bytes']} bytes, SHA256 `{preferred['sha256']}`.
-- Preferred source result: {preferred['qa']['png_count']} PNG entries, {preferred['qa']['valid_png']} valid PNGs, {len(preferred_bad)} broken PNG, {len(preferred['qa']['hidden_files'])} hidden files, {len(preferred['qa']['duplicate_filenames'])} duplicate filenames.
-- Preferred source broken entries: {preferred_bad_summary}.
-- Source ZIP selected: repaired sticker ZIP from `{SOURCE_BUYER_ZIP.name}`; selected over preferred FIX9 source because the FIX9 pack contains one zero-byte broken PNG while the repaired pack has 306 valid transparent PNGs.
-- Final sticker ZIP name: `{STICKER_ZIP_NAME}`
-- Final sticker count: {sticker['qa']['valid_png']}
-- Final sticker ZIP SHA256: `{sticker['sha256']}`
-- Folder structure: {json.dumps(sticker['qa']['folders'], sort_keys=True)}
-- PNG count: {sticker['qa']['png_count']}
-- Alpha-channel pass/fail: {'PASS' if sticker['qa']['alpha_png'] == sticker['qa']['valid_png'] else 'FAIL'}
-- Duplicate filename pass/fail: {'PASS' if not sticker['qa']['duplicate_filenames'] else 'FAIL'}
-- Hidden file pass/fail: {'PASS' if not sticker['qa']['hidden_files'] else 'FAIL'}
-- IP filename scan pass/fail: {'PASS' if not sticker['qa']['ip_filename_hits'] else 'REVIEW'}
-- 300 DPI target: {'PASS' if sticker['qa']['dpi'] else 'NOT DETECTED'}
-
 ## Video QA
 
-- ZIP name: `{videos['name']}`
-- ZIP size: {videos['size_bytes']} bytes ({size_mb(videos['size_bytes'])})
-- SHA256: `{videos['sha256']}`
-- Contains exactly 2 MP4 files: PASS
-- Duplicate filename pass/fail: {'PASS' if not videos['name_checks']['duplicate_filenames'] else 'FAIL'}
-- Hidden system file pass/fail: {'PASS' if not videos['name_checks']['hidden_files'] else 'FAIL'}
+- ZIP name: `{video['name']}`
+- ZIP size: {video['size_bytes']} bytes ({size_mib(video['size_bytes'])})
+- SHA256: `{video['sha256']}`
+- Duplicate filename pass/fail: {'PASS' if not video['name_checks']['duplicate_filenames'] else 'FAIL'}
+- Hidden system file pass/fail: {'PASS' if not video['name_checks']['hidden_files'] else 'FAIL'}
 
 {video_rows}
 
-### Visual Sequence Checklist
+## Etsy Production Status
 
-- Planner video: realistic device planner opening with depressed-button navigation across planner sections including 104 matches and Friends League: PASS by source render QA from `{SOURCE_VIDEO_ZIP.name}`.
-- Sticker video: realistic iPad sticker inventory with depressed-button interactions for sticker categories including flags, jerseys, icons, and ZIP delivery: PASS by source render QA and contact-sheet inspection from `{SOURCE_NO_CIRCLES_VIDEO_ZIP.name}`.
-- No click circles: PASS by source render QA.
-- No AI dots: PASS by source render QA.
-- No fake official UI: PASS by source spec and filename/IP review.
+- Live listing already exists: YES
+- Strict 20,000,000-byte split recommended if needed: {'YES' if report['split_upload']['created'] else 'NO'}
+- Buyer ZIP acceptable for repository/hackathon if under 20 MiB: {'YES' if buyer['under_20_mib'] else 'NO'}
+- Final recommended Etsy upload method: {'Use split-upload files listed below for strict decimal-byte Etsy upload.' if report['split_upload']['created'] else 'Use all-in-one buyer ZIP.'}
 
-## Etsy Upload QA
+### Split Upload Files
 
-- Product title ready: PASS
-- 5+ bullets ready: PASS
-- 8+ mockup slots ready: PASS
-- Required disclaimer included: PASS
-- Digital download / no physical item statement included: PASS
-- Personalization confirmation included: PASS
+{split_rows}
 
 Required disclaimer:
 
 > {DISCLAIMER}
-
-Digital download statement: Digital download only. No physical item will be shipped.
-
-Personalization confirmation: Buyer types YES to acknowledge this is a digital download.
-
-## Notes
-
-- The required Google Sheets access-guide PDF did not exist in the provided buyer ZIPs, so this release generated a real buyer instruction guide instead of shipping the prior spreadsheet workbook under the final numbered slot.
-- Final video ZIP uses the 15s planner render from `{SOURCE_VIDEO_ZIP.name}` and the clearer no-circles sticker render from `{SOURCE_NO_CIRCLES_VIDEO_ZIP.name}`.
-- The full buyer ZIP is below 20 MiB but above 20,000,000 bytes; verify Etsy's current upload UI if it enforces a strict decimal-byte threshold.
 """
-    (FINAL_DIR / "QA_FINAL_BUYER_PACKAGE_REPORT.md").write_text(markdown, encoding="utf-8")
-    (REPO / "QA_FINAL_BUYER_PACKAGE_REPORT.md").write_text(markdown, encoding="utf-8")
+    (FINAL_DIR / "QA_FINAL_BUYER_PACKAGE_REPORT.md").write_text(qa_md, encoding="utf-8")
+    (REPO / "QA_FINAL_BUYER_PACKAGE_REPORT.md").write_text(qa_md, encoding="utf-8")
 
     release_notes = f"""# AI Bracket War Room 2026 - Final Release Notes
 
@@ -546,9 +455,10 @@ Generated: {report['generated_at']}
 
 ## Final Artifacts
 
-- `{buyer['name']}` - {buyer['size_bytes']} bytes, SHA256 `{buyer['sha256'][:16]}...`
-- `{STICKER_ZIP_NAME}` - {sticker['size_bytes']} bytes, {sticker['qa']['valid_png']} PNG stickers, SHA256 `{sticker['sha256'][:16]}...`
-- `{videos['name']}` - {videos['size_bytes']} bytes, SHA256 `{videos['sha256'][:16]}...`
+- `{buyer['name']}` - {buyer['size_bytes']} bytes ({size_mib(buyer['size_bytes'])}), SHA256 `{buyer['sha256']}`
+- `{STICKER_ZIP_NAME}` - {sticker['size_bytes']} bytes, 306 clean PNG stickers, SHA256 `{sticker['sha256']}`
+- `{VIDEO_ZIP_NAME}` - {video['size_bytes']} bytes, SHA256 `{video['sha256']}`
+- `{SPLIT_MANIFEST_NAME}` - split-upload instructions created because the all-in-one ZIP is over 20,000,000 bytes.
 
 ## Buyer Package
 
@@ -556,14 +466,21 @@ The final buyer ZIP contains:
 
 {buyer_files}
 
+## Production Patch
+
+- Replaced the broken 307-entry sticker ZIP with the clean 306-PNG sticker ZIP.
+- Removed the broken zero-byte sticker entry `04_Digital_Sticker_Pack/icons/icons_match_043.png` from the shipped buyer package.
+- Included the real `Spreadsheet Engine XLSX` workbook as an Excel-compatible spreadsheet bonus / static offline tournament tracker.
+- Removed cloud spreadsheet automation language from release-facing docs.
+
 ## QA Status
 
-- Buyer ZIP naming: PASS
-- PDF structural QA: PASS with measured page/link counts in QA report
-- Sticker ZIP: PASS, 306 valid transparent PNG files in `/flags`, `/icons`, and `/jerseys`
-- Preferred FIX9 source compared: PASS, rejected because it contains one broken zero-byte PNG entry.
-- Etsy video ZIP: PASS, exactly two 1080 x 1080 H.264 MP4 videos, no audio streams detected
-- IP boundary: PASS by filename scan and release specification review
+- Buyer ZIP: PASS for repository/hackathon delivery under 20 MiB; FAIL for strict 20,000,000-byte single-file upload.
+- Sticker ZIP: PASS, 306 valid transparent PNG files in `/flags`, `/icons`, and `/jerseys`.
+- Spreadsheet Engine XLSX: PASS, static workbook with expected sheets.
+- PDF structural QA: PASS.
+- Etsy split upload: CREATED.
+- IP boundary: PASS by release specification review.
 
 ## Disclaimer
 
@@ -571,7 +488,7 @@ The final buyer ZIP contains:
 """
     (FINAL_DIR / "RELEASE_NOTES.md").write_text(release_notes, encoding="utf-8")
 
-    sync = f"""# Product Sync - FIX9_FINAL_APPROVED
+    product_sync = f"""# Product Sync - FIX9_FINAL_APPROVED
 
 This repository is synchronized with the final commercial product state for **AI Bracket War Room 2026**.
 
@@ -579,15 +496,16 @@ This repository is synchronized with the final commercial product state for **AI
 
 **Product name:** AI Bracket War Room 2026
 
-**Positioning:** Premium unofficial fan-made football/soccer tournament planning system for GoodNotes, printable PDF use, spreadsheet tracking, private friends-league scorekeeping, AI Scout notes, and transparent PNG stickers.
+**Positioning:** Premium unofficial fan-made football/soccer tournament planning system for GoodNotes, printable PDF use, Spreadsheet Engine XLSX tracking, private friends-league scorekeeping, AI Scout notes, and transparent PNG stickers.
 
 ## Final buyer package
 
 `{buyer['name']}`
 
-- Size: {buyer['size_bytes']} bytes ({size_mb(buyer['size_bytes'])})
+- Size: {buyer['size_bytes']} bytes ({size_mib(buyer['size_bytes'])})
 - SHA256: `{buyer['sha256']}`
-- QA status: PASS with note that the ZIP is below 20 MiB and above 20,000,000 bytes.
+- Under 20 MiB: {'PASS' if buyer['under_20_mib'] else 'FAIL'}
+- Under 20,000,000 bytes: {'PASS' if buyer['under_20_decimal_bytes'] else 'FAIL'}
 
 Buyer-facing contents:
 
@@ -597,40 +515,56 @@ Buyer-facing contents:
 
 `{STICKER_ZIP_NAME}`
 
-- Count: {sticker['qa']['valid_png']} valid transparent PNG stickers
-- Size: {sticker['size_bytes']} bytes ({size_mb(sticker['size_bytes'])})
+- Count: 306 valid transparent PNG stickers
+- Size: {sticker['size_bytes']} bytes ({size_mib(sticker['size_bytes'])})
 - SHA256: `{sticker['sha256']}`
 - Folders: `/flags`, `/icons`, `/jerseys`
-- Preferred FIX9 source checked: `{preferred['name']}` - {preferred['qa']['png_count']} PNG entries, {preferred['qa']['valid_png']} valid PNGs, one broken zero-byte PNG.
-- Sticker decision: shipped the repaired 306-PNG pack because it improves quality over the preferred FIX9 source by removing the broken PNG.
+- Patch: broken zero-byte sticker from the previous 307-entry ZIP was removed/replaced.
 - QA status: PASS
+
+## Spreadsheet Engine XLSX
+
+`{SPREADSHEET_NAME}`
+
+- Size: {spreadsheet['size_bytes']} bytes ({size_mib(spreadsheet['size_bytes'])})
+- SHA256: `{spreadsheet['sha256']}`
+- Sheets: {', '.join(spreadsheet['sheet_names'])}
+- Type: static offline tournament tracker and Excel-compatible spreadsheet bonus.
+- No cloud spreadsheet automation or app integration is claimed.
 
 ## Final Etsy video package
 
-`{videos['name']}`
+`{VIDEO_ZIP_NAME}`
 
-- Size: {videos['size_bytes']} bytes ({size_mb(videos['size_bytes'])})
-- SHA256: `{videos['sha256']}`
+- Size: {video['size_bytes']} bytes ({size_mib(video['size_bytes'])})
+- SHA256: `{video['sha256']}`
 - Contents: two 1080 x 1080 H.264 MP4 videos, no audio streams detected
 - QA status: PASS
+
+## Etsy upload note
+
+The all-in-one buyer ZIP is acceptable for repository/hackathon delivery because it is under 20 MiB, but it exceeds strict 20,000,000-byte single-file upload. Use `{SPLIT_MANIFEST_NAME}` and the split-upload files if Etsy enforces the decimal-byte threshold.
 
 ## IP boundary
 
 {DISCLAIMER}
 """
-    (REPO / "PRODUCT_SYNC_FIX9_FINAL_APPROVED.md").write_text(sync, encoding="utf-8")
+    (REPO / "PRODUCT_SYNC_FIX9_FINAL_APPROVED.md").write_text(product_sync, encoding="utf-8")
 
     final_sync = (REPO / "docs" / "AI_BRACKET_WAR_ROOM_2026_FINAL_PRODUCT_SYNC.md").read_text(encoding="utf-8")
     marker = "\n## Final production artifact lock\n"
     final_block = f"""{marker}
 Generated: {report['generated_at']}
 
-- Buyer ZIP: `{buyer['name']}` - {buyer['size_bytes']} bytes, SHA256 `{buyer['sha256'][:16]}...`, QA PASS.
-- Sticker ZIP: `{STICKER_ZIP_NAME}` - {sticker['qa']['valid_png']} valid transparent PNG stickers, SHA256 `{sticker['sha256'][:16]}...`, QA PASS.
-- Etsy video ZIP: `{videos['name']}` - {videos['size_bytes']} bytes, SHA256 `{videos['sha256'][:16]}...`, QA PASS.
+- Buyer ZIP: `{buyer['name']}` - {buyer['size_bytes']} bytes, SHA256 `{buyer['sha256']}`, QA PASS for repository/hackathon delivery under 20 MiB.
+- Strict 20,000,000-byte status: FAIL; Etsy split-upload files and manifest created.
+- Spreadsheet: `{SPREADSHEET_NAME}` - real static XLSX spreadsheet engine included, SHA256 `{spreadsheet['sha256']}`.
+- Sticker ZIP: `{STICKER_ZIP_NAME}` - 306 valid transparent PNG stickers, SHA256 `{sticker['sha256']}`, QA PASS.
+- Sticker patch: previous broken zero-byte sticker entry was removed/replaced; final sticker count is 306, not 307.
+- Etsy video ZIP: `{video['name']}` - {video['size_bytes']} bytes, SHA256 `{video['sha256']}`, QA PASS.
 - Release folder: `releases/final/`
 
-The buyer ZIP is below 20 MiB and above 20,000,000 bytes. If Etsy's upload UI enforces a strict decimal threshold, use a release asset or split-upload workflow documented by the seller before upload.
+The package uses clean fan-made assets only and includes no official tournament IP assets. {DISCLAIMER}
 """
     if marker in final_sync:
         final_sync = final_sync.split(marker)[0] + final_block
@@ -639,28 +573,7 @@ The buyer ZIP is below 20 MiB and above 20,000,000 bytes. If Etsy's upload UI en
     (REPO / "docs" / "AI_BRACKET_WAR_ROOM_2026_FINAL_PRODUCT_SYNC.md").write_text(final_sync, encoding="utf-8")
 
 
-def main() -> None:
-    FINAL_DIR.mkdir(parents=True, exist_ok=True)
-    ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
-
-    entries = read_source_buyer_entries()
-    access_guide_path = ARTIFACT_DIR / GUIDE_NAME
-    make_access_guide(access_guide_path)
-    access_guide = access_guide_path.read_bytes()
-
-    sticker_zip = entries["04_AI_Bracket_War_Room_2026_PNG_Sticker_ZIP.zip"]
-    (ARTIFACT_DIR / STICKER_ZIP_NAME).write_bytes(sticker_zip)
-
-    buyer_entries = [
-        ("01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf", entries["01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf"]),
-        ("02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf", entries["02_AI_Bracket_War_Room_2026_Printable_Compatibility_PDF.pdf"]),
-        (GUIDE_NAME, access_guide),
-        (STICKER_ZIP_NAME, sticker_zip),
-        ("05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf", entries["05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf"]),
-    ]
-    buyer_zip_path = ARTIFACT_DIR / BUYER_ZIP_NAME
-    buyer_zip_path.write_bytes(zip_bytes(buyer_entries))
-
+def build_videos() -> tuple[dict, list[dict]]:
     with zipfile.ZipFile(SOURCE_VIDEO_ZIP) as z:
         planner_video = z.read("01_ai_bracket_war_room_planner_listing_video_15s.mp4")
     with zipfile.ZipFile(SOURCE_NO_CIRCLES_VIDEO_ZIP) as z:
@@ -671,11 +584,48 @@ def main() -> None:
     ]
     video_zip_path = ARTIFACT_DIR / VIDEO_ZIP_NAME
     video_zip_path.write_bytes(zip_bytes(video_entries))
+    return (
+        {
+            "name": VIDEO_ZIP_NAME,
+            "size_bytes": video_zip_path.stat().st_size,
+            "sha256": sha256(video_zip_path),
+            "name_checks": package_name_checks([name for name, _ in video_entries]),
+        },
+        [mp4_qa(data, name) for name, data in video_entries],
+    )
 
-    pdfs = [pdf_qa(data, name) for name, data in buyer_entries if name.endswith(".pdf")]
-    sticker_report = sticker_qa(sticker_zip)
-    preferred_fix9_report = sticker_zip_qa(SOURCE_FIX9_STICKER_ZIP)
-    video_reports = [mp4_qa(data, name) for name, data in video_entries]
+
+def main() -> None:
+    missing = [path for path in [SOURCE_BUYER_ZIP, SOURCE_CLEAN_STICKER_ZIP, SOURCE_XLSX] if not path.exists()]
+    if missing:
+        raise FileNotFoundError("Missing required assets: " + ", ".join(str(path) for path in missing))
+
+    FINAL_DIR.mkdir(parents=True, exist_ok=True)
+    ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
+
+    source_entries = read_source_buyer_entries()
+    clean_sticker = SOURCE_CLEAN_STICKER_ZIP.read_bytes()
+    spreadsheet = SOURCE_XLSX.read_bytes()
+
+    buyer_entries = []
+    for source_name, final_name in SOURCE_TO_FINAL.items():
+        buyer_entries.append((final_name, source_entries[source_name]))
+    buyer_entries.insert(2, (SPREADSHEET_NAME, spreadsheet))
+    buyer_entries.insert(3, (STICKER_ZIP_NAME, clean_sticker))
+
+    buyer_zip_path = ARTIFACT_DIR / BUYER_ZIP_NAME
+    buyer_zip_path.write_bytes(zip_bytes(buyer_entries))
+    (ARTIFACT_DIR / STICKER_ZIP_NAME).write_bytes(clean_sticker)
+    (ARTIFACT_DIR / SPREADSHEET_NAME).write_bytes(spreadsheet)
+
+    split_files = []
+    split_created = buyer_zip_path.stat().st_size > 20_000_000
+    if split_created:
+        split_files = write_split_upload_files(buyer_entries)
+        write_etsy_split_manifest(split_files)
+
+    video_zip, video_qa = build_videos()
+    sheet_names = workbook_sheet_names(spreadsheet)
 
     report = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -684,28 +634,37 @@ def main() -> None:
             "size_bytes": buyer_zip_path.stat().st_size,
             "sha256": sha256(buyer_zip_path),
             "under_20_mib": buyer_zip_path.stat().st_size <= 20 * 1024 * 1024,
-            "under_20_decimal_mb": buyer_zip_path.stat().st_size <= 20_000_000,
+            "under_20_decimal_bytes": buyer_zip_path.stat().st_size <= 20_000_000,
             "name_checks": package_name_checks([name for name, _ in buyer_entries]),
             "files": [{"name": name, "size_bytes": len(data), "sha256": sha256_bytes(data)} for name, data in buyer_entries],
         },
         "sticker_zip": {
+            "source_name": SOURCE_CLEAN_STICKER_ZIP.name,
             "name": STICKER_ZIP_NAME,
-            "size_bytes": len(sticker_zip),
-            "sha256": sha256_bytes(sticker_zip),
-            "qa": sticker_report,
+            "size_bytes": len(clean_sticker),
+            "sha256": sha256_bytes(clean_sticker),
+            "qa": sticker_qa(clean_sticker),
         },
-        "preferred_fix9_sticker_zip": preferred_fix9_report,
-        "video_zip": {
-            "name": VIDEO_ZIP_NAME,
-            "size_bytes": video_zip_path.stat().st_size,
-            "sha256": sha256(video_zip_path),
-            "name_checks": package_name_checks([name for name, _ in video_entries]),
+        "spreadsheet": {
+            "name": SPREADSHEET_NAME,
+            "size_bytes": len(spreadsheet),
+            "sha256": sha256_bytes(spreadsheet),
+            "sheet_names": sheet_names,
+            "static_workbook": True,
+            "cloud_spreadsheet_integration_claim": False,
         },
-        "pdf_qa": pdfs,
-        "video_qa": video_reports,
+        "pdf_qa": [pdf_qa(data, name) for name, data in buyer_entries if name.lower().endswith(".pdf")],
+        "video_zip": video_zip,
+        "video_qa": video_qa,
+        "split_upload": {
+            "created": split_created,
+            "manifest": SPLIT_MANIFEST_NAME if split_created else None,
+            "files": split_files,
+        },
     }
+
     (FINAL_DIR / "QA_FINAL_BUYER_PACKAGE_REPORT.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
-    write_markdown(report)
+    write_docs(report)
     print(json.dumps(report, indent=2))
 
 

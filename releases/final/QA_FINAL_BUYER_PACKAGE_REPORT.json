@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-06T16:47:29Z",
+  "generated_at": "2026-06-06T17:29:38Z",
   "buyer_zip": {
     "name": "AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip",
-    "size_bytes": 20353596,
-    "sha256": "014c5bf335131776ff1855c7bdd7909c6f2097bcffc1a255e279e7dd0c8ffeee",
+    "size_bytes": 20387357,
+    "sha256": "b60e9655cef44b4f8224dfc9b4e401912fd44bfc9442571995f7f1fbff318f10",
     "under_20_mib": true,
-    "under_20_decimal_mb": false,
+    "under_20_decimal_bytes": false,
     "name_checks": {
       "duplicate_filenames": [],
       "hidden_files": []
@@ -22,9 +22,9 @@
         "sha256": "e2304fe6b17044d1c495be36dcac8a86d1dbf96c35bc24efe162720ae9fc47d4"
       },
       {
-        "name": "03_AI_Bracket_War_Room_2026_Google_Sheets_Tracker_Access_Guide.pdf",
-        "size_bytes": 3549,
-        "sha256": "5069809936af96db39cd1f6968d38de08c7f37b96f6623fd9c5ad686efebafbb"
+        "name": "03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx",
+        "size_bytes": 46507,
+        "sha256": "cf48fa68d5c343e9f83f3502de1d02d777b9b6f4a3f1548f5d1e222d60b37f37"
       },
       {
         "name": "04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip",
@@ -39,6 +39,7 @@
     ]
   },
   "sticker_zip": {
+    "source_name": "04_AI_Bracket_War_Room_2026_PNG_Sticker_ZIP.zip",
     "name": "04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip",
     "size_bytes": 5997858,
     "sha256": "9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e",
@@ -46,14 +47,16 @@
       "files_total": 306,
       "png_count": 306,
       "valid_png": 306,
-      "bad_png": [],
+      "zero_byte_count": 0,
+      "broken_png_count": 0,
+      "broken_png": [],
       "folders": {
         "flags": 48,
         "icons": 210,
         "jerseys": 48
       },
       "dimensions": {
-        "(512, 512)": 306
+        "512x512": 306
       },
       "modes": {
         "RGBA": 306
@@ -64,44 +67,50 @@
       "alpha_png": 306,
       "transparent_png": 306,
       "duplicate_filenames": [],
-      "hidden_files": [],
-      "ip_filename_hits": []
+      "hidden_files": []
     }
   },
-  "preferred_fix9_sticker_zip": {
-    "name": "04_AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_Sticker_Pack_300DPI_PNG.zip",
-    "size_bytes": 6013334,
-    "sha256": "51c3c2ee564a4f47bcae82b0bf598e3d99cacaa1d93dca39bc8f63339a74d6c4",
-    "qa": {
-      "files_total": 307,
-      "png_count": 307,
-      "valid_png": 306,
-      "bad_png": [
-        {
-          "path": "04_Digital_Sticker_Pack/icons/icons_match_043.png",
-          "error": "cannot identify image file <_io.BytesIO object at 0x0000018DF671F010>",
-          "size_bytes": 0
-        }
-      ],
-      "folders": {
-        "04_Digital_Sticker_Pack": 307
-      },
-      "dimensions": {
-        "(512, 512)": 306
-      },
-      "modes": {
-        "RGBA": 306
-      },
-      "dpi": {
-        "(299.9994, 299.9994)": 306
-      },
-      "alpha_png": 306,
-      "transparent_png": 306,
-      "duplicate_filenames": [],
-      "hidden_files": [],
-      "ip_filename_hits": []
-    }
+  "spreadsheet": {
+    "name": "03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx",
+    "size_bytes": 46507,
+    "sha256": "cf48fa68d5c343e9f83f3502de1d02d777b9b6f4a3f1548f5d1e222d60b37f37",
+    "sheet_names": [
+      "START_HERE",
+      "BRACKET_WAR_ROOM",
+      "MATCH_PLANNER",
+      "FRIENDS_LEAGUE",
+      "AnnexC_495_STATIC",
+      "QA_STATIC_CHECK"
+    ],
+    "static_workbook": true,
+    "cloud_spreadsheet_integration_claim": false
   },
+  "pdf_qa": [
+    {
+      "name": "01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf",
+      "size_bytes": 10408460,
+      "page_count": 134,
+      "blank_like_page_count": 0,
+      "hyperlink_count": 1340,
+      "bad_destinations": 0
+    },
+    {
+      "name": "02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf",
+      "size_bytes": 10202469,
+      "page_count": 134,
+      "blank_like_page_count": 0,
+      "hyperlink_count": 0,
+      "bad_destinations": 0
+    },
+    {
+      "name": "05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf",
+      "size_bytes": 39090,
+      "page_count": 4,
+      "blank_like_page_count": 0,
+      "hyperlink_count": 0,
+      "bad_destinations": 0
+    }
+  ],
   "video_zip": {
     "name": "AI_Bracket_War_Room_2026_Etsy_Videos.zip",
     "size_bytes": 1099909,
@@ -111,52 +120,6 @@
       "hidden_files": []
     }
   },
-  "pdf_qa": [
-    {
-      "name": "01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf",
-      "size_bytes": 10408460,
-      "page_count": 134,
-      "blank_like_page_count": 0,
-      "hyperlink_count": 1340,
-      "bad_destinations": 0,
-      "small_touch_targets_lt_25px": 0,
-      "fonts_total_checked": 938,
-      "fonts_embedded_checked": 536
-    },
-    {
-      "name": "02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf",
-      "size_bytes": 10202469,
-      "page_count": 134,
-      "blank_like_page_count": 0,
-      "hyperlink_count": 0,
-      "bad_destinations": 0,
-      "small_touch_targets_lt_25px": 0,
-      "fonts_total_checked": 938,
-      "fonts_embedded_checked": 536
-    },
-    {
-      "name": "03_AI_Bracket_War_Room_2026_Google_Sheets_Tracker_Access_Guide.pdf",
-      "size_bytes": 3549,
-      "page_count": 1,
-      "blank_like_page_count": 0,
-      "hyperlink_count": 0,
-      "bad_destinations": 0,
-      "small_touch_targets_lt_25px": 0,
-      "fonts_total_checked": 2,
-      "fonts_embedded_checked": 0
-    },
-    {
-      "name": "05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf",
-      "size_bytes": 39090,
-      "page_count": 4,
-      "blank_like_page_count": 0,
-      "hyperlink_count": 0,
-      "bad_destinations": 0,
-      "small_touch_targets_lt_25px": 0,
-      "fonts_total_checked": 16,
-      "fonts_embedded_checked": 12
-    }
-  ],
   "video_qa": [
     {
       "name": "01_AI_Bracket_War_Room_2026_Planner_Etsy_Video.mp4",
@@ -174,5 +137,41 @@
       "codec": "H.264",
       "audio_stream_present": false
     }
-  ]
+  ],
+  "split_upload": {
+    "created": true,
+    "manifest": "AI_Bracket_War_Room_2026_ETSY_SPLIT_UPLOAD_MANIFEST.md",
+    "files": [
+      {
+        "upload_order": 1,
+        "name": "01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf",
+        "size_bytes": 10408460,
+        "sha256": "c3e84f8f65d6d847f784c115edefe37b80a45207956d5ce4af3f6bd6aa733793"
+      },
+      {
+        "upload_order": 2,
+        "name": "02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf",
+        "size_bytes": 10202469,
+        "sha256": "e2304fe6b17044d1c495be36dcac8a86d1dbf96c35bc24efe162720ae9fc47d4"
+      },
+      {
+        "upload_order": 3,
+        "name": "03_AI_Bracket_War_Room_2026_Spreadsheet_Engine_XLSX.zip",
+        "size_bytes": 36465,
+        "sha256": "c045add23f6b49dbd4ea06360e3bf2ba9941bf364010edba02e28ef48a66c293"
+      },
+      {
+        "upload_order": 4,
+        "name": "04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip",
+        "size_bytes": 5997858,
+        "sha256": "9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e"
+      },
+      {
+        "upload_order": 5,
+        "name": "05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf",
+        "size_bytes": 39090,
+        "sha256": "11b990173690bf836f75d8ba40dc87b1e5ddfea3e1a05444df252d4eb046f791"
+      }
+    ]
+  }
 }

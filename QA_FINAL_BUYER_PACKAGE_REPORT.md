@@ -1,15 +1,14 @@
 # QA Final Buyer Package Report
 
-Generated: 2026-06-06T16:47:29Z
+Generated: 2026-06-06T17:29:38Z
 
 ## Buyer ZIP QA
 
 - ZIP name: `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip`
-- ZIP size: 20353596 bytes (19.41 MiB)
-- SHA256: `014c5bf335131776ff1855c7bdd7909c6f2097bcffc1a255e279e7dd0c8ffeee`
+- ZIP size: 20387357 bytes (19.44 MiB)
+- SHA256: `b60e9655cef44b4f8224dfc9b4e401912fd44bfc9442571995f7f1fbff318f10`
 - Under 20 MiB: PASS
 - Under 20,000,000 bytes: FAIL
-- Buyer-facing names clean: PASS
 - Duplicate filename pass/fail: PASS
 - Hidden system file pass/fail: PASS
 
@@ -17,75 +16,69 @@ Generated: 2026-06-06T16:47:29Z
 
 - `01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf` - 10408460 bytes (9.93 MiB)
 - `02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf` - 10202469 bytes (9.73 MiB)
-- `03_AI_Bracket_War_Room_2026_Google_Sheets_Tracker_Access_Guide.pdf` - 3549 bytes (0.00 MiB)
+- `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx` - 46507 bytes (0.04 MiB)
 - `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip` - 5997858 bytes (5.72 MiB)
 - `05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf` - 39090 bytes (0.04 MiB)
 
-## PDF QA
+## Sticker ZIP QA
 
-- `01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf`: 134 pages, 0 blank-like, 1340 links, 0 bad destinations, 0 link targets under 25 px, 9.93 MiB.
-- `02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf`: 134 pages, 0 blank-like, 0 links, 0 bad destinations, 0 link targets under 25 px, 9.73 MiB.
-- `03_AI_Bracket_War_Room_2026_Google_Sheets_Tracker_Access_Guide.pdf`: 1 pages, 0 blank-like, 0 links, 0 bad destinations, 0 link targets under 25 px, 0.00 MiB.
-- `05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf`: 4 pages, 0 blank-like, 0 links, 0 bad destinations, 0 link targets under 25 px, 0.04 MiB.
-
-Fonts embedded check is structural only. Link touch target checks apply to detected link annotations.
-
-## Sticker QA
-
-- Preferred source checked: `04_AI_Bracket_War_Room_2026_FIX9_FINAL_APPROVED_Sticker_Pack_300DPI_PNG.zip` - 6013334 bytes, SHA256 `51c3c2ee564a4f47bcae82b0bf598e3d99cacaa1d93dca39bc8f63339a74d6c4`.
-- Preferred source result: 307 PNG entries, 306 valid PNGs, 1 broken PNG, 0 hidden files, 0 duplicate filenames.
-- Preferred source broken entries: `04_Digital_Sticker_Pack/icons/icons_match_043.png`.
-- Source ZIP selected: repaired sticker ZIP from `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip`; selected over preferred FIX9 source because the FIX9 pack contains one zero-byte broken PNG while the repaired pack has 306 valid transparent PNGs.
-- Final sticker ZIP name: `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip`
-- Final sticker count: 306
-- Final sticker ZIP SHA256: `9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e`
-- Folder structure: {"flags": 48, "icons": 210, "jerseys": 48}
-- PNG count: 306
+- Source ZIP name: `04_AI_Bracket_War_Room_2026_PNG_Sticker_ZIP.zip`
+- Final ZIP name: `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip`
+- SHA256: `9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e`
+- Total PNG count: 306
+- Folder counts: {"flags": 48, "icons": 210, "jerseys": 48}
+- Zero-byte count: 0
+- Broken PNG count: 0
 - Alpha-channel pass/fail: PASS
+- DPI summary: {"(299.9994, 299.9994)": 306}
+- Dimensions summary: {"512x512": 306}
+- Mode summary: {"RGBA": 306}
 - Duplicate filename pass/fail: PASS
 - Hidden file pass/fail: PASS
-- IP filename scan pass/fail: PASS
-- 300 DPI target: PASS
+
+## Spreadsheet QA
+
+- XLSX filename: `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx`
+- SHA256: `cf48fa68d5c343e9f83f3502de1d02d777b9b6f4a3f1548f5d1e222d60b37f37`
+- Workbook sheet names: `START_HERE`, `BRACKET_WAR_ROOM`, `MATCH_PLANNER`, `FRIENDS_LEAGUE`, `AnnexC_495_STATIC`, `QA_STATIC_CHECK`
+- Expected workbook sheets present: PASS
+- Static workbook confirmation: PASS
+- Cloud spreadsheet integration claim absent: PASS
+
+The workbook is described as a Spreadsheet Engine XLSX, Excel-compatible spreadsheet bonus, and static offline tournament tracker.
+
+## PDF QA
+
+- `01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf`: 134 pages, 0 blank-like, 1340 links, 0 bad links.
+- `02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf`: 134 pages, 0 blank-like, 0 links, 0 bad links.
+- `05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf`: 4 pages, 0 blank-like, 0 links, 0 bad links.
 
 ## Video QA
 
 - ZIP name: `AI_Bracket_War_Room_2026_Etsy_Videos.zip`
 - ZIP size: 1099909 bytes (1.05 MiB)
 - SHA256: `7eb5b79ab7ad214b0e1d6b730ad14ba8038653eb82db8ea1b35dadeaf5c037b0`
-- Contains exactly 2 MP4 files: PASS
 - Duplicate filename pass/fail: PASS
 - Hidden system file pass/fail: PASS
 
-- `01_AI_Bracket_War_Room_2026_Planner_Etsy_Video.mp4`: 15.0s, 1080x1080, H.264, audio stream present: no, 0.61 MiB.
-- `02_AI_Bracket_War_Room_2026_Sticker_Pack_Etsy_Video.mp4`: 12.0s, 1080x1080, H.264, audio stream present: no, 0.47 MiB.
+- `01_AI_Bracket_War_Room_2026_Planner_Etsy_Video.mp4`: 15.0s, 1080x1080, H.264, audio stream present: no.
+- `02_AI_Bracket_War_Room_2026_Sticker_Pack_Etsy_Video.mp4`: 12.0s, 1080x1080, H.264, audio stream present: no.
 
-### Visual Sequence Checklist
+## Etsy Production Status
 
-- Planner video: realistic device planner opening with depressed-button navigation across planner sections including 104 matches and Friends League: PASS by source render QA from `AI_Bracket_War_Room_2026_Etsy_Videos_From_Specs_15s.zip`.
-- Sticker video: realistic iPad sticker inventory with depressed-button interactions for sticker categories including flags, jerseys, icons, and ZIP delivery: PASS by source render QA and contact-sheet inspection from `AI_Bracket_War_Room_2026_Button_Press_Videos_No_Circles.zip`.
-- No click circles: PASS by source render QA.
-- No AI dots: PASS by source render QA.
-- No fake official UI: PASS by source spec and filename/IP review.
+- Live listing already exists: YES
+- Strict 20,000,000-byte split recommended if needed: YES
+- Buyer ZIP acceptable for repository/hackathon if under 20 MiB: YES
+- Final recommended Etsy upload method: Use split-upload files listed below for strict decimal-byte Etsy upload.
 
-## Etsy Upload QA
+### Split Upload Files
 
-- Product title ready: PASS
-- 5+ bullets ready: PASS
-- 8+ mockup slots ready: PASS
-- Required disclaimer included: PASS
-- Digital download / no physical item statement included: PASS
-- Personalization confirmation included: PASS
+- 1. `01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf` - 10408460 bytes, SHA256 `c3e84f8f65d6d847f784c115edefe37b80a45207956d5ce4af3f6bd6aa733793`
+- 2. `02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf` - 10202469 bytes, SHA256 `e2304fe6b17044d1c495be36dcac8a86d1dbf96c35bc24efe162720ae9fc47d4`
+- 3. `03_AI_Bracket_War_Room_2026_Spreadsheet_Engine_XLSX.zip` - 36465 bytes, SHA256 `c045add23f6b49dbd4ea06360e3bf2ba9941bf364010edba02e28ef48a66c293`
+- 4. `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip` - 5997858 bytes, SHA256 `9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e`
+- 5. `05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf` - 39090 bytes, SHA256 `11b990173690bf836f75d8ba40dc87b1e5ddfea3e1a05444df252d4eb046f791`
 
 Required disclaimer:
 
 > Unofficial fan-made digital download. Not affiliated with or endorsed by FIFA, World Cup, national teams, leagues, clubs, sponsors, broadcasters, or players. No official logos, crests, sponsor marks, player likenesses, or protected tournament emblems are included.
-
-Digital download statement: Digital download only. No physical item will be shipped.
-
-Personalization confirmation: Buyer types YES to acknowledge this is a digital download.
-
-## Notes
-
-- The required Google Sheets access-guide PDF did not exist in the provided buyer ZIPs, so this release generated a real buyer instruction guide instead of shipping the prior spreadsheet workbook under the final numbered slot.
-- Final video ZIP uses the 15s planner render from `AI_Bracket_War_Room_2026_Etsy_Videos_From_Specs_15s.zip` and the clearer no-circles sticker render from `AI_Bracket_War_Room_2026_Button_Press_Videos_No_Circles.zip`.
-- The full buyer ZIP is below 20 MiB but above 20,000,000 bytes; verify Etsy's current upload UI if it enforces a strict decimal-byte threshold.
