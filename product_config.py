@@ -1,5 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass
+from pathlib import Path
 from enum import Enum
 from typing import Dict, Literal, Tuple
 
@@ -59,6 +60,77 @@ SKU_CONFIGS: Dict[SkuName, SKUConfig] = {
 "standard": SKUConfig("standard","WC2026 Matchday No Chaos Standard Planner","144-page standard GoodNotes planner with 104 dedicated match logs, group trackers, basic stats, 4 bingo cards and 180-file sticker bundle.",False,144,"dedicated",104,12,48,104,DESIGN_SYSTEM,FeatureFlags(True,False,True,True,True,True,4,2),_stickers(180,90,90,("flags","jerseys","icons","events","bingo")),ExportConfig(17.99,"Standard","01_WC2026_Matchday_No_Chaos_Standard_GoodNotes_Hyperlinked.pdf","02_WC2026_Matchday_No_Chaos_Standard_Flattened_Compatibility.pdf","WC2026_Matchday_No_Chaos_Standard_Buyer_Pack.zip","04_WC2026_Matchday_No_Chaos_Standard_Sticker_Pack_300DPI_PNG_SVG.zip","05_WC2026_Matchday_No_Chaos_Standard_Quick_Start_Guide.pdf",False,True,True,False,10),STANDARD_SECTIONS,QAConfig(144,20.0,25,True,True,True,True,True,True,104,12,4,180)),
 "minimal": SKUConfig("minimal","WC2026 Matchday No Chaos Minimal Tracker","84-page entry GoodNotes tracker with group tables, bracket, condensed two-match logs, basic predictions and sample sticker set.",False,84,"condensed",52,12,48,104,DESIGN_SYSTEM,FeatureFlags(False,True,True,False,True,True,0,6),_stickers(24,24,0,("sample",)),ExportConfig(9.99,"Minimal","01_WC2026_Matchday_No_Chaos_Minimal_GoodNotes_Hyperlinked.pdf","02_WC2026_Matchday_No_Chaos_Minimal_Flattened_Compatibility.pdf","WC2026_Matchday_No_Chaos_Minimal_Buyer_Pack.zip","04_WC2026_Matchday_No_Chaos_Minimal_Sample_Sticker_Pack_300DPI_PNG.zip","05_WC2026_Matchday_No_Chaos_Minimal_Quick_Start_Guide.pdf",False,True,False,False,8),MINIMAL_SECTIONS,QAConfig(84,20.0,25,True,True,True,True,True,True,52,12,0,24)),
 }
+
+REPO_ROOT = Path(__file__).resolve().parent
+
+APP_TITLE = "AI Bracket War Room 2026 - Build Small Hackathon"
+
+SPREADSHEET_CANDIDATE_PATHS = (
+    REPO_ROOT / "releases" / "final" / "artifacts" / "03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx",
+    REPO_ROOT / "FIX6C_STATIC_ANNEXC_HACKATHON_READY.xlsx",
+    REPO_ROOT / "assets" / "AI_Bracket_War_Room_2026_Planner_FIX7.xlsx",
+)
+
+SHEET_START_HERE = "START_HERE"
+SHEET_BRACKET_WAR_ROOM = "BRACKET_WAR_ROOM"
+SHEET_MATCH_PLANNER = "MATCH_PLANNER"
+SHEET_FRIENDS_LEAGUE = "FRIENDS_LEAGUE"
+SHEET_ANNEX_C = "AnnexC_495_STATIC"
+SHEET_QA_STATIC_CHECK = "QA_STATIC_CHECK"
+
+CANONICAL_SHEETS = (
+    SHEET_START_HERE,
+    SHEET_BRACKET_WAR_ROOM,
+    SHEET_MATCH_PLANNER,
+    SHEET_FRIENDS_LEAGUE,
+    SHEET_ANNEX_C,
+    SHEET_QA_STATIC_CHECK,
+)
+
+REQUIRED_SHEETS = (
+    SHEET_MATCH_PLANNER,
+    SHEET_FRIENDS_LEAGUE,
+    SHEET_ANNEX_C,
+)
+
+OPTIONAL_SHEETS = (
+    SHEET_START_HERE,
+    SHEET_BRACKET_WAR_ROOM,
+    SHEET_QA_STATIC_CHECK,
+)
+
+MATCH_COLUMNS = (
+    "Match ID",
+    "Phase",
+    "Side A",
+    "Side B",
+    "Prediction",
+    "AI Signal",
+    "Confidence %",
+    "Watch Priority",
+    "Notes",
+    "Result",
+    "Points",
+)
+
+FRIENDS_COLUMNS = (
+    "Player",
+    "Role",
+    "Correct Scores",
+    "Correct Winners",
+    "Upsets Hit",
+    "Total Points",
+    "Status",
+)
+
+SCORING_EXACT_SCORE_POINTS = 5
+SCORING_CORRECT_OUTCOME_POINTS = 2
+SCORING_MISS_POINTS = 0
+SCORING_EMPTY_RESULT_POINTS = 0
+
+EXPECTED_MATCH_COUNT = 104
+EXPECTED_GROUP_COUNT = 12
+EXPECTED_ANNEX_C_RECORD_COUNT = 495
 
 def get_sku_config(sku: SkuName) -> SKUConfig:
     if sku not in SKU_CONFIGS: raise KeyError(f"Unknown SKU: {sku}")
