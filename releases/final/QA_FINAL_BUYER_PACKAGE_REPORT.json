@@ -1,0 +1,136 @@
+{
+  "generated_at": "2026-06-06T16:08:45Z",
+  "buyer_zip": {
+    "name": "AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip",
+    "size_bytes": 20353597,
+    "sha256": "26628532610050cdfb2a63dc2f3044676ca732dbbc72859161b88959961ed791",
+    "under_20_mib": true,
+    "under_20_decimal_mb": false,
+    "files": [
+      {
+        "name": "01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf",
+        "size_bytes": 10408460,
+        "sha256": "c3e84f8f65d6d847f784c115edefe37b80a45207956d5ce4af3f6bd6aa733793"
+      },
+      {
+        "name": "02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf",
+        "size_bytes": 10202469,
+        "sha256": "e2304fe6b17044d1c495be36dcac8a86d1dbf96c35bc24efe162720ae9fc47d4"
+      },
+      {
+        "name": "03_AI_Bracket_War_Room_2026_Google_Sheets_Tracker_Access_Guide.pdf",
+        "size_bytes": 3549,
+        "sha256": "b029c00fabb0b393f3026fd4cdeeadfad5ff43bb26cbbc961170da01c5507b15"
+      },
+      {
+        "name": "04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip",
+        "size_bytes": 5997858,
+        "sha256": "9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e"
+      },
+      {
+        "name": "05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf",
+        "size_bytes": 39090,
+        "sha256": "11b990173690bf836f75d8ba40dc87b1e5ddfea3e1a05444df252d4eb046f791"
+      }
+    ]
+  },
+  "sticker_zip": {
+    "name": "04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip",
+    "size_bytes": 5997858,
+    "sha256": "9fce7391d2d1c5d8006849841668a6ab8293e55f26b498c42d8d5a2517dc232e",
+    "qa": {
+      "files_total": 306,
+      "png_count": 306,
+      "valid_png": 306,
+      "bad_png": [],
+      "folders": {
+        "flags": 48,
+        "icons": 210,
+        "jerseys": 48
+      },
+      "dimensions": {
+        "(512, 512)": 306
+      },
+      "modes": {
+        "RGBA": 306
+      },
+      "dpi": {
+        "(299.9994, 299.9994)": 306
+      },
+      "alpha_png": 306,
+      "transparent_png": 306,
+      "duplicate_filenames": [],
+      "hidden_files": [],
+      "ip_filename_hits": []
+    }
+  },
+  "video_zip": {
+    "name": "AI_Bracket_War_Room_2026_Etsy_Videos.zip",
+    "size_bytes": 1099909,
+    "sha256": "7eb5b79ab7ad214b0e1d6b730ad14ba8038653eb82db8ea1b35dadeaf5c037b0"
+  },
+  "pdf_qa": [
+    {
+      "name": "01_AI_Bracket_War_Room_2026_GoodNotes_Hyperlinked_PDF.pdf",
+      "size_bytes": 10408460,
+      "page_count": 134,
+      "blank_like_page_count": 0,
+      "hyperlink_count": 1340,
+      "bad_destinations": 0,
+      "small_touch_targets_lt_25px": 0,
+      "fonts_total_checked": 938,
+      "fonts_embedded_checked": 536
+    },
+    {
+      "name": "02_AI_Bracket_War_Room_2026_Printable_Backup_PDF.pdf",
+      "size_bytes": 10202469,
+      "page_count": 134,
+      "blank_like_page_count": 0,
+      "hyperlink_count": 0,
+      "bad_destinations": 0,
+      "small_touch_targets_lt_25px": 0,
+      "fonts_total_checked": 938,
+      "fonts_embedded_checked": 536
+    },
+    {
+      "name": "03_AI_Bracket_War_Room_2026_Google_Sheets_Tracker_Access_Guide.pdf",
+      "size_bytes": 3549,
+      "page_count": 1,
+      "blank_like_page_count": 0,
+      "hyperlink_count": 0,
+      "bad_destinations": 0,
+      "small_touch_targets_lt_25px": 0,
+      "fonts_total_checked": 2,
+      "fonts_embedded_checked": 0
+    },
+    {
+      "name": "05_AI_Bracket_War_Room_2026_Quick_Start_Guide.pdf",
+      "size_bytes": 39090,
+      "page_count": 4,
+      "blank_like_page_count": 0,
+      "hyperlink_count": 0,
+      "bad_destinations": 0,
+      "small_touch_targets_lt_25px": 0,
+      "fonts_total_checked": 16,
+      "fonts_embedded_checked": 12
+    }
+  ],
+  "video_qa": [
+    {
+      "name": "01_AI_Bracket_War_Room_2026_Planner_Etsy_Video.mp4",
+      "size_bytes": 644353,
+      "duration_seconds": 15.0,
+      "resolution": "1080x1080",
+      "codec": "H.264",
+      "audio_stream_present": false
+    },
+    {
+      "name": "02_AI_Bracket_War_Room_2026_Sticker_Pack_Etsy_Video.mp4",
+      "size_bytes": 487908,
+      "duration_seconds": 12.0,
+      "resolution": "1080x1080",
+      "codec": "H.264",
+      "audio_stream_present": false
+    }
+  ]
+}

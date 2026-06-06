@@ -205,3 +205,14 @@ Listing QA:
 ## Connector limitation note
 
 This sync patch updates repository documentation/state. Binary artifacts such as final buyer ZIPs, sticker ZIPs, MP4 videos, and rendered PDFs must be attached or generated in the build environment before they can be uploaded as release assets or committed through a binary-capable workflow.
+
+## Final production artifact lock
+
+Generated: 2026-06-06T16:08:45Z
+
+- Buyer ZIP: `AI_Bracket_War_Room_2026_FINAL_BUYER_PACKAGE_UPDATED.zip` - 20353597 bytes, SHA256 `26628532610050cd...`, QA PASS.
+- Sticker ZIP: `04_AI_Bracket_War_Room_2026_Sticker_Pack_300DPI_PNG.zip` - 306 valid transparent PNG stickers, SHA256 `9fce7391d2d1c5d8...`, QA PASS.
+- Etsy video ZIP: `AI_Bracket_War_Room_2026_Etsy_Videos.zip` - 1099909 bytes, SHA256 `7eb5b79ab7ad214b...`, QA PASS.
+- Release folder: `releases/final/`
+
+The buyer ZIP is below 20 MiB and above 20,000,000 bytes. If Etsy's upload UI enforces a strict decimal threshold, use a release asset or split-upload workflow documented by the seller before upload.
