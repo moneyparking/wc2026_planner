@@ -30,6 +30,9 @@ Generated: 2026-06-06
 - Scoring constants: exact score 5, correct outcome 2, miss 0, empty result 0
 - Group ranking sort: Pts desc, GD desc, GF desc, Team asc
 - Annex C full matrix is not hardcoded in `app.py`: PASS
+- Blank workbook boot: PASS
+- No completed results behavior: returns empty schema-valid group and third-place tables plus bracket status `waiting_for_completed_results`.
+- Gradio import: PASS after installing declared requirements.
 
 ## QA Commands
 
@@ -88,13 +91,42 @@ Observed bracket fallback:
 
 ```json
 {
-  "status": "annex_c_loaded_but_mapping_pending",
+  "status": "waiting_for_completed_results",
   "source": "AnnexC_495_STATIC",
   "qualified_third_groups": [],
   "third_place_key": "",
-  "round_of_32": {}
+  "round_of_32": {},
+  "later_rounds": {
+    "R16_M089": {"depends_on": ["R32_M073", "R32_M074"]},
+    "FINAL_M104": {"depends_on": ["SF_M101", "SF_M102"]}
+  },
+  "message": "Enter completed match results in MATCH_PLANNER to generate the third-place key and Round of 32 mapping."
 }
 ```
+
+Blank workbook smoke:
+
+```text
+from models.data_loader import load_workbook_state
+from models.fifa_rules import build_group_table, build_third_place_table
+from models.bracket_mapper import build_bracket_mapping
+
+state = load_workbook_state()
+groups = build_group_table(state["matches"])
+thirds = build_third_place_table(groups)
+bracket = build_bracket_mapping(groups, thirds, state["annex_c"])
+
+assert hasattr(groups, "columns")
+assert hasattr(thirds, "columns")
+assert bracket["status"] in {
+    "waiting_for_completed_results",
+    "annex_c_loaded_but_mapping_pending",
+    "ready",
+}
+print("BLANK_WORKBOOK_BOOT_PASS")
+```
+
+Status: PASS
 
 ## Known Limitations
 

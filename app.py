@@ -49,7 +49,12 @@ def _bracket_html(bracket: dict) -> str:
     third_groups = bracket.get("qualified_third_groups") or []
     chips = "".join(f"<span class='sport-card' style='display:inline-block;margin:4px;padding:6px 8px;'>{group}</span>" for group in third_groups)
     if not chips:
-        chips = "<span class='sport-warning'>No completed third-place ranking yet. Enter results and recalc.</span>"
+        chips = (
+            "<div class='sport-card' style='background:#0d131d;'>"
+            "<p class='sport-accent'>Waiting for completed results.</p>"
+            "<p>Enter completed scores in MATCH_PLANNER, then recalculate to build tables and bracket outputs.</p>"
+            "</div>"
+        )
     return f"""
     <div class="sport-card">
         <h3>Canonical Bracket Summary</h3>
@@ -73,7 +78,7 @@ def compute_outputs(state: dict, matches: pd.DataFrame | None = None):
     friends = _friends_leaderboard(working_state["friends"])
     summary = _summary_html(working_state, groups, thirds)
     bracket_summary = _bracket_html(bracket)
-    return working_state, matches_df, groups, thirds, bracket, friends, summary, bracket_summary
+    return working_state, matches_df, groups, thirds, bracket, bracket_summary, friends, summary
 
 
 def initial_load():
@@ -118,9 +123,9 @@ with gr.Blocks(title=APP_TITLE) as demo:
             groups_df,
             third_places_df,
             bracket_json,
+            bracket_html,
             friends_df,
             dashboard_html,
-            bracket_html,
         ],
     )
     recalc_button.click(
@@ -132,9 +137,9 @@ with gr.Blocks(title=APP_TITLE) as demo:
             groups_df,
             third_places_df,
             bracket_json,
+            bracket_html,
             friends_df,
             dashboard_html,
-            bracket_html,
         ],
     )
 
