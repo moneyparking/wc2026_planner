@@ -63,6 +63,29 @@ The app uses `releases/final/artifacts/03_AI_Bracket_War_Room_2026_Spreadsheet_E
 
 This project is a fan-made planner/tracker. It has no money-staked gameplay or paid-prediction features.
 
+## Judge Demo Flow
+
+AI Bracket War Room 2026 turns a 104-match fan spreadsheet into a live Gradio tournament command center: edit results, recalculate standings, rank third-place teams, map the bracket, update a Friends League, and get a product-safe AI Scout explanation.
+
+1. Open the app.
+2. Confirm the blank boot state loads cleanly.
+3. Click `Load Demo Scenario`.
+4. Show GROUP TRACKER.
+5. Show 3RD-PLACE RANKING.
+6. Show BRACKET WAR ROOM preview.
+7. Show FRIENDS LEAGUE.
+8. Show AI Scout status in the dashboard.
+
+## Known Limitations
+
+- Edits are session-local and are not written back to the source workbook.
+- The app does not claim a full official tiebreaker engine.
+- Annex C mapping is a bracket-planning layer, not an official rules claim.
+
+## Unofficial Fan-Made Disclaimer
+
+Unofficial fan-made digital planner. Not affiliated with or endorsed by FIFA, World Cup, national teams, leagues, clubs, sponsors, broadcasters, or players. No official logos, crests, sponsor marks, player likenesses, or protected tournament emblems are included. No money-staked prediction-market, probability-market, or bookmaking functionality is included.
+
 ## IP disclaimer
 
 Unofficial fan-made digital planner. Not affiliated with or endorsed by FIFA, World Cup, national teams, leagues, clubs or players. No official logos, crests or trademarks are included.

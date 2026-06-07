@@ -20,9 +20,37 @@ VALID_BRACKET_STATUSES = {
     "ready",
 }
 BLOCKED_AI_SCOUT_TERMS = ("bet" + "ting", "od" + "ds", "sports" + "book")
+FORBIDDEN_README_PHRASES = (
+    "official fifa app",
+    "official world cup app",
+    "sportsbook",
+    "betting odds",
+    "guaranteed prediction",
+)
+
+
+def _check_readme() -> None:
+    readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+    readme_lower = readme.lower()
+
+    assert readme.startswith("---\n"), "README must start with Hugging Face Space metadata"
+    for required in (
+        "title: AI Bracket War Room 2026",
+        "sdk: gradio",
+        "app_file: app.py",
+    ):
+        assert required in readme, f"README missing Space metadata: {required}"
+
+    assert "Unofficial Fan-Made Disclaimer" in readme
+    assert "Not affiliated with or endorsed by FIFA" in readme
+    assert "No official logos, crests, sponsor marks, player likenesses, or protected tournament emblems" in readme
+
+    assert not any(phrase in readme_lower for phrase in FORBIDDEN_README_PHRASES)
 
 
 def main() -> None:
+    _check_readme()
+
     state = load_workbook_state()
     assert len(state["matches"]) == 104, f"Expected 104 matches, got {len(state['matches'])}"
     assert len(state["annex_c"]) == 495, f"Expected 495 Annex C rows, got {len(state['annex_c'])}"
@@ -73,6 +101,8 @@ def main() -> None:
     print("bracket_preview=PASS")
     print(f"friends_rows={len(demo_friends)}")
     print("ai_scout=PASS")
+    print("readme_space_metadata=PASS")
+    print("readme_disclaimer=PASS")
 
 
 if __name__ == "__main__":
