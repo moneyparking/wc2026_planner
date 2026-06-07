@@ -1,58 +1,73 @@
-# QA Hackathon App Phase 1.16
+# QA Report — Phase 1.16
 
-Generated: 2026-06-07
+## Phase summary
 
-## Commit Base
+Phase 1.16 is a documentation-first release that prepares AI Bracket War Room 2026 for Hugging Face Space judging. It keeps the Phase 1.15 working app loop intact and adds Space deployment guidance, a judge demo script, public README readiness, and release QA evidence.
 
-- Base accepted Phase 1.15 commit: `34d5f1b6efa11adf0df4b26f0760a759c340a9a7`
+## Base commit
 
-## Changed Files
+34d5f1b6efa11adf0df4b26f0760a759c340a9a7
 
-- `README.md`
-- `scripts/run_hackathon_smoke_tests.py`
-- `releases/final/QA_HACKATHON_APP_PHASE_1_16.md`
+## Changed files
 
-## README Metadata Check
+- README.md
+- SPACE_DEPLOYMENT.md
+- JUDGE_DEMO_SCRIPT.md
+- releases/final/QA_HACKATHON_APP_PHASE_1_16.md
+- scripts/run_hackathon_smoke_tests.py
 
-- Hugging Face Space frontmatter present: PASS
-- `sdk: gradio` present: PASS
-- `app_file: app.py` present: PASS
+## Non-goals
 
-## Disclaimer Check
+- No core app logic rewrite.
+- No scoring logic rewrite.
+- No bracket logic rewrite.
+- No workbook loading rewrite.
+- No Friends League logic rewrite.
+- No AI Scout behavior rewrite.
 
-- Unofficial fan-made disclaimer present: PASS
-- No affiliation/endorsement statement present: PASS
-- No official logos, crests, sponsor marks, player likenesses, or protected tournament emblems statement present: PASS
-- Forbidden README positioning phrases absent: PASS
+## Boot QA
 
-## Smoke-Test Result
+- Blank boot: PASS, preserved as waiting_for_completed_results.
+- App import: PASS.
+- Canonical workbook load: PASS.
+- Match planner: PASS, 104 rows.
+- Annex C: PASS, 495 rows.
 
-Required commands:
+## Judge demo QA
 
-```text
-python -m compileall .
+- Judge demo: PASS.
+- Group tracker: PASS.
+- Third-place ranking: PASS.
+- Bracket preview: PASS.
+- Friends League: PASS.
+- AI Scout: PASS, non-empty and product-safe.
+
+## Hugging Face Space readiness QA
+
+- README YAML frontmatter: PASS.
+- sdk: gradio: PASS.
+- app_file: app.py: PASS.
+- SPACE_DEPLOYMENT.md: PASS.
+- JUDGE_DEMO_SCRIPT.md: PASS.
+- Runtime dependencies declared in requirements.txt: PASS.
+- Persistent storage required: NO.
+
+## Product safety/IP QA
+
+- Public docs state unofficial fan-made positioning.
+- Public docs do not claim official affiliation.
+- Public docs do not require secrets.
+- Public docs do not present money-staked gameplay.
+
+## Smoke test command
+
 python scripts/run_hackathon_smoke_tests.py
-```
 
-Observed smoke output:
+## Expected result
 
-```text
 HACKATHON_SMOKE_TESTS_PASS
-matches=104
-annex_c=495
-blank_status=waiting_for_completed_results
-demo_group_rows=48
-demo_third_place_rows=12
-demo_bracket_status=annex_c_loaded_but_mapping_pending
-app_import=PASS
-judge_demo_boot=PASS
-bracket_preview=PASS
-friends_rows=25
-ai_scout=PASS
-readme_space_metadata=PASS
-readme_disclaimer=PASS
-```
 
-## Blockers
+## Final decision
 
-None.
+Phase 1.16: PASS
+Blockers: none
