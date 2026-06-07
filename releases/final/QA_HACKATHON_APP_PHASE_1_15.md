@@ -39,6 +39,10 @@ Observed after demo scenario:
 - Bracket JSON status: `annex_c_loaded_but_mapping_pending`
 - Third-place key: `ABCFGHIL`
 - Qualified third groups: `B`, `F`, `H`, `L`, `C`, `I`, `A`, `G`
+- Bracket preview HTML: PASS
+- Friends League output rows: 25
+- AI Scout output: PASS, non-empty and product-safe
+- Hugging Face Space metadata in `README.md`: PASS
 
 ## QA Commands
 
@@ -92,6 +96,11 @@ blank_status=waiting_for_completed_results
 demo_group_rows=48
 demo_third_place_rows=12
 demo_bracket_status=annex_c_loaded_but_mapping_pending
+app_import=PASS
+judge_demo_boot=PASS
+bracket_preview=PASS
+friends_rows=25
+ai_scout=PASS
 ```
 
 ## Known Limitations
@@ -113,4 +122,4 @@ demo_bracket_status=annex_c_loaded_but_mapping_pending
 
 Unofficial fan-made digital download. Not affiliated with or endorsed by FIFA, World Cup, national teams, leagues, clubs, sponsors, broadcasters, or players. No official logos, crests, sponsor marks, player likenesses, or protected tournament emblems are included.
 
-No money-staked gameplay, paid-prediction, real-time official data feed, or official affiliation claims are included.
+No money-staked gameplay, paid-prediction, real-time protected data feed, or endorsement claims are included.

@@ -1,3 +1,13 @@
+---
+title: AI Bracket War Room 2026
+emoji: 🏟️
+colorFrom: blue
+colorTo: gray
+sdk: gradio
+app_file: app.py
+pinned: false
+---
+
 # WC2026 Matchday No Chaos Planner
 
 Production codebase for a 3-SKU Etsy digital planner system.

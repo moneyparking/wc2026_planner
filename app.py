@@ -30,6 +30,22 @@ def _friends_leaderboard(friends: pd.DataFrame) -> pd.DataFrame:
     return leaderboard
 
 
+def build_ai_scout_output(matches: pd.DataFrame) -> str:
+    if matches is None or matches.empty or "AI Signal" not in matches.columns:
+        return "AI Scout: waiting for match signals."
+
+    signals = [
+        str(value).strip()
+        for value in matches["AI Signal"].fillna("").tolist()
+        if str(value).strip()
+    ]
+    if not signals:
+        return "AI Scout: waiting for match signals."
+
+    preview = " | ".join(signals[:5])
+    return f"AI Scout signals active: {len(signals)} rows. Preview: {preview}"
+
+
 def _summary_html(state: dict, groups: pd.DataFrame, thirds: pd.DataFrame) -> str:
     warnings = state.get("warnings") or []
     warnings_html = "".join(f"<li>{warning}</li>" for warning in warnings) or "<li>Workbook loaded cleanly.</li>"
@@ -97,7 +113,8 @@ def compute_outputs(state: dict, matches: pd.DataFrame | None = None):
     thirds = build_third_place_table(groups)
     bracket = build_bracket_mapping(groups, thirds, working_state.get("annex_c"))
     friends = _friends_leaderboard(working_state["friends"])
-    summary = _summary_html(working_state, groups, thirds)
+    ai_scout = build_ai_scout_output(matches_df)
+    summary = _summary_html(working_state, groups, thirds) + f"<div class='sport-card'><p>{ai_scout}</p></div>"
     bracket_summary = _bracket_html(bracket)
     return working_state, matches_df, groups, thirds, bracket, bracket_summary, friends, summary
 
