@@ -6,6 +6,7 @@ import gradio as gr
 from layout.css_styles import PREMIUM_DARK_SPORT_CSS
 from models.bracket_mapper import build_bracket_mapping
 from models.data_loader import load_workbook_state, normalize_match_columns
+from models.demo_scenario import apply_demo_scenario
 from models.fifa_rules import build_group_table, build_third_place_table
 from models.scoring import score_prediction
 from product_config import APP_TITLE, EXPECTED_ANNEX_C_RECORD_COUNT, EXPECTED_MATCH_COUNT
@@ -47,20 +48,40 @@ def _summary_html(state: dict, groups: pd.DataFrame, thirds: pd.DataFrame) -> st
 
 def _bracket_html(bracket: dict) -> str:
     third_groups = bracket.get("qualified_third_groups") or []
-    chips = "".join(f"<span class='sport-card' style='display:inline-block;margin:4px;padding:6px 8px;'>{group}</span>" for group in third_groups)
-    if not chips:
-        chips = (
+    group_cards = "".join(
+        f"<span class='sport-card' style='display:inline-block;margin:4px;padding:6px 8px;'>Group {group}</span>"
+        for group in third_groups
+    )
+    r32_cards = "".join(
+        (
+            "<div class='sport-card' style='margin:6px 0;'>"
+            f"<strong>{match_id}</strong><br>"
+            f"{payload.get('team_a', payload.get('slot_a', 'TBD'))} vs "
+            f"{payload.get('team_b', payload.get('slot_b', 'TBD'))}"
+            "</div>"
+        )
+        for match_id, payload in (bracket.get("round_of_32") or {}).items()
+    )
+    if not group_cards and not r32_cards:
+        body = (
             "<div class='sport-card' style='background:#0d131d;'>"
             "<p class='sport-accent'>Waiting for completed results.</p>"
             "<p>Enter completed scores in MATCH_PLANNER, then recalculate to build tables and bracket outputs.</p>"
             "</div>"
+        )
+    else:
+        group_body = group_cards or "<span class='sport-warning'>Pending</span>"
+        r32_body = r32_cards or "<span class='sport-accent'>Annex C mapping pending.</span>"
+        body = (
+            f"<h4>Qualified Third Groups</h4><div>{group_body}</div>"
+            f"<h4>Round of 32 Preview</h4><div>{r32_body}</div>"
         )
     return f"""
     <div class="sport-card">
         <h3>Canonical Bracket Summary</h3>
         <p>Status: <span class="sport-accent">{bracket.get("status")}</span></p>
         <p>Third-place key: <span class="sport-success">{bracket.get("third_place_key", "") or "pending"}</span></p>
-        <div>{chips}</div>
+        <div>{body}</div>
     </div>
     """
 
@@ -86,6 +107,13 @@ def initial_load():
     return compute_outputs(state)
 
 
+def load_demo_scenario_outputs(state: dict, matches: pd.DataFrame | None = None):
+    working_state = dict(state)
+    base_matches = matches.copy() if matches is not None else working_state["matches"].copy()
+    demo_matches = apply_demo_scenario(base_matches)
+    return compute_outputs(working_state, demo_matches)
+
+
 with gr.Blocks(title=APP_TITLE) as demo:
     workbook_state = gr.State()
     gr.HTML(
@@ -98,6 +126,7 @@ with gr.Blocks(title=APP_TITLE) as demo:
     )
 
     recalc_button = gr.Button("Recalculate War Room", variant="primary")
+    load_demo_button = gr.Button("Load Demo Scenario")
 
     with gr.Tabs():
         with gr.Tab("DASHBOARD"):
@@ -130,6 +159,20 @@ with gr.Blocks(title=APP_TITLE) as demo:
     )
     recalc_button.click(
         compute_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=[
+            workbook_state,
+            matches_df,
+            groups_df,
+            third_places_df,
+            bracket_json,
+            bracket_html,
+            friends_df,
+            dashboard_html,
+        ],
+    )
+    load_demo_button.click(
+        load_demo_scenario_outputs,
         inputs=[workbook_state, matches_df],
         outputs=[
             workbook_state,

@@ -56,6 +56,22 @@ def _phase_group_label(phase: object) -> str:
     return text or "Group Stage"
 
 
+def _group_id_for_match(match: pd.Series) -> str:
+    phase = _phase_group_label(match.get("Phase"))
+    if phase.lower().startswith("group ") and len(phase.split()) >= 2:
+        return phase.split()[-1].upper()
+
+    match_id = str(match.get("Match ID", "")).strip().upper()
+    if match_id.startswith("M"):
+        try:
+            number = int(match_id[1:])
+        except ValueError:
+            number = 0
+        if 1 <= number <= 72:
+            return chr(ord("A") + ((number - 1) // 6))
+    return phase
+
+
 def build_group_table(matches: pd.DataFrame) -> pd.DataFrame:
     if matches is None or matches.empty:
         return empty_group_table()
@@ -70,7 +86,7 @@ def build_group_table(matches: pd.DataFrame) -> pd.DataFrame:
     rows: dict[tuple[str, str], dict] = {}
 
     for _, match in completed.iterrows():
-        group = _phase_group_label(match.get("Phase"))
+        group = _group_id_for_match(match)
         teams = [
             (str(match.get("Side A", "")).strip() or "Side A", int(match["Goals A"]), int(match["Goals B"])),
             (str(match.get("Side B", "")).strip() or "Side B", int(match["Goals B"]), int(match["Goals A"])),

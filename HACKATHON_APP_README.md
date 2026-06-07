@@ -1,6 +1,6 @@
 # AI Bracket War Room 2026 - Build Small App
 
-Phase 1.14 adds a lightweight Gradio app layer on top of the hackathon-ready Spreadsheet Engine XLSX.
+Phase 1.15 adds a lightweight Gradio app layer and deterministic demo scenario on top of the hackathon-ready Spreadsheet Engine XLSX.
 
 ## Run
 
@@ -17,6 +17,23 @@ The app opens a local Gradio interface with these tabs:
 - 3RD-PLACE RANKING
 - BRACKET WAR ROOM
 - FRIENDS LEAGUE
+
+## Controls
+
+- `Load Demo Scenario`: fills generic group-stage teams, predictions, and results so judges can immediately see group standings, third-place ranking, bracket JSON, bracket preview, and Friends League state update.
+- `Recalculate War Room`: recomputes the app from the current editable MATCH PLANNER table.
+
+The blank workbook remains valid. If no `Result` values are completed, the app shows empty schema-valid group and third-place tables plus a neutral bracket waiting state.
+
+## 90-Second Demo Flow
+
+1. Start the app with `python app.py`.
+2. Show DASHBOARD to confirm the workbook, 104 matches, and 495 Annex C rows loaded.
+3. Click `Load Demo Scenario`.
+4. Open GROUP TRACKER and show non-empty standings.
+5. Open 3RD-PLACE RANKING and show the qualified third-place groups.
+6. Open BRACKET WAR ROOM and show the canonical JSON plus lightweight bracket cards / mapping-pending state.
+7. Edit one result in MATCH PLANNER, click `Recalculate War Room`, and show the affected tables update.
 
 ## Source Workbook
 
@@ -52,16 +69,18 @@ QA_STATIC_CHECK
 - Compute a basic group table from completed match results.
 - Rank third-place teams with a deterministic Build Small ordering.
 - Return a JSON bracket fallback when Annex C is loaded but mapping rules are still pending.
+- Load a deterministic demo scenario for a fast judge walkthrough.
 
-This app has no wagering, paid-prediction, or money-staked gameplay features.
+This app has no money-staked gameplay, paid-prediction, or prize-market features.
 
 ## Phase 2 TODOs
 
-- Implement full official-style tie-breaker sequencing.
+- Implement full tournament tie-breaker sequencing.
 - Parse Annex C into a complete bracket mapping engine.
 - Add richer validation for team/group assignments.
 - Persist edited planner state back to a copy of the workbook.
 - Add app-level regression tests for editable recalc flows.
+- Parse Annex C into complete Round of 32 cards.
 
 ## IP Disclaimer
 

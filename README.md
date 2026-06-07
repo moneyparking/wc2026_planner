@@ -26,6 +26,7 @@ Implemented through **Phase 1.13**:
 - Phase 1.12: party + bingo + office pool pages
 - Phase 1.13: sticker catalog + notes/legal + dark notes pages
 - Phase 1.14: Build Small hackathon Gradio app foundation over the static Spreadsheet Engine XLSX
+- Phase 1.15: deterministic demo scenario, bracket preview cards, and hackathon smoke tests
 
 ## Run
 
@@ -48,9 +49,9 @@ pip install -r requirements.txt
 python app.py
 ```
 
-The app uses `releases/final/artifacts/03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx` as the canonical workbook source. See `HACKATHON_APP_README.md` for tabs, scope, Phase 2 TODOs, and demo notes.
+The app uses `releases/final/artifacts/03_AI_Bracket_War_Room_2026_Spreadsheet_Engine.xlsx` as the canonical workbook source. Use `Load Demo Scenario` for a fast visible demo, then `Recalculate War Room` after edits. See `HACKATHON_APP_README.md` for tabs, scope, Phase 2 TODOs, and demo notes.
 
-This project is a fan-made planner/tracker. It has no wagering or paid-prediction features.
+This project is a fan-made planner/tracker. It has no money-staked gameplay or paid-prediction features.
 
 ## IP disclaimer
 
