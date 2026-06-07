@@ -30,7 +30,8 @@ FORBIDDEN_README_PHRASES = (
 
 
 def _check_readme() -> None:
-    readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+    readme_path = REPO_ROOT / "README.md"
+    readme = readme_path.read_text(encoding="utf-8")
     readme_lower = readme.lower()
 
     assert readme.startswith("---\n"), "README must start with Hugging Face Space metadata"
@@ -41,19 +42,38 @@ def _check_readme() -> None:
     ):
         assert required in readme, f"README missing Space metadata: {required}"
 
-    assert "Unofficial Fan-Made Disclaimer" in readme
-    assert "Not affiliated with or endorsed by FIFA" in readme
-    assert "No official logos, crests, sponsor marks, player likenesses, or protected tournament emblems" in readme
+    for required_link in (
+        "SPACE_DEPLOYMENT.md",
+        "JUDGE_DEMO_SCRIPT.md",
+        "releases/final/QA_HACKATHON_APP_PHASE_1_16.md",
+    ):
+        assert required_link in readme, f"README missing Phase 1.16 link: {required_link}"
 
+    assert "unofficial fan-made football tournament planning demo" in readme_lower
+    assert "not affiliated with or endorsed by fifa" in readme_lower
+    assert "official logos, crests, sponsor marks, player likenesses" in readme_lower
     assert not any(phrase in readme_lower for phrase in FORBIDDEN_README_PHRASES)
+
+
+def _check_phase_1_16_docs() -> None:
+    required_docs = (
+        "SPACE_DEPLOYMENT.md",
+        "JUDGE_DEMO_SCRIPT.md",
+        "releases/final/QA_HACKATHON_APP_PHASE_1_16.md",
+    )
+    for relative_path in required_docs:
+        doc_path = REPO_ROOT / relative_path
+        assert doc_path.exists(), f"Missing Phase 1.16 doc: {relative_path}"
+        assert doc_path.read_text(encoding="utf-8").strip(), f"Empty Phase 1.16 doc: {relative_path}"
 
 
 def main() -> None:
     _check_readme()
+    _check_phase_1_16_docs()
 
     state = load_workbook_state()
-    assert len(state["matches"]) == 104, f"Expected 104 matches, got {len(state['matches'])}"
-    assert len(state["annex_c"]) == 495, f"Expected 495 Annex C rows, got {len(state['annex_c'])}"
+    assert len(state["matches"]) == 104, "Expected 104 matches, got {}".format(len(state["matches"]))
+    assert len(state["annex_c"]) == 495, "Expected 495 Annex C rows, got {}".format(len(state["annex_c"]))
 
     assert score_prediction("2-1", "2-1") == 5
     assert score_prediction("2-1", "3-1") == 2
@@ -90,12 +110,12 @@ def main() -> None:
     assert not any(term in lowered_ai_scout for term in BLOCKED_AI_SCOUT_TERMS)
 
     print("HACKATHON_SMOKE_TESTS_PASS")
-    print(f"matches={len(state['matches'])}")
-    print(f"annex_c={len(state['annex_c'])}")
-    print(f"blank_status={blank_bracket['status']}")
+    print("matches={}".format(len(state["matches"])))
+    print("annex_c={}".format(len(state["annex_c"])))
+    print("blank_status={}".format(blank_bracket["status"]))
     print(f"demo_group_rows={len(demo_groups)}")
     print(f"demo_third_place_rows={len(demo_thirds)}")
-    print(f"demo_bracket_status={demo_bracket['status']}")
+    print("demo_bracket_status={}".format(demo_bracket["status"]))
     print("app_import=PASS")
     print("judge_demo_boot=PASS")
     print("bracket_preview=PASS")
@@ -103,6 +123,7 @@ def main() -> None:
     print("ai_scout=PASS")
     print("readme_space_metadata=PASS")
     print("readme_disclaimer=PASS")
+    print("phase_1_16_docs=PASS")
 
 
 if __name__ == "__main__":
