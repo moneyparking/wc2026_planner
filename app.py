@@ -437,7 +437,7 @@ def _visible_match_planner_html(matches: pd.DataFrame, planner_filter: str = "Al
         <h3>Match Planner Filtered Preview</h3>
         <p>One-click judge filter for the 104-match planner by stage or Groups A-L.</p>
         <p><strong>Active filter:</strong> <span class='sport-success'>{planner_filter}</span></p>
-        <p>Engine loaded: {len(matches)} / {EXPECTED_MATCH_COUNT} matches · Visible preview: {min(len(matches), VISIBLE_TAB_PREVIEW_MATCHES)} matches shown</p>
+        <p>Engine loaded: {len(matches)} / {EXPECTED_MATCH_COUNT} matches · Filtered rows: {len(matches)} / {EXPECTED_MATCH_COUNT} matches · Visible preview: {min(len(matches), VISIBLE_TAB_PREVIEW_MATCHES)} matches shown</p>
         <table>{rows}</table>
     </div>
     """
