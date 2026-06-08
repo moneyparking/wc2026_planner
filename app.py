@@ -1724,6 +1724,7 @@ def phase126r_run_live_simulation(matches_df: pd.DataFrame, friends_df: pd.DataF
 
         status = (
             "🎲 Phase 1.26R simulation complete. "
+            "ANNEX C bracket proof rendered: 495 combinations scanned · MATCH 73 / MATCH 104 visible. "
             "Group scores, Group Tracker, Best Third-Place Ranking, Bracket HTML, "
             "and Friends League are synchronized."
         )
