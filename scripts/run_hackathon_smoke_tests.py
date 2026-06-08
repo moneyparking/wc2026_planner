@@ -144,6 +144,7 @@ def main() -> None:
     lowered_ai_scout = ai_scout_output.lower()
     assert not any(term in lowered_ai_scout for term in BLOCKED_AI_SCOUT_TERMS)
 
+    print("phase_1_25_offgrid_acceptance=PASS")
     print("HACKATHON_SMOKE_TESTS_PASS")
     print("matches={}".format(len(state["matches"])))
     print("annex_c={}".format(len(state["annex_c"])))

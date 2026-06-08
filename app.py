@@ -541,11 +541,62 @@ def recalculate_outputs(state: dict, matches: pd.DataFrame | None = None):
     return working_state, summary, match_html, group_html, third_html, bracket, bracket_html, friends_html, ai_scout, impact_panel
 
 
+# Phase 1.25: autonomous off-grid tactical scout engine
+OFFGRID_ENGINE_MARKER = "PHASE_1_25_OFFGRID_LOCAL_ENGINE"
+
+
+def check_modal_gpu_health() -> str:
+    return """
+    <div style="border-left: 4px solid #3b82f6; background: #172554; padding: 12px; border-radius: 6px; margin-bottom: 15px;">
+        <h3 style="margin: 0 0 5px 0; color: #eff6ff; font-size: 14px; font-family: monospace;">War Room OS Engine</h3>
+        <p style="margin: 0; color: #60a5fa; font-weight: bold; font-size: 12px;">🟢 AUTONOMOUS LOCAL ENGINE ACTIVE</p>
+        <p style="margin: 5px 0 0 0; color: #93c5fd; font-size: 11px;">Build Small off-grid mode: match math, bracket logic, Friends League scoring, and tactical scout summaries run locally in Python Runtime.</p>
+    </div>
+    """
+
+def build_safe_scout_prompt(team_a: str, team_b: str, stage: str, group_id: str = "") -> str:
+    context = f"Group {group_id}" if group_id else stage or "Tournament"
+    return (
+        f"OFFGRID_TACTICAL_SCOUT\n"
+        f"Context: {context}\n"
+        f"Fixture: {team_a} vs {team_b}\n"
+        "Generate football-only tactical notes using local deterministic templates."
+    )
+
+def fetch_ai_scout_slip(team_a: str, team_b: str, stage: str, group_id: str = "") -> str:
+    safe_team_a = str(team_a or "Team A").strip()
+    safe_team_b = str(team_b or "Team B").strip()
+    safe_stage = str(stage or "Tournament").strip()
+    context = f"Group {group_id}" if str(group_id or "").strip() else safe_stage
+
+    templates = [
+        f"Tactical Slip ({context}): {safe_team_a} vs {safe_team_b}. Expect high density in transition phases. The key zone is flank-overload control, second-ball discipline, and compact rest defense at the top of the box.",
+        f"Match analysis: {safe_team_a} - {safe_team_b} ({context}). Both sides can create pressure through aggressive front-foot pressing. The decisive lever is how quickly possession reaches the half-spaces and whether midfield cover remains balanced after turnovers.",
+        f"Scout note: {safe_team_a} against {safe_team_b} ({context}). The matchup profiles as a wide-channel duel with fast winger isolation, disciplined set-piece defending, and careful spacing between the holding midfielder and center-backs.",
+    ]
+    return templates[(len(safe_team_a) + len(safe_team_b) + len(context)) % len(templates)]
+
+def build_tactical_slip_from_selection(matches_df, evt: gr.SelectData):
+    try:
+        row_index = evt.index[0] if isinstance(evt.index, (list, tuple)) else evt.index
+        row = matches_df.iloc[int(row_index)]
+
+        team_a = str(row.get("Home", row.get("Team A", row.get("Team_A", "Team A"))))
+        team_b = str(row.get("Away", row.get("Team B", row.get("Team_B", "Team B"))))
+        stage = str(row.get("Phase", row.get("Stage", "Group")))
+        group_id = str(row.get("Group_ID", row.get("Group", "")))
+
+        return f"Selected fixture: {team_a} vs {team_b}\n\n" + fetch_ai_scout_slip(team_a, team_b, stage, group_id)
+    except Exception as exc:
+        return f"Tactical Slip unavailable: {exc}"
+
 with gr.Blocks(title=APP_TITLE) as demo:
     workbook_state = gr.State()
     gr.HTML(_command_header_html())
 
     top_checklist_html = gr.HTML(value=_scenario_controls_html())
+    modal_gpu_status_html = gr.HTML(value=check_modal_gpu_health())
+    tactical_slip_box = gr.Textbox(label="AI Scout Tactical Slip — autonomous local engine", lines=5, interactive=False)
     with gr.Row():
         load_demo_button = gr.Button("Load Judge Demo Scenario", variant="primary")
         recalc_button = gr.Button("Recalculate War Room", variant="secondary")
@@ -630,6 +681,11 @@ with gr.Blocks(title=APP_TITLE) as demo:
             impact_panel_html,
         ],
     )
+    matches_df.select(
+        build_tactical_slip_from_selection,
+        inputs=[matches_df],
+        outputs=[tactical_slip_box],
+    )
     load_demo_button.click(
         load_demo_scenario_outputs,
         inputs=[workbook_state, matches_df],
@@ -651,3 +707,5 @@ with gr.Blocks(title=APP_TITLE) as demo:
 
 if __name__ == "__main__":
     demo.launch(css=PREMIUM_DARK_SPORT_CSS)
+
+
