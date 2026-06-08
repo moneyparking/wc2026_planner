@@ -1,0 +1,36 @@
+{
+  "product": "WC2026 Matchday No Chaos Ultimate",
+  "version": "1.25",
+  "release_name": "Final Commercial Layer Fix",
+  "repository": "moneyparking/wc2026_planner",
+  "branch": "release/v1.25-final-commercial-release",
+  "target_tag": "v1.25-final-commercial-release",
+  "qa": {
+    "status": "PASS",
+    "pages": 128,
+    "goodnotes_hyperlinks": 1261,
+    "flattened_hyperlinks": 0,
+    "bad_destinations": 0,
+    "page_12_links": 61,
+    "page_13_links": 61,
+    "page_14_links": 9,
+    "page_15_links": 9,
+    "page_18_links": 9,
+    "page_19_links": 9,
+    "png_stickers_checked": 389,
+    "png_alpha_channel_pass": "389/389",
+    "png_300dpi_pass": "389/389",
+    "sticker_folders": ["flags", "icons", "jerseys"]
+  },
+  "release_assets": [
+    "01_WC2026_Matchday_No_Chaos_Ultimate_V1.25_GoodNotes_Hyperlinked.pdf",
+    "02_WC2026_Matchday_No_Chaos_Ultimate_V1.25_Flattened_Compatibility.pdf",
+    "03_WC2026_Watch_Party_Bingo_Bonus_V1.25.pdf",
+    "04_WC2026_Matchday_No_Chaos_V1.25_DualTone_Jersey_Sticker_Icon_Pack_300DPI_PNG_SVG.zip",
+    "05_WC2026_Matchday_No_Chaos_Ultimate_V1.25_Quick_Start_Guide.pdf",
+    "WC2026_Matchday_No_Chaos_Ultimate_V1.25_Buyer_Files.zip",
+    "PHASE_1.25_VALIDATION_REPORT.json",
+    "PHASE_1.25_VISUAL_QA_CONTACT_SHEET.jpg",
+    "PHASE_1.25_CHANGELOG_QA.md"
+  ]
+}

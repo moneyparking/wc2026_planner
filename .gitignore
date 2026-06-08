@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+output/**/*.pdf
+output/**/*.json
+
+# Keep heavy/buyer delivery artifacts out of Git main and Hugging Face Space.
+*.zip
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.psd
+*.ai
+*.fig
+releases/final/artifacts/*Sticker*
+releases/final/artifacts/*Video*
+releases/final/artifacts/*Buyer*
+releases/final/artifacts/*BUYER*

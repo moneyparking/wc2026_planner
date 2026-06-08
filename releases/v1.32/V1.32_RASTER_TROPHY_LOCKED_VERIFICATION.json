@@ -1,0 +1,16 @@
+{
+  "version": "1.32",
+  "release": "RASTER_TROPHY_LOCKED",
+  "pages": 129,
+  "hyperlinks": 1378,
+  "bad_destinations": 0,
+  "blank_like_pages": 0,
+  "buyer_zip_mb": 9.666,
+  "goodnotes_pdf_sha16": "55c0a2a420517a74",
+  "flattened_pdf_sha16": "90066947f04b6051",
+  "buyer_zip_sha16": "2bcf1f35daa6e76a",
+  "sticker_pack_sha16": "51c3c2ee564a4f47",
+  "sticker_preview_sha16": "c925798fab07ae90",
+  "trophy_source": "/mnt/data/gold_trophy_24k.png",
+  "status": "etsy_ready"
+}
