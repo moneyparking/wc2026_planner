@@ -1677,6 +1677,40 @@ body,
   font-weight: 800 !important;
   margin: 8px 0 12px 0 !important;
 }
+
+/* Phase 1.26T.1 — Gradio/Svelte dataframe header hard override */
+.gradio-container th,
+.gradio-container th *,
+.gradio-container th.header-cell,
+.gradio-container th.header-cell *,
+.gradio-container .header-cell,
+.gradio-container .header-cell *,
+.gradio-container .svelte-1d6xqpb.header-cell,
+.gradio-container .svelte-1d6xqpb.header-cell * {
+  background-color: #F1F5F9 !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  opacity: 1 !important;
+  font-weight: 800 !important;
+}
+
+.gradio-container td,
+.gradio-container td *,
+.gradio-container .cell,
+.gradio-container .cell *,
+.gradio-container .dataframe td,
+.gradio-container .dataframe td * {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  opacity: 1 !important;
+}
+
+.gradio-container table,
+.gradio-container .dataframe table {
+  background: #FFFFFF !important;
+  color: #111827 !important;
+}
+
 </style>
 """
 
