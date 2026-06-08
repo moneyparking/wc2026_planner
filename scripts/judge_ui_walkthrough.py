@@ -7,7 +7,7 @@ import re
 import sys
 import time
 from dataclasses import dataclass, asdict
-from datetime import datetime, UTC
+from datetime import datetime, UTC, UTC
 from pathlib import Path
 from typing import Callable, Optional
 
@@ -261,6 +261,7 @@ class JudgeWalkthrough:
                 self.step_bracket()
                 self.step_friends_league()
                 self.step_ai_scout_click()
+                self.step_visual_contrast_audit()
             finally:
                 browser.close()
 
@@ -586,6 +587,119 @@ class JudgeWalkthrough:
                 "Could not click a valid Match Planner row.",
                 shot,
             )
+
+    def step_visual_contrast_audit(self) -> None:
+        assert self.page is not None
+
+        audit = self.page.evaluate("""
+        () => {
+          function parseRgb(value) {
+            if (!value || value === 'transparent') return null;
+            const m = value.match(/rgba?\\((\\d+),\\s*(\\d+),\\s*(\\d+)(?:,\\s*([0-9.]+))?\\)/);
+            if (!m) return null;
+            const a = m[4] === undefined ? 1 : parseFloat(m[4]);
+            if (a < 0.8) return null;
+            return [parseInt(m[1]), parseInt(m[2]), parseInt(m[3])];
+          }
+
+          function luminance(rgb) {
+            const srgb = rgb.map(v => {
+              v = v / 255;
+              return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+            });
+            return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+          }
+
+          function contrast(a, b) {
+            const l1 = luminance(a);
+            const l2 = luminance(b);
+            const high = Math.max(l1, l2);
+            const low = Math.min(l1, l2);
+            return (high + 0.05) / (low + 0.05);
+          }
+
+          function effectiveBg(el) {
+            let node = el;
+            while (node && node !== document.documentElement) {
+              const bg = parseRgb(getComputedStyle(node).backgroundColor);
+              if (bg) return bg;
+              node = node.parentElement;
+            }
+            return [5, 7, 13];
+          }
+
+          const selectors = [
+            'button',
+            'textarea',
+            'input',
+            '[role="gridcell"]',
+            '[role="columnheader"]',
+            '.ag-cell',
+            '.ag-header-cell',
+            'table td',
+            'table th',
+            'label'
+          ];
+
+          const nodes = Array.from(document.querySelectorAll(selectors.join(',')));
+          const failures = [];
+
+          for (const el of nodes) {
+            const rect = el.getBoundingClientRect();
+            const text = (el.innerText || el.value || el.textContent || '').trim();
+
+            if (!text || text.length < 2) continue;
+            if (rect.width < 20 || rect.height < 12) continue;
+
+            const style = getComputedStyle(el);
+            if (style.visibility === 'hidden' || style.display === 'none') continue;
+
+            const fg = parseRgb(style.color);
+            const bg = effectiveBg(el);
+
+            if (!fg || !bg) continue;
+
+            const ratio = contrast(fg, bg);
+
+            if (ratio < 3.0) {
+              failures.push({
+                tag: el.tagName,
+                role: el.getAttribute('role') || '',
+                cls: el.className ? String(el.className).slice(0, 80) : '',
+                text: text.slice(0, 80),
+                color: style.color,
+                background: getComputedStyle(el).backgroundColor,
+                effectiveBackground: `rgb(${bg[0]}, ${bg[1]}, ${bg[2]})`,
+                ratio: Number(ratio.toFixed(2))
+              });
+            }
+          }
+
+          return {
+            checked: nodes.length,
+            failures: failures.slice(0, 12)
+          };
+        }
+        """)
+
+        shot = self.screenshot("08_visual_contrast_audit")
+
+        if not audit["failures"]:
+            self.log(
+                "Step 7 — Visual contrast audit",
+                "PASS",
+                f"Computed style audit passed. Checked {audit['checked']} visible UI candidates.",
+                shot,
+            )
+        else:
+            detail = "Low contrast elements detected: " + json.dumps(audit["failures"], ensure_ascii=False)
+            self.log(
+                "Step 7 — Visual contrast audit",
+                "FAIL",
+                detail,
+                shot,
+            )
+
 
     def write_reports(self) -> None:
         now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC")

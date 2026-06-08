@@ -1460,6 +1460,227 @@ def build_tactical_slip_from_selection(matches_df, evt: gr.SelectData):
 
 
 
+
+PHASE126R_CONTRAST_STYLE_TAG = """
+<style>
+/* =============================================================================
+   PHASE 1.26S — VISUAL CONTRAST LOCK
+   Fixes Gradio white/translucent dataframe, textbox, status and button states.
+   ============================================================================= */
+
+:root {
+  --war-bg: #05070D;
+  --war-panel: #0B1220;
+  --war-panel-2: #111827;
+  --war-card: #0F172A;
+  --war-border: #334155;
+  --war-border-2: #475569;
+  --war-text: #F8FAFC;
+  --war-text-soft: #E2E8F0;
+  --war-muted: #CBD5E1;
+  --war-blue: #2563EB;
+  --war-blue-hover: #1D4ED8;
+  --war-green: #22C55E;
+}
+
+/* Global shell */
+html,
+body,
+.gradio-container {
+  background: var(--war-bg) !important;
+  color: var(--war-text) !important;
+}
+
+/* Main readable text */
+.gradio-container,
+.gradio-container p,
+.gradio-container span,
+.gradio-container label,
+.gradio-container .prose,
+.gradio-container .markdown,
+.gradio-container h1,
+.gradio-container h2,
+.gradio-container h3,
+.gradio-container h4 {
+  color: var(--war-text) !important;
+  opacity: 1 !important;
+}
+
+/* Cards / blocks / panels */
+.gradio-container .block,
+.gradio-container .form,
+.gradio-container .panel,
+.gradio-container .contain,
+.gradio-container .wrap {
+  background-color: var(--war-panel) !important;
+  color: var(--war-text) !important;
+  border-color: var(--war-border) !important;
+  opacity: 1 !important;
+}
+
+/* Textboxes / status logs / inputs */
+.gradio-container textarea,
+.gradio-container input,
+.gradio-container [contenteditable="true"] {
+  background: var(--war-card) !important;
+  color: var(--war-text) !important;
+  border: 1px solid var(--war-border-2) !important;
+  border-radius: 10px !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: var(--war-text) !important;
+}
+
+.gradio-container textarea::placeholder,
+.gradio-container input::placeholder {
+  color: var(--war-muted) !important;
+  opacity: 1 !important;
+}
+
+/* Empty AI Scout/status blocks should look intentional, not blank white */
+.gradio-container .empty,
+.gradio-container .output-html,
+.gradio-container .output-markdown {
+  background: var(--war-card) !important;
+  color: var(--war-text) !important;
+  border-color: var(--war-border) !important;
+  opacity: 1 !important;
+}
+
+/* Buttons */
+.gradio-container button {
+  opacity: 1 !important;
+  font-weight: 800 !important;
+  border-radius: 10px !important;
+  color: #FFFFFF !important;
+  border: 1px solid transparent !important;
+}
+
+.gradio-container button:not(:disabled) {
+  background: var(--war-blue) !important;
+  color: #FFFFFF !important;
+  border-color: #3B82F6 !important;
+}
+
+.gradio-container button:not(:disabled):hover {
+  background: var(--war-blue-hover) !important;
+  color: #FFFFFF !important;
+}
+
+.gradio-container button:disabled,
+.gradio-container button[disabled],
+.gradio-container .disabled {
+  background: #334155 !important;
+  color: #E5E7EB !important;
+  border: 1px solid #64748B !important;
+  opacity: 1 !important;
+  cursor: not-allowed !important;
+}
+
+/* Gradio Dataframe / AG Grid dark lock */
+.gradio-container .ag-theme-quartz,
+.gradio-container .ag-theme-balham,
+.gradio-container .ag-theme-material,
+.gradio-container .ag-root-wrapper {
+  --ag-background-color: #0B1220 !important;
+  --ag-foreground-color: #F8FAFC !important;
+  --ag-header-background-color: #1E293B !important;
+  --ag-header-foreground-color: #F8FAFC !important;
+  --ag-odd-row-background-color: #111827 !important;
+  --ag-row-hover-color: #1E3A8A !important;
+  --ag-selected-row-background-color: #1D4ED8 !important;
+  --ag-border-color: #334155 !important;
+  --ag-secondary-border-color: #334155 !important;
+  --ag-input-focus-border-color: #60A5FA !important;
+  background: #0B1220 !important;
+  color: #F8FAFC !important;
+  border-color: #334155 !important;
+  opacity: 1 !important;
+}
+
+.gradio-container .ag-header,
+.gradio-container .ag-header-cell,
+.gradio-container .ag-header-cell-label,
+.gradio-container .ag-header-cell-text {
+  background: #1E293B !important;
+  color: #F8FAFC !important;
+  opacity: 1 !important;
+  font-weight: 800 !important;
+}
+
+.gradio-container .ag-row,
+.gradio-container .ag-cell,
+.gradio-container .ag-center-cols-container,
+.gradio-container .ag-center-cols-viewport {
+  background: #0B1220 !important;
+  color: #F8FAFC !important;
+  border-color: #334155 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+}
+
+.gradio-container .ag-row-odd,
+.gradio-container .ag-row-odd .ag-cell {
+  background: #111827 !important;
+}
+
+.gradio-container .ag-row-hover,
+.gradio-container .ag-row-hover .ag-cell {
+  background: #1E3A8A !important;
+  color: #FFFFFF !important;
+}
+
+/* Fallback for non-AG table rendering */
+.gradio-container table,
+.gradio-container thead,
+.gradio-container tbody,
+.gradio-container tr,
+.gradio-container th,
+.gradio-container td {
+  background-color: #0B1220 !important;
+  color: #F8FAFC !important;
+  border-color: #334155 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+}
+
+.gradio-container th {
+  background-color: #1E293B !important;
+  font-weight: 800 !important;
+}
+
+/* Scrollbars */
+.gradio-container ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.gradio-container ::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+.gradio-container ::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 999px;
+}
+
+.gradio-container ::-webkit-scrollbar-thumb:hover {
+  background: #64748B;
+}
+
+/* High-contrast proof badges */
+.phase126-contrast-proof {
+  background: #052E16 !important;
+  color: #DCFCE7 !important;
+  border: 1px solid #22C55E !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  font-weight: 800 !important;
+  margin: 8px 0 12px 0 !important;
+}
+</style>
+"""
+
+
 # =============================================================================
 # PHASE 1.26R — EXACT SAFE RUNTIME INTEGRATION
 # =============================================================================
@@ -1790,6 +2011,7 @@ def phase126r_build_tactical_slip(matches_df: pd.DataFrame, evt: gr.SelectData) 
 
 with gr.Blocks(title=APP_TITLE) as demo:
     workbook_state = gr.State()
+    gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
     gr.HTML(_command_header_html())
 
     top_checklist_html = gr.HTML(value=_scenario_controls_html())
