@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-06-08 17:46:50 UTC",
+  "url": "https://moneyparking-ai-bracket-war-room-2026.hf.space",
+  "summary": {
+    "pass": 7,
+    "warn": 0,
+    "fail": 0,
+    "overall": "PASS"
+  },
+  "results": [
+    {
+      "step": "Step 1A — Open app",
+      "status": "PASS",
+      "detail": "Loaded app URL: https://moneyparking-ai-bracket-war-room-2026.hf.space",
+      "screenshot": "releases/final/judge_ui_screenshots/01_open_app.png"
+    },
+    {
+      "step": "Step 1 — Dashboard initial state",
+      "status": "PASS",
+      "detail": "Dashboard/Judge Demo is visible and tournament metrics 48 / 12 / 104 / 495 are present.",
+      "screenshot": "releases/final/judge_ui_screenshots/02_dashboard_initial.png"
+    },
+    {
+      "step": "Step 2 — Activation",
+      "status": "PASS",
+      "detail": "Simulation button clicked and status log changed to completed/success state.",
+      "screenshot": "releases/final/judge_ui_screenshots/03_after_run_simulation.png"
+    },
+    {
+      "step": "Step 3 — Match Planner",
+      "status": "PASS",
+      "detail": "Match Planner is visible and generated score/completion markers are detected.",
+      "screenshot": "releases/final/judge_ui_screenshots/04_match_planner_after_simulation.png"
+    },
+    {
+      "step": "Step 4 — Bracket War Room",
+      "status": "PASS",
+      "detail": "Bracket HTML/CSS Grid is visible and Annex C / 495-combination proof text is detected.",
+      "screenshot": "releases/final/judge_ui_screenshots/05_bracket_war_room.png"
+    },
+    {
+      "step": "Step 5 — Friends League",
+      "status": "PASS",
+      "detail": "Friends League is visible with leaderboard labels and numeric runtime points.",
+      "screenshot": "releases/final/judge_ui_screenshots/06_friends_league.png"
+    },
+    {
+      "step": "Step 6 — AI Scout inference",
+      "status": "PASS",
+      "detail": "Clicked a match row and AI Scout Tactical Slip is visible without betting/spam language.",
+      "screenshot": "releases/final/judge_ui_screenshots/07_ai_scout_tactical_slip.png"
+    }
+  ]
+}

@@ -7,7 +7,7 @@ import re
 import sys
 import time
 from dataclasses import dataclass, asdict
-from datetime import datetime
+from datetime import datetime, UTC
 from pathlib import Path
 from typing import Callable, Optional
 
@@ -588,7 +588,7 @@ class JudgeWalkthrough:
             )
 
     def write_reports(self) -> None:
-        now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+        now = datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
         failures = [r for r in self.results if r.status == "FAIL"]
         warnings = [r for r in self.results if r.status == "WARN"]
         passes = [r for r in self.results if r.status == "PASS"]
