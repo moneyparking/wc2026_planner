@@ -53,7 +53,7 @@
     },
     "phase128": {
       "pass": true,
-      "count": 42,
+      "count": 43,
       "pattern": "PHASE 1\\.28|Phase 1\\.28|phase128"
     },
     "contrast_header_semantic": {
