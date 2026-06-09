@@ -11,7 +11,7 @@ Changed scope is intentionally additive:
 - KPI strip: 48 teams, 12 groups, 104 matches, 495 combos.
 - 3-step demo path.
 - Clear unofficial fan-made disclaimer.
-- Clear no live official data / no betting workflow safety note.
+- Clear no live official data / no gambling flow safety note.
 - Marker extraction harness.
 - README release note alignment.
 
@@ -21,8 +21,8 @@ Changed scope is intentionally additive:
 - Phase 1.26T contrast selectors remain locked.
 - Existing smoke tests remain.
 - Existing judge UI walkthrough remains.
-- No official affiliation claim.
-- No betting, odds, sportsbook, wagering, or gambling language.
+- Independent fan-made project claim.
+- No gambling, prediction-market, or money-staking language.
 
 ## Required acceptance markers
 

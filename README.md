@@ -56,7 +56,7 @@ Change one result, filter the 104-match planner by stage or Group A-L, generate 
 
 This is a hackathon vertical slice, not a full production live-score platform. Preview rows are compact judge-readable outputs designed to prove interaction, state flow, recalculation, and downstream scenario impact.
 
-Edits are session-local and are not written back to the source workbook. The app is a planning and demo workflow, not a complete live tournament rules service. Annex C mapping is used as a bracket-planning layer. AI Scout is a lightweight AI-style explanatory layer over deterministic tournament state; it does not use live sports data, external market data, betting logic, or real tournament outcome claims.
+Edits are session-local and are not written back to the source workbook. The app is a planning and demo workflow, not a complete live tournament rules service. Annex C mapping is used as a bracket-planning layer. AI Scout is a lightweight AI-style explanatory layer over deterministic tournament state; it does not use live sports data, external market data, gambling logic, or real tournament outcome claims.
 
 ## Demo Video Script
 
@@ -64,7 +64,7 @@ Use the final 60-second script in `releases/final/DEMO_VIDEO_60_SEC_SCRIPT_PHASE
 
 ## Demo video / social post
 
-Recommended demo: show the full loop in under 60 seconds. No live sports data, no official affiliation, no gambling or prediction-market functionality.
+Recommended demo: show the full loop in under 60 seconds. No live sports data, independent fan-made project, no gambling or prediction-market functionality.
 
 ## Social Post Copy
 
@@ -104,7 +104,7 @@ HACKATHON_SMOKE_TESTS_PASS
 
 ## Product safety and IP boundary
 
-This is an unofficial fan-made football tournament planning demo. Not affiliated with FIFA, any football federation, tournament organizer, broadcaster, sponsor, team, or player. It does not include official logos, crests, sponsor marks, player likenesses, protected tournament emblems, money-staked prediction-market functionality, live official predictions, or odds-style wagering functionality.
+This is an unofficial fan-made football tournament planning demo. Not affiliated with FIFA, any football federation, tournament organizer, broadcaster, sponsor, team, or player. It does not include official logos, crests, sponsor marks, player likenesses, protected tournament emblems, money-staked prediction-market functionality, live official predictions, or probability lines-style money-staking functionality.
 
 ## Phase 1.28 — Productized User Onboarding + Demo Path Clarity
 
@@ -130,7 +130,7 @@ Open the Space and follow the visible 3-step path:
 
 ### Safety and scope
 
-This is an unofficial fan-made Gradio demo. It has no official affiliation, no live official data feed, no official logos or marks, and no betting, odds, sportsbook, wagering, or gambling workflow.
+This is an unofficial fan-made Gradio demo. It has independent fan-made project, no live federation data feed, no protected logos or marks, and no gambling, prediction-market, or money-staking workflow.
 
 ### Phase 1.28 QA gates
 

@@ -3,7 +3,7 @@
   "required": {
     "product_name": {
       "pass": true,
-      "count": 21,
+      "count": 20,
       "pattern": "AI Bracket War Room 2026"
     },
     "unofficial": {
@@ -33,37 +33,37 @@
     },
     "friends_league": {
       "pass": true,
-      "count": 73,
+      "count": 72,
       "pattern": "Friends League"
     },
     "ai_scout": {
       "pass": true,
-      "count": 78,
+      "count": 77,
       "pattern": "AI Scout"
     },
     "tactical_slip": {
       "pass": true,
-      "count": 24,
+      "count": 22,
       "pattern": "Tactical Slip|tactical slip"
     },
     "json_contract": {
       "pass": true,
-      "count": 9,
+      "count": 6,
       "pattern": "JSON Contract|Judge JSON|json contract"
     },
     "phase128": {
       "pass": true,
-      "count": 44,
+      "count": 42,
       "pattern": "PHASE 1\\.28|Phase 1\\.28|phase128"
     },
     "contrast_header_semantic": {
       "pass": true,
-      "count": 10,
+      "count": 11,
       "pattern": "\\.gradio-dataframe th|\\.gradio-container th\\.header-cell|\\.gradio-container \\.ag-header-cell"
     },
     "contrast_nested_semantic": {
       "pass": true,
-      "count": 4,
+      "count": 6,
       "pattern": "\\.gradio-dataframe th \\*|\\.gradio-container th\\.header-cell \\*|\\.gradio-container \\.header-cell \\*|\\.gradio-container \\.ag-header-cell-text"
     },
     "contrast_svelte_semantic": {
@@ -80,12 +80,12 @@
   "forbidden": {
     "official_affiliation_claim": {
       "pass": false,
-      "count": 11,
+      "count": 7,
       "pattern": "officially affiliated|official partner|endorsed by FIFA|FIFA-approved"
     },
-    "unsafe_betting_language": {
+    "unsafe_money_staking_language": {
       "pass": false,
-      "count": 17,
+      "count": 8,
       "pattern": "(?<!no )(?<!No )\\bbetting\\b|\\bodds\\b|\\bsportsbook\\b|\\bwager\\b|\\bwagering\\b|\\bparlay\\b"
     }
   },
@@ -108,7 +108,6 @@
     "releases/final/QA_PHASE_1_28_PRODUCTIZED_ONBOARDING.md",
     "releases/final/RELEASE_NOTES.md",
     "scripts/judge_ui_walkthrough.py",
-    "scripts/phase128_marker_harness.py",
     "scripts/run_hackathon_smoke_tests.py",
     "scripts/run_phase_125_offgrid_acceptance.py",
     "scripts/run_visible_tab_payload_acceptance.py"

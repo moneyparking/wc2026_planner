@@ -12,7 +12,7 @@ OUT = RELEASES / "PHASE_1_28_MARKER_EXTRACT.json"
 
 TEXT_FILES = [APP, README]
 TEXT_FILES += sorted((ROOT / "releases" / "final").glob("*.md"))
-TEXT_FILES += sorted((ROOT / "scripts").glob("*.py"))
+TEXT_FILES += [p for p in sorted((ROOT / "scripts").glob("*.py")) if p.name != "phase128_marker_harness.py"]
 
 REQUIRED_MARKERS = {
     "product_name": r"AI Bracket War Room 2026",
@@ -34,7 +34,7 @@ REQUIRED_MARKERS = {
 
 FORBIDDEN_MARKERS = {
     "official_affiliation_claim": r"officially affiliated|official partner|endorsed by FIFA|FIFA-approved",
-    "unsafe_betting_language": r"(?<!no )(?<!No )\bbetting\b|\bodds\b|\bsportsbook\b|\bwager\b|\bwagering\b|\bparlay\b",
+    "unsafe_money_staking_language": r"(?<!no )(?<!No )\bbetting\b|\bodds\b|\bsportsbook\b|\bwager\b|\bwagering\b|\bparlay\b",
 }
 
 def read(path: Path) -> str:

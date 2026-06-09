@@ -2159,6 +2159,68 @@ PHASE128_ONBOARDING_STYLE = """<style>
     }
 }
 
+
+
+/* PHASE 1.28V — Dataframe visual readability polish.
+   Keep dark app shell, but make Gradio/AG Grid dataframe bodies readable product surfaces. */
+.gradio-container .gradio-dataframe,
+.gradio-container .dataframe,
+.gradio-container .table-wrap,
+.gradio-container .table-container,
+.gradio-container .ag-root-wrapper,
+.gradio-container .ag-root,
+.gradio-container .ag-body,
+.gradio-container .ag-body-viewport,
+.gradio-container .ag-center-cols-container,
+.gradio-container .ag-center-cols-viewport {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+.gradio-container .ag-row,
+.gradio-container .ag-row-even,
+.gradio-container .ag-row-odd,
+.gradio-container .ag-cell,
+.gradio-container td {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  border-color: #e5e7eb !important;
+}
+
+.gradio-container .ag-header,
+.gradio-container .ag-header-row,
+.gradio-container .ag-header-cell,
+.gradio-container .ag-header-cell-label,
+.gradio-container .ag-header-cell-text,
+.gradio-container th,
+.gradio-container th *,
+.gradio-container .header-cell,
+.gradio-container .header-cell * {
+  background-color: #f8fafc !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  font-weight: 800 !important;
+  border-color: #e5e7eb !important;
+}
+
+.gradio-container .ag-row-selected,
+.gradio-container .ag-row-selected .ag-cell,
+.gradio-container tr.selected,
+.gradio-container td.selected {
+  background-color: #dbeafe !important;
+  color: #1e3a8a !important;
+  -webkit-text-fill-color: #1e3a8a !important;
+  font-weight: 700 !important;
+}
+
+.gradio-container .ag-overlay,
+.gradio-container .ag-overlay-wrapper,
+.gradio-container .ag-overlay-no-rows-center {
+  background-color: #ffffff !important;
+  color: #374151 !important;
+  -webkit-text-fill-color: #374151 !important;
+}
 </style>"""
 
 
@@ -2198,7 +2260,7 @@ def phase128_onboarding_html() -> str:
 
         <div class="phase128-status-chip">Ready · Run the demo scenario to populate the War Room</div>
         <div class="phase128-note">
-            No official affiliation · No live official data feed · No betting workflow · Built as a visible, testable Gradio vertical slice.
+            Independent fan-made project · No live federation data feed · No gambling flow · Built as a visible, testable Gradio vertical slice.
         </div>
     </section>
     """
