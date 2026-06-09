@@ -2000,6 +2000,7 @@ def phase126r_run_live_simulation(matches_df: pd.DataFrame, friends_df: pd.DataF
         state["LAST_RUNTIME_STATUS"] = "PHASE_1_26R_RUNTIME_OK"
 
         status = (
+            f"{PHASE128W_ACTIVATION_SUCCESS_MARKER} "
             "🎲 Phase 1.26R simulation complete. "
             "ANNEX C bracket proof rendered: 495 combinations scanned · MATCH 73 / MATCH 104 visible. "
             "Group scores, Group Tracker, Best Third-Place Ranking, Bracket HTML, "
@@ -2265,7 +2266,11 @@ def phase128_onboarding_html() -> str:
     </section>
     """
 
-PHASE128W_ACTIVATION_SUCCESS_MARKER = "Simulation complete. War Room complete. Completed successfully."
+PHASE128W_ACTIVATION_SUCCESS_MARKER = (
+    "✅ DEMO SCENARIO LOADED — Runtime recalculation complete. "
+    "104-match tournament engine active. Judge demo path ready. "
+    "Simulation complete. War Room complete. Completed successfully."
+)
 
 with gr.Blocks(title=APP_TITLE) as demo:
     workbook_state = gr.State()
