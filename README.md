@@ -105,3 +105,48 @@ HACKATHON_SMOKE_TESTS_PASS
 ## Product safety and IP boundary
 
 This is an unofficial fan-made football tournament planning demo. Not affiliated with FIFA, any football federation, tournament organizer, broadcaster, sponsor, team, or player. It does not include official logos, crests, sponsor marks, player likenesses, protected tournament emblems, money-staked prediction-market functionality, live official predictions, or odds-style wagering functionality.
+
+## Phase 1.28 — Productized User Onboarding + Demo Path Clarity
+
+AI Bracket War Room 2026 is an unofficial fan-made football tournament planning command center for the expanded 48-team format.
+
+### 10-second demo promise
+
+Open the Space and follow the visible 3-step path:
+
+1. Load Demo Scenario / Recalculate War Room.
+2. Inspect Match Planner → Group Tracker → Third-Place Ranking → Bracket War Room → Friends League.
+3. Select a match for AI Scout, then export the Judge JSON Contract.
+
+### Visible technical proof
+
+- 48 teams
+- 12 groups
+- 104 matches
+- 495 third-place / bracket-combination proof marker
+- AI Scout Tactical Slip from selected match context
+- Friends League prediction layer
+- Judge JSON Contract export proof
+
+### Safety and scope
+
+This is an unofficial fan-made Gradio demo. It has no official affiliation, no live official data feed, no official logos or marks, and no betting, odds, sportsbook, wagering, or gambling workflow.
+
+### Phase 1.28 QA gates
+
+```bash
+python scripts/phase128_marker_harness.py
+python -m py_compile app.py
+python scripts/run_hackathon_smoke_tests.py
+python scripts/judge_ui_walkthrough.py --url https://moneyparking-ai-bracket-war-room-2026.hf.space --timeout 30000
+```
+
+Expected markers:
+
+```text
+PHASE_1_28_MARKER_HARNESS_PASS
+HACKATHON_SMOKE_TESTS_PASS
+JUDGE_UI_WALKTHROUGH_PASS
+[PASS] Step 7 — Visual contrast audit
+```
+

@@ -1,0 +1,116 @@
+{
+  "phase": "PHASE_1_28_PRODUCTIZED_ONBOARDING_DEMO_PATH_CLARITY",
+  "required": {
+    "product_name": {
+      "pass": true,
+      "count": 21,
+      "pattern": "AI Bracket War Room 2026"
+    },
+    "unofficial": {
+      "pass": true,
+      "count": 46,
+      "pattern": "Unofficial|unofficial|fan-made"
+    },
+    "teams_48": {
+      "pass": true,
+      "count": 21,
+      "pattern": "\\b48\\b"
+    },
+    "groups_12": {
+      "pass": true,
+      "count": 26,
+      "pattern": "\\b12\\b"
+    },
+    "matches_104": {
+      "pass": true,
+      "count": 70,
+      "pattern": "\\b104\\b"
+    },
+    "combos_495": {
+      "pass": true,
+      "count": 32,
+      "pattern": "\\b495\\b"
+    },
+    "friends_league": {
+      "pass": true,
+      "count": 73,
+      "pattern": "Friends League"
+    },
+    "ai_scout": {
+      "pass": true,
+      "count": 78,
+      "pattern": "AI Scout"
+    },
+    "tactical_slip": {
+      "pass": true,
+      "count": 24,
+      "pattern": "Tactical Slip|tactical slip"
+    },
+    "json_contract": {
+      "pass": true,
+      "count": 9,
+      "pattern": "JSON Contract|Judge JSON|json contract"
+    },
+    "phase128": {
+      "pass": true,
+      "count": 44,
+      "pattern": "PHASE 1\\.28|Phase 1\\.28|phase128"
+    },
+    "contrast_header_semantic": {
+      "pass": true,
+      "count": 10,
+      "pattern": "\\.gradio-dataframe th|\\.gradio-container th\\.header-cell|\\.gradio-container \\.ag-header-cell"
+    },
+    "contrast_nested_semantic": {
+      "pass": true,
+      "count": 4,
+      "pattern": "\\.gradio-dataframe th \\*|\\.gradio-container th\\.header-cell \\*|\\.gradio-container \\.header-cell \\*|\\.gradio-container \\.ag-header-cell-text"
+    },
+    "contrast_svelte_semantic": {
+      "pass": true,
+      "count": 5,
+      "pattern": "header-cell\\.svelte-1d6xqpb|\\.svelte-1d6xqpb\\.header-cell"
+    },
+    "contrast_dark_text_fill": {
+      "pass": true,
+      "count": 6,
+      "pattern": "-webkit-text-fill-color: #111827|-webkit-text-fill-color: #09090b"
+    }
+  },
+  "forbidden": {
+    "official_affiliation_claim": {
+      "pass": false,
+      "count": 11,
+      "pattern": "officially affiliated|official partner|endorsed by FIFA|FIFA-approved"
+    },
+    "unsafe_betting_language": {
+      "pass": false,
+      "count": 17,
+      "pattern": "(?<!no )(?<!No )\\bbetting\\b|\\bodds\\b|\\bsportsbook\\b|\\bwager\\b|\\bwagering\\b|\\bparlay\\b"
+    }
+  },
+  "files_scanned": [
+    "app.py",
+    "README.md",
+    "releases/final/AI_Bracket_War_Room_2026_ETSY_SPLIT_UPLOAD_MANIFEST.md",
+    "releases/final/DEMO_VIDEO_60_SEC_SCRIPT_PHASE_1_19.md",
+    "releases/final/JUDGE_DEMO_SCRIPT_PHASE_1_28.md",
+    "releases/final/JUDGE_UI_WALKTHROUGH_REPORT.md",
+    "releases/final/QA_FINAL_BUYER_PACKAGE_REPORT.md",
+    "releases/final/QA_HACKATHON_APP_PHASE_1_14.md",
+    "releases/final/QA_HACKATHON_APP_PHASE_1_15.md",
+    "releases/final/QA_HACKATHON_APP_PHASE_1_16.md",
+    "releases/final/QA_HACKATHON_APP_PHASE_1_17.md",
+    "releases/final/QA_HACKATHON_APP_PHASE_1_18I.md",
+    "releases/final/QA_HACKATHON_APP_PHASE_1_21.md",
+    "releases/final/QA_HACKATHON_SPREADSHEET_REPORT.md",
+    "releases/final/QA_PHASE_1_19_JUDGE_VALUE_UI.md",
+    "releases/final/QA_PHASE_1_28_PRODUCTIZED_ONBOARDING.md",
+    "releases/final/RELEASE_NOTES.md",
+    "scripts/judge_ui_walkthrough.py",
+    "scripts/phase128_marker_harness.py",
+    "scripts/run_hackathon_smoke_tests.py",
+    "scripts/run_phase_125_offgrid_acceptance.py",
+    "scripts/run_visible_tab_payload_acceptance.py"
+  ]
+}

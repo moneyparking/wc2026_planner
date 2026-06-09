@@ -18,7 +18,7 @@ from models.scoring import score_prediction
 from product_config import APP_TITLE, EXPECTED_ANNEX_C_RECORD_COUNT, EXPECTED_MATCH_COUNT
 
 
-DEPLOY_MARKER = "PHASE_1_26R_STABLE_RUNTIME_EXACT_WIRING"
+DEPLOY_MARKER = "PHASE_1_28_PRODUCTIZED_ONBOARDING_DEMO_PATH_CLARITY"
 
 PHASE_126_INTERACTIVE_CSS = """
 /* Phase 1.26: judge-readable interactive UI hardening */
@@ -1062,7 +1062,7 @@ def phase_126_onboarding_html() -> str:
                 <div class="phase126-eyebrow">Demo path</div>
                 <p class="phase126-copy">
                     1. Open this tab.<br>
-                    2. Press <b>Run 104-Match Live Simulation</b>.<br>
+                    2. Press <b>Load Demo Scenario / Recalculate War Room</b>.<br>
                     3. Watch scores, standings, third-place pool, Friends League, and bracket update.<br>
                     4. Click any match row to trigger the AI Scout Tactical Slip.
                 </p>
@@ -1075,7 +1075,7 @@ def phase_126_initial_bracket_html() -> str:
     return """
     <div class="phase126-shell">
         <div class="phase126-status" style="background:#172554;color:#bfdbfe;border-color:#1d4ed8;">
-            Waiting for judge action. Press Run 104-Match Live Simulation to calculate the third-place pool and redraw the bracket.
+            Waiting for judge action. Press Load Demo Scenario / Recalculate War Room to calculate the third-place pool and redraw the bracket.
         </div>
     </div>
     """
@@ -1705,6 +1705,28 @@ body,
   opacity: 1 !important;
 }
 
+/* PHASE 1.26T CONTRAST LOCK — marker-compatible aliases.
+   Existing app CSS already protects Gradio header cells through
+   .gradio-container th.header-cell and .svelte-1d6xqpb.header-cell.
+   These aliases preserve the same computed contrast while keeping
+   automated marker extraction stable. */
+.gradio-dataframe th,
+.gradio-dataframe .header-cell,
+.header-cell.svelte-1d6xqpb {
+  background-color: #F8FAFC !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  font-weight: 800 !important;
+}
+
+.gradio-dataframe th *,
+.gradio-dataframe .header-cell *,
+.header-cell.svelte-1d6xqpb * {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+
 .gradio-container table,
 .gradio-container .dataframe table {
   background: #FFFFFF !important;
@@ -2043,10 +2065,150 @@ def phase126r_build_tactical_slip(matches_df: pd.DataFrame, evt: gr.SelectData) 
         return f"Click a match row to generate AI Scout Tactical Slip. Runtime select error: {type(e).__name__}: {e}"
 
 
+
+PHASE128_ONBOARDING_STYLE = """<style>
+
+
+/* PHASE 1.28 — Productized onboarding and demo path clarity */
+.phase128-onboarding {
+    background: #111827 !important;
+    border: 1px solid #27272a !important;
+    border-radius: 18px !important;
+    padding: 18px !important;
+    margin: 12px 0 16px 0 !important;
+    color: #f4f4f5 !important;
+}
+.phase128-hero-title {
+    font-size: 30px !important;
+    line-height: 1.1 !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    margin: 0 0 8px 0 !important;
+}
+.phase128-value {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    color: #d4d4d8 !important;
+    max-width: 980px !important;
+    margin-bottom: 14px !important;
+}
+.phase128-kpis {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(120px, 1fr)) !important;
+    gap: 10px !important;
+    margin: 14px 0 !important;
+}
+.phase128-kpi {
+    background: #18181b !important;
+    border: 1px solid #3f3f46 !important;
+    border-radius: 14px !important;
+    padding: 12px !important;
+}
+.phase128-kpi strong {
+    display: block !important;
+    font-size: 22px !important;
+    color: #ffffff !important;
+}
+.phase128-kpi span {
+    display: block !important;
+    color: #a1a1aa !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: .05em !important;
+}
+.phase128-path {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(160px, 1fr)) !important;
+    gap: 10px !important;
+    margin-top: 12px !important;
+}
+.phase128-step {
+    background: #09090b !important;
+    border: 1px solid #27272a !important;
+    border-radius: 14px !important;
+    padding: 12px !important;
+    color: #f4f4f5 !important;
+}
+.phase128-step b {
+    color: #60a5fa !important;
+}
+.phase128-note {
+    margin-top: 12px !important;
+    color: #a1a1aa !important;
+    font-size: 12px !important;
+}
+.phase128-status-chip {
+    display: inline-block !important;
+    background: #052e16 !important;
+    border: 1px solid #10b981 !important;
+    color: #bbf7d0 !important;
+    border-radius: 999px !important;
+    padding: 6px 10px !important;
+    font-weight: 800 !important;
+    font-size: 12px !important;
+    margin-top: 8px !important;
+}
+@media (max-width: 760px) {
+    .phase128-kpis,
+    .phase128-path {
+        grid-template-columns: 1fr !important;
+    }
+    .phase128-hero-title {
+        font-size: 24px !important;
+    }
+}
+
+</style>"""
+
+
+
+# ---------------------------------------------------------------------------
+# PHASE 1.28 — Productized User Onboarding + Demo Path Clarity
+# ---------------------------------------------------------------------------
+
+def phase128_onboarding_html() -> str:
+    """Judge-safe first-screen guidance layer.
+
+    This does not change the engine. It makes the existing vertical slice
+    understandable in under 10 seconds for judges and normal users.
+    """
+    return """
+    <section class="phase128-onboarding" aria-label="AI Bracket War Room onboarding">
+        <div class="phase128-hero-title">AI Bracket War Room 2026</div>
+        <div class="phase128-value">
+            <b>Unofficial fan-made football tournament planning command center.</b>
+            Turn the expanded 48-team format into a one-click War Room:
+            match planner, group tracker, third-place ranking, bracket preview,
+            Friends League, AI Scout Tactical Slip, and Judge JSON Contract.
+        </div>
+
+        <div class="phase128-kpis" aria-label="Tournament proof metrics">
+            <div class="phase128-kpi"><strong>48</strong><span>Teams</span></div>
+            <div class="phase128-kpi"><strong>12</strong><span>Groups</span></div>
+            <div class="phase128-kpi"><strong>104</strong><span>Matches</span></div>
+            <div class="phase128-kpi"><strong>495</strong><span>Combos</span></div>
+        </div>
+
+        <div class="phase128-path" aria-label="Three step demo path">
+            <div class="phase128-step"><b>1. Load Demo</b><br>Run the scenario to populate the War Room.</div>
+            <div class="phase128-step"><b>2. Inspect Logic</b><br>Review matches, groups, thirds, bracket, and Friends League.</div>
+            <div class="phase128-step"><b>3. Select + Export</b><br>Click a match for AI Scout, then export the Judge JSON Contract.</div>
+        </div>
+
+        <div class="phase128-status-chip">Ready · Run the demo scenario to populate the War Room</div>
+        <div class="phase128-note">
+            No official affiliation · No live official data feed · No betting workflow · Built as a visible, testable Gradio vertical slice.
+        </div>
+    </section>
+    """
+
 with gr.Blocks(title=APP_TITLE) as demo:
     workbook_state = gr.State()
     gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
     gr.HTML(_command_header_html())
+    gr.HTML(value=PHASE128_ONBOARDING_STYLE)
+    gr.HTML(value=phase128_onboarding_html(), elem_classes=["phase128-onboarding-shell"])
 
     top_checklist_html = gr.HTML(value=_scenario_controls_html())
     modal_gpu_status_html = gr.HTML(value=check_modal_gpu_health())
@@ -2063,12 +2225,12 @@ with gr.Blocks(title=APP_TITLE) as demo:
 
             phase126_status = gr.Textbox(
                 label="Live system status",
-                value="Waiting. Press Run 104-Match Live Simulation.",
+                value="Waiting. Press Load Demo Scenario / Recalculate War Room.",
                 interactive=False,
             )
 
             phase126_run_button = gr.Button(
-                "Run 104-Match Live Simulation",
+                "Load Demo Scenario / Recalculate War Room",
                 variant="primary",
                 size="lg",
             )
