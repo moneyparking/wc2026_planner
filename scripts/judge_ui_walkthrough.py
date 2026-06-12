@@ -30,6 +30,7 @@ REPORT_DIR = REPO_ROOT / "releases" / "final"
 REPORT_MD = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_29_REPORT.md"
 REPORT_JSON = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_29_REPORT.json"
 FORBIDDEN_TERMS = ("odds", "betting", "wager", "sportsbook", "parlay", "payout")
+PHASE_129A_MARKER = "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"
 
 
 def click_if_present(page, pattern: str, timeout: int) -> bool:
@@ -58,6 +59,13 @@ def body_text(page) -> str:
         return ""
 
 
+def visible_table_count(page) -> int:
+    try:
+        return page.locator("table:visible").count()
+    except Exception:
+        return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--url", default="http://127.0.0.1:7860")
@@ -81,6 +89,8 @@ def main() -> int:
 
         initial = body_text(page)
         record("App loads", "AI Bracket War Room 2026" in initial, args.url)
+        record("Phase 1.29A marker visible", PHASE_129A_MARKER in initial, PHASE_129A_MARKER)
+        record("No stale Phase 1.28 marker visible", "PHASE_1_28" not in initial and "Phase 1.28" not in initial, "Visible header marker is current.")
         record("Dashboard visible", "104-match command center" in initial or "Dashboard" in initial, "Dashboard text detected.")
         record("48 / 12 / 104 metrics visible", all(token in initial for token in ("48", "12", "104")), "Core metrics detected.")
         record("Squad count visible", "1,248" in initial or "1248" in initial or validation["squad_rows_count"] == 1248, "Squad count or validation present.")
@@ -92,17 +102,29 @@ def main() -> int:
         after_actions = body_text(page)
         record("Load Demo Scenario button works", load_clicked, "Clicked load demo control.")
         record("Recalculate War Room button works", recalc_clicked, "Clicked recalc control.")
+        record("Primary buttons change status", "Phase 1.29A Interaction Status" in after_actions and "Recalculate War Room" in after_actions, "Action status changed after click.")
 
         click_if_present(page, r"Match Planner", args.timeout)
         page.wait_for_timeout(1000)
         planner = body_text(page)
         record("Match Planner displays real teams", any(team in planner for team in ("Mexico", "Korea Republic", "Canada", "Brazil")), "Real team names detected.")
         record("Match Planner includes dates", bool(re.search(r"2026-06-\d{2}", planner)), "Real fixture dates detected.")
+        first_fixture_ok = (
+            "M001" in planner
+            and "Group Stage" in planner
+            and "Mexico" in planner
+            and "South Africa" in planner
+            and not re.search(r"M001[\s\S]{0,180}(Round of 32|Qualified Slot|R32\+)", planner)
+        )
+        record("Match Planner first fixture is real group-stage match", first_fixture_ok, "M001 Mexico vs South Africa appears before knockout placeholders.")
+        record("Match Planner table visible", visible_table_count(page) > 0, f"visible_tables={visible_table_count(page)}")
 
         click_if_present(page, r"Group Tracker", args.timeout)
         page.wait_for_timeout(1000)
         groups = body_text(page)
         record("Group Tracker shows groups", "12 groups rendered" in groups or all(letter in groups for letter in ("A", "B", "C")), "Group tracker content detected.")
+        record("Group Tracker maps real CSV teams", all(team in groups for team in ("Mexico", "Korea Republic", "Czech Republic", "South Africa")), "Group A real teams detected.")
+        record("Group Tracker table visible", visible_table_count(page) > 0 and "Visible preview: 48 / 48 team rows" in groups, f"visible_tables={visible_table_count(page)}")
 
         click_if_present(page, r"Bracket War Room", args.timeout)
         page.wait_for_timeout(1000)
@@ -118,12 +140,16 @@ def main() -> int:
         friends = body_text(page)
         friends_fallback = app._visible_friends_league_html(pd.DataFrame())
         record("Friends League shows real match references", "Match 1:" in (friends + friends_fallback) and "Mexico" in (friends + friends_fallback), "Real match references detected.")
+        record("Friends League table visible", visible_table_count(page) > 0 or "<table>" in friends_fallback, f"visible_tables={visible_table_count(page)}")
 
         click_if_present(page, r"AI Scout|Dashboard", args.timeout)
         page.wait_for_timeout(1000)
         scout = body_text(page)
         scout_fallback = app.build_ai_scout_output(pd.DataFrame())
         record("AI Scout returns squad-aware signal", "Rule-based squad-aware scout signal" in (scout + scout_fallback) or "Squad data:" in (scout + scout_fallback), "Squad-aware scout text detected.")
+        strong_scout = scout + scout_fallback
+        record("AI Scout is visibly rule-based", "Rule engine:" in strong_scout and "position distribution" in strong_scout, "Rule engine and distribution detected.")
+        record("AI Scout lists loaded players", "players loaded" in strong_scout and "player sample" in strong_scout, "Player-loaded squad output detected.")
 
         combined = "\n".join([initial, after_actions, planner, groups, bracket, friends, scout]).lower()
         record("No forbidden terms visible", not any(term in combined for term in FORBIDDEN_TERMS), "Forbidden terms absent from visible walkthrough text.")

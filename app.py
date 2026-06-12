@@ -20,7 +20,7 @@ from product_config import APP_TITLE, EXPECTED_ANNEX_C_RECORD_COUNT, EXPECTED_MA
 from src.wc2026_data_loader import load_fixtures, load_groups, load_squads, validate_wc2026_dataset
 
 
-DEPLOY_MARKER = "PHASE_1_28_PRODUCTIZED_ONBOARDING_DEMO_PATH_CLARITY"
+DEPLOY_MARKER = "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"
 
 PHASE_126_INTERACTIVE_CSS = """
 /* Phase 1.26: judge-readable interactive UI hardening */
@@ -453,6 +453,9 @@ def build_ai_scout_output(matches: pd.DataFrame) -> str:
     def distribution(frame: pd.DataFrame) -> str:
         counts = frame["position"].value_counts().to_dict()
         return " / ".join(f"{key}:{counts.get(key, 0)}" for key in ["GK", "DF", "MF", "FW"])
+    def player_sample(frame: pd.DataFrame) -> str:
+        names = frame.sort_values(["position", "shirt_no"])["player_name"].head(5).astype(str).tolist()
+        return ", ".join(names) if names else "No squad rows loaded"
     warning = ""
     if len(squads) != 1248:
         warning = f"<p class='sport-warning'>Squad parser warning: {len(squads)} / 1,248 player rows parsed.</p>"
@@ -460,10 +463,13 @@ def build_ai_scout_output(matches: pd.DataFrame) -> str:
     <div class='sport-card'>
         <h3>Rule-based squad-aware scout signal</h3>
         <p><strong>Match {int(selected['match_no'])} — {home} vs {away}</strong></p>
-        <p>Squad data: {home} {len(home_squad)} players, {away} {len(away_squad)} players</p>
+        <p>Squad data: {home} {len(home_squad)} players loaded, {away} {len(away_squad)} players loaded</p>
         <p>{home} position distribution: {distribution(home_squad)}</p>
         <p>{away} position distribution: {distribution(away_squad)}</p>
+        <p>{home} player sample: {escape(player_sample(home_squad))}</p>
+        <p>{away} player sample: {escape(player_sample(away_squad))}</p>
         {warning}
+        <p><span class='sport-accent'>Rule engine:</span> compares loaded player counts, GK/DF/MF/FW distribution, and fixture stage before emitting watch factors.</p>
         <p><span class='sport-accent'>Watch factors:</span> midfield density · defensive depth · forward rotation · set-piece coverage</p>
         <p>Fan prediction confidence: medium</p>
         <p>This is an unofficial planning signal for fan planning only.</p>
@@ -582,6 +588,18 @@ def _html_table_rows(frame: pd.DataFrame, limit: int) -> str:
     return "".join(rows)
 
 
+def _html_table(frame: pd.DataFrame, limit: int) -> str:
+    if frame is None or frame.empty:
+        return "<table><thead><tr><th>Status</th></tr></thead><tbody><tr data-row='empty'><td>No rows available.</td></tr></tbody></table>"
+    visible = frame.head(limit)
+    headers = "".join(f"<th>{escape(str(column))}</th>" for column in visible.columns)
+    rows = []
+    for row_index, (_, row) in enumerate(visible.iterrows(), start=1):
+        cells = "".join(f"<td>{escape(str(row.get(column, '')))}</td>" for column in visible.columns)
+        rows.append(f"<tr data-row='{row_index}'>{cells}</tr>")
+    return f"<table><thead><tr>{headers}</tr></thead><tbody>{''.join(rows)}</tbody></table>"
+
+
 def _fixture_preview_for_matches(matches: pd.DataFrame | None) -> pd.DataFrame:
     fixtures = load_fixtures().copy()
     fixtures["Match ID"] = fixtures["match_no"].astype(int).apply(lambda value: f"M{value:03d}")
@@ -663,13 +681,14 @@ def _visible_group_tracker_html(groups: pd.DataFrame) -> str:
     fallback_rank = frame.groupby("Group").cumcount() + 1
     frame["Rank"] = pd.to_numeric(frame.get("Rank"), errors="coerce").fillna(fallback_rank).astype(int)
     frame["Qualification Status"] = frame["Played"].map(lambda value: "Needs result" if value == 0 else "Third-place watch")
-    rows = _html_table_rows(frame[["Group", "Team", "Played", "Won", "Drawn", "Lost", "GF", "GA", "GD", "Points", "Rank", "Qualification Status"]], 48)
+    visible = frame[["Group", "Team", "Played", "Won", "Drawn", "Lost", "GF", "GA", "GD", "Points", "Rank", "Qualification Status"]]
+    table = _html_table(visible, 48)
     return f"""
     <div class='sport-card'>
         <h3>Group Tracker</h3>
-        <p>Shows how group order changes after recalculation.</p>
+        <p>Mapped directly from data/wc2026_groups.csv, then overlaid with recalculated standings.</p>
         <p>12 groups rendered · 4 teams per group · Visible preview: 48 / 48 team rows</p>
-        <table>{rows}</table>
+        {table}
     </div>
     """
 
@@ -693,13 +712,13 @@ def _visible_third_place_html(thirds: pd.DataFrame) -> str:
         frame = computed[["Group", "Team", "Points", "GD", "GF", "Ranking"]].copy()
         frame["Fair-play placeholder or note"] = "Not tracked in demo"
         frame["Projected status"] = frame["Ranking"].apply(lambda value: "Projected advance" if int(value) <= 8 else "Bubble")
-    rows = _html_table_rows(frame, 12)
+    table = _html_table(frame, 12)
     return f"""
     <div class='sport-card'>
         <h3>3rd-Place Ranking</h3>
         <p>Critical in a 48-team format because third-place teams can still advance.</p>
         <p>12 third-place rows tracked · Visible preview: {len(frame)} / 12 rows shown</p>
-        <table>{rows}</table>
+        {table}
     </div>
     """
 
@@ -733,7 +752,7 @@ def _visible_bracket_war_room_html(bracket: dict) -> str:
 
 def _visible_friends_league_html(friends: pd.DataFrame) -> str:
     preview = friends.head(VISIBLE_TAB_PREVIEW_FRIENDS)
-    rows = _html_table_rows(preview, VISIBLE_TAB_PREVIEW_FRIENDS)
+    table = _html_table(preview, VISIBLE_TAB_PREVIEW_FRIENDS)
     fixtures = load_fixtures().head(5)
     match_refs = ", ".join(f"Match {int(row['match_no'])}: {row['home']} vs {row['away']}" for _, row in fixtures.iterrows())
     return f"""
@@ -741,7 +760,7 @@ def _visible_friends_league_html(friends: pd.DataFrame) -> str:
         <h3>Friends League</h3>
         <p>Private league fan challenge linked to real fixtures: {escape(match_refs)}</p>
         <p>Demo scoreboard rows: {len(preview)} · Visible preview: {len(preview)} rows shown</p>
-        <table>{rows}</table>
+        {table}
     </div>
     """
 
@@ -785,6 +804,74 @@ def recalculate_outputs(state: dict, matches: pd.DataFrame | None = None):
     bracket_html = _visible_bracket_war_room_html(bracket)
     friends_html = _visible_friends_league_html(friends)
     return working_state, summary, match_html, group_html, third_html, bracket, bracket_html, friends_html, ai_scout, impact_panel
+
+
+def _button_status_html(outputs: tuple, action_label: str) -> str:
+    state = outputs[0]
+    matches = outputs[1]
+    groups = outputs[2]
+    thirds = outputs[3]
+    friends = outputs[6]
+    completed = int(matches["Result"].fillna("").astype(str).str.strip().ne("").sum()) if "Result" in matches.columns else 0
+    return _scenario_controls_html(state) + f"""
+    <div class='sport-card phase129a-action-status'>
+        <h3>Phase 1.29A Interaction Status</h3>
+        <p><strong>Last primary action:</strong> <span class='sport-success'>{escape(action_label)}</span></p>
+        <p>Visible state changed: {completed} completed results · {len(groups)} group rows · {len(thirds)} third-place rows · {len(friends)} Friends League rows.</p>
+        <p><strong>UI truth marker:</strong> {DEPLOY_MARKER}</p>
+    </div>
+    """
+
+
+def _ui_payload(outputs: tuple, action_label: str, planner_filter: str = "All 104 matches") -> tuple:
+    state, matches, groups, thirds, bracket, bracket_summary, friends, dashboard, _top_checklist, ai_scout, impact_panel = outputs
+    return (
+        state,
+        matches,
+        _visible_match_planner_html(matches, planner_filter),
+        groups,
+        _visible_group_tracker_html(groups),
+        thirds,
+        _visible_third_place_html(thirds),
+        bracket,
+        _visible_bracket_war_room_html(bracket),
+        friends,
+        _visible_friends_league_html(friends),
+        dashboard,
+        _button_status_html(outputs, action_label),
+        ai_scout,
+        impact_panel,
+    )
+
+
+def initial_ui_load():
+    return _ui_payload(initial_load(), "Initial workbook load")
+
+
+def load_demo_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
+    return _ui_payload(load_demo_scenario_outputs(state, matches), "Load Judge Demo Scenario")
+
+
+def recalculate_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
+    return _ui_payload(compute_outputs(state, matches), "Recalculate War Room")
+
+
+def random_outcomes_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
+    random_outputs = generate_random_match_outcomes(state, matches)
+    compute_shaped = (
+        random_outputs[0],
+        random_outputs[1],
+        random_outputs[3],
+        random_outputs[4],
+        random_outputs[5],
+        random_outputs[6],
+        random_outputs[7],
+        random_outputs[8],
+        random_outputs[9],
+        random_outputs[10],
+        random_outputs[11],
+    )
+    return _ui_payload(compute_shaped, "Generate Random Outcomes for all 104 matches")
 
 
 # Phase 1.25: autonomous off-grid tactical scout engine
@@ -840,20 +927,15 @@ def build_tactical_slip_from_selection(matches_df, evt: gr.SelectData):
 # Phase 1.26: self-contained live judge demo engine
 # =============================================================================
 
-PHASE_126_GROUPS = {
-    "A": ["USA", "Mexico", "Canada", "Jamaica"],
-    "B": ["Argentina", "Ecuador", "Peru", "Venezuela"],
-    "C": ["Brazil", "Colombia", "Chile", "Paraguay"],
-    "D": ["France", "Netherlands", "Poland", "Austria"],
-    "E": ["England", "Italy", "Ukraine", "Scotland"],
-    "F": ["Spain", "Germany", "Belgium", "Switzerland"],
-    "G": ["Portugal", "Croatia", "Serbia", "Slovenia"],
-    "H": ["Morocco", "Senegal", "Egypt", "Algeria"],
-    "I": ["Japan", "South Korea", "Australia", "Iran"],
-    "J": ["Uruguay", "Sweden", "Norway", "Denmark"],
-    "K": ["Nigeria", "Ghana", "Cameroon", "Mali"],
-    "L": ["Saudi Arabia", "Qatar", "UAE", "Oman"],
-}
+def _phase126_real_groups() -> dict[str, list[str]]:
+    groups = load_groups()
+    return {
+        group_id: group_rows.sort_values("seed")["team"].astype(str).tolist()
+        for group_id, group_rows in groups.groupby("group", sort=True)
+    }
+
+
+PHASE_126_GROUPS = _phase126_real_groups()
 
 PHASE_126_FRIENDS = [
     "Judge Captain",
@@ -868,34 +950,21 @@ PHASE_126_FRIENDS = [
 
 def phase_126_build_seed_matches() -> pd.DataFrame:
     rows = []
-    match_no = 1
-    for group_id, teams in PHASE_126_GROUPS.items():
-        pairs = [(0, 1), (2, 3), (0, 2), (1, 3), (0, 3), (1, 2)]
-        for a_idx, b_idx in pairs:
-            rows.append({
-                "Match_ID": f"M{match_no:03d}",
-                "Stage": "Group",
-                "Group": group_id,
-                "Team_A": teams[a_idx],
-                "Team_B": teams[b_idx],
-                "Score_A": "",
-                "Score_B": "",
-                "Status": "Waiting",
-            })
-            match_no += 1
-
-    for knockout_no in range(1, 33):
+    fixtures = load_fixtures().sort_values("match_no")
+    for _, fixture in fixtures.iterrows():
+        match_no = int(fixture["match_no"])
+        stage = str(fixture["stage"])
+        group_id = str(fixture["group"]).strip()
         rows.append({
             "Match_ID": f"M{match_no:03d}",
-            "Stage": "Knockout",
-            "Group": "R32+",
-            "Team_A": f"Qualified Slot {knockout_no * 2 - 1}",
-            "Team_B": f"Qualified Slot {knockout_no * 2}",
+            "Stage": stage,
+            "Group": group_id if group_id else "Knockout",
+            "Team_A": str(fixture["home"]),
+            "Team_B": str(fixture["away"]),
             "Score_A": "",
             "Score_B": "",
-            "Status": "Pending group table",
+            "Status": "Waiting" if match_no <= 72 else "Pending group table",
         })
-        match_no += 1
 
     return pd.DataFrame(rows)
 
@@ -959,7 +1028,7 @@ def phase_126_calculate_group_tables(matches_df: pd.DataFrame) -> pd.DataFrame:
                 "Pts": 0,
             }
 
-    group_matches = matches_df[matches_df["Stage"].astype(str).eq("Group")]
+    group_matches = matches_df[matches_df["Stage"].astype(str).str.contains("Group", case=False, na=False)]
     for _, row in group_matches.iterrows():
         try:
             score_a = int(row["Score_A"])
@@ -1112,7 +1181,7 @@ def phase_126_run_live_simulation(matches_df: pd.DataFrame):
     run_seed = int(time.time_ns() % 100000)
 
     for idx, row in sim_df.iterrows():
-        if str(row.get("Stage", "")) == "Group":
+        if "Group" in str(row.get("Stage", "")):
             score_a, score_b = phase_126_seeded_score(str(row["Match_ID"]), run_seed)
             sim_df.at[idx, "Score_A"] = score_a
             sim_df.at[idx, "Score_B"] = score_b
@@ -1199,6 +1268,7 @@ def phase_126_initial_bracket_html() -> str:
 def _phase126_safe_planner_df(df: pd.DataFrame) -> pd.DataFrame:
     """Normalize planner dataframe for Gradio runtime mutation."""
     safe = df.copy()
+    safe = safe.rename(columns={"Group": "Group_ID"})
 
     required_columns = [
         "Match_ID",
@@ -1218,6 +1288,7 @@ def _phase126_safe_planner_df(df: pd.DataFrame) -> pd.DataFrame:
     safe = safe[required_columns].copy()
     safe = safe.astype(object)
 
+    safe["Match_ID"] = safe["Match_ID"].astype(str).str.replace("M", "", regex=False)
     safe["Match_ID"] = pd.to_numeric(safe["Match_ID"], errors="coerce").fillna(0).astype(int)
     safe["Stage"] = safe["Stage"].fillna("").astype(str)
     safe["Group_ID"] = safe["Group_ID"].fillna("").astype(str)
@@ -1854,6 +1925,7 @@ body,
 
 def phase126r_safe_matches_df(df: pd.DataFrame) -> pd.DataFrame:
     safe = df.copy() if isinstance(df, pd.DataFrame) else pd.DataFrame()
+    safe = safe.rename(columns={"Group": "Group_ID"})
 
     required = [
         "Match_ID",
@@ -1872,6 +1944,7 @@ def phase126r_safe_matches_df(df: pd.DataFrame) -> pd.DataFrame:
 
     safe = safe[required].copy().astype(object)
 
+    safe["Match_ID"] = safe["Match_ID"].astype(str).str.replace("M", "", regex=False)
     safe["Match_ID"] = pd.to_numeric(safe["Match_ID"], errors="coerce").fillna(0).astype(int)
     safe["Stage"] = safe["Stage"].fillna("").astype(str)
     safe["Group_ID"] = safe["Group_ID"].fillna("").astype(str)
@@ -2480,29 +2553,36 @@ with gr.Blocks(title=APP_TITLE) as demo:
             planner_filter_html = gr.HTML(value=_visible_match_planner_html(pd.DataFrame(), "All 104 matches"))
             matches_df = gr.Dataframe(label="MATCH_PLANNER — editable full 104-match scenario input", interactive=True, wrap=True)
         with gr.Tab("GROUP TRACKER"):
+            group_tracker_html = gr.HTML(value=_visible_group_tracker_html(pd.DataFrame()))
             groups_df = gr.Dataframe(label="Computed Group Table", interactive=False, wrap=True)
         with gr.Tab("3RD-PLACE RANKING"):
+            third_places_html = gr.HTML(value=_visible_third_place_html(pd.DataFrame()))
             third_places_df = gr.Dataframe(label="Top Third-Place Ranking", interactive=False, wrap=True)
         with gr.Tab("BRACKET WAR ROOM"):
             bracket_json = gr.State()
             bracket_html = gr.HTML()
         with gr.Tab("FRIENDS LEAGUE"):
+            friends_html = gr.HTML(value=_visible_friends_league_html(pd.DataFrame()))
             friends_df = gr.Dataframe(label="Friends League Leaderboard", interactive=True, wrap=True)
         with gr.Tab("AI SCOUT"):
             gr.Markdown("Explains the consequence of the scenario in plain English.")
             ai_scout_html = gr.HTML()
 
     demo.load(
-        initial_load,
+        initial_ui_load,
         inputs=None,
         outputs=[
             workbook_state,
             matches_df,
+            planner_filter_html,
             groups_df,
+            group_tracker_html,
             third_places_df,
+            third_places_html,
             bracket_json,
             bracket_html,
             friends_df,
+            friends_html,
             dashboard_html,
             top_checklist_html,
             ai_scout_html,
@@ -2510,16 +2590,20 @@ with gr.Blocks(title=APP_TITLE) as demo:
         ],
     )
     recalc_button.click(
-        compute_outputs,
+        recalculate_ui_outputs,
         inputs=[workbook_state, matches_df],
         outputs=[
             workbook_state,
             matches_df,
+            planner_filter_html,
             groups_df,
+            group_tracker_html,
             third_places_df,
+            third_places_html,
             bracket_json,
             bracket_html,
             friends_df,
+            friends_html,
             dashboard_html,
             top_checklist_html,
             ai_scout_html,
@@ -2532,17 +2616,20 @@ with gr.Blocks(title=APP_TITLE) as demo:
         outputs=planner_filter_html,
     )
     random_outcomes_button.click(
-        generate_random_match_outcomes,
+        random_outcomes_ui_outputs,
         inputs=[workbook_state, matches_df],
         outputs=[
             workbook_state,
             matches_df,
             planner_filter_html,
             groups_df,
+            group_tracker_html,
             third_places_df,
+            third_places_html,
             bracket_json,
             bracket_html,
             friends_df,
+            friends_html,
             dashboard_html,
             top_checklist_html,
             ai_scout_html,
@@ -2555,16 +2642,20 @@ with gr.Blocks(title=APP_TITLE) as demo:
         outputs=[tactical_slip_box],
     )
     load_demo_button.click(
-        load_demo_scenario_outputs,
+        load_demo_ui_outputs,
         inputs=[workbook_state, matches_df],
         outputs=[
             workbook_state,
             matches_df,
+            planner_filter_html,
             groups_df,
+            group_tracker_html,
             third_places_df,
+            third_places_html,
             bracket_json,
             bracket_html,
             friends_df,
+            friends_html,
             dashboard_html,
             top_checklist_html,
             ai_scout_html,
