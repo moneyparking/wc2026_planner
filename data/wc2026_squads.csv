@@ -1,0 +1,1249 @@
+﻿team,team_code,shirt_no,position,player_name,first_names,last_names,name_on_shirt,dob,club,height_cm,caps,goals,source_status,parser_confidence
+Czech Republic,CZE,1,GK,Matěj Kovář,Matěj,Kovář,KOVÁŘ,"May 17, 2000",PSV Eindhoven,,20,0,cross_checked,high
+Czech Republic,CZE,2,DF,David Zima,David,Zima,ZIMA,"November 8, 2000",Slavia Prague,,25,1,cross_checked,high
+Czech Republic,CZE,3,DF,Tomáš Holeš,Tomáš,Holeš,HOLEŠ,"March 31, 1993",Slavia Prague,,41,2,cross_checked,high
+Czech Republic,CZE,4,DF,Robin Hranáč,Robin,Hranáč,HRANÁČ,"January 29, 2000",TSG Hoffenheim,,14,1,cross_checked,high
+Czech Republic,CZE,5,DF,Vladimír Coufal,Vladimír,Coufal,COUFAL,"August 22, 1992",TSG Hoffenheim,,62,2,cross_checked,high
+Czech Republic,CZE,6,DF,Štěpán Chaloupek,Štěpán,Chaloupek,CHALOUPEK,"March 8, 2003",Slavia Prague,,5,0,cross_checked,high
+Czech Republic,CZE,7,DF,Ladislav Krejčí,Ladislav,Krejčí,KREJČÍ,"April 20, 1999",Wolverhampton Wanderers,,27,5,cross_checked,high
+Czech Republic,CZE,8,MF,Vladimír Darida,Vladimír,Darida,DARIDA,"August 8, 1990",Hradec Králové,,79,8,cross_checked,high
+Czech Republic,CZE,9,FW,Adam Hložek,Adam,Hložek,HLOŽEK,"July 25, 2002",TSG Hoffenheim,,43,5,cross_checked,high
+Czech Republic,CZE,10,FW,Patrik Schick,Patrik,Schick,SCHICK,"January 24, 1996",Bayer Leverkusen,,53,26,cross_checked,high
+Czech Republic,CZE,11,FW,Jan Kuchta,Jan,Kuchta,KUCHTA,"January 8, 1997",Sparta Prague,,31,3,cross_checked,high
+Czech Republic,CZE,12,MF,Lukáš Červ,Lukáš,Červ,ČERV,"April 10, 2001",Viktoria Plzeň,,17,2,cross_checked,high
+Czech Republic,CZE,13,FW,Mojmír Chytil,Mojmír,Chytil,CHYTIL,"April 29, 1999",Slavia Prague,,22,6,cross_checked,high
+Czech Republic,CZE,14,DF,David Jurásek,David,Jurásek,JURÁSEK,"August 7, 2000",Slavia Prague,,18,1,cross_checked,high
+Czech Republic,CZE,15,FW,Pavel Šulc,Pavel,Šulc,ŠULC,"December 29, 2000",Lyon,,21,5,cross_checked,high
+Czech Republic,CZE,16,GK,Jindřich Staněk,Jindřich,Staněk,STANĚK,"April 27, 1996",Slavia Prague,,14,0,cross_checked,high
+Czech Republic,CZE,17,MF,Lukáš Provod,Lukáš,Provod,PROVOD,"October 23, 1996",Slavia Prague,,38,3,cross_checked,high
+Czech Republic,CZE,18,MF,Michal Sadílek,Michal,Sadílek,SADÍLEK,"May 31, 1999",Slavia Prague,,35,1,cross_checked,high
+Czech Republic,CZE,19,FW,Tomáš Chorý,Tomáš,Chorý,CHORÝ,"January 26, 1995",Slavia Prague,,22,7,cross_checked,high
+Czech Republic,CZE,20,DF,Jaroslav Zelený,Jaroslav,Zelený,ZELENÝ,"August 20, 1992",Sparta Prague,,23,0,cross_checked,high
+Czech Republic,CZE,21,DF,David Douděra,David,Douděra,DOUDĚRA,"May 31, 1998",Slavia Prague,,17,2,cross_checked,high
+Czech Republic,CZE,22,MF,Tomáš Souček,Tomáš,Souček,SOUČEK,"February 27, 1995",West Ham United,,90,17,cross_checked,high
+Czech Republic,CZE,23,GK,Lukáš Horníček,Lukáš,Horníček,HORNÍČEK,"July 13, 2002",Braga,,1,0,cross_checked,high
+Czech Republic,CZE,24,MF,Alexandr Sojka,Alexandr,Sojka,SOJKA,"April 2, 2003",Viktoria Plzeň,,2,0,cross_checked,high
+Czech Republic,CZE,25,MF,Hugo Sochůrek,Hugo,Sochůrek,SOCHŮREK,"June 7, 2008",Sparta Prague,,1,0,cross_checked,high
+Czech Republic,CZE,26,FW,Denis Višinský,Denis,Višinský,VIŠINSKÝ,"March 21, 2003",Viktoria Plzeň,,2,1,cross_checked,high
+Mexico,MEX,1,GK,Raúl Rangel,Raúl,Rangel,RANGEL,"February 25, 2000",Guadalajara,,14,0,cross_checked,high
+Mexico,MEX,2,DF,Jorge Sánchez,Jorge,Sánchez,SÁNCHEZ,"December 10, 1997",PAOK,,59,3,cross_checked,high
+Mexico,MEX,3,DF,César Montes,César,Montes,MONTES,"February 24, 1997",Lokomotiv Moscow,,67,4,cross_checked,high
+Mexico,MEX,4,DF,Edson Álvarez,Edson,Álvarez,ÁLVAREZ,"October 24, 1997",Fenerbahçe,,98,7,cross_checked,high
+Mexico,MEX,5,DF,Johan Vásquez,Johan,Vásquez,VÁSQUEZ,"October 22, 1998",Genoa,,46,3,cross_checked,high
+Mexico,MEX,6,MF,Érik Lira,Érik,Lira,LIRA,"May 8, 2000",Cruz Azul,,25,0,cross_checked,high
+Mexico,MEX,7,MF,Luis Romo,Luis,Romo,ROMO,"June 5, 1995",Guadalajara,,63,4,cross_checked,high
+Mexico,MEX,8,MF,Álvaro Fidalgo,Álvaro,Fidalgo,FIDALGO,"April 9, 1997",Real Betis,,4,0,cross_checked,high
+Mexico,MEX,9,FW,Raúl Jiménez,Raúl,Jiménez,JIMÉNEZ,"May 5, 1991",Fulham,,124,45,cross_checked,high
+Mexico,MEX,10,FW,Alexis Vega,Alexis,Vega,VEGA,"November 25, 1997",Toluca,,52,7,cross_checked,high
+Mexico,MEX,11,FW,Santiago Giménez,Santiago,Giménez,GIMÉNEZ,"April 18, 2001",AC Milan,,47,6,cross_checked,high
+Mexico,MEX,12,GK,Carlos Acevedo,Carlos,Acevedo,ACEVEDO,"April 19, 1996",Santos Laguna,,7,0,cross_checked,high
+Mexico,MEX,13,GK,Guillermo Ochoa,Guillermo,Ochoa,OCHOA,"July 13, 1985",AEL Limassol,,152,0,cross_checked,high
+Mexico,MEX,14,FW,Armando González,Armando,González,GONZÁLEZ,"April 20, 2003",Guadalajara,,7,1,cross_checked,high
+Mexico,MEX,15,DF,Israel Reyes,Israel,Reyes,REYES,"May 23, 2000",América,,34,2,cross_checked,high
+Mexico,MEX,16,FW,Julián Quiñones,Julián,Quiñones,QUIÑONES,"March 24, 1997",Al-Qadsiah,,22,2,cross_checked,high
+Mexico,MEX,17,MF,Orbelín Pineda,Orbelín,Pineda,PINEDA,"March 24, 1996",AEK Athens,,92,12,cross_checked,high
+Mexico,MEX,18,MF,Obed Vargas,Obed,Vargas,VARGAS,"August 5, 2005",Atlético Madrid,,6,0,cross_checked,high
+Mexico,MEX,19,MF,Gilberto Mora,Gilberto,Mora,MORA,"October 14, 2008",Tijuana,,8,0,cross_checked,high
+Mexico,MEX,20,DF,Mateo Chávez,Mateo,Chávez,CHÁVEZ,"May 12, 2004",AZ,,10,0,cross_checked,high
+Mexico,MEX,21,FW,César Huerta,César,Huerta,HUERTA,"December 3, 2000",Anderlecht,,26,3,cross_checked,high
+Mexico,MEX,22,FW,Guillermo Martínez,Guillermo,Martínez,MARTÍNEZ,"March 15, 1995",Pumas,,12,3,cross_checked,high
+Mexico,MEX,23,DF,Jesús Gallardo,Jesús,Gallardo,GALLARDO,"August 15, 1994",Toluca,,121,3,cross_checked,high
+Mexico,MEX,24,MF,Luis Chávez,Luis,Chávez,CHÁVEZ,"January 15, 1996",Dynamo Moscow,,45,5,cross_checked,high
+Mexico,MEX,25,FW,Roberto Alvarado,Roberto,Alvarado,ALVARADO,"September 7, 1998",Guadalajara,,67,5,cross_checked,high
+Mexico,MEX,26,MF,Brian Gutiérrez,Brian,Gutiérrez,GUTIÉRREZ,"June 17, 2003",Guadalajara,,7,2,cross_checked,high
+South Africa,RSA,1,GK,Ronwen Williams,Ronwen,Williams,WILLIAMS,"January 21, 1992",Mamelodi Sundowns,,62,0,cross_checked,high
+South Africa,RSA,2,DF,Thabang Matuludi,Thabang,Matuludi,MATULUDI,"January 14, 1999",Polokwane City,,3,0,cross_checked,high
+South Africa,RSA,3,DF,Khulumani Ndamane,Khulumani,Ndamane,NDAMANE,"February 5, 2004",Mamelodi Sundowns,,5,0,cross_checked,high
+South Africa,RSA,4,MF,Teboho Mokoena,Teboho,Mokoena,MOKOENA,"January 24, 1997",Mamelodi Sundowns,,51,9,cross_checked,high
+South Africa,RSA,5,MF,Thalente Mbatha,Thalente,Mbatha,MBATHA,"March 6, 2000",Orlando Pirates,,15,3,cross_checked,high
+South Africa,RSA,6,DF,Aubrey Modiba,Aubrey,Modiba,MODIBA,"July 22, 1995",Mamelodi Sundowns,,44,3,cross_checked,high
+South Africa,RSA,7,FW,Oswin Appollis,Oswin,Appollis,APPOLLIS,"August 25, 2001",Orlando Pirates,,26,8,cross_checked,high
+South Africa,RSA,8,FW,Tshepang Moremi,Tshepang,Moremi,MOREMI,"October 2, 2000",Orlando Pirates,,10,1,cross_checked,high
+South Africa,RSA,9,FW,Lyle Foster,Lyle,Foster,FOSTER,"September 3, 2000",Burnley,,27,10,cross_checked,high
+South Africa,RSA,10,FW,Relebohile Mofokeng,Relebohile,Mofokeng,MOFOKENG,"October 23, 2004",Orlando Pirates,,13,0,cross_checked,high
+South Africa,RSA,11,MF,Themba Zwane,Themba,Zwane,ZWANE,"August 3, 1989",Mamelodi Sundowns,,54,12,cross_checked,high
+South Africa,RSA,12,FW,Thapelo Maseko,Thapelo,Maseko,MASEKO,"November 11, 2003",AEL Limassol,,10,1,cross_checked,high
+South Africa,RSA,13,MF,Sphephelo Sithole,Sphephelo,Sithole,SITHOLE,"March 3, 1999",Tondela,,28,1,cross_checked,high
+South Africa,RSA,14,DF,Mbekezeli Mbokazi,Mbekezeli,Mbokazi,MBOKAZI,"September 19, 2005",Chicago Fire FC,,10,1,cross_checked,high
+South Africa,RSA,15,FW,Iqraam Rayners,Iqraam,Rayners,RAYNERS,"December 19, 1995",Mamelodi Sundowns,,14,4,cross_checked,high
+South Africa,RSA,16,GK,Sipho Chaine,Sipho,Chaine,CHAINE,"December 14, 1996",Orlando Pirates,,4,0,cross_checked,high
+South Africa,RSA,17,FW,Evidence Makgopa,Evidence,Makgopa,MAKGOPA,"June 5, 2000",Orlando Pirates,,26,6,cross_checked,high
+South Africa,RSA,18,DF,Samukele Kabini,Samukele,Kabini,KABINI,"March 15, 2004",Molde,,6,0,cross_checked,high
+South Africa,RSA,19,DF,Nkosinathi Sibisi,Nkosinathi,Sibisi,SIBISI,"September 22, 1995",Orlando Pirates,,20,0,cross_checked,high
+South Africa,RSA,20,DF,Khuliso Mudau,Khuliso,Mudau,MUDAU,"April 26, 1995",Mamelodi Sundowns,,32,1,cross_checked,high
+South Africa,RSA,21,DF,Ime Okon,Ime,Okon,OKON,"February 20, 2004",Hannover 96,,8,1,cross_checked,high
+South Africa,RSA,22,GK,Ricardo Goss,Ricardo,Goss,GOSS,"April 2, 1994",Siwelele,,5,0,cross_checked,high
+South Africa,RSA,23,MF,Jayden Adams,Jayden,Adams,ADAMS,"May 5, 2001",Mamelodi Sundowns,,5,0,cross_checked,high
+South Africa,RSA,24,DF,Olwethu Makhanya,Olwethu,Makhanya,MAKHANYA,"April 30, 2004",Philadelphia Union,,1,0,cross_checked,high
+South Africa,RSA,25,FW,Kamogelo Sebelebele,Kamogelo,Sebelebele,SEBELEBELE,"July 21, 2002",Orlando Pirates,,3,0,cross_checked,high
+South Africa,RSA,26,DF,Bradley Cross,Bradley,Cross,CROSS,"January 30, 2001",Kaizer Chiefs,,1,0,cross_checked,high
+Korea Republic,KOR,1,GK,Kim Seung-gyu,Kim,Seung-gyu,SEUNG-GYU,"September 30, 1990",FC Tokyo,,87,0,cross_checked,high
+Korea Republic,KOR,2,DF,Lee Han-beom,Lee,Han-beom,HAN-BEOM,"June 17, 2002",Midtjylland,,8,0,cross_checked,high
+Korea Republic,KOR,3,MF,Lee Gi-hyuk,Lee,Gi-hyuk,GI-HYUK,"July 7, 2000",Gangwon FC,,3,0,cross_checked,high
+Korea Republic,KOR,4,DF,Kim Min-jae,Kim,Min-jae,MIN-JAE,"November 15, 1996",Bayern Munich,,79,4,cross_checked,high
+Korea Republic,KOR,5,DF,Kim Tae-hyeon,Kim,Tae-hyeon,TAE-HYEON,"September 17, 2000",Kashima Antlers,,7,0,cross_checked,high
+Korea Republic,KOR,6,MF,Hwang In-beom,Hwang,In-beom,IN-BEOM,"September 20, 1996",Feyenoord,,73,6,cross_checked,high
+Korea Republic,KOR,7,FW,Son Heung-min,Son,Heung-min,HEUNG-MIN,"July 8, 1992",Los Angeles FC,,144,56,cross_checked,high
+Korea Republic,KOR,8,MF,Paik Seung-ho,Paik,Seung-ho,SEUNG-HO,"March 17, 1997",Birmingham City,,27,3,cross_checked,high
+Korea Republic,KOR,9,FW,Cho Gue-sung,Cho,Gue-sung,GUE-SUNG,"January 25, 1998",Midtjylland,,44,12,cross_checked,high
+Korea Republic,KOR,10,MF,Lee Jae-sung,Lee,Jae-sung,JAE-SUNG,"August 10, 1992",Mainz 05,,105,15,cross_checked,high
+Korea Republic,KOR,11,MF,Hwang Hee-chan,Hwang,Hee-chan,HEE-CHAN,"January 26, 1996",Wolverhampton Wanderers,,79,17,cross_checked,high
+Korea Republic,KOR,12,GK,Song Bum-keun,Song,Bum-keun,BUM-KEUN,"October 15, 1997",Jeonbuk Hyundai Motors,,3,0,cross_checked,high
+Korea Republic,KOR,13,DF,Lee Tae-seok,Lee,Tae-seok,TAE-SEOK,"July 28, 2002",Austria Wien,,15,1,cross_checked,high
+Korea Republic,KOR,14,DF,Cho Wi-je,Cho,Wi-je,WI-JE,"August 25, 2001",Jeonbuk Hyundai Motors,,1,0,cross_checked,high
+Korea Republic,KOR,15,DF,Kim Moon-hwan,Kim,Moon-hwan,MOON-HWAN,"August 1, 1995",Daejeon Hana Citizen,,35,0,cross_checked,high
+Korea Republic,KOR,16,DF,Park Jin-seob,Park,Jin-seob,JIN-SEOB,"October 23, 1995",Zhejiang,,14,1,cross_checked,high
+Korea Republic,KOR,17,MF,Bae Jun-ho,Bae,Jun-ho,JUN-HO,"August 21, 2003",Stoke City,,13,2,cross_checked,high
+Korea Republic,KOR,18,FW,Oh Hyeon-gyu,Oh,Hyeon-gyu,HYEON-GYU,"April 12, 2001",Beşiktaş,,27,6,cross_checked,high
+Korea Republic,KOR,19,MF,Lee Kang-in,Lee,Kang-in,KANG-IN,"February 19, 2001",Paris Saint-Germain,,47,11,cross_checked,high
+Korea Republic,KOR,20,MF,Yang Hyun-jun,Yang,Hyun-jun,HYUN-JUN,"May 25, 2002",Celtic,,9,0,cross_checked,high
+Korea Republic,KOR,21,GK,Jo Hyeon-woo,Jo,Hyeon-woo,HYEON-WOO,"September 25, 1991",Ulsan HD,,48,0,cross_checked,high
+Korea Republic,KOR,22,DF,Seol Young-woo,Seol,Young-woo,YOUNG-WOO,"December 5, 1998",Red Star Belgrade,,34,0,cross_checked,high
+Korea Republic,KOR,23,DF,Jens Castrop,Jens,Castrop,CASTROP,"July 29, 2003",Borussia Mönchengladbach,,7,0,cross_checked,high
+Korea Republic,KOR,24,MF,Kim Jin-gyu,Kim,Jin-gyu,JIN-GYU,"February 24, 1997",Jeonbuk Hyundai Motors,,22,3,cross_checked,high
+Korea Republic,KOR,25,MF,Eom Ji-sung,Eom,Ji-sung,JI-SUNG,"May 9, 2002",Swansea City,,9,2,cross_checked,high
+Korea Republic,KOR,26,MF,Lee Dong-gyeong,Lee,Dong-gyeong,DONG-GYEONG,"September 20, 1997",Ulsan HD,,18,4,cross_checked,high
+Bosnia & Herzegovina,BIH,1,GK,Nikola Vasilj,Nikola,Vasilj,VASILJ,"December 2, 1995",FC St. Pauli,,26,0,cross_checked,high
+Bosnia & Herzegovina,BIH,2,DF,Nihad Mujakić,Nihad,Mujakić,MUJAKIĆ,"April 15, 1998",Gaziantep,,12,1,cross_checked,high
+Bosnia & Herzegovina,BIH,3,DF,Dennis Hadžikadunić,Dennis,Hadžikadunić,HADŽIKADUNIĆ,"July 9, 1998",Sampdoria,,32,0,cross_checked,high
+Bosnia & Herzegovina,BIH,4,DF,Tarik Muharemović,Tarik,Muharemović,MUHAREMOVIĆ,"February 28, 2003",Sassuolo,,14,1,cross_checked,high
+Bosnia & Herzegovina,BIH,5,DF,Sead Kolašinac,Sead,Kolašinac,KOLAŠINAC,"June 20, 1993",Atalanta,,65,0,cross_checked,high
+Bosnia & Herzegovina,BIH,6,MF,Benjamin Tahirović,Benjamin,Tahirović,TAHIROVIĆ,"March 3, 2003",Brøndby,,28,2,cross_checked,high
+Bosnia & Herzegovina,BIH,7,DF,Amar Dedić,Amar,Dedić,DEDIĆ,"August 18, 2002",Benfica,,28,1,cross_checked,high
+Bosnia & Herzegovina,BIH,8,MF,Armin Gigović,Armin,Gigović,GIGOVIĆ,"April 6, 2002",Young Boys,,20,1,cross_checked,high
+Bosnia & Herzegovina,BIH,9,FW,Samed Baždar,Samed,Baždar,BAŽDAR,"January 31, 2004",Jagiellonia Białystok,,13,1,cross_checked,high
+Bosnia & Herzegovina,BIH,10,FW,Ermedin Demirović,Ermedin,Demirović,DEMIROVIĆ,"March 25, 1998",VfB Stuttgart,,40,4,cross_checked,high
+Bosnia & Herzegovina,BIH,11,FW,Edin Džeko,Edin,Džeko,DŽEKO,"March 17, 1986",Schalke 04,,148,73,cross_checked,high
+Bosnia & Herzegovina,BIH,12,GK,Mladen Jurkas,Mladen,Jurkas,JURKAS,"October 7, 2007",Borac Banja Luka,,0,0,cross_checked,high
+Bosnia & Herzegovina,BIH,13,MF,Ivan Bašić,Ivan,Bašić,BAŠIĆ,"April 30, 2002",Astana,,17,0,cross_checked,high
+Bosnia & Herzegovina,BIH,14,MF,Ivan Šunjić,Ivan,Šunjić,ŠUNJIĆ,"October 9, 1996",Pafos,,11,0,cross_checked,high
+Bosnia & Herzegovina,BIH,15,MF,Amar Memić,Amar,Memić,MEMIĆ,"January 20, 2001",Viktoria Plzeň,,13,1,cross_checked,high
+Bosnia & Herzegovina,BIH,16,MF,Amir Hadžiahmetović,Amir,Hadžiahmetović,HADŽIAHMETOVIĆ,"March 8, 1997",Hull City,,36,0,cross_checked,high
+Bosnia & Herzegovina,BIH,17,MF,Dženis Burnić,Dženis,Burnić,BURNIĆ,"May 22, 1998",Karlsruher SC,,20,0,cross_checked,high
+Bosnia & Herzegovina,BIH,18,DF,Nikola Katić,Nikola,Katić,KATIĆ,"October 10, 1996",Schalke 04,,17,2,cross_checked,high
+Bosnia & Herzegovina,BIH,19,FW,Kerim Alajbegović,Kerim,Alajbegović,ALAJBEGOVIĆ,"September 21, 2007",Red Bull Salzburg,,10,1,cross_checked,high
+Bosnia & Herzegovina,BIH,20,FW,Esmir Bajraktarević,Esmir,Bajraktarević,BAJRAKTAREVIĆ,"March 10, 2005",PSV Eindhoven,,16,1,cross_checked,high
+Bosnia & Herzegovina,BIH,21,DF,Stjepan Radeljić,Stjepan,Radeljić,RADELJIĆ,"September 5, 1997",Rijeka,,5,0,cross_checked,high
+Bosnia & Herzegovina,BIH,22,GK,Martin Zlomislić,Martin,Zlomislić,ZLOMISLIĆ,"August 16, 1998",Rijeka,,3,0,cross_checked,high
+Bosnia & Herzegovina,BIH,23,FW,Haris Tabaković,Haris,Tabaković,TABAKOVIĆ,"June 20, 1994",Borussia Mönchengladbach,,10,4,cross_checked,high
+Bosnia & Herzegovina,BIH,24,DF,Arjan Malić,Arjan,Malić,MALIĆ,"August 28, 2005",Sturm Graz,,8,0,cross_checked,high
+Bosnia & Herzegovina,BIH,25,FW,Jovo Lukić,Jovo,Lukić,LUKIĆ,"November 28, 1998",Universitatea Cluj,,3,0,cross_checked,high
+Bosnia & Herzegovina,BIH,26,MF,Ermin Mahmić,Ermin,Mahmić,MAHMIĆ,"March 14, 2005",Slovan Liberec,,2,0,cross_checked,high
+Canada,CAN,1,GK,Dayne St. Clair,Dayne St.,Clair,CLAIR,"May 9, 1997",Inter Miami CF,,20,0,cross_checked,high
+Canada,CAN,2,DF,Alistair Johnston,Alistair,Johnston,JOHNSTON,"October 8, 1998",Celtic,,58,1,cross_checked,high
+Canada,CAN,3,DF,Alfie Jones,Alfie,Jones,JONES,"October 7, 1997",Middlesbrough,,2,0,cross_checked,high
+Canada,CAN,4,DF,Luc de Fougerolles,Luc de,Fougerolles,FOUGEROLLES,"October 12, 2005",Dender,,13,0,cross_checked,high
+Canada,CAN,5,DF,Joel Waterman,Joel,Waterman,WATERMAN,"January 24, 1996",Chicago Fire FC,,17,0,cross_checked,high
+Canada,CAN,6,MF,Mathieu Choinière,Mathieu,Choinière,CHOINIÈRE,"February 7, 1999",Los Angeles FC,,23,0,cross_checked,high
+Canada,CAN,7,MF,Stephen Eustáquio,Stephen,Eustáquio,EUSTÁQUIO,"December 21, 1996",Los Angeles FC,,56,4,cross_checked,high
+Canada,CAN,8,MF,Ismaël Koné,Ismaël,Koné,KONÉ,"June 16, 2002",Sassuolo,,40,4,cross_checked,high
+Canada,CAN,9,FW,Cyle Larin,Cyle,Larin,LARIN,"April 17, 1995",Southampton,,90,30,cross_checked,high
+Canada,CAN,10,FW,Jonathan David,Jonathan,David,DAVID,"January 14, 2000",Juventus,,77,39,cross_checked,high
+Canada,CAN,11,MF,Liam Millar,Liam,Millar,MILLAR,"September 27, 1999",Hull City,,41,1,cross_checked,high
+Canada,CAN,12,FW,Tani Oluwaseyi,Tani,Oluwaseyi,OLUWASEYI,"May 15, 2000",Villarreal,,24,2,cross_checked,high
+Canada,CAN,13,DF,Derek Cornelius,Derek,Cornelius,CORNELIUS,"November 25, 1997",Rangers,,44,1,cross_checked,high
+Canada,CAN,14,MF,Jacob Shaffelburg,Jacob,Shaffelburg,SHAFFELBURG,"November 26, 1999",Los Angeles FC,,31,6,cross_checked,high
+Canada,CAN,15,DF,Moïse Bombito,Moïse,Bombito,BOMBITO,"March 30, 2000",Nice,,20,0,cross_checked,high
+Canada,CAN,16,GK,Maxime Crépeau,Maxime,Crépeau,CRÉPEAU,"May 11, 1994",Orlando City SC,,32,0,cross_checked,high
+Canada,CAN,17,FW,Tajon Buchanan,Tajon,Buchanan,BUCHANAN,"February 8, 1999",Villarreal,,60,8,cross_checked,high
+Canada,CAN,18,GK,Owen Goodman,Owen,Goodman,GOODMAN,"November 27, 2003",Barnsley,,0,0,cross_checked,high
+Canada,CAN,19,DF,Alphonso Davies,Alphonso,Davies,DAVIES,"November 2, 2000",Bayern Munich,,58,15,cross_checked,high
+Canada,CAN,20,FW,Ali Ahmed,Ali,Ahmed,AHMED,"October 10, 2000",Norwich City,,24,1,cross_checked,high
+Canada,CAN,21,MF,Jonathan Osorio,Jonathan,Osorio,OSORIO,"June 12, 1992",Toronto FC,,90,10,cross_checked,high
+Canada,CAN,22,DF,Richie Laryea,Richie,Laryea,LARYEA,"January 7, 1995",Toronto FC,,75,1,cross_checked,high
+Canada,CAN,23,DF,Niko Sigur,Niko,Sigur,SIGUR,"September 9, 2003",Hajduk Split,,19,2,cross_checked,high
+Canada,CAN,24,FW,Promise David,Promise,David,DAVID,"July 3, 2001",Union Saint-Gilloise,,10,3,cross_checked,high
+Canada,CAN,25,MF,Nathan Saliba,Nathan,Saliba,SALIBA,"February 7, 2004",Anderlecht,,15,2,cross_checked,high
+Canada,CAN,26,FW,Jayden Nelson,Jayden,Nelson,NELSON,"September 26, 2002",Austin FC,,14,3,cross_checked,high
+Qatar,QAT,1,GK,Mahmud Abunada,Mahmud,Abunada,ABUNADA,"February 5, 2000",Al-Rayyan,,5,0,cross_checked,high
+Qatar,QAT,2,DF,Pedro Miguel,Pedro,Miguel,MIGUEL,"August 6, 1990",Al-Sadd,,99,3,cross_checked,high
+Qatar,QAT,3,DF,Lucas Mendes,Lucas,Mendes,MENDES,"July 3, 1990",Al-Wakrah,,25,1,cross_checked,high
+Qatar,QAT,4,DF,Issa Laye,Issa,Laye,LAYE,"December 22, 1997",Al-Arabi,,4,0,cross_checked,high
+Qatar,QAT,5,DF,Jassem Gaber,Jassem,Gaber,GABER,"February 20, 2002",Al-Rayyan,,32,1,cross_checked,high
+Qatar,QAT,6,MF,Abdulaziz Hatem,Abdulaziz,Hatem,HATEM,"January 1, 1990",Al-Rayyan,,117,11,cross_checked,high
+Qatar,QAT,7,FW,Ahmed Alaaeldin,Ahmed,Alaaeldin,ALAAELDIN,"January 31, 1993",Al-Rayyan,,68,9,cross_checked,high
+Qatar,QAT,8,FW,Edmilson Junior,Edmilson,Junior,JUNIOR,"August 19, 1994",Al-Duhail,,16,0,cross_checked,high
+Qatar,QAT,9,FW,Mohammed Muntari,Mohammed,Muntari,MUNTARI,"December 20, 1993",Al-Gharafa,,67,16,cross_checked,high
+Qatar,QAT,10,FW,Hassan Al-Haydos,Hassan,Al-Haydos,AL-HAYDOS,"December 11, 1990",Al-Sadd,,186,41,cross_checked,high
+Qatar,QAT,11,FW,Akram Afif,Akram,Afif,AFIF,"November 18, 1996",Al-Sadd,,125,39,cross_checked,high
+Qatar,QAT,12,MF,Karim Boudiaf,Karim,Boudiaf,BOUDIAF,"September 16, 1990",Al-Duhail,,118,5,cross_checked,high
+Qatar,QAT,13,DF,Ayoub Al-Oui,Ayoub,Al-Oui,AL-OUI,"March 11, 2005",Al-Gharafa,,6,0,cross_checked,high
+Qatar,QAT,14,DF,Homam Ahmed,Homam,Ahmed,AHMED,"August 25, 1999",Cultural Leonesa,,68,3,cross_checked,high
+Qatar,QAT,15,FW,Yusuf Abdurisag,Yusuf,Abdurisag,ABDURISAG,"August 6, 1999",Al-Wakrah,,39,3,cross_checked,high
+Qatar,QAT,16,DF,Boualem Khoukhi,Boualem,Khoukhi,KHOUKHI,"July 9, 1990",Al-Sadd,,116,20,cross_checked,high
+Qatar,QAT,17,MF,Ahmed Al-Ganehi,Ahmed,Al-Ganehi,AL-GANEHI,"September 22, 2000",Al-Gharafa,,13,1,cross_checked,high
+Qatar,QAT,18,DF,Sultan Al-Brake,Sultan,Al-Brake,AL-BRAKE,"April 7, 1996",Al-Duhail,,17,0,cross_checked,high
+Qatar,QAT,19,FW,Almoez Ali,Almoez,Ali,ALI,"August 19, 1996",Al-Duhail,,115,55,cross_checked,high
+Qatar,QAT,20,MF,Ahmed Fathy,Ahmed,Fathy,FATHY,"January 25, 1993",Al-Arabi,,48,0,cross_checked,high
+Qatar,QAT,21,GK,Salah Zakaria,Salah,Zakaria,ZAKARIA,"April 24, 1999",Al-Duhail,,8,0,cross_checked,high
+Qatar,QAT,22,GK,Meshaal Barsham,Meshaal,Barsham,BARSHAM,"February 14, 1998",Al-Sadd,,52,0,cross_checked,high
+Qatar,QAT,23,MF,Assim Madibo,Assim,Madibo,MADIBO,"October 22, 1996",Al-Wakrah,,51,0,cross_checked,high
+Qatar,QAT,24,FW,Tahsin Jamshid,Tahsin,Jamshid,JAMSHID,"June 16, 2006",Al-Duhail,,3,0,cross_checked,high
+Qatar,QAT,25,DF,Al-Hashmi Al-Hussain,Al-Hashmi,Al-Hussain,AL-HUSSAIN,"August 15, 2003",Al-Arabi,,8,0,cross_checked,high
+Qatar,QAT,26,FW,Mohamed Manai,Mohamed,Manai,MANAI,"October 25, 2002",Al-Shamal,,10,0,cross_checked,high
+Switzerland,SUI,1,GK,Gregor Kobel,Gregor,Kobel,KOBEL,"December 6, 1997",Borussia Dortmund,,21,0,cross_checked,high
+Switzerland,SUI,2,DF,Miro Muheim,Miro,Muheim,MUHEIM,"March 24, 1998",Hamburger SV,,10,0,cross_checked,high
+Switzerland,SUI,3,DF,Silvan Widmer,Silvan,Widmer,WIDMER,"March 5, 1993",Mainz 05,,60,5,cross_checked,high
+Switzerland,SUI,4,DF,Nico Elvedi,Nico,Elvedi,ELVEDI,"September 30, 1996",Borussia Mönchengladbach,,67,3,cross_checked,high
+Switzerland,SUI,5,DF,Manuel Akanji,Manuel,Akanji,AKANJI,"July 19, 1995",Inter Milan,,81,4,cross_checked,high
+Switzerland,SUI,6,MF,Denis Zakaria,Denis,Zakaria,ZAKARIA,"November 20, 1996",Monaco,,65,3,cross_checked,high
+Switzerland,SUI,7,FW,Breel Embolo,Breel,Embolo,EMBOLO,"February 14, 1997",Rennes,,86,24,cross_checked,high
+Switzerland,SUI,8,MF,Remo Freuler,Remo,Freuler,FREULER,"April 15, 1992",Bologna,,88,11,cross_checked,high
+Switzerland,SUI,9,MF,Johan Manzambi,Johan,Manzambi,MANZAMBI,"October 14, 2005",SC Freiburg,,12,3,cross_checked,high
+Switzerland,SUI,10,MF,Granit Xhaka,Granit,Xhaka,XHAKA,"September 27, 1992",Sunderland,,146,17,cross_checked,high
+Switzerland,SUI,11,FW,Dan Ndoye,Dan,Ndoye,NDOYE,"October 25, 2000",Nottingham Forest,,31,8,cross_checked,high
+Switzerland,SUI,12,GK,Yvon Mvogo,Yvon,Mvogo,MVOGO,"June 6, 1994",Lorient,,13,0,cross_checked,high
+Switzerland,SUI,13,DF,Ricardo Rodriguez,Ricardo,Rodriguez,RODRIGUEZ,"August 25, 1992",Real Betis,,138,9,cross_checked,high
+Switzerland,SUI,14,MF,Ardon Jashari,Ardon,Jashari,JASHARI,"July 30, 2002",Milan,,8,0,cross_checked,high
+Switzerland,SUI,15,MF,Djibril Sow,Djibril,Sow,SOW,"February 6, 1997",Sevilla,,52,0,cross_checked,high
+Switzerland,SUI,16,FW,Christian Fassnacht,Christian,Fassnacht,FASSNACHT,"November 11, 1993",Young Boys,,23,5,cross_checked,high
+Switzerland,SUI,17,FW,Rubén Vargas,Rubén,Vargas,VARGAS,"August 5, 1998",Sevilla,,61,11,cross_checked,high
+Switzerland,SUI,18,DF,Eray Cömert,Eray,Cömert,CÖMERT,"February 4, 1998",Valencia,,22,0,cross_checked,high
+Switzerland,SUI,19,FW,Noah Okafor,Noah,Okafor,OKAFOR,"May 24, 2000",Leeds United,,25,2,cross_checked,high
+Switzerland,SUI,20,MF,Michel Aebischer,Michel,Aebischer,AEBISCHER,"January 6, 1997",Pisa,,40,2,cross_checked,high
+Switzerland,SUI,21,GK,Marvin Keller,Marvin,Keller,KELLER,"July 3, 2002",Young Boys,,1,0,cross_checked,high
+Switzerland,SUI,22,MF,Fabian Rieder,Fabian,Rieder,RIEDER,"February 16, 2002",FC Augsburg,,28,1,cross_checked,high
+Switzerland,SUI,23,FW,Zeki Amdouni,Zeki,Amdouni,AMDOUNI,"December 4, 2000",Burnley,,29,11,cross_checked,high
+Switzerland,SUI,24,DF,Aurèle Amenda,Aurèle,Amenda,AMENDA,"July 31, 2003",Eintracht Frankfurt,,7,0,cross_checked,high
+Switzerland,SUI,25,DF,Luca Jaquez,Luca,Jaquez,JAQUEZ,"June 2, 2003",VfB Stuttgart,,3,0,cross_checked,high
+Switzerland,SUI,26,FW,Cedric Itten,Cedric,Itten,ITTEN,"December 27, 1996",Fortuna Düsseldorf,,15,5,cross_checked,high
+Brazil,BRA,1,GK,Alisson,,Alisson,ALISSON,"October 2, 1992",Liverpool,,78,0,cross_checked,high
+Brazil,BRA,2,MF,Éderson Silva,Éderson,Silva,SILVA,"July 7, 1999",Atalanta,,3,0,cross_checked,high
+Brazil,BRA,3,DF,Gabriel Magalhães,Gabriel,Magalhães,MAGALHÃES,"December 19, 1997",Arsenal,,17,1,cross_checked,high
+Brazil,BRA,4,DF,Marquinhos,,Marquinhos,MARQUINHOS,"May 14, 1994",Paris Saint-Germain,,105,7,cross_checked,high
+Brazil,BRA,5,MF,Casemiro,,Casemiro,CASEMIRO,"February 23, 1992",Manchester United,,86,9,cross_checked,high
+Brazil,BRA,6,DF,Alex Sandro,Alex,Sandro,SANDRO,"January 26, 1991",Flamengo,,45,2,cross_checked,high
+Brazil,BRA,7,FW,Vinícius Júnior,Vinícius,Júnior,JÚNIOR,"July 12, 2000",Real Madrid,,49,9,cross_checked,high
+Brazil,BRA,8,MF,Bruno Guimarães,Bruno,Guimarães,GUIMARÃES,"November 16, 1997",Newcastle United,,43,3,cross_checked,high
+Brazil,BRA,9,FW,Matheus Cunha,Matheus,Cunha,CUNHA,"May 27, 1999",Manchester United,,23,1,cross_checked,high
+Brazil,BRA,10,FW,Neymar,,Neymar,NEYMAR,"February 5, 1992",Santos,,128,79,cross_checked,high
+Brazil,BRA,11,FW,Raphinha,,Raphinha,RAPHINHA,"December 14, 1996",Barcelona,,39,11,cross_checked,high
+Brazil,BRA,12,GK,Weverton,,Weverton,WEVERTON,"December 13, 1987",Grêmio,,11,0,cross_checked,high
+Brazil,BRA,13,DF,Danilo Luiz,Danilo,Luiz,LUIZ,"July 15, 1991",Flamengo,,70,1,cross_checked,high
+Brazil,BRA,14,DF,Bremer,,Bremer,BREMER,"March 18, 1997",Juventus,,8,1,cross_checked,high
+Brazil,BRA,15,DF,Léo Pereira,Léo,Pereira,PEREIRA,"January 31, 1996",Flamengo,,4,0,cross_checked,high
+Brazil,BRA,16,DF,Douglas Santos,Douglas,Santos,SANTOS,"March 22, 1994",Zenit Saint Petersburg,,7,0,cross_checked,high
+Brazil,BRA,17,MF,Fabinho,,Fabinho,FABINHO,"October 23, 1993",Al-Ittihad,,33,0,cross_checked,high
+Brazil,BRA,18,MF,Danilo Santos,Danilo,Santos,SANTOS,"April 29, 2001",Botafogo,,4,2,cross_checked,high
+Brazil,BRA,19,FW,Endrick,,Endrick,ENDRICK,"July 21, 2006",Lyon,,17,4,cross_checked,high
+Brazil,BRA,20,MF,Lucas Paquetá,Lucas,Paquetá,PAQUETÁ,"August 27, 1997",Flamengo,,63,13,cross_checked,high
+Brazil,BRA,21,FW,Luiz Henrique,Luiz,Henrique,HENRIQUE,"January 2, 2001",Zenit Saint Petersburg,,15,2,cross_checked,high
+Brazil,BRA,22,FW,Gabriel Martinelli,Gabriel,Martinelli,MARTINELLI,"June 18, 2001",Arsenal,,23,4,cross_checked,high
+Brazil,BRA,23,GK,Ederson Moraes,Ederson,Moraes,MORAES,"August 17, 1993",Fenerbahçe,,32,0,cross_checked,high
+Brazil,BRA,24,DF,Roger Ibañez,Roger,Ibañez,IBAÑEZ,"November 23, 1998",Al-Ahli,,7,0,cross_checked,high
+Brazil,BRA,25,FW,Igor Thiago,Igor,Thiago,THIAGO,"June 26, 2001",Brentford,,4,2,cross_checked,high
+Brazil,BRA,26,FW,Rayan,,Rayan,RAYAN,"August 3, 2006",Bournemouth,,2,1,cross_checked,high
+Haiti,HAI,1,GK,Johny Placide,Johny,Placide,PLACIDE,"January 29, 1988",Bastia,,82,0,cross_checked,high
+Haiti,HAI,2,DF,Carlens Arcus,Carlens,Arcus,ARCUS,"June 28, 1996",Angers,,56,1,cross_checked,high
+Haiti,HAI,3,DF,Keeto Thermoncy,Keeto,Thermoncy,THERMONCY,"March 29, 2006",Young Boys,,1,0,cross_checked,high
+Haiti,HAI,4,DF,Ricardo Adé,Ricardo,Adé,ADÉ,"May 21, 1990",LDU Quito,,59,2,cross_checked,high
+Haiti,HAI,5,DF,Hannes Delcroix,Hannes,Delcroix,DELCROIX,"February 28, 1999",Lugano,,7,0,cross_checked,high
+Haiti,HAI,6,MF,Carl Sainté,Carl,Sainté,SAINTÉ,"August 9, 2002",El Paso Locomotive FC,,26,0,cross_checked,high
+Haiti,HAI,7,FW,Derrick Etienne Jr.,Derrick Etienne,Jr.,JR.,"November 25, 1996",Toronto FC,,51,8,cross_checked,high
+Haiti,HAI,8,DF,Martin Expérience,Martin,Expérience,EXPÉRIENCE,"March 9, 1999",Nancy,,21,0,cross_checked,high
+Haiti,HAI,9,FW,Duckens Nazon,Duckens,Nazon,NAZON,"April 7, 1994",Esteghlal,,82,44,cross_checked,high
+Haiti,HAI,10,MF,Jean-Ricner Bellegarde,Jean-Ricner,Bellegarde,BELLEGARDE,"June 27, 1998",Wolverhampton Wanderers,,10,0,cross_checked,high
+Haiti,HAI,11,FW,Louicius Deedson,Louicius,Deedson,DEEDSON,"February 11, 2001",FC Dallas,,32,10,cross_checked,high
+Haiti,HAI,12,GK,Alexandre Pierre,Alexandre,Pierre,PIERRE,"February 25, 2001",Sochaux,,16,0,cross_checked,high
+Haiti,HAI,13,DF,Duke Lacroix,Duke,Lacroix,LACROIX,"October 14, 1993",Colorado Springs Switchbacks FC,,16,3,cross_checked,high
+Haiti,HAI,14,DF,Garven Metusala,Garven,Metusala,METUSALA,"December 31, 1999",Colorado Springs Switchbacks FC,,16,0,cross_checked,high
+Haiti,HAI,15,FW,Ruben Providence,Ruben,Providence,PROVIDENCE,"July 7, 2001",Almere City,,15,3,cross_checked,high
+Haiti,HAI,16,FW,Lenny Joseph,Lenny,Joseph,JOSEPH,"October 12, 2000",Ferencváros,,2,1,cross_checked,high
+Haiti,HAI,17,MF,Danley Jean Jacques,Danley Jean,Jacques,JACQUES,"May 20, 2000",Philadelphia Union,,31,6,cross_checked,high
+Haiti,HAI,18,FW,Wilson Isidor,Wilson,Isidor,ISIDOR,"August 27, 2000",Sunderland,,4,2,cross_checked,high
+Haiti,HAI,19,FW,Yassin Fortuné,Yassin,Fortuné,FORTUNÉ,"January 30, 1999",Vizela,,4,0,cross_checked,high
+Haiti,HAI,20,FW,Frantzdy Pierrot,Frantzdy,Pierrot,PIERROT,"March 29, 1995",Çaykur Rizespor,,51,34,cross_checked,high
+Haiti,HAI,21,FW,Josué Casimir,Josué,Casimir,CASIMIR,"September 24, 2001",Auxerre,,7,0,cross_checked,high
+Haiti,HAI,22,DF,Jean-Kévin Duverne,Jean-Kévin,Duverne,DUVERNE,"July 12, 1997",Gent,,17,1,cross_checked,high
+Haiti,HAI,23,GK,Josué Duverger,Josué,Duverger,DUVERGER,"April 27, 2000",Cosmos Koblenz,,7,0,cross_checked,high
+Haiti,HAI,24,DF,Wilguens Paugain,Wilguens,Paugain,PAUGAIN,"August 24, 2001",Zulte Waregem,,8,0,cross_checked,high
+Haiti,HAI,25,MF,Dominique Simon,Dominique,Simon,SIMON,"July 29, 2000",Tatran Prešov,,2,0,cross_checked,high
+Haiti,HAI,26,MF,Woodensky Pierre,Woodensky,Pierre,PIERRE,"December 30, 2004",Violette,,1,0,cross_checked,high
+Morocco,MAR,1,GK,Yassine Bounou,Yassine,Bounou,BOUNOU,"April 5, 1991",Al-Hilal,,90,0,cross_checked,high
+Morocco,MAR,2,DF,Achraf Hakimi,Achraf,Hakimi,HAKIMI,"November 4, 1998",Paris Saint-Germain,,96,11,cross_checked,high
+Morocco,MAR,3,DF,Noussair Mazraoui,Noussair,Mazraoui,MAZRAOUI,"November 14, 1997",Manchester United,,45,2,cross_checked,high
+Morocco,MAR,4,MF,Sofyan Amrabat,Sofyan,Amrabat,AMRABAT,"August 21, 1996",Real Betis,,75,0,cross_checked,high
+Morocco,MAR,5,DF,Marwane Saâdane,Marwane,Saâdane,SAÂDANE,"January 17, 1992",Al-Fateh,,8,0,cross_checked,high
+Morocco,MAR,6,MF,Ayyoub Bouaddi,Ayyoub,Bouaddi,BOUADDI,"October 2, 2007",Lille,,3,0,cross_checked,high
+Morocco,MAR,7,MF,Chemsdine Talbi,Chemsdine,Talbi,TALBI,"May 9, 2005",Sunderland,,5,0,cross_checked,high
+Morocco,MAR,8,MF,Azzedine Ounahi,Azzedine,Ounahi,OUNAHI,"April 19, 2000",Girona,,49,9,cross_checked,high
+Morocco,MAR,9,FW,Soufiane Rahimi,Soufiane,Rahimi,RAHIMI,"June 2, 1996",Al Ain,,37,12,cross_checked,high
+Morocco,MAR,10,FW,Brahim Díaz,Brahim,Díaz,DÍAZ,"August 3, 1999",Real Madrid,,26,14,cross_checked,high
+Morocco,MAR,11,MF,Ismael Saibari,Ismael,Saibari,SAIBARI,"January 28, 2001",PSV Eindhoven,,31,9,cross_checked,high
+Morocco,MAR,12,GK,Munir Mohamedi,Munir,Mohamedi,MOHAMEDI,"May 10, 1989",RS Berkane,,53,0,cross_checked,high
+Morocco,MAR,13,DF,Zakaria El Ouahdi,Zakaria El,Ouahdi,OUAHDI,"December 31, 2001",Genk,,3,0,cross_checked,high
+Morocco,MAR,14,DF,Issa Diop,Issa,Diop,DIOP,"January 9, 1997",Fulham,,4,0,cross_checked,high
+Morocco,MAR,15,MF,Samir El Mourabet,Samir El,Mourabet,MOURABET,"October 6, 2005",Strasbourg,,4,0,cross_checked,high
+Morocco,MAR,16,MF,Gessime Yassine,Gessime,Yassine,YASSINE,"November 22, 2005",Strasbourg,,5,0,cross_checked,high
+Morocco,MAR,17,FW,Amine Sbaï,Amine,Sbaï,SBAÏ,"November 5, 2000",Angers,,2,0,cross_checked,high
+Morocco,MAR,18,DF,Chadi Riad,Chadi,Riad,RIAD,"June 17, 2003",Crystal Palace,,6,1,cross_checked,high
+Morocco,MAR,19,DF,Youssef Belammari,Youssef,Belammari,BELAMMARI,"September 20, 1998",Al Ahly,,19,0,cross_checked,high
+Morocco,MAR,20,FW,Ayoub El Kaabi,Ayoub El,Kaabi,KAABI,"June 25, 1993",Olympiacos,,71,35,cross_checked,high
+Morocco,MAR,21,FW,Ayoube Amaimouni,Ayoube,Amaimouni,AMAIMOUNI,"November 30, 2004",Eintracht Frankfurt,,2,0,cross_checked,high
+Morocco,MAR,22,GK,Ahmed Reda Tagnaouti,Ahmed Reda,Tagnaouti,TAGNAOUTI,"April 5, 1996",AS FAR,,3,0,cross_checked,high
+Morocco,MAR,23,MF,Bilal El Khannouss,Bilal El,Khannouss,KHANNOUSS,"May 10, 2004",VfB Stuttgart,,37,3,cross_checked,high
+Morocco,MAR,24,MF,Neil El Aynaoui,Neil El,Aynaoui,AYNAOUI,"July 2, 2001",Roma,,16,2,cross_checked,high
+Morocco,MAR,25,DF,Redouane Halhal,Redouane,Halhal,HALHAL,"March 5, 2003",Mechelen,,3,0,cross_checked,high
+Morocco,MAR,26,DF,Anass Salah-Eddine,Anass,Salah-Eddine,SALAH-EDDINE,"January 18, 2002",PSV Eindhoven,,9,0,cross_checked,high
+Scotland,SCO,1,GK,Angus Gunn,Angus,Gunn,GUNN,"January 22, 1996",Nottingham Forest,,22,0,cross_checked,high
+Scotland,SCO,2,DF,Aaron Hickey,Aaron,Hickey,HICKEY,"June 10, 2002",Brentford,,21,0,cross_checked,high
+Scotland,SCO,3,DF,Andy Robertson,Andy,Robertson,ROBERTSON,"March 11, 1994",Liverpool,,94,4,cross_checked,high
+Scotland,SCO,4,MF,Scott McTominay,Scott,McTominay,MCTOMINAY,"December 8, 1996",Napoli,,70,15,cross_checked,high
+Scotland,SCO,5,DF,Grant Hanley,Grant,Hanley,HANLEY,"November 20, 1991",Hibernian,,68,2,cross_checked,high
+Scotland,SCO,6,DF,Kieran Tierney,Kieran,Tierney,TIERNEY,"June 5, 1997",Celtic,,56,2,cross_checked,high
+Scotland,SCO,7,MF,John McGinn,John,McGinn,MCGINN,"October 18, 1994",Aston Villa,,86,20,cross_checked,high
+Scotland,SCO,8,MF,Tyler Fletcher,Tyler,Fletcher,FLETCHER,"March 19, 2007",Manchester United,,2,0,cross_checked,high
+Scotland,SCO,9,FW,Lyndon Dykes,Lyndon,Dykes,DYKES,"October 7, 1995",Charlton Athletic,,51,10,cross_checked,high
+Scotland,SCO,10,FW,Ché Adams,Ché,Adams,ADAMS,"July 13, 1996",Torino,,47,13,cross_checked,high
+Scotland,SCO,11,MF,Ryan Christie,Ryan,Christie,CHRISTIE,"February 22, 1995",Bournemouth,,68,10,cross_checked,high
+Scotland,SCO,12,GK,Liam Kelly,Liam,Kelly,KELLY,"January 23, 1996",Rangers,,3,0,cross_checked,high
+Scotland,SCO,13,DF,Jack Hendry,Jack,Hendry,HENDRY,"May 7, 1995",Al-Ettifaq,,38,3,cross_checked,high
+Scotland,SCO,14,FW,Ross Stewart,Ross,Stewart,STEWART,"July 11, 1996",Southampton,,3,0,cross_checked,high
+Scotland,SCO,15,DF,John Souttar,John,Souttar,SOUTTAR,"September 25, 1996",Rangers,,24,2,cross_checked,high
+Scotland,SCO,16,DF,Dominic Hyam,Dominic,Hyam,HYAM,"December 20, 1995",Wrexham,,4,0,cross_checked,high
+Scotland,SCO,17,FW,Ben Gannon-Doak,Ben,Gannon-Doak,GANNON-DOAK,"November 11, 2005",Bournemouth,,14,1,cross_checked,high
+Scotland,SCO,18,FW,George Hirst,George,Hirst,HIRST,"February 15, 1999",Ipswich Town,,10,1,cross_checked,high
+Scotland,SCO,19,MF,Lewis Ferguson,Lewis,Ferguson,FERGUSON,"August 24, 1999",Bologna,,24,1,cross_checked,high
+Scotland,SCO,20,FW,Lawrence Shankland,Lawrence,Shankland,SHANKLAND,"August 10, 1995",Heart of Midlothian,,20,7,cross_checked,high
+Scotland,SCO,21,GK,Craig Gordon,Craig,Gordon,GORDON,"December 31, 1982",Heart of Midlothian,,84,0,cross_checked,high
+Scotland,SCO,22,DF,Nathan Patterson,Nathan,Patterson,PATTERSON,"October 16, 2001",Everton,,26,1,cross_checked,high
+Scotland,SCO,23,MF,Kenny McLean,Kenny,McLean,MCLEAN,"January 8, 1992",Norwich City,,58,3,cross_checked,high
+Scotland,SCO,24,DF,Anthony Ralston,Anthony,Ralston,RALSTON,"November 16, 1998",Celtic,,27,1,cross_checked,high
+Scotland,SCO,25,FW,Findlay Curtis,Findlay,Curtis,CURTIS,"June 9, 2006",Kilmarnock,,3,1,cross_checked,high
+Scotland,SCO,26,DF,Scott McKenna,Scott,McKenna,MCKENNA,"November 12, 1996",Dinamo Zagreb,,50,1,cross_checked,high
+Australia,AUS,1,GK,Mathew Ryan,Mathew,Ryan,RYAN,"April 8, 1992",Levante,,104,0,cross_checked,high
+Australia,AUS,2,DF,Miloš Degenek,Miloš,Degenek,DEGENEK,"April 28, 1994",APOEL,,57,1,cross_checked,high
+Australia,AUS,3,DF,Alessandro Circati,Alessandro,Circati,CIRCATI,"October 10, 2003",Parma,,13,1,cross_checked,high
+Australia,AUS,4,DF,Jacob Italiano,Jacob,Italiano,ITALIANO,"July 30, 2001",Grazer AK,,5,0,cross_checked,high
+Australia,AUS,5,DF,Jordan Bos,Jordan,Bos,BOS,"October 29, 2002",Feyenoord,,27,4,cross_checked,high
+Australia,AUS,6,DF,Jason Geria,Jason,Geria,GERIA,"May 10, 1993",Albirex Niigata,,14,0,cross_checked,high
+Australia,AUS,7,FW,Mathew Leckie,Mathew,Leckie,LECKIE,"February 4, 1991",Melbourne City,,80,14,cross_checked,high
+Australia,AUS,8,MF,Connor Metcalfe,Connor,Metcalfe,METCALFE,"November 5, 1999",FC St. Pauli,,36,1,cross_checked,high
+Australia,AUS,9,FW,Mohamed Touré,Mohamed,Touré,TOURÉ,"March 26, 2004",Norwich City,,10,2,cross_checked,high
+Australia,AUS,10,FW,Ajdin Hrustic,Ajdin,Hrustic,HRUSTIC,"July 5, 1996",Heracles Almelo,,37,4,cross_checked,high
+Australia,AUS,11,FW,Awer Mabil,Awer,Mabil,MABIL,"September 15, 1995",Castellón,,38,10,cross_checked,high
+Australia,AUS,12,GK,Paul Izzo,Paul,Izzo,IZZO,"January 6, 1995",Randers,,4,0,cross_checked,high
+Australia,AUS,13,MF,Aiden O'Neill,Aiden,O'Neill,O'NEILL,"July 4, 1998",New York City FC,,31,0,cross_checked,high
+Australia,AUS,14,MF,Cammy Devlin,Cammy,Devlin,DEVLIN,"June 7, 1998",Heart of Midlothian,,5,0,cross_checked,high
+Australia,AUS,15,DF,Kai Trewin,Kai,Trewin,TREWIN,"May 18, 2001",New York City FC,,6,0,cross_checked,high
+Australia,AUS,16,DF,Aziz Behich,Aziz,Behich,BEHICH,"December 16, 1990",Melbourne City,,84,3,cross_checked,high
+Australia,AUS,17,FW,Nestory Irankunda,Nestory,Irankunda,IRANKUNDA,"February 9, 2006",Watford,,15,5,cross_checked,high
+Australia,AUS,18,GK,Patrick Beach,Patrick,Beach,BEACH,"August 6, 2003",Melbourne City,,2,0,cross_checked,high
+Australia,AUS,19,DF,Harry Souttar,Harry,Souttar,SOUTTAR,"October 22, 1998",Leicester City,,38,11,cross_checked,high
+Australia,AUS,20,FW,Cristian Volpato,Cristian,Volpato,VOLPATO,"November 15, 2003",Sassuolo,,1,0,cross_checked,high
+Australia,AUS,21,DF,Cameron Burgess,Cameron,Burgess,BURGESS,"October 21, 1995",Swansea City,,27,0,cross_checked,high
+Australia,AUS,22,MF,Jackson Irvine,Jackson,Irvine,IRVINE,"March 7, 1993",FC St. Pauli,,82,14,cross_checked,high
+Australia,AUS,23,FW,Nishan Velupillay,Nishan,Velupillay,VELUPILLAY,"May 7, 2001",Melbourne Victory,,7,3,cross_checked,high
+Australia,AUS,24,MF,Paul Okon-Engstler,Paul,Okon-Engstler,OKON-ENGSTLER,"January 24, 2005",Sydney FC,,6,0,cross_checked,high
+Australia,AUS,25,DF,Lucas Herrington,Lucas,Herrington,HERRINGTON,"September 5, 2007",Colorado Rapids,,4,0,cross_checked,high
+Australia,AUS,26,FW,Tete Yengi,Tete,Yengi,YENGI,"November 28, 2000",Machida Zelvia,,1,1,cross_checked,high
+Paraguay,PAR,1,GK,Gatito Fernández,Gatito,Fernández,FERNÁNDEZ,"March 29, 1988",Cerro Porteño,,31,0,cross_checked,high
+Paraguay,PAR,2,DF,Gustavo Velázquez,Gustavo,Velázquez,VELÁZQUEZ,"April 17, 1991",Cerro Porteño,,13,1,cross_checked,high
+Paraguay,PAR,3,DF,Omar Alderete,Omar,Alderete,ALDERETE,"December 26, 1996",Sunderland,,36,3,cross_checked,high
+Paraguay,PAR,4,DF,Juan José Cáceres,Juan José,Cáceres,CÁCERES,"June 1, 2000",Dynamo Moscow,,17,0,cross_checked,high
+Paraguay,PAR,5,DF,Fabián Balbuena,Fabián,Balbuena,BALBUENA,"August 23, 1991",Grêmio,,48,2,cross_checked,high
+Paraguay,PAR,6,DF,Júnior Alonso,Júnior,Alonso,ALONSO,"February 9, 1993",Atlético Mineiro,,71,3,cross_checked,high
+Paraguay,PAR,7,MF,Ramón Sosa,Ramón,Sosa,SOSA,"August 31, 1999",Palmeiras,,29,1,cross_checked,high
+Paraguay,PAR,8,MF,Diego Gómez,Diego,Gómez,GÓMEZ,"March 27, 2003",Brighton & Hove Albion,,24,3,cross_checked,high
+Paraguay,PAR,9,FW,Antonio Sanabria,Antonio,Sanabria,SANABRIA,"March 4, 1996",Cremonese,,48,7,cross_checked,high
+Paraguay,PAR,10,MF,Miguel Almirón,Miguel,Almirón,ALMIRÓN,"February 10, 1994",Atlanta United FC,,76,10,cross_checked,high
+Paraguay,PAR,11,MF,Maurício,,Maurício,MAURÍCIO,"June 22, 2001",Palmeiras,,3,0,cross_checked,high
+Paraguay,PAR,12,GK,Orlando Gill,Orlando,Gill,GILL,"June 11, 2000",San Lorenzo,,6,0,cross_checked,high
+Paraguay,PAR,13,DF,José Canale,José,Canale,CANALE,"July 20, 1996",Lanús,,2,0,cross_checked,high
+Paraguay,PAR,14,MF,Andrés Cubas,Andrés,Cubas,CUBAS,"May 11, 1996",Vancouver Whitecaps FC,,33,0,cross_checked,high
+Paraguay,PAR,15,DF,Gustavo Gómez,Gustavo,Gómez,GÓMEZ,"May 6, 1993",Palmeiras,,89,4,cross_checked,high
+Paraguay,PAR,16,MF,Damián Bobadilla,Damián,Bobadilla,BOBADILLA,"July 11, 2001",São Paulo,,19,1,cross_checked,high
+Paraguay,PAR,17,FW,Kaku,,Kaku,KAKU,"January 11, 1995",Al Ain,,33,6,cross_checked,high
+Paraguay,PAR,18,FW,Álex Arce,Álex,Arce,ARCE,"June 16, 1995",Independiente Rivadavia,,15,1,cross_checked,high
+Paraguay,PAR,19,FW,Julio Enciso,Julio,Enciso,ENCISO,"January 23, 2004",Strasbourg,,32,4,cross_checked,high
+Paraguay,PAR,20,MF,Braian Ojeda,Braian,Ojeda,OJEDA,"June 27, 2000",Orlando City SC,,17,0,cross_checked,high
+Paraguay,PAR,21,FW,Gabriel Ávalos,Gabriel,Ávalos,ÁVALOS,"July 9, 1991",Independiente,,23,2,cross_checked,high
+Paraguay,PAR,22,GK,Gastón Olveira,Gastón,Olveira,OLVEIRA,"April 21, 1993",Olimpia,,1,0,cross_checked,high
+Paraguay,PAR,23,MF,Matías Galarza,Matías,Galarza,GALARZA,"February 11, 2002",Atlanta United FC,,15,3,cross_checked,high
+Paraguay,PAR,24,MF,Gustavo Caballero,Gustavo,Caballero,CABALLERO,"September 21, 2001",Portsmouth,,2,1,cross_checked,high
+Paraguay,PAR,25,FW,Isidro Pitta,Isidro,Pitta,PITTA,"August 14, 1999",Red Bull Bragantino,,5,0,cross_checked,high
+Paraguay,PAR,26,DF,Alexandro Maidana,Alexandro,Maidana,MAIDANA,"July 26, 2005",Talleres,,2,1,cross_checked,high
+Türkiye,TUR,1,GK,Mert Günok,Mert,Günok,GÜNOK,"March 1, 1989",Fenerbahçe,,37,0,cross_checked,high
+Türkiye,TUR,2,DF,Zeki Çelik,Zeki,Çelik,ÇELIK,"February 17, 1997",Roma,,61,3,cross_checked,high
+Türkiye,TUR,3,DF,Merih Demiral,Merih,Demiral,DEMIRAL,"March 5, 1998",Al-Ahli,,62,6,cross_checked,high
+Türkiye,TUR,4,DF,Çağlar Söyüncü,Çağlar,Söyüncü,SÖYÜNCÜ,"May 23, 1996",Fenerbahçe,,60,2,cross_checked,high
+Türkiye,TUR,5,MF,Salih Özcan,Salih,Özcan,ÖZCAN,"January 11, 1998",Borussia Dortmund,,30,1,cross_checked,high
+Türkiye,TUR,6,MF,Orkun Kökçü,Orkun,Kökçü,KÖKÇÜ,"December 29, 2000",Beşiktaş,,50,4,cross_checked,high
+Türkiye,TUR,7,FW,Kerem Aktürkoğlu,Kerem,Aktürkoğlu,AKTÜRKOĞLU,"October 21, 1998",Fenerbahçe,,52,15,cross_checked,high
+Türkiye,TUR,8,FW,Arda Güler,Arda,Güler,GÜLER,"February 25, 2005",Real Madrid,,29,6,cross_checked,high
+Türkiye,TUR,9,FW,Deniz Gül,Deniz,Gül,GÜL,"July 2, 2004",Porto,,8,2,cross_checked,high
+Türkiye,TUR,10,MF,Hakan Çalhanoğlu,Hakan,Çalhanoğlu,ÇALHANOĞLU,"February 8, 1994",Inter Milan,,105,22,cross_checked,high
+Türkiye,TUR,11,FW,Kenan Yıldız,Kenan,Yıldız,YILDIZ,"May 4, 2005",Juventus,,28,5,cross_checked,high
+Türkiye,TUR,12,GK,Altay Bayındır,Altay,Bayındır,BAYINDIR,"April 14, 1998",Manchester United,,12,0,cross_checked,high
+Türkiye,TUR,13,DF,Eren Elmalı,Eren,Elmalı,ELMALI,"July 7, 2000",Galatasaray,,23,0,cross_checked,high
+Türkiye,TUR,14,DF,Abdülkerim Bardakcı,Abdülkerim,Bardakcı,BARDAKCI,"September 7, 1994",Galatasaray,,27,2,cross_checked,high
+Türkiye,TUR,15,DF,Ozan Kabak,Ozan,Kabak,KABAK,"March 25, 2000",TSG Hoffenheim,,30,2,cross_checked,high
+Türkiye,TUR,16,MF,İsmail Yüksek,İsmail,Yüksek,YÜKSEK,"January 26, 1999",Fenerbahçe,,32,1,cross_checked,high
+Türkiye,TUR,17,FW,İrfan Can Kahveci,İrfan Can,Kahveci,KAHVECI,"July 15, 1995",Kasımpaşa,,47,6,cross_checked,high
+Türkiye,TUR,18,DF,Mert Müldür,Mert,Müldür,MÜLDÜR,"April 3, 1999",Fenerbahçe,,45,3,cross_checked,high
+Türkiye,TUR,19,FW,Yunus Akgün,Yunus,Akgün,AKGÜN,"July 7, 2000",Galatasaray,,19,4,cross_checked,high
+Türkiye,TUR,20,DF,Ferdi Kadıoğlu,Ferdi,Kadıoğlu,KADIOĞLU,"October 7, 1999",Brighton & Hove Albion,,30,2,cross_checked,high
+Türkiye,TUR,21,FW,Barış Alper Yılmaz,Barış Alper,Yılmaz,YILMAZ,"May 23, 2000",Galatasaray,,35,4,cross_checked,high
+Türkiye,TUR,22,MF,Kaan Ayhan,Kaan,Ayhan,AYHAN,"November 10, 1994",Galatasaray,,73,5,cross_checked,high
+Türkiye,TUR,23,GK,Uğurcan Çakır,Uğurcan,Çakır,ÇAKIR,"April 5, 1996",Galatasaray,,39,0,cross_checked,high
+Türkiye,TUR,24,FW,Oğuz Aydın,Oğuz,Aydın,AYDIN,"October 27, 2000",Fenerbahçe,,11,0,cross_checked,high
+Türkiye,TUR,25,DF,Samet Akaydin,Samet,Akaydin,AKAYDIN,"March 13, 1994",Çaykur Rizespor,,19,1,cross_checked,high
+Türkiye,TUR,26,FW,Can Uzun,Can,Uzun,UZUN,"November 11, 2005",Eintracht Frankfurt,,6,1,cross_checked,high
+United States,USA,1,GK,Matt Turner,Matt,Turner,TURNER,"June 24, 1994",New England Revolution,,54,0,cross_checked,high
+United States,USA,2,DF,Sergiño Dest,Sergiño,Dest,DEST,"November 3, 2000",PSV Eindhoven,,39,3,cross_checked,high
+United States,USA,3,DF,Chris Richards,Chris,Richards,RICHARDS,"March 28, 2000",Crystal Palace,,36,3,cross_checked,high
+United States,USA,4,MF,Tyler Adams,Tyler,Adams,ADAMS,"February 14, 1999",Bournemouth,,54,2,cross_checked,high
+United States,USA,5,DF,Antonee Robinson,Antonee,Robinson,ROBINSON,"August 8, 1997",Fulham,,54,5,cross_checked,high
+United States,USA,6,DF,Auston Trusty,Auston,Trusty,TRUSTY,"August 12, 1998",Celtic,,8,0,cross_checked,high
+United States,USA,7,MF,Giovanni Reyna,Giovanni,Reyna,REYNA,"November 13, 2002",Borussia Mönchengladbach,,38,9,cross_checked,high
+United States,USA,8,MF,Weston McKennie,Weston,McKennie,MCKENNIE,"August 28, 1998",Juventus,,66,12,cross_checked,high
+United States,USA,9,FW,Ricardo Pepi,Ricardo,Pepi,PEPI,"January 9, 2003",PSV Eindhoven,,37,13,cross_checked,high
+United States,USA,10,FW,Christian Pulisic,Christian,Pulisic,PULISIC,"September 18, 1998",Milan,,86,33,cross_checked,high
+United States,USA,11,FW,Brenden Aaronson,Brenden,Aaronson,AARONSON,"October 22, 2000",Leeds United,,58,9,cross_checked,high
+United States,USA,12,DF,Miles Robinson,Miles,Robinson,ROBINSON,"March 14, 1997",FC Cincinnati,,40,3,cross_checked,high
+United States,USA,13,DF,Tim Ream,Tim,Ream,REAM,"October 5, 1987",Charlotte FC,,82,1,cross_checked,high
+United States,USA,14,MF,Sebastian Berhalter,Sebastian,Berhalter,BERHALTER,"May 10, 2001",Vancouver Whitecaps FC,,13,1,cross_checked,high
+United States,USA,15,MF,Cristian Roldan,Cristian,Roldan,ROLDAN,"June 3, 1995",Seattle Sounders FC,,47,0,cross_checked,high
+United States,USA,16,DF,Alex Freeman,Alex,Freeman,FREEMAN,"August 9, 2004",Villarreal,,17,2,cross_checked,high
+United States,USA,17,MF,Malik Tillman,Malik,Tillman,TILLMAN,"May 28, 2002",Bayer Leverkusen,,30,3,cross_checked,high
+United States,USA,18,DF,Max Arfsten,Max,Arfsten,ARFSTEN,"April 19, 2001",Columbus Crew,,20,1,cross_checked,high
+United States,USA,19,FW,Haji Wright,Haji,Wright,WRIGHT,"March 27, 1998",Coventry City,,20,7,cross_checked,high
+United States,USA,20,FW,Folarin Balogun,Folarin,Balogun,BALOGUN,"July 3, 2001",Monaco,,27,9,cross_checked,high
+United States,USA,21,FW,Timothy Weah,Timothy,Weah,WEAH,"February 22, 2000",Marseille,,51,7,cross_checked,high
+United States,USA,22,DF,Mark McKenzie,Mark,McKenzie,MCKENZIE,"February 25, 1999",Toulouse,,29,0,cross_checked,high
+United States,USA,23,DF,Joe Scally,Joe,Scally,SCALLY,"December 31, 2002",Borussia Mönchengladbach,,26,0,cross_checked,high
+United States,USA,24,GK,Matt Freese,Matt,Freese,FREESE,"September 2, 1998",New York City FC,,15,0,cross_checked,high
+United States,USA,25,GK,Chris Brady,Chris,Brady,BRADY,"March 3, 2004",Chicago Fire FC,,1,0,cross_checked,high
+United States,USA,26,FW,Alejandro Zendejas,Alejandro,Zendejas,ZENDEJAS,"February 7, 1998",América,,14,2,cross_checked,high
+Curaçao,CUW,1,GK,Eloy Room,Eloy,Room,ROOM,"February 6, 1989",Miami FC,,71,0,cross_checked,high
+Curaçao,CUW,2,DF,Shurandy Sambo,Shurandy,Sambo,SAMBO,"August 19, 2001",Sparta Rotterdam,,8,0,cross_checked,high
+Curaçao,CUW,3,DF,Juriën Gaari,Juriën,Gaari,GAARI,"December 23, 1993",Abha,,60,1,cross_checked,high
+Curaçao,CUW,4,DF,Roshon van Eijma,Roshon van,Eijma,EIJMA,"June 9, 1998",RKC Waalwijk,,28,1,cross_checked,high
+Curaçao,CUW,5,DF,Sherel Floranus,Sherel,Floranus,FLORANUS,"August 23, 1998",PEC Zwolle,,28,0,cross_checked,high
+Curaçao,CUW,6,MF,Godfried Roemeratoe,Godfried,Roemeratoe,ROEMERATOE,"August 19, 1999",RKC Waalwijk,,28,1,cross_checked,high
+Curaçao,CUW,7,MF,Juninho Bacuna,Juninho,Bacuna,BACUNA,"August 7, 1997",Volendam,,49,15,cross_checked,high
+Curaçao,CUW,8,MF,Livano Comenencia,Livano,Comenencia,COMENENCIA,"February 3, 2004",Zürich,,20,2,cross_checked,high
+Curaçao,CUW,9,FW,Jürgen Locadia,Jürgen,Locadia,LOCADIA,"November 7, 1993",Miami FC,,13,1,cross_checked,high
+Curaçao,CUW,10,MF,Leandro Bacuna,Leandro,Bacuna,BACUNA,"August 21, 1991",Iğdır,,72,16,cross_checked,high
+Curaçao,CUW,11,FW,Jeremy Antonisse,Jeremy,Antonisse,ANTONISSE,"March 29, 2002",Kifisia,,27,4,cross_checked,high
+Curaçao,CUW,12,FW,Sontje Hansen,Sontje,Hansen,HANSEN,"May 18, 2002",Middlesbrough,,6,1,cross_checked,high
+Curaçao,CUW,13,FW,Tyrese Noslin,Tyrese,Noslin,NOSLIN,"September 11, 2002",Telstar,,7,1,cross_checked,high
+Curaçao,CUW,14,FW,Kenji Gorré,Kenji,Gorré,GORRÉ,"September 29, 1994",Maccabi Haifa,,38,6,cross_checked,high
+Curaçao,CUW,15,MF,Ar'jany Martha,Ar'jany,Martha,MARTHA,"September 4, 2003",Rotherham United,,9,2,cross_checked,high
+Curaçao,CUW,16,FW,Jearl Margaritha,Jearl,Margaritha,MARGARITHA,"April 10, 2000",Beveren,,22,5,cross_checked,high
+Curaçao,CUW,17,FW,Brandley Kuwas,Brandley,Kuwas,KUWAS,"September 19, 1992",Volendam,,35,2,cross_checked,high
+Curaçao,CUW,18,DF,Armando Obispo,Armando,Obispo,OBISPO,"March 5, 1999",PSV Eindhoven,,6,0,cross_checked,high
+Curaçao,CUW,19,FW,Gervane Kastaneer,Gervane,Kastaneer,KASTANEER,"June 9, 1996",Terengganu,,29,9,cross_checked,high
+Curaçao,CUW,20,DF,Joshua Brenet,Joshua,Brenet,BRENET,"March 20, 1994",Kayserispor,,18,2,cross_checked,high
+Curaçao,CUW,21,MF,Tahith Chong,Tahith,Chong,CHONG,"December 4, 1999",Sheffield United,,6,3,cross_checked,high
+Curaçao,CUW,22,MF,Kevin Felida,Kevin,Felida,FELIDA,"November 11, 1999",Den Bosch,,19,1,cross_checked,high
+Curaçao,CUW,23,DF,Riechedly Bazoer,Riechedly,Bazoer,BAZOER,"October 12, 1996",Konyaspor,,5,0,cross_checked,high
+Curaçao,CUW,24,DF,Deveron Fonville,Deveron,Fonville,FONVILLE,"May 16, 2003",NEC,,2,0,cross_checked,high
+Curaçao,CUW,25,GK,Tyrick Bodak,Tyrick,Bodak,BODAK,"May 15, 2002",Telstar,,4,0,cross_checked,high
+Curaçao,CUW,26,GK,Trevor Doornbusch,Trevor,Doornbusch,DOORNBUSCH,"July 6, 1999",VVV-Venlo,,8,0,cross_checked,high
+Ecuador,ECU,1,GK,Hernán Galíndez,Hernán,Galíndez,GALÍNDEZ,"March 30, 1987",Huracán,,35,0,cross_checked,high
+Ecuador,ECU,2,DF,Félix Torres,Félix,Torres,TORRES,"January 11, 1997",Internacional,,49,5,cross_checked,high
+Ecuador,ECU,3,DF,Piero Hincapié,Piero,Hincapié,HINCAPIÉ,"January 9, 2002",Arsenal,,52,3,cross_checked,high
+Ecuador,ECU,4,DF,Joel Ordóñez,Joel,Ordóñez,ORDÓÑEZ,"April 21, 2004",Club Brugge,,17,0,cross_checked,high
+Ecuador,ECU,5,MF,Jordy Alcívar,Jordy,Alcívar,ALCÍVAR,"August 5, 1999",Independiente del Valle,,11,1,cross_checked,high
+Ecuador,ECU,6,DF,Willian Pacho,Willian,Pacho,PACHO,"October 16, 2001",Paris Saint-Germain,,34,2,cross_checked,high
+Ecuador,ECU,7,DF,Pervis Estupiñán,Pervis,Estupiñán,ESTUPIÑÁN,"January 21, 1998",Milan,,54,5,cross_checked,high
+Ecuador,ECU,8,MF,Anthony Valencia,Anthony,Valencia,VALENCIA,"July 21, 2003",Antwerp,,3,1,cross_checked,high
+Ecuador,ECU,9,FW,John Yeboah,John,Yeboah,YEBOAH,"June 23, 2000",Venezia,,23,3,cross_checked,high
+Ecuador,ECU,10,MF,Kendry Páez,Kendry,Páez,PÁEZ,"May 4, 2007",River Plate,,26,2,cross_checked,high
+Ecuador,ECU,11,FW,Kevin Rodríguez,Kevin,Rodríguez,RODRÍGUEZ,"March 4, 2000",Union Saint-Gilloise,,31,2,cross_checked,high
+Ecuador,ECU,12,GK,Moisés Ramírez,Moisés,Ramírez,RAMÍREZ,"September 9, 2000",Kifisia,,7,0,cross_checked,high
+Ecuador,ECU,13,FW,Enner Valencia,Enner,Valencia,VALENCIA,"November 4, 1989",Pachuca,,105,49,cross_checked,high
+Ecuador,ECU,14,MF,Alan Minda,Alan,Minda,MINDA,"May 14, 2003",Atlético Mineiro,,20,2,cross_checked,high
+Ecuador,ECU,15,MF,Pedro Vite,Pedro,Vite,VITE,"March 9, 2002",Pumas,,17,1,cross_checked,high
+Ecuador,ECU,16,FW,Jordy Caicedo,Jordy,Caicedo,CAICEDO,"November 18, 1997",Huracán,,20,4,cross_checked,high
+Ecuador,ECU,17,DF,Ángelo Preciado,Ángelo,Preciado,PRECIADO,"February 18, 1998",Atlético Mineiro,,55,0,cross_checked,high
+Ecuador,ECU,18,MF,Denil Castillo,Denil,Castillo,CASTILLO,"March 24, 2004",Midtjylland,,5,0,cross_checked,high
+Ecuador,ECU,19,FW,Gonzalo Plata,Gonzalo,Plata,PLATA,"November 1, 2000",Flamengo,,50,8,cross_checked,high
+Ecuador,ECU,20,FW,Nilson Angulo,Nilson,Angulo,ANGULO,"June 19, 2003",Sunderland,,14,2,cross_checked,high
+Ecuador,ECU,21,MF,Alan Franco,Alan,Franco,FRANCO,"August 21, 1998",Atlético Mineiro,,58,1,cross_checked,high
+Ecuador,ECU,22,GK,Gonzalo Valle,Gonzalo,Valle,VALLE,"February 28, 1996",LDU Quito,,4,0,cross_checked,high
+Ecuador,ECU,23,MF,Moisés Caicedo,Moisés,Caicedo,CAICEDO,"November 2, 2001",Chelsea,,61,3,cross_checked,high
+Ecuador,ECU,24,FW,Jeremy Arévalo,Jeremy,Arévalo,ARÉVALO,"March 19, 2005",VfB Stuttgart,,4,0,cross_checked,high
+Ecuador,ECU,25,DF,Jackson Porozo,Jackson,Porozo,POROZO,"August 4, 2000",Tijuana,,10,1,cross_checked,high
+Ecuador,ECU,26,DF,Yaimar Medina,Yaimar,Medina,MEDINA,"November 5, 2004",Genk,,6,0,cross_checked,high
+Germany,GER,1,GK,Manuel Neuer,Manuel,Neuer,NEUER,"March 27, 1986",Bayern Munich,,124,0,cross_checked,high
+Germany,GER,2,DF,Antonio Rüdiger,Antonio,Rüdiger,RÜDIGER,"March 3, 1993",Real Madrid,,82,3,cross_checked,high
+Germany,GER,3,DF,Waldemar Anton,Waldemar,Anton,ANTON,"July 20, 1996",Borussia Dortmund,,13,0,cross_checked,high
+Germany,GER,4,DF,Jonathan Tah,Jonathan,Tah,TAH,"February 11, 1996",Bayern Munich,,47,1,cross_checked,high
+Germany,GER,5,MF,Aleksandar Pavlović,Aleksandar,Pavlović,PAVLOVIĆ,"May 3, 2004",Bayern Munich,,11,1,cross_checked,high
+Germany,GER,6,DF,Joshua Kimmich,Joshua,Kimmich,KIMMICH,"February 8, 1995",Bayern Munich,,110,10,cross_checked,high
+Germany,GER,7,FW,Kai Havertz,Kai,Havertz,HAVERTZ,"June 11, 1999",Arsenal,,58,22,cross_checked,high
+Germany,GER,8,MF,Leon Goretzka,Leon,Goretzka,GORETZKA,"February 6, 1995",Bayern Munich,,70,15,cross_checked,high
+Germany,GER,9,MF,Jamie Leweling,Jamie,Leweling,LEWELING,"February 26, 2001",VfB Stuttgart,,5,1,cross_checked,high
+Germany,GER,10,MF,Jamal Musiala,Jamal,Musiala,MUSIALA,"February 26, 2003",Bayern Munich,,42,9,cross_checked,high
+Germany,GER,11,FW,Nick Woltemade,Nick,Woltemade,WOLTEMADE,"February 14, 2002",Newcastle United,,11,4,cross_checked,high
+Germany,GER,12,GK,Oliver Baumann,Oliver,Baumann,BAUMANN,"June 2, 1990",TSG Hoffenheim,,13,0,cross_checked,high
+Germany,GER,13,MF,Pascal Groß,Pascal,Groß,GROSS,"June 15, 1991",Brighton & Hove Albion,,18,1,cross_checked,high
+Germany,GER,14,FW,Maximilian Beier,Maximilian,Beier,BEIER,"October 17, 2002",Borussia Dortmund,,9,0,cross_checked,high
+Germany,GER,15,DF,Nico Schlotterbeck,Nico,Schlotterbeck,SCHLOTTERBECK,"December 1, 1999",Borussia Dortmund,,27,0,cross_checked,high
+Germany,GER,16,MF,Angelo Stiller,Angelo,Stiller,STILLER,"April 4, 2001",VfB Stuttgart,,8,0,cross_checked,high
+Germany,GER,17,MF,Florian Wirtz,Florian,Wirtz,WIRTZ,"May 3, 2003",Liverpool,,41,11,cross_checked,high
+Germany,GER,18,DF,Nathaniel Brown,Nathaniel,Brown,BROWN,"June 16, 2003",Eintracht Frankfurt,,5,0,cross_checked,high
+Germany,GER,19,MF,Leroy Sané,Leroy,Sané,SANÉ,"January 11, 1996",Galatasaray,,76,17,cross_checked,high
+Germany,GER,20,MF,Nadiem Amiri,Nadiem,Amiri,AMIRI,"October 27, 1996",Mainz 05,,11,1,cross_checked,high
+Germany,GER,21,GK,Alexander Nübel,Alexander,Nübel,NÜBEL,"September 30, 1996",VfB Stuttgart,,3,0,cross_checked,high
+Germany,GER,22,DF,David Raum,David,Raum,RAUM,"April 22, 1998",RB Leipzig,,37,1,cross_checked,high
+Germany,GER,23,MF,Felix Nmecha,Felix,Nmecha,NMECHA,"October 10, 2000",Borussia Dortmund,,8,1,cross_checked,high
+Germany,GER,24,DF,Malick Thiaw,Malick,Thiaw,THIAW,"August 8, 2001",Newcastle United,,5,0,cross_checked,high
+Germany,GER,25,MF,Assan Ouédraogo,Assan,Ouédraogo,OUÉDRAOGO,"May 9, 2006",RB Leipzig,,1,1,cross_checked,high
+Germany,GER,26,FW,Deniz Undav,Deniz,Undav,UNDAV,"July 19, 1996",VfB Stuttgart,,9,6,cross_checked,high
+Côte d'Ivoire,CIV,1,GK,Yahia Fofana,Yahia,Fofana,FOFANA,"August 21, 2000",Çaykur Rizespor,,35,0,cross_checked,high
+Côte d'Ivoire,CIV,2,DF,Ousmane Diomande,Ousmane,Diomande,DIOMANDE,"December 4, 2003",Sporting CP,,15,1,cross_checked,high
+Côte d'Ivoire,CIV,3,DF,Ghislain Konan,Ghislain,Konan,KONAN,"December 27, 1995",Gil Vicente,,54,0,cross_checked,high
+Côte d'Ivoire,CIV,4,MF,Jean Michaël Seri,Jean Michaël,Seri,SERI,"July 19, 1991",Maribor,,65,4,cross_checked,high
+Côte d'Ivoire,CIV,5,DF,Wilfried Singo,Wilfried,Singo,SINGO,"December 25, 2000",Galatasaray,,34,1,cross_checked,high
+Côte d'Ivoire,CIV,6,MF,Seko Fofana,Seko,Fofana,FOFANA,"May 7, 1995",Porto,,32,7,cross_checked,high
+Côte d'Ivoire,CIV,7,DF,Odilon Kossounou,Odilon,Kossounou,KOSSOUNOU,"January 4, 2001",Atalanta,,35,0,cross_checked,high
+Côte d'Ivoire,CIV,8,MF,Franck Kessié,Franck,Kessié,KESSIÉ,"December 19, 1996",Al-Ahli,,103,15,cross_checked,high
+Côte d'Ivoire,CIV,9,FW,Ange-Yoan Bonny,Ange-Yoan,Bonny,BONNY,"October 25, 2003",Inter Milan,,1,0,cross_checked,high
+Côte d'Ivoire,CIV,10,FW,Simon Adingra,Simon,Adingra,ADINGRA,"January 1, 2002",Monaco,,29,5,cross_checked,high
+Côte d'Ivoire,CIV,11,FW,Yan Diomande,Yan,Diomande,DIOMANDE,"November 14, 2006",RB Leipzig,,10,3,cross_checked,high
+Côte d'Ivoire,CIV,12,FW,Elye Wahi,Elye,Wahi,WAHI,"January 2, 2003",Nice,,2,0,cross_checked,high
+Côte d'Ivoire,CIV,13,DF,Christopher Opéri,Christopher,Opéri,OPÉRI,"April 29, 1997",İstanbul Başakşehir,,12,0,cross_checked,high
+Côte d'Ivoire,CIV,14,FW,Oumar Diakité,Oumar,Diakité,DIAKITÉ,"December 20, 2003",Cercle Brugge,,29,6,cross_checked,high
+Côte d'Ivoire,CIV,15,FW,Amad Diallo,Amad,Diallo,DIALLO,"July 11, 2002",Manchester United,,19,6,cross_checked,high
+Côte d'Ivoire,CIV,16,GK,Mohamed Koné,Mohamed,Koné,KONÉ,"March 7, 2002",Charleroi,,0,0,cross_checked,high
+Côte d'Ivoire,CIV,17,DF,Guéla Doué,Guéla,Doué,DOUÉ,"October 17, 2002",Strasbourg,,20,3,cross_checked,high
+Côte d'Ivoire,CIV,18,MF,Ibrahim Sangaré,Ibrahim,Sangaré,SANGARÉ,"December 2, 1997",Nottingham Forest,,58,12,cross_checked,high
+Côte d'Ivoire,CIV,19,FW,Nicolas Pépé,Nicolas,Pépé,PÉPÉ,"May 29, 1995",Villarreal,,55,12,cross_checked,high
+Côte d'Ivoire,CIV,20,DF,Emmanuel Agbadou,Emmanuel,Agbadou,AGBADOU,"June 17, 1997",Beşiktaş,,20,2,cross_checked,high
+Côte d'Ivoire,CIV,21,DF,Evan Ndicka,Evan,Ndicka,NDICKA,"August 20, 1999",Roma,,28,0,cross_checked,high
+Côte d'Ivoire,CIV,22,FW,Evann Guessand,Evann,Guessand,GUESSAND,"July 1, 2001",Crystal Palace,,21,4,cross_checked,high
+Côte d'Ivoire,CIV,23,GK,Alban Lafont,Alban,Lafont,LAFONT,"January 23, 1999",Panathinaikos,,4,0,cross_checked,high
+Côte d'Ivoire,CIV,24,FW,Bazoumana Touré,Bazoumana,Touré,TOURÉ,"March 2, 2006",TSG Hoffenheim,,6,2,cross_checked,high
+Côte d'Ivoire,CIV,25,MF,Parfait Guiagon,Parfait,Guiagon,GUIAGON,"February 22, 2001",Charleroi,,5,0,cross_checked,high
+Côte d'Ivoire,CIV,26,MF,Christ Inao Oulaï,Christ Inao,Oulaï,OULAÏ,"April 6, 2006",Trabzonspor,,9,0,cross_checked,high
+Japan,JPN,1,GK,Zion Suzuki,Zion,Suzuki,SUZUKI,"August 21, 2002",Parma,,24,0,cross_checked,high
+Japan,JPN,2,DF,Yukinari Sugawara,Yukinari,Sugawara,SUGAWARA,"June 28, 2000",Werder Bremen,,21,2,cross_checked,high
+Japan,JPN,3,DF,Shōgo Taniguchi,Shōgo,Taniguchi,TANIGUCHI,"July 15, 1991",Sint-Truiden,,38,1,cross_checked,high
+Japan,JPN,4,DF,Kō Itakura,Kō,Itakura,ITAKURA,"January 27, 1997",Ajax,,40,2,cross_checked,high
+Japan,JPN,5,DF,Yūto Nagatomo,Yūto,Nagatomo,NAGATOMO,"September 12, 1986",FC Tokyo,,145,4,cross_checked,high
+Japan,JPN,6,FW,Shuto Machino,Shuto,Machino,MACHINO,"September 30, 1999",Borussia Mönchengladbach,,14,5,cross_checked,high
+Japan,JPN,7,MF,Ao Tanaka,Ao,Tanaka,TANAKA,"September 10, 1998",Leeds United,,38,8,cross_checked,high
+Japan,JPN,8,MF,Takefusa Kubo,Takefusa,Kubo,KUBO,"June 4, 2001",Real Sociedad,,49,7,cross_checked,high
+Japan,JPN,9,FW,Keisuke Gotō,Keisuke,Gotō,GOTŌ,"June 3, 2005",Sint-Truiden,,4,0,cross_checked,high
+Japan,JPN,10,MF,Ritsu Dōan,Ritsu,Dōan,DŌAN,"June 16, 1998",Eintracht Frankfurt,,65,11,cross_checked,high
+Japan,JPN,11,MF,Daizen Maeda,Daizen,Maeda,MAEDA,"October 20, 1997",Celtic,,27,4,cross_checked,high
+Japan,JPN,12,GK,Keisuke Ōsako,Keisuke,Ōsako,ŌSAKO,"July 28, 1999",Sanfrecce Hiroshima,,11,0,cross_checked,high
+Japan,JPN,13,MF,Keito Nakamura,Keito,Nakamura,NAKAMURA,"July 28, 2000",Reims,,25,10,cross_checked,high
+Japan,JPN,14,MF,Junya Itō,Junya,Itō,ITŌ,"March 9, 1993",Genk,,69,15,cross_checked,high
+Japan,JPN,15,MF,Daichi Kamada,Daichi,Kamada,KAMADA,"August 5, 1996",Crystal Palace,,49,12,cross_checked,high
+Japan,JPN,16,DF,Tsuyoshi Watanabe,Tsuyoshi,Watanabe,WATANABE,"February 5, 1997",Feyenoord,,11,0,cross_checked,high
+Japan,JPN,17,MF,Yuito Suzuki,Yuito,Suzuki,SUZUKI,"October 25, 2001",SC Freiburg,,6,0,cross_checked,high
+Japan,JPN,18,FW,Ayase Ueda,Ayase,Ueda,UEDA,"August 28, 1998",Feyenoord,,39,16,cross_checked,high
+Japan,JPN,19,FW,Kōki Ogawa,Kōki,Ogawa,OGAWA,"August 8, 1997",NEC,,15,11,cross_checked,high
+Japan,JPN,20,DF,Ayumu Seko,Ayumu,Seko,SEKO,"June 7, 2000",Le Havre,,14,0,cross_checked,high
+Japan,JPN,21,DF,Hiroki Itō,Hiroki,Itō,ITŌ,"May 12, 1999",Bayern Munich,,24,1,cross_checked,high
+Japan,JPN,22,DF,Takehiro Tomiyasu,Takehiro,Tomiyasu,TOMIYASU,"November 5, 1998",Ajax,,43,1,cross_checked,high
+Japan,JPN,23,GK,Tomoki Hayakawa,Tomoki,Hayakawa,HAYAKAWA,"March 3, 1999",Kashima Antlers,,4,0,cross_checked,high
+Japan,JPN,24,MF,Kaishū Sano,Kaishū,Sano,SANO,"December 30, 2000",Mainz 05,,13,0,cross_checked,high
+Japan,JPN,25,DF,Junnosuke Suzuki,Junnosuke,Suzuki,SUZUKI,"July 12, 2003",Copenhagen,,6,0,cross_checked,high
+Japan,JPN,26,FW,Kento Shiogai,Kento,Shiogai,SHIOGAI,"March 26, 2005",VfL Wolfsburg,,2,0,cross_checked,high
+Netherlands,NED,1,GK,Bart Verbruggen,Bart,Verbruggen,VERBRUGGEN,"August 18, 2002",Brighton & Hove Albion,,29,0,cross_checked,high
+Netherlands,NED,2,DF,Lutsharel Geertruida,Lutsharel,Geertruida,GEERTRUIDA,"July 18, 2000",Sunderland,,21,0,cross_checked,high
+Netherlands,NED,3,MF,Marten de Roon,Marten de,Roon,ROON,"March 29, 1991",Atalanta,,43,1,cross_checked,high
+Netherlands,NED,4,DF,Virgil van Dijk,Virgil van,Dijk,DIJK,"July 8, 1991",Liverpool,,92,12,cross_checked,high
+Netherlands,NED,5,DF,Nathan Aké,Nathan,Aké,AKÉ,"February 18, 1995",Manchester City,,59,5,cross_checked,high
+Netherlands,NED,6,DF,Jan Paul van Hecke,Jan Paul van,Hecke,HECKE,"June 8, 2000",Brighton & Hove Albion,,12,0,cross_checked,high
+Netherlands,NED,7,MF,Justin Kluivert,Justin,Kluivert,KLUIVERT,"May 5, 1999",Bournemouth,,12,0,cross_checked,high
+Netherlands,NED,8,MF,Ryan Gravenberch,Ryan,Gravenberch,GRAVENBERCH,"May 16, 2002",Liverpool,,27,1,cross_checked,high
+Netherlands,NED,9,FW,Wout Weghorst,Wout,Weghorst,WEGHORST,"August 7, 1992",Ajax,,52,14,cross_checked,high
+Netherlands,NED,10,FW,Memphis Depay,Memphis,Depay,DEPAY,"February 13, 1994",Corinthians,,109,55,cross_checked,high
+Netherlands,NED,11,FW,Cody Gakpo,Cody,Gakpo,GAKPO,"May 7, 1999",Liverpool,,50,21,cross_checked,high
+Netherlands,NED,12,DF,Mats Wieffer,Mats,Wieffer,WIEFFER,"November 16, 1999",Brighton & Hove Albion,,15,1,cross_checked,high
+Netherlands,NED,13,GK,Robin Roefs,Robin,Roefs,ROEFS,"January 17, 2003",Sunderland,,1,0,cross_checked,high
+Netherlands,NED,14,MF,Tijjani Reijnders,Tijjani,Reijnders,REIJNDERS,"July 29, 1998",Manchester City,,32,7,cross_checked,high
+Netherlands,NED,15,DF,Micky van de Ven,Micky van de,Ven,VEN,"April 19, 2001",Tottenham Hotspur,,21,1,cross_checked,high
+Netherlands,NED,16,MF,Guus Til,Guus,Til,TIL,"December 22, 1997",PSV Eindhoven,,7,1,cross_checked,high
+Netherlands,NED,17,FW,Noa Lang,Noa,Lang,LANG,"June 17, 1999",Galatasaray,,15,3,cross_checked,high
+Netherlands,NED,18,FW,Donyell Malen,Donyell,Malen,MALEN,"January 19, 1999",Roma,,53,13,cross_checked,high
+Netherlands,NED,19,FW,Brian Brobbey,Brian,Brobbey,BROBBEY,"February 1, 2002",Sunderland,,12,1,cross_checked,high
+Netherlands,NED,20,MF,Teun Koopmeiners,Teun,Koopmeiners,KOOPMEINERS,"February 28, 1998",Juventus,,28,3,cross_checked,high
+Netherlands,NED,21,MF,Frenkie de Jong,Frenkie de,Jong,JONG,"May 12, 1997",Barcelona,,66,2,cross_checked,high
+Netherlands,NED,22,DF,Denzel Dumfries,Denzel,Dumfries,DUMFRIES,"April 18, 1996",Inter Milan,,72,11,cross_checked,high
+Netherlands,NED,23,GK,Mark Flekken,Mark,Flekken,FLEKKEN,"June 13, 1993",Bayer Leverkusen,,12,0,cross_checked,high
+Netherlands,NED,24,FW,Crysencio Summerville,Crysencio,Summerville,SUMMERVILLE,"October 30, 2001",West Ham United,,2,0,cross_checked,high
+Netherlands,NED,25,DF,Jorrel Hato,Jorrel,Hato,HATO,"March 7, 2006",Chelsea,,8,0,cross_checked,high
+Netherlands,NED,26,MF,Quinten Timber,Quinten,Timber,TIMBER,"June 17, 2001",Marseille,,11,1,cross_checked,high
+Sweden,SWE,1,GK,Jacob Widell Zetterström,Jacob Widell,Zetterström,ZETTERSTRÖM,"July 11, 1998",Derby County,,3,0,cross_checked,high
+Sweden,SWE,2,DF,Gustaf Lagerbielke,Gustaf,Lagerbielke,LAGERBIELKE,"April 10, 2000",Braga,,11,2,cross_checked,high
+Sweden,SWE,3,DF,Victor Lindelöf,Victor,Lindelöf,LINDELÖF,"July 17, 1994",Aston Villa,,76,3,cross_checked,high
+Sweden,SWE,4,DF,Isak Hien,Isak,Hien,HIEN,"January 13, 1999",Atalanta,,29,0,cross_checked,high
+Sweden,SWE,5,DF,Gabriel Gudmundsson,Gabriel,Gudmundsson,GUDMUNDSSON,"April 29, 1999",Leeds United,,24,0,cross_checked,high
+Sweden,SWE,6,DF,Herman Johansson,Herman,Johansson,JOHANSSON,"October 16, 1997",FC Dallas,,3,0,cross_checked,high
+Sweden,SWE,7,MF,Lucas Bergvall,Lucas,Bergvall,BERGVALL,"February 2, 2006",Tottenham Hotspur,,10,0,cross_checked,high
+Sweden,SWE,8,DF,Daniel Svensson,Daniel,Svensson,SVENSSON,"February 12, 2002",Borussia Dortmund,,13,0,cross_checked,high
+Sweden,SWE,9,FW,Alexander Isak,Alexander,Isak,ISAK,"September 21, 1999",Liverpool,,58,17,cross_checked,high
+Sweden,SWE,10,MF,Benjamin Nygren,Benjamin,Nygren,NYGREN,"July 8, 2001",Celtic,,11,3,cross_checked,high
+Sweden,SWE,11,FW,Anthony Elanga,Anthony,Elanga,ELANGA,"April 27, 2002",Newcastle United,,30,6,cross_checked,high
+Sweden,SWE,12,GK,Viktor Johansson,Viktor,Johansson,JOHANSSON,"September 14, 1998",Stoke City,,12,0,cross_checked,high
+Sweden,SWE,13,MF,Ken Sema,Ken,Sema,SEMA,"September 30, 1993",Pafos,,33,5,cross_checked,high
+Sweden,SWE,14,DF,Hjalmar Ekdal,Hjalmar,Ekdal,EKDAL,"October 21, 1998",Burnley,,13,0,cross_checked,high
+Sweden,SWE,15,DF,Carl Starfelt,Carl,Starfelt,STARFELT,"June 1, 1995",Celta Vigo,,18,0,cross_checked,high
+Sweden,SWE,16,MF,Jesper Karlström,Jesper,Karlström,KARLSTRÖM,"June 21, 1995",Udinese,,25,0,cross_checked,high
+Sweden,SWE,17,FW,Viktor Gyökeres,Viktor,Gyökeres,GYÖKERES,"June 4, 1998",Arsenal,,33,20,cross_checked,high
+Sweden,SWE,18,MF,Yasin Ayari,Yasin,Ayari,AYARI,"October 6, 2003",Brighton & Hove Albion,,21,3,cross_checked,high
+Sweden,SWE,19,MF,Mattias Svanberg,Mattias,Svanberg,SVANBERG,"January 5, 1999",VfL Wolfsburg,,41,2,cross_checked,high
+Sweden,SWE,20,DF,Eric Smith,Eric,Smith,SMITH,"January 8, 1997",FC St. Pauli,,2,0,cross_checked,high
+Sweden,SWE,21,DF,Alexander Bernhardsson,Alexander,Bernhardsson,BERNHARDSSON,"September 8, 1998",Holstein Kiel,,11,0,cross_checked,high
+Sweden,SWE,22,MF,Besfort Zeneli,Besfort,Zeneli,ZENELI,"November 21, 2002",Union Saint-Gilloise,,8,0,cross_checked,high
+Sweden,SWE,23,GK,Kristoffer Nordfeldt,Kristoffer,Nordfeldt,NORDFELDT,"June 23, 1989",AIK,,21,0,cross_checked,high
+Sweden,SWE,24,DF,Elliot Stroud,Elliot,Stroud,STROUD,"June 22, 2002",Mjällby AIF,,1,0,cross_checked,high
+Sweden,SWE,25,FW,Gustaf Nilsson,Gustaf,Nilsson,NILSSON,"May 23, 1997",Club Brugge,,10,4,cross_checked,high
+Sweden,SWE,26,FW,Taha Ali,Taha,Ali,ALI,"July 1, 1998",Malmö FF,,2,0,cross_checked,high
+Tunisia,TUN,1,GK,Mouhib Chamakh,Mouhib,Chamakh,CHAMAKH,"August 25, 2001",Club Africain,,3,0,cross_checked,high
+Tunisia,TUN,2,DF,Ali Abdi,Ali,Abdi,ABDI,"December 20, 1993",Nice,,46,7,cross_checked,high
+Tunisia,TUN,3,DF,Montassar Talbi,Montassar,Talbi,TALBI,"May 26, 1998",Lorient,,64,4,cross_checked,high
+Tunisia,TUN,4,DF,Omar Rekik,Omar,Rekik,REKIK,"December 20, 2001",Maribor,,6,0,cross_checked,high
+Tunisia,TUN,5,DF,Adem Arous,Adem,Arous,AROUS,"July 17, 2004",Kasımpaşa,,2,0,cross_checked,high
+Tunisia,TUN,6,DF,Dylan Bronn,Dylan,Bronn,BRONN,"June 19, 1995",Servette,,52,2,cross_checked,high
+Tunisia,TUN,7,FW,Elias Achouri,Elias,Achouri,ACHOURI,"February 10, 1999",Copenhagen,,30,4,cross_checked,high
+Tunisia,TUN,8,FW,Elias Saad,Elias,Saad,SAAD,"December 27, 1999",Hannover 96,,15,4,cross_checked,high
+Tunisia,TUN,9,FW,Hazem Mastouri,Hazem,Mastouri,MASTOURI,"June 18, 1997",Dynamo Makhachkala,,19,4,cross_checked,high
+Tunisia,TUN,10,MF,Hannibal Mejbri,Hannibal,Mejbri,MEJBRI,"January 21, 2003",Burnley,,45,1,cross_checked,high
+Tunisia,TUN,11,MF,Ismaël Gharbi,Ismaël,Gharbi,GHARBI,"April 10, 2004",FC Augsburg,,17,2,cross_checked,high
+Tunisia,TUN,12,DF,Mortadha Ben Ouanes,Mortadha Ben,Ouanes,OUANES,"July 2, 1994",Kasımpaşa,,18,0,cross_checked,high
+Tunisia,TUN,13,MF,Rani Khedira,Rani,Khedira,KHEDIRA,"January 27, 1994",Union Berlin,,3,0,cross_checked,high
+Tunisia,TUN,14,MF,Khalil Ayari,Khalil,Ayari,AYARI,"February 2, 2005",Paris Saint-Germain,,4,0,cross_checked,high
+Tunisia,TUN,15,MF,Hadj Mahmoud,Hadj,Mahmoud,MAHMOUD,"April 24, 2000",Lugano,,9,0,cross_checked,high
+Tunisia,TUN,16,GK,Aymen Dahmen,Aymen,Dahmen,DAHMEN,"January 28, 1997",CS Sfaxien,,37,0,cross_checked,high
+Tunisia,TUN,17,MF,Ellyes Skhiri,Ellyes,Skhiri,SKHIRI,"May 10, 1995",Eintracht Frankfurt,,83,4,cross_checked,high
+Tunisia,TUN,18,FW,Rayan Elloumi,Rayan,Elloumi,ELLOUMI,"September 17, 2007",Vancouver Whitecaps FC,,4,0,cross_checked,high
+Tunisia,TUN,19,FW,Firas Chaouat,Firas,Chaouat,CHAOUAT,"May 8, 1996",Club Africain,,30,6,cross_checked,high
+Tunisia,TUN,20,DF,Yan Valery,Yan,Valery,VALERY,"February 22, 1999",Young Boys,,22,0,cross_checked,high
+Tunisia,TUN,21,DF,Mohamed Amine Ben Hamida,Mohamed Amine Ben,Hamida,HAMIDA,"December 15, 1995",Espérance de Tunis,,13,0,cross_checked,high
+Tunisia,TUN,22,GK,Sabri Ben Hessen,Sabri Ben,Hessen,HESSEN,"June 13, 1996",Étoile du Sahel,,2,0,cross_checked,high
+Tunisia,TUN,23,DF,Moutaz Neffati,Moutaz,Neffati,NEFFATI,"September 4, 2004",IFK Norrköping,,5,0,cross_checked,high
+Tunisia,TUN,24,DF,Raed Chikhaoui,Raed,Chikhaoui,CHIKHAOUI,"June 9, 2004",US Monastir,,0,0,cross_checked,high
+Tunisia,TUN,25,MF,Anis Ben Slimane,Anis Ben,Slimane,SLIMANE,"March 16, 2001",Norwich City,,41,4,cross_checked,high
+Tunisia,TUN,26,MF,Sebastian Tounekti,Sebastian,Tounekti,TOUNEKTI,"July 13, 2002",Celtic,,12,1,cross_checked,high
+Belgium,BEL,1,GK,Thibaut Courtois,Thibaut,Courtois,COURTOIS,"May 11, 1992",Real Madrid,,109,0,cross_checked,high
+Belgium,BEL,2,DF,Zeno Debast,Zeno,Debast,DEBAST,"October 24, 2003",Sporting CP,,26,1,cross_checked,high
+Belgium,BEL,3,DF,Arthur Theate,Arthur,Theate,THEATE,"May 25, 2000",Eintracht Frankfurt,,33,1,cross_checked,high
+Belgium,BEL,4,DF,Brandon Mechele,Brandon,Mechele,MECHELE,"January 28, 1993",Club Brugge,,9,1,cross_checked,high
+Belgium,BEL,5,DF,Maxim De Cuyper,Maxim De,Cuyper,CUYPER,"December 22, 2000",Brighton & Hove Albion,,19,4,cross_checked,high
+Belgium,BEL,6,MF,Axel Witsel,Axel,Witsel,WITSEL,"January 12, 1989",Girona,,138,12,cross_checked,high
+Belgium,BEL,7,MF,Kevin De Bruyne,Kevin De,Bruyne,BRUYNE,"June 28, 1991",Napoli,,119,37,cross_checked,high
+Belgium,BEL,8,MF,Youri Tielemans,Youri,Tielemans,TIELEMANS,"May 7, 1997",Aston Villa,,85,13,cross_checked,high
+Belgium,BEL,9,FW,Romelu Lukaku,Romelu,Lukaku,LUKAKU,"May 13, 1993",Napoli,,126,90,cross_checked,high
+Belgium,BEL,10,FW,Leandro Trossard,Leandro,Trossard,TROSSARD,"December 4, 1994",Arsenal,,51,12,cross_checked,high
+Belgium,BEL,11,FW,Jérémy Doku,Jérémy,Doku,DOKU,"May 27, 2002",Manchester City,,43,7,cross_checked,high
+Belgium,BEL,12,GK,Senne Lammens,Senne,Lammens,LAMMENS,"July 7, 2002",Manchester United,,2,0,cross_checked,high
+Belgium,BEL,13,GK,Mike Penders,Mike,Penders,PENDERS,"July 31, 2005",Strasbourg,,0,0,cross_checked,high
+Belgium,BEL,14,FW,Dodi Lukébakio,Dodi,Lukébakio,LUKÉBAKIO,"September 24, 1997",Benfica,,30,6,cross_checked,high
+Belgium,BEL,15,DF,Thomas Meunier,Thomas,Meunier,MEUNIER,"September 12, 1991",Lille,,80,10,cross_checked,high
+Belgium,BEL,16,DF,Koni De Winter,Koni De,Winter,WINTER,"June 12, 2002",Milan,,8,0,cross_checked,high
+Belgium,BEL,17,FW,Charles De Ketelaere,Charles De,Ketelaere,KETELAERE,"March 10, 2001",Atalanta,,30,6,cross_checked,high
+Belgium,BEL,18,DF,Joaquin Seys,Joaquin,Seys,SEYS,"March 28, 2005",Club Brugge,,5,0,cross_checked,high
+Belgium,BEL,19,MF,Diego Moreira,Diego,Moreira,MOREIRA,"August 6, 2004",Strasbourg,,3,0,cross_checked,high
+Belgium,BEL,20,MF,Hans Vanaken,Hans,Vanaken,VANAKEN,"August 24, 1992",Club Brugge,,34,7,cross_checked,high
+Belgium,BEL,21,DF,Timothy Castagne,Timothy,Castagne,CASTAGNE,"December 5, 1995",Fulham,,63,2,cross_checked,high
+Belgium,BEL,22,MF,Alexis Saelemaekers,Alexis,Saelemaekers,SAELEMAEKERS,"June 27, 1999",Milan,,24,2,cross_checked,high
+Belgium,BEL,23,MF,Nicolas Raskin,Nicolas,Raskin,RASKIN,"February 23, 2001",Rangers,,13,2,cross_checked,high
+Belgium,BEL,24,MF,Amadou Onana,Amadou,Onana,ONANA,"August 16, 2001",Aston Villa,,29,1,cross_checked,high
+Belgium,BEL,25,DF,Nathan Ngoy,Nathan,Ngoy,NGOY,"June 10, 2003",Lille,,4,0,cross_checked,high
+Belgium,BEL,26,FW,Matias Fernandez-Pardo,Matias,Fernandez-Pardo,FERNANDEZ-PARDO,"February 3, 2005",Lille,,2,0,cross_checked,high
+Egypt,EGY,1,GK,Mohamed El Shenawy,Mohamed El,Shenawy,SHENAWY,"December 18, 1988",Al Ahly,,76,0,cross_checked,high
+Egypt,EGY,2,DF,Yasser Ibrahim,Yasser,Ibrahim,IBRAHIM,"February 10, 1993",Al Ahly,,17,1,cross_checked,high
+Egypt,EGY,3,DF,Mohamed Hany,Mohamed,Hany,HANY,"February 2, 1996",Al Ahly,,42,0,cross_checked,high
+Egypt,EGY,4,DF,Hossam Abdelmaguid,Hossam,Abdelmaguid,ABDELMAGUID,"April 30, 2001",Zamalek,,13,0,cross_checked,high
+Egypt,EGY,5,DF,Ramy Rabia,Ramy,Rabia,RABIA,"May 20, 1993",Al Ain,,44,5,cross_checked,high
+Egypt,EGY,6,DF,Mohamed Abdelmonem,Mohamed,Abdelmonem,ABDELMONEM,"February 1, 1999",Nice,,36,3,cross_checked,high
+Egypt,EGY,7,FW,Trézéguet,,Trézéguet,TRÉZÉGUET,"October 1, 1994",Al Ahly,,96,23,cross_checked,high
+Egypt,EGY,8,MF,Emam Ashour,Emam,Ashour,ASHOUR,"February 20, 1998",Al Ahly,,29,0,cross_checked,high
+Egypt,EGY,9,FW,Hamza Abdelkarim,Hamza,Abdelkarim,ABDELKARIM,"January 1, 2008",Barcelona B,,2,0,cross_checked,high
+Egypt,EGY,10,FW,Mohamed Salah,Mohamed,Salah,SALAH,"June 15, 1992",Liverpool,,116,67,cross_checked,high
+Egypt,EGY,11,MF,Mostafa Ziko,Mostafa,Ziko,ZIKO,"April 27, 1997",Pyramids,,2,2,cross_checked,high
+Egypt,EGY,12,FW,Haissem Hassan,Haissem,Hassan,HASSAN,"February 8, 2002",Oviedo,,4,0,cross_checked,high
+Egypt,EGY,13,DF,Ahmed Fatouh,Ahmed,Fatouh,FATOUH,"March 22, 1998",Zamalek,,39,1,cross_checked,high
+Egypt,EGY,14,MF,Hamdy Fathy,Hamdy,Fathy,FATHY,"September 29, 1994",Al-Wakrah,,63,3,cross_checked,high
+Egypt,EGY,15,DF,Karim Hafez,Karim,Hafez,HAFEZ,"March 12, 1996",Pyramids,,9,0,cross_checked,high
+Egypt,EGY,16,GK,El Mahdy Soliman,El Mahdy,Soliman,SOLIMAN,"June 8, 1987",Zamalek,,0,0,cross_checked,high
+Egypt,EGY,17,MF,Mohanad Lasheen,Mohanad,Lasheen,LASHEEN,"May 29, 1996",Pyramids,,23,0,cross_checked,high
+Egypt,EGY,18,MF,Nabil Emad,Nabil,Emad,EMAD,"April 6, 1996",Al-Najma,,12,0,cross_checked,high
+Egypt,EGY,19,MF,Marwan Attia,Marwan,Attia,ATTIA,"August 1, 1998",Al Ahly,,34,1,cross_checked,high
+Egypt,EGY,20,FW,Ibrahim Adel,Ibrahim,Adel,ADEL,"April 23, 2001",Nordsjælland,,24,3,cross_checked,high
+Egypt,EGY,21,MF,Mahmoud Saber,Mahmoud,Saber,SABER,"July 30, 2001",ZED,,15,1,cross_checked,high
+Egypt,EGY,22,FW,Omar Marmoush,Omar,Marmoush,MARMOUSH,"February 7, 1999",Manchester City,,50,11,cross_checked,high
+Egypt,EGY,23,GK,Mostafa Shobeir,Mostafa,Shobeir,SHOBEIR,"May 15, 2000",Al Ahly,,9,0,cross_checked,high
+Egypt,EGY,24,DF,Tarek Alaa,Tarek,Alaa,ALAA,"January 5, 2002",ZED,,3,0,cross_checked,high
+Egypt,EGY,25,FW,Zizo,,Zizo,ZIZO,"January 10, 1996",Al Ahly,,63,5,cross_checked,high
+Egypt,EGY,26,GK,Mohamed Alaa,Mohamed,Alaa,ALAA,"January 1, 1999",El Gouna,,0,0,cross_checked,high
+IR Iran,IRN,1,GK,Alireza Beiranvand,Alireza,Beiranvand,BEIRANVAND,"September 21, 1992",Tractor,,86,0,cross_checked,high
+IR Iran,IRN,2,DF,Saleh Hardani,Saleh,Hardani,HARDANI,"December 26, 1998",Esteghlal,,18,1,cross_checked,high
+IR Iran,IRN,3,DF,Ehsan Hajsafi,Ehsan,Hajsafi,HAJSAFI,"February 25, 1990",Sepahan,,146,7,cross_checked,high
+IR Iran,IRN,4,DF,Shojae Khalilzadeh,Shojae,Khalilzadeh,KHALILZADEH,"May 14, 1989",Tractor,,58,2,cross_checked,high
+IR Iran,IRN,5,DF,Milad Mohammadi,Milad,Mohammadi,MOHAMMADI,"September 29, 1993",Persepolis,,76,1,cross_checked,high
+IR Iran,IRN,6,MF,Saeid Ezatolahi,Saeid,Ezatolahi,EZATOLAHI,"October 1, 1996",Shabab Al Ahli,,83,2,cross_checked,high
+IR Iran,IRN,7,MF,Alireza Jahanbakhsh,Alireza,Jahanbakhsh,JAHANBAKHSH,"August 11, 1993",Dender,,98,17,cross_checked,high
+IR Iran,IRN,8,MF,Mohammad Mohebi,Mohammad,Mohebi,MOHEBI,"December 20, 1998",Rostov,,36,14,cross_checked,high
+IR Iran,IRN,9,FW,Mehdi Taremi,Mehdi,Taremi,TAREMI,"July 18, 1992",Olympiacos,,105,60,cross_checked,high
+IR Iran,IRN,10,FW,Mehdi Ghayedi,Mehdi,Ghayedi,GHAYEDI,"December 5, 1998",Al Nasr,,30,10,cross_checked,high
+IR Iran,IRN,11,FW,Ali Alipour,Ali,Alipour,ALIPOUR,"November 11, 1995",Persepolis,,14,1,cross_checked,high
+IR Iran,IRN,12,GK,Payam Niazmand,Payam,Niazmand,NIAZMAND,"April 6, 1995",Persepolis,,15,0,cross_checked,high
+IR Iran,IRN,13,DF,Hossein Kanaanizadegan,Hossein,Kanaanizadegan,KANAANIZADEGAN,"March 23, 1994",Persepolis,,65,6,cross_checked,high
+IR Iran,IRN,14,MF,Saman Ghoddos,Saman,Ghoddos,GHODDOS,"September 6, 1993",Kalba,,68,3,cross_checked,high
+IR Iran,IRN,15,MF,Rouzbeh Cheshmi,Rouzbeh,Cheshmi,CHESHMI,"July 24, 1993",Esteghlal,,40,3,cross_checked,high
+IR Iran,IRN,16,MF,Mehdi Torabi,Mehdi,Torabi,TORABI,"September 10, 1994",Tractor,,52,7,cross_checked,high
+IR Iran,IRN,17,DF,Aria Yousefi,Aria,Yousefi,YOUSEFI,"April 22, 2002",Sepahan,,14,1,cross_checked,high
+IR Iran,IRN,18,FW,Amirhossein Hosseinzadeh,Amirhossein,Hosseinzadeh,HOSSEINZADEH,"October 30, 2000",Tractor,,18,5,cross_checked,high
+IR Iran,IRN,19,DF,Ali Nemati,Ali,Nemati,NEMATI,"February 8, 1996",Foolad,,17,0,cross_checked,high
+IR Iran,IRN,20,FW,Shahriyar Moghanlou,Shahriyar,Moghanlou,MOGHANLOU,"December 21, 1994",Kalba,,21,2,cross_checked,high
+IR Iran,IRN,21,MF,Mohammad Ghorbani,Mohammad,Ghorbani,GHORBANI,"October 7, 2001",Al Wahda,,16,0,cross_checked,high
+IR Iran,IRN,22,GK,Hossein Hosseini,Hossein,Hosseini,HOSSEINI,"June 30, 1992",Sepahan,,13,0,cross_checked,high
+IR Iran,IRN,23,DF,Ramin Rezaeian,Ramin,Rezaeian,REZAEIAN,"March 21, 1990",Foolad,,74,8,cross_checked,high
+IR Iran,IRN,24,FW,Dennis Eckert,Dennis,Eckert,ECKERT,"January 9, 1997",Standard Liège,,0,0,cross_checked,high
+IR Iran,IRN,25,DF,Danial Eiri,Danial,Eiri,EIRI,"October 26, 2003",Malavan,,0,0,cross_checked,high
+IR Iran,IRN,26,MF,Amirmohammad Razzaghinia,Amirmohammad,Razzaghinia,RAZZAGHINIA,"April 11, 2006",Esteghlal,,4,0,cross_checked,high
+New Zealand,NZL,1,GK,Max Crocombe,Max,Crocombe,CROCOMBE,"August 12, 1993",Millwall,,24,0,cross_checked,high
+New Zealand,NZL,2,DF,Tim Payne,Tim,Payne,PAYNE,"January 10, 1994",Wellington Phoenix,,51,3,cross_checked,high
+New Zealand,NZL,3,DF,Francis de Vries,Francis de,Vries,VRIES,"November 28, 1994",Auckland FC,,20,1,cross_checked,high
+New Zealand,NZL,4,DF,Tyler Bindon,Tyler,Bindon,BINDON,"January 27, 2005",Sheffield United,,25,3,cross_checked,high
+New Zealand,NZL,5,DF,Michael Boxall,Michael,Boxall,BOXALL,"August 18, 1988",Minnesota United FC,,63,1,cross_checked,high
+New Zealand,NZL,6,MF,Joe Bell,Joe,Bell,BELL,"April 27, 1999",Viking,,32,1,cross_checked,high
+New Zealand,NZL,7,MF,Matthew Garbett,Matthew,Garbett,GARBETT,"April 13, 2002",Peterborough United,,37,5,cross_checked,high
+New Zealand,NZL,8,MF,Marko Stamenić,Marko,Stamenić,STAMENIĆ,"February 19, 2002",Swansea City,,39,3,cross_checked,high
+New Zealand,NZL,9,FW,Chris Wood,Chris,Wood,WOOD,"December 7, 1991",Nottingham Forest,,90,45,cross_checked,high
+New Zealand,NZL,10,MF,Sarpreet Singh,Sarpreet,Singh,SINGH,"February 20, 1999",Wellington Phoenix,,28,3,cross_checked,high
+New Zealand,NZL,11,MF,Elijah Just,Elijah,Just,JUST,"May 1, 2000",Motherwell,,44,9,cross_checked,high
+New Zealand,NZL,12,GK,Alex Paulsen,Alex,Paulsen,PAULSEN,"July 4, 2002",Lechia Gdańsk,,8,0,cross_checked,high
+New Zealand,NZL,13,DF,Liberato Cacace,Liberato,Cacace,CACACE,"September 27, 2000",Wrexham,,37,1,cross_checked,high
+New Zealand,NZL,14,MF,Alex Rufer,Alex,Rufer,RUFER,"June 12, 1996",Wellington Phoenix,,26,0,cross_checked,high
+New Zealand,NZL,15,DF,Nando Pijnaker,Nando,Pijnaker,PIJNAKER,"February 25, 1999",Auckland FC,,25,0,cross_checked,high
+New Zealand,NZL,16,DF,Finn Surman,Finn,Surman,SURMAN,"September 23, 2003",Portland Timbers,,19,2,cross_checked,high
+New Zealand,NZL,17,FW,Kosta Barbarouses,Kosta,Barbarouses,BARBAROUSES,"February 19, 1990",Western Sydney Wanderers,,76,10,cross_checked,high
+New Zealand,NZL,18,FW,Ben Waine,Ben,Waine,WAINE,"June 11, 2001",Port Vale,,31,9,cross_checked,high
+New Zealand,NZL,19,MF,Ben Old,Ben,Old,OLD,"August 13, 2002",Saint-Étienne,,24,2,cross_checked,high
+New Zealand,NZL,20,MF,Callum McCowatt,Callum,McCowatt,MCCOWATT,"April 30, 1999",Silkeborg,,32,4,cross_checked,high
+New Zealand,NZL,21,FW,Jesse Randall,Jesse,Randall,RANDALL,"August 19, 2002",Auckland FC,,11,2,cross_checked,high
+New Zealand,NZL,22,GK,Michael Woud,Michael,Woud,WOUD,"January 16, 1999",Auckland FC,,6,0,cross_checked,high
+New Zealand,NZL,23,MF,Ryan Thomas,Ryan,Thomas,THOMAS,"December 20, 1994",PEC Zwolle,,25,3,cross_checked,high
+New Zealand,NZL,24,DF,Callan Elliot,Callan,Elliot,ELLIOT,"July 7, 1999",Auckland FC,,11,0,cross_checked,high
+New Zealand,NZL,25,MF,Lachlan Bayliss,Lachlan,Bayliss,BAYLISS,"July 24, 2002",Newcastle Jets,,4,0,cross_checked,high
+New Zealand,NZL,26,DF,Tommy Smith,Tommy,Smith,SMITH,"March 31, 1990",Braintree Town,,56,2,cross_checked,high
+Cape Verde,CPV,1,GK,Vozinha,,Vozinha,VOZINHA,"June 3, 1986",Chaves,,90,0,cross_checked,high
+Cape Verde,CPV,2,DF,Stopira,,Stopira,STOPIRA,"May 20, 1988",Torreense,,61,4,cross_checked,high
+Cape Verde,CPV,3,DF,Diney,,Diney,DINEY,"January 17, 1995",Al Bataeh,,32,2,cross_checked,high
+Cape Verde,CPV,4,DF,Roberto Lopes,Roberto,Lopes,LOPES,"June 17, 1992",Shamrock Rovers,,45,0,cross_checked,high
+Cape Verde,CPV,5,DF,Logan Costa,Logan,Costa,COSTA,"April 1, 2001",Villarreal,,28,0,cross_checked,high
+Cape Verde,CPV,6,MF,Kevin Pina,Kevin,Pina,PINA,"January 27, 1997",Krasnodar,,31,3,cross_checked,high
+Cape Verde,CPV,7,MF,Jovane Cabral,Jovane,Cabral,CABRAL,"June 14, 1998",Estrela Amadora,,29,3,cross_checked,high
+Cape Verde,CPV,8,MF,João Paulo,João,Paulo,PAULO,"May 26, 1998",FCSB,,41,1,cross_checked,high
+Cape Verde,CPV,9,FW,Gilson Benchimol,Gilson,Benchimol,BENCHIMOL,"December 29, 2001",Akron Tolyatti,,21,6,cross_checked,high
+Cape Verde,CPV,10,MF,Jamiro Monteiro,Jamiro,Monteiro,MONTEIRO,"November 23, 1993",PEC Zwolle,,55,5,cross_checked,high
+Cape Verde,CPV,11,MF,Garry Rodrigues,Garry,Rodrigues,RODRIGUES,"November 27, 1990",Apollon Limassol,,61,10,cross_checked,high
+Cape Verde,CPV,12,GK,Márcio Rosa,Márcio,Rosa,ROSA,"February 23, 1997",Montana,,11,0,cross_checked,high
+Cape Verde,CPV,13,DF,Sidny Lopes Cabral,Sidny Lopes,Cabral,CABRAL,"September 18, 2002",Benfica,,11,3,cross_checked,high
+Cape Verde,CPV,14,MF,Deroy Duarte,Deroy,Duarte,DUARTE,"July 4, 1999",Ludogorets Razgrad,,33,0,cross_checked,high
+Cape Verde,CPV,15,MF,Laros Duarte,Laros,Duarte,DUARTE,"February 28, 1997",Puskás Akadémia,,20,1,cross_checked,high
+Cape Verde,CPV,16,MF,Yannick Semedo,Yannick,Semedo,SEMEDO,"December 29, 1995",Farense,,11,1,cross_checked,high
+Cape Verde,CPV,17,MF,Willy Semedo,Willy,Semedo,SEMEDO,"April 27, 1994",Omonia,,38,3,cross_checked,high
+Cape Verde,CPV,18,MF,Telmo Arcanjo,Telmo,Arcanjo,ARCANJO,"June 21, 2001",Vitória de Guimarães,,16,1,cross_checked,high
+Cape Verde,CPV,19,FW,Dailon Livramento,Dailon,Livramento,LIVRAMENTO,"May 4, 2001",Casa Pia,,22,7,cross_checked,high
+Cape Verde,CPV,20,FW,Ryan Mendes,Ryan,Mendes,MENDES,"January 8, 1990",Iğdır,,98,22,cross_checked,high
+Cape Verde,CPV,21,MF,Nuno da Costa,Nuno da,Costa,COSTA,"February 10, 1991",İstanbul Başakşehir,,9,2,cross_checked,high
+Cape Verde,CPV,22,DF,Steven Moreira,Steven,Moreira,MOREIRA,"August 13, 1994",Columbus Crew,,20,0,cross_checked,high
+Cape Verde,CPV,23,GK,CJ dos Santos,CJ dos,Santos,SANTOS,"August 24, 2000",San Diego FC,,1,0,cross_checked,high
+Cape Verde,CPV,24,DF,Wagner Pina,Wagner,Pina,PINA,"November 3, 2002",Trabzonspor,,14,0,cross_checked,high
+Cape Verde,CPV,25,DF,Kelvin Pires,Kelvin,Pires,PIRES,"June 5, 2000",SJK,,6,1,cross_checked,high
+Cape Verde,CPV,26,MF,Hélio Varela,Hélio,Varela,VARELA,"May 3, 2002",Maccabi Tel Aviv,,21,0,cross_checked,high
+Saudi Arabia,KSA,1,GK,Nawaf Al-Aqidi,Nawaf,Al-Aqidi,AL-AQIDI,"May 10, 2000",Al-Nassr,,24,0,cross_checked,high
+Saudi Arabia,KSA,2,DF,Ali Majrashi,Ali,Majrashi,MAJRASHI,"October 2, 1999",Al-Ahli,,21,0,cross_checked,high
+Saudi Arabia,KSA,3,DF,Ali Lajami,Ali,Lajami,LAJAMI,"April 24, 1996",Al-Hilal,,24,1,cross_checked,high
+Saudi Arabia,KSA,4,DF,Abdulelah Al-Amri,Abdulelah,Al-Amri,AL-AMRI,"January 15, 1997",Al-Nassr,,44,1,cross_checked,high
+Saudi Arabia,KSA,5,DF,Hassan Al-Tambakti,Hassan,Al-Tambakti,AL-TAMBAKTI,"February 9, 1999",Al-Hilal,,54,1,cross_checked,high
+Saudi Arabia,KSA,6,MF,Nasser Al-Dawsari,Nasser,Al-Dawsari,AL-DAWSARI,"December 19, 1998",Al-Hilal,,47,1,cross_checked,high
+Saudi Arabia,KSA,7,MF,Musab Al-Juwayr,Musab,Al-Juwayr,AL-JUWAYR,"June 20, 2003",Al-Qadsiah,,37,6,cross_checked,high
+Saudi Arabia,KSA,8,FW,Ayman Yahya,Ayman,Yahya,YAHYA,"May 14, 2001",Al-Nassr,,26,0,cross_checked,high
+Saudi Arabia,KSA,9,FW,Firas Al-Buraikan,Firas,Al-Buraikan,AL-BURAIKAN,"May 14, 2000",Al-Ahli,,72,16,cross_checked,high
+Saudi Arabia,KSA,10,FW,Salem Al-Dawsari,Salem,Al-Dawsari,AL-DAWSARI,"August 19, 1991",Al-Hilal,,111,27,cross_checked,high
+Saudi Arabia,KSA,11,FW,Saleh Al-Shehri,Saleh,Al-Shehri,AL-SHEHRI,"November 1, 1993",Al-Ittihad,,59,17,cross_checked,high
+Saudi Arabia,KSA,12,DF,Saud Abdulhamid,Saud,Abdulhamid,ABDULHAMID,"July 18, 1999",Lens,,55,1,cross_checked,high
+Saudi Arabia,KSA,13,DF,Nawaf Boushal,Nawaf,Boushal,BOUSHAL,"September 16, 1999",Al-Nassr,,27,0,cross_checked,high
+Saudi Arabia,KSA,14,DF,Hassan Kadesh,Hassan,Kadesh,KADESH,"September 26, 1992",Al-Ittihad,,21,2,cross_checked,high
+Saudi Arabia,KSA,15,MF,Abdullah Al-Khaibari,Abdullah,Al-Khaibari,AL-KHAIBARI,"August 16, 1996",Al-Nassr,,42,0,cross_checked,high
+Saudi Arabia,KSA,16,MF,Ziyad Al-Johani,Ziyad,Al-Johani,AL-JOHANI,"November 11, 2001",Al-Ahli,,12,0,cross_checked,high
+Saudi Arabia,KSA,17,FW,Khalid Al-Ghannam,Khalid,Al-Ghannam,AL-GHANNAM,"November 8, 2000",Al-Ettifaq,,7,0,cross_checked,high
+Saudi Arabia,KSA,18,MF,Alaa Al-Hejji,Alaa,Al-Hejji,AL-HEJJI,"December 3, 1995",Neom,,3,0,cross_checked,high
+Saudi Arabia,KSA,19,FW,Abdullah Al-Hamdan,Abdullah,Al-Hamdan,AL-HAMDAN,"September 13, 1999",Al-Nassr,,52,13,cross_checked,high
+Saudi Arabia,KSA,20,FW,Sultan Mandash,Sultan,Mandash,MANDASH,"October 17, 1994",Al-Hilal,,7,2,cross_checked,high
+Saudi Arabia,KSA,21,GK,Mohammed Al-Owais,Mohammed,Al-Owais,AL-OWAIS,"October 10, 1991",Al-Ula,,65,0,cross_checked,high
+Saudi Arabia,KSA,22,GK,Ahmed Al-Kassar,Ahmed,Al-Kassar,AL-KASSAR,"May 8, 1991",Al-Qadsiah,,9,0,cross_checked,high
+Saudi Arabia,KSA,23,MF,Mohamed Kanno,Mohamed,Kanno,KANNO,"September 22, 1994",Al-Hilal,,79,8,cross_checked,high
+Saudi Arabia,KSA,24,DF,Moteb Al-Harbi,Moteb,Al-Harbi,AL-HARBI,"February 20, 2000",Al-Hilal,,13,0,cross_checked,high
+Saudi Arabia,KSA,25,DF,Jehad Thakri,Jehad,Thakri,THAKRI,"July 21, 2001",Al-Qadsiah,,8,0,cross_checked,high
+Saudi Arabia,KSA,26,DF,Mohammed Abu Al-Shamat,Mohammed Abu,Al-Shamat,AL-SHAMAT,"August 11, 2002",Al-Qadsiah,,8,0,cross_checked,high
+Spain,ESP,1,GK,David Raya,David,Raya,RAYA,"September 15, 1995",Arsenal,,13,0,cross_checked,high
+Spain,ESP,2,DF,Marc Pubill,Marc,Pubill,PUBILL,"June 20, 2003",Atlético Madrid,,2,0,cross_checked,high
+Spain,ESP,3,DF,Álex Grimaldo,Álex,Grimaldo,GRIMALDO,"September 20, 1995",Bayer Leverkusen,,14,0,cross_checked,high
+Spain,ESP,4,DF,Eric García,Eric,García,GARCÍA,"January 9, 2001",Barcelona,,21,0,cross_checked,high
+Spain,ESP,5,DF,Marcos Llorente,Marcos,Llorente,LLORENTE,"January 30, 1995",Atlético Madrid,,24,0,cross_checked,high
+Spain,ESP,6,MF,Mikel Merino,Mikel,Merino,MERINO,"June 22, 1996",Arsenal,,43,10,cross_checked,high
+Spain,ESP,7,FW,Ferran Torres,Ferran,Torres,TORRES,"February 29, 2000",Barcelona,,57,24,cross_checked,high
+Spain,ESP,8,MF,Fabián Ruiz,Fabián,Ruiz,RUIZ,"April 3, 1996",Paris Saint-Germain,,42,6,cross_checked,high
+Spain,ESP,9,MF,Gavi,,Gavi,GAVI,"August 5, 2004",Barcelona,,30,5,cross_checked,high
+Spain,ESP,10,FW,Dani Olmo,Dani,Olmo,OLMO,"May 7, 1998",Barcelona,,50,12,cross_checked,high
+Spain,ESP,11,FW,Yéremy Pino,Yéremy,Pino,PINO,"October 20, 2002",Crystal Palace,,23,4,cross_checked,high
+Spain,ESP,12,DF,Pedro Porro,Pedro,Porro,PORRO,"September 13, 1999",Tottenham Hotspur,,18,0,cross_checked,high
+Spain,ESP,13,GK,Joan Garcia,Joan,Garcia,GARCIA,"May 4, 2001",Barcelona,,2,0,cross_checked,high
+Spain,ESP,14,DF,Aymeric Laporte,Aymeric,Laporte,LAPORTE,"May 27, 1994",Athletic Bilbao,,46,2,cross_checked,high
+Spain,ESP,15,MF,Álex Baena,Álex,Baena,BAENA,"July 20, 2001",Atlético Madrid,,17,2,cross_checked,high
+Spain,ESP,16,MF,Rodri,,Rodri,RODRI,"June 22, 1996",Manchester City,,62,4,cross_checked,high
+Spain,ESP,17,FW,Nico Williams,Nico,Williams,WILLIAMS,"July 12, 2002",Athletic Bilbao,,30,6,cross_checked,high
+Spain,ESP,18,MF,Martín Zubimendi,Martín,Zubimendi,ZUBIMENDI,"February 2, 1999",Arsenal,,26,3,cross_checked,high
+Spain,ESP,19,FW,Lamine Yamal,Lamine,Yamal,YAMAL,"July 13, 2007",Barcelona,,25,6,cross_checked,high
+Spain,ESP,20,MF,Pedri,,Pedri,PEDRI,"November 25, 2002",Barcelona,,41,6,cross_checked,high
+Spain,ESP,21,FW,Mikel Oyarzabal,Mikel,Oyarzabal,OYARZABAL,"April 21, 1997",Real Sociedad,,53,25,cross_checked,high
+Spain,ESP,22,DF,Pau Cubarsí,Pau,Cubarsí,CUBARSÍ,"January 22, 2007",Barcelona,,12,0,cross_checked,high
+Spain,ESP,23,GK,Unai Simón,Unai,Simón,SIMÓN,"June 11, 1997",Athletic Bilbao,,58,0,cross_checked,high
+Spain,ESP,24,DF,Marc Cucurella,Marc,Cucurella,CUCURELLA,"July 22, 1998",Chelsea,,24,1,cross_checked,high
+Spain,ESP,25,FW,Víctor Muñoz,Víctor,Muñoz,MUÑOZ,"July 13, 2003",Osasuna,,2,1,cross_checked,high
+Spain,ESP,26,FW,Borja Iglesias,Borja,Iglesias,IGLESIAS,"January 17, 1993",Celta Vigo,,8,0,cross_checked,high
+Uruguay,URU,1,GK,Sergio Rochet,Sergio,Rochet,ROCHET,"March 23, 1993",Internacional,,35,0,cross_checked,high
+Uruguay,URU,2,DF,José María Giménez,José María,Giménez,GIMÉNEZ,"January 20, 1995",Atlético Madrid,,99,8,cross_checked,high
+Uruguay,URU,3,DF,Sebastián Cáceres,Sebastián,Cáceres,CÁCERES,"August 18, 1999",América,,24,0,cross_checked,high
+Uruguay,URU,4,DF,Ronald Araújo,Ronald,Araújo,ARAÚJO,"March 7, 1999",Barcelona,,27,1,cross_checked,high
+Uruguay,URU,5,MF,Manuel Ugarte,Manuel,Ugarte,UGARTE,"April 11, 2001",Manchester United,,36,1,cross_checked,high
+Uruguay,URU,6,MF,Rodrigo Bentancur,Rodrigo,Bentancur,BENTANCUR,"June 25, 1997",Tottenham Hotspur,,74,3,cross_checked,high
+Uruguay,URU,7,MF,Nicolás de la Cruz,Nicolás de la,Cruz,CRUZ,"June 1, 1997",Flamengo,,34,5,cross_checked,high
+Uruguay,URU,8,MF,Federico Valverde,Federico,Valverde,VALVERDE,"July 22, 1998",Real Madrid,,73,9,cross_checked,high
+Uruguay,URU,9,FW,Darwin Núñez,Darwin,Núñez,NÚÑEZ,"June 24, 1999",Al-Hilal,,38,13,cross_checked,high
+Uruguay,URU,10,MF,Giorgian de Arrascaeta,Giorgian de,Arrascaeta,ARRASCAETA,"June 1, 1994",Flamengo,,60,13,cross_checked,high
+Uruguay,URU,11,FW,Facundo Pellistri,Facundo,Pellistri,PELLISTRI,"December 20, 2001",Panathinaikos,,39,2,cross_checked,high
+Uruguay,URU,12,GK,Santiago Mele,Santiago,Mele,MELE,"September 6, 1997",Monterrey,,8,0,cross_checked,high
+Uruguay,URU,13,DF,Guillermo Varela,Guillermo,Varela,VARELA,"March 24, 1993",Flamengo,,28,0,cross_checked,high
+Uruguay,URU,14,MF,Agustín Canobbio,Agustín,Canobbio,CANOBBIO,"October 1, 1998",Fluminense,,15,1,cross_checked,high
+Uruguay,URU,15,MF,Emiliano Martínez,Emiliano,Martínez,MARTÍNEZ,"August 17, 1999",Palmeiras,,10,0,cross_checked,high
+Uruguay,URU,16,DF,Mathías Olivera,Mathías,Olivera,OLIVERA,"October 31, 1997",Napoli,,35,2,cross_checked,high
+Uruguay,URU,17,DF,Matías Viña,Matías,Viña,VIÑA,"November 9, 1997",River Plate,,43,1,cross_checked,high
+Uruguay,URU,18,FW,Brian Rodríguez,Brian,Rodríguez,RODRÍGUEZ,"May 20, 2000",América,,32,4,cross_checked,high
+Uruguay,URU,19,FW,Rodrigo Aguirre,Rodrigo,Aguirre,AGUIRRE,"October 1, 1994",UANL,,10,3,cross_checked,high
+Uruguay,URU,20,MF,Maximiliano Araújo,Maximiliano,Araújo,ARAÚJO,"February 15, 2000",Sporting CP,,28,3,cross_checked,high
+Uruguay,URU,21,FW,Federico Viñas,Federico,Viñas,VIÑAS,"June 30, 1998",Oviedo,,11,2,cross_checked,high
+Uruguay,URU,22,MF,Joaquín Piquerez,Joaquín,Piquerez,PIQUEREZ,"August 24, 1998",Palmeiras,,19,0,cross_checked,high
+Uruguay,URU,23,GK,Fernando Muslera,Fernando,Muslera,MUSLERA,"June 16, 1986",Estudiantes,,134,0,cross_checked,high
+Uruguay,URU,24,DF,Santiago Bueno,Santiago,Bueno,BUENO,"November 9, 1998",Wolverhampton Wanderers,,8,0,cross_checked,high
+Uruguay,URU,25,MF,Juan Manuel Sanabria,Juan Manuel,Sanabria,SANABRIA,"March 29, 2000",Real Salt Lake,,5,1,cross_checked,high
+Uruguay,URU,26,MF,Rodrigo Zalazar,Rodrigo,Zalazar,ZALAZAR,"August 12, 1999",Braga,,8,2,cross_checked,high
+France,FRA,1,GK,Brice Samba,Brice,Samba,SAMBA,"April 25, 1994",Rennes,,4,0,cross_checked,high
+France,FRA,2,DF,Malo Gusto,Malo,Gusto,GUSTO,"May 19, 2003",Chelsea,,11,0,cross_checked,high
+France,FRA,3,DF,Lucas Digne,Lucas,Digne,DIGNE,"July 20, 1993",Aston Villa,,58,0,cross_checked,high
+France,FRA,4,DF,Dayot Upamecano,Dayot,Upamecano,UPAMECANO,"October 27, 1998",Bayern Munich,,38,2,cross_checked,high
+France,FRA,5,DF,Jules Koundé,Jules,Koundé,KOUNDÉ,"November 12, 1998",Barcelona,,48,0,cross_checked,high
+France,FRA,6,MF,Manu Koné,Manu,Koné,KONÉ,"May 17, 2001",Roma,,14,0,cross_checked,high
+France,FRA,7,FW,Ousmane Dembélé,Ousmane,Dembélé,DEMBÉLÉ,"May 15, 1997",Paris Saint-Germain,,59,7,cross_checked,high
+France,FRA,8,MF,Aurélien Tchouaméni,Aurélien,Tchouaméni,TCHOUAMÉNI,"January 27, 2000",Real Madrid,,46,3,cross_checked,high
+France,FRA,9,FW,Marcus Thuram,Marcus,Thuram,THURAM,"August 6, 1997",Inter Milan,,34,3,cross_checked,high
+France,FRA,10,FW,Kylian Mbappé,Kylian,Mbappé,MBAPPÉ,"December 20, 1998",Real Madrid,,98,56,cross_checked,high
+France,FRA,11,FW,Michael Olise,Michael,Olise,OLISE,"December 12, 2001",Bayern Munich,,17,7,cross_checked,high
+France,FRA,12,FW,Bradley Barcola,Bradley,Barcola,BARCOLA,"September 2, 2002",Paris Saint-Germain,,20,3,cross_checked,high
+France,FRA,13,MF,N'Golo Kanté,N'Golo,Kanté,KANTÉ,"March 29, 1991",Fenerbahçe,,69,2,cross_checked,high
+France,FRA,14,MF,Adrien Rabiot,Adrien,Rabiot,RABIOT,"April 3, 1995",Milan,,59,7,cross_checked,high
+France,FRA,15,DF,Ibrahima Konaté,Ibrahima,Konaté,KONATÉ,"May 25, 1999",Liverpool,,28,0,cross_checked,high
+France,FRA,16,GK,Mike Maignan,Mike,Maignan,MAIGNAN,"July 3, 1995",Milan,,40,0,cross_checked,high
+France,FRA,17,DF,William Saliba,William,Saliba,SALIBA,"March 24, 2001",Arsenal,,32,0,cross_checked,high
+France,FRA,18,MF,Warren Zaïre-Emery,Warren,Zaïre-Emery,ZAÏRE-EMERY,"March 8, 2006",Paris Saint-Germain,,11,1,cross_checked,high
+France,FRA,19,DF,Théo Hernandez,Théo,Hernandez,HERNANDEZ,"October 6, 1997",Al-Hilal,,44,2,cross_checked,high
+France,FRA,20,FW,Désiré Doué,Désiré,Doué,DOUÉ,"June 3, 2005",Paris Saint-Germain,,7,2,cross_checked,high
+France,FRA,21,DF,Lucas Hernandez,Lucas,Hernandez,HERNANDEZ,"February 14, 1996",Paris Saint-Germain,,42,0,cross_checked,high
+France,FRA,22,FW,Jean-Philippe Mateta,Jean-Philippe,Mateta,MATETA,"June 28, 1997",Crystal Palace,,4,2,cross_checked,high
+France,FRA,23,GK,Robin Risser,Robin,Risser,RISSER,"December 2, 2004",Lens,,0,0,cross_checked,high
+France,FRA,24,MF,Rayan Cherki,Rayan,Cherki,CHERKI,"August 17, 2003",Manchester City,,7,2,cross_checked,high
+France,FRA,25,MF,Maghnes Akliouche,Maghnes,Akliouche,AKLIOUCHE,"February 25, 2002",Monaco,,9,1,cross_checked,high
+France,FRA,26,DF,Maxence Lacroix,Maxence,Lacroix,LACROIX,"April 6, 2000",Crystal Palace,,4,0,cross_checked,high
+Iraq,IRQ,1,GK,Fahad Talib,Fahad,Talib,TALIB,"October 21, 1994",Al-Talaba,,21,0,cross_checked,high
+Iraq,IRQ,2,DF,Rebin Sulaka,Rebin,Sulaka,SULAKA,"April 12, 1992",Port,,56,1,cross_checked,high
+Iraq,IRQ,3,DF,Hussein Ali,Hussein,Ali,ALI,"March 1, 2002",Pogoń Szczecin,,27,1,cross_checked,high
+Iraq,IRQ,4,DF,Zaid Tahseen,Zaid,Tahseen,TAHSEEN,"January 29, 2001",Pakhtakor,,28,1,cross_checked,high
+Iraq,IRQ,5,DF,Akam Hashim,Akam,Hashim,HASHIM,"August 16, 1998",Al-Zawraa,,14,1,cross_checked,high
+Iraq,IRQ,6,DF,Manaf Younis,Manaf,Younis,YOUNIS,"November 16, 1996",Al-Shorta,,34,1,cross_checked,high
+Iraq,IRQ,7,MF,Youssef Amyn,Youssef,Amyn,AMYN,"August 21, 2003",AEK Larnaca,,27,2,cross_checked,high
+Iraq,IRQ,8,MF,Ibrahim Bayesh,Ibrahim,Bayesh,BAYESH,"May 1, 2000",Al Dhafra,,76,8,cross_checked,high
+Iraq,IRQ,9,FW,Ali Al-Hamadi,Ali,Al-Hamadi,AL-HAMADI,"March 1, 2002",Luton Town,,20,5,cross_checked,high
+Iraq,IRQ,10,FW,Mohanad Ali,Mohanad,Ali,ALI,"June 20, 2000",Dibba,,72,27,cross_checked,high
+Iraq,IRQ,11,FW,Ahmed Qasem,Ahmed,Qasem,QASEM,"July 12, 2003",Nashville SC,,3,0,cross_checked,high
+Iraq,IRQ,12,GK,Jalal Hassan,Jalal,Hassan,HASSAN,"May 18, 1991",Al-Zawraa,,102,0,cross_checked,high
+Iraq,IRQ,13,FW,Ali Yousif,Ali,Yousif,YOUSIF,"January 19, 1996",Al-Talaba,,7,1,cross_checked,high
+Iraq,IRQ,14,MF,Zidane Iqbal,Zidane,Iqbal,IQBAL,"April 27, 2003",Utrecht,,25,2,cross_checked,high
+Iraq,IRQ,15,DF,Ahmed Maknzi,Ahmed,Maknzi,MAKNZI,"September 24, 2001",Al-Karma,,7,0,cross_checked,high
+Iraq,IRQ,16,MF,Amir Al-Ammari,Amir,Al-Ammari,AL-AMMARI,"July 27, 1997",Cracovia,,51,3,cross_checked,high
+Iraq,IRQ,17,FW,Ali Jasim,Ali,Jasim,JASIM,"January 20, 2004",Al-Najma,,36,2,cross_checked,high
+Iraq,IRQ,18,FW,Aymen Hussein,Aymen,Hussein,HUSSEIN,"March 22, 1996",Al-Karma,,95,33,cross_checked,high
+Iraq,IRQ,19,MF,Kevin Yakob,Kevin,Yakob,YAKOB,"October 10, 2000",AGF,,9,0,cross_checked,high
+Iraq,IRQ,20,MF,Aimar Sher,Aimar,Sher,SHER,"December 20, 2002",Sarpsborg 08,,7,0,cross_checked,high
+Iraq,IRQ,21,FW,Marko Farji,Marko,Farji,FARJI,"March 16, 2004",Venezia,,12,0,cross_checked,high
+Iraq,IRQ,22,GK,Ahmed Basil,Ahmed,Basil,BASIL,"August 19, 1996",Al-Shorta,,16,0,cross_checked,high
+Iraq,IRQ,23,DF,Merchas Doski,Merchas,Doski,DOSKI,"December 7, 1999",Viktoria Plzeň,,31,1,cross_checked,high
+Iraq,IRQ,24,MF,Zaid Ismail,Zaid,Ismail,ISMAIL,"January 3, 2002",Al-Talaba,,6,0,cross_checked,high
+Iraq,IRQ,25,DF,Mustafa Saadoon,Mustafa,Saadoon,SAADOON,"May 25, 2001",Al-Shorta,,17,0,cross_checked,high
+Iraq,IRQ,26,DF,Frans Putros,Frans,Putros,PUTROS,"July 14, 1993",Persib,,28,0,cross_checked,high
+Norway,NOR,1,GK,Ørjan Nyland,Ørjan,Nyland,NYLAND,"September 10, 1990",Sevilla,,71,0,cross_checked,high
+Norway,NOR,2,MF,Morten Thorsby,Morten,Thorsby,THORSBY,"May 5, 1996",Cremonese,,31,0,cross_checked,high
+Norway,NOR,3,DF,Kristoffer Ajer,Kristoffer,Ajer,AJER,"April 17, 1998",Brentford,,52,2,cross_checked,high
+Norway,NOR,4,DF,Leo Østigård,Leo,Østigård,ØSTIGÅRD,"November 28, 1999",Genoa,,38,1,cross_checked,high
+Norway,NOR,5,DF,David Møller Wolfe,David Møller,Wolfe,WOLFE,"April 23, 2002",Wolverhampton Wanderers,,22,1,cross_checked,high
+Norway,NOR,6,MF,Patrick Berg,Patrick,Berg,BERG,"November 24, 1997",Bodø/Glimt,,43,0,cross_checked,high
+Norway,NOR,7,FW,Alexander Sørloth,Alexander,Sørloth,SØRLOTH,"December 5, 1995",Atlético Madrid,,72,26,cross_checked,high
+Norway,NOR,8,MF,Sander Berge,Sander,Berge,BERGE,"February 14, 1998",Fulham,,66,1,cross_checked,high
+Norway,NOR,9,FW,Erling Haaland,Erling,Haaland,HAALAND,"July 21, 2000",Manchester City,,50,55,cross_checked,high
+Norway,NOR,10,MF,Martin Ødegaard,Martin,Ødegaard,ØDEGAARD,"December 17, 1998",Arsenal,,68,5,cross_checked,high
+Norway,NOR,11,FW,Jørgen Strand Larsen,Jørgen Strand,Larsen,LARSEN,"February 6, 2000",Crystal Palace,,28,6,cross_checked,high
+Norway,NOR,12,GK,Sander Tangvik,Sander,Tangvik,TANGVIK,"November 29, 2002",Hamburger SV,,0,0,cross_checked,high
+Norway,NOR,13,GK,Egil Selvik,Egil,Selvik,SELVIK,"July 30, 1997",Watford,,7,0,cross_checked,high
+Norway,NOR,14,MF,Fredrik Aursnes,Fredrik,Aursnes,AURSNES,"December 10, 1995",Benfica,,22,1,cross_checked,high
+Norway,NOR,15,DF,Fredrik André Bjørkan,Fredrik André,Bjørkan,BJØRKAN,"August 21, 1998",Bodø/Glimt,,21,1,cross_checked,high
+Norway,NOR,16,DF,Marcus Holmgren Pedersen,Marcus Holmgren,Pedersen,PEDERSEN,"July 16, 2000",Torino,,32,0,cross_checked,high
+Norway,NOR,17,DF,Torbjørn Heggem,Torbjørn,Heggem,HEGGEM,"January 12, 1999",Bologna,,15,0,cross_checked,high
+Norway,NOR,18,MF,Kristian Thorstvedt,Kristian,Thorstvedt,THORSTVEDT,"March 13, 1999",Sassuolo,,37,4,cross_checked,high
+Norway,NOR,19,MF,Thelo Aasgaard,Thelo,Aasgaard,AASGAARD,"May 2, 2002",Rangers,,8,5,cross_checked,high
+Norway,NOR,20,FW,Antonio Nusa,Antonio,Nusa,NUSA,"April 17, 2005",RB Leipzig,,24,8,cross_checked,high
+Norway,NOR,21,MF,Andreas Schjelderup,Andreas,Schjelderup,SCHJELDERUP,"June 1, 2004",Benfica,,12,1,cross_checked,high
+Norway,NOR,22,MF,Oscar Bobb,Oscar,Bobb,BOBB,"July 12, 2003",Fulham,,20,2,cross_checked,high
+Norway,NOR,23,MF,Jens Petter Hauge,Jens Petter,Hauge,HAUGE,"October 12, 1999",Bodø/Glimt,,15,1,cross_checked,high
+Norway,NOR,24,DF,Sondre Langås,Sondre,Langås,LANGÅS,"February 2, 2001",Derby County,,3,0,cross_checked,high
+Norway,NOR,25,DF,Henrik Falchener,Henrik,Falchener,FALCHENER,"May 8, 2003",Viking,,1,0,cross_checked,high
+Norway,NOR,26,FW,Julian Ryerson,Julian,Ryerson,RYERSON,"November 17, 1997",Borussia Dortmund,,43,1,cross_checked,high
+Senegal,SEN,1,GK,Yehvann Diouf,Yehvann,Diouf,DIOUF,"November 16, 1999",Nice,,2,0,cross_checked,high
+Senegal,SEN,2,DF,Mamadou Sarr,Mamadou,Sarr,SARR,"August 29, 2005",Chelsea,,8,0,cross_checked,high
+Senegal,SEN,3,DF,Kalidou Koulibaly,Kalidou,Koulibaly,KOULIBALY,"June 20, 1991",Al-Hilal,,103,2,cross_checked,high
+Senegal,SEN,4,DF,Abdoulaye Seck,Abdoulaye,Seck,SECK,"June 4, 1992",Maccabi Haifa,,22,4,cross_checked,high
+Senegal,SEN,5,MF,Idrissa Gueye,Idrissa,Gueye,GUEYE,"September 26, 1989",Everton,,131,7,cross_checked,high
+Senegal,SEN,6,MF,Pathé Ciss,Pathé,Ciss,CISS,"March 16, 1994",Rayo Vallecano,,30,0,cross_checked,high
+Senegal,SEN,7,FW,Assane Diao,Assane,Diao,DIAO,"September 7, 2005",Como,,5,0,cross_checked,high
+Senegal,SEN,8,MF,Lamine Camara,Lamine,Camara,CAMARA,"January 1, 2004",Monaco,,33,7,cross_checked,high
+Senegal,SEN,9,FW,Bamba Dieng,Bamba,Dieng,DIENG,"March 23, 2000",Lorient,,23,2,cross_checked,high
+Senegal,SEN,10,FW,Sadio Mané,Sadio,Mané,MANÉ,"April 10, 1992",Al-Nassr,,128,55,cross_checked,high
+Senegal,SEN,11,FW,Nicolas Jackson,Nicolas,Jackson,JACKSON,"June 20, 2001",Bayern Munich,,33,8,cross_checked,high
+Senegal,SEN,12,FW,Cherif Ndiaye,Cherif,Ndiaye,NDIAYE,"January 23, 1996",Samsunspor,,19,4,cross_checked,high
+Senegal,SEN,13,FW,Iliman Ndiaye,Iliman,Ndiaye,NDIAYE,"March 6, 2000",Everton,,40,4,cross_checked,high
+Senegal,SEN,14,DF,Ismail Jakobs,Ismail,Jakobs,JAKOBS,"August 17, 1999",Galatasaray,,30,0,cross_checked,high
+Senegal,SEN,15,DF,Krépin Diatta,Krépin,Diatta,DIATTA,"February 25, 1999",Monaco,,61,2,cross_checked,high
+Senegal,SEN,16,GK,Édouard Mendy,Édouard,Mendy,MENDY,"March 1, 1992",Al-Ahli,,57,0,cross_checked,high
+Senegal,SEN,17,MF,Pape Matar Sarr,Pape Matar,Sarr,SARR,"September 14, 2002",Tottenham Hotspur,,40,4,cross_checked,high
+Senegal,SEN,18,FW,Ismaïla Sarr,Ismaïla,Sarr,SARR,"February 25, 1998",Crystal Palace,,83,19,cross_checked,high
+Senegal,SEN,19,DF,Moussa Niakhaté,Moussa,Niakhaté,NIAKHATÉ,"March 8, 1996",Lyon,,31,0,cross_checked,high
+Senegal,SEN,20,FW,Ibrahim Mbaye,Ibrahim,Mbaye,MBAYE,"January 24, 2008",Paris Saint-Germain,,11,3,cross_checked,high
+Senegal,SEN,21,MF,Habib Diarra,Habib,Diarra,DIARRA,"January 3, 2004",Sunderland,,21,4,cross_checked,high
+Senegal,SEN,22,MF,Bara Sapoko Ndiaye,Bara Sapoko,Ndiaye,NDIAYE,"December 31, 2007",Bayern Munich,,1,0,cross_checked,high
+Senegal,SEN,23,GK,Mory Diaw,Mory,Diaw,DIAW,"June 22, 1993",Le Havre,,5,0,cross_checked,high
+Senegal,SEN,24,DF,Antoine Mendy,Antoine,Mendy,MENDY,"May 27, 2004",Nice,,7,0,cross_checked,high
+Senegal,SEN,25,DF,El Hadji Malick Diouf,El Hadji Malick,Diouf,DIOUF,"December 29, 2004",West Ham United,,20,1,cross_checked,high
+Senegal,SEN,26,MF,Pape Gueye,Pape,Gueye,GUEYE,"January 24, 1999",Villarreal,,41,5,cross_checked,high
+Algeria,ALG,1,GK,Melvin Mastil,Melvin,Mastil,MASTIL,"February 19, 2000",Stade Nyonnais,,1,0,cross_checked,high
+Algeria,ALG,2,DF,Aïssa Mandi,Aïssa,Mandi,MANDI,"October 22, 1991",Lille,,117,7,cross_checked,high
+Algeria,ALG,3,DF,Achref Abada,Achref,Abada,ABADA,"June 15, 1999",USM Alger,,7,1,cross_checked,high
+Algeria,ALG,4,DF,Mohamed Amine Tougai,Mohamed Amine,Tougai,TOUGAI,"January 22, 2000",Espérance de Tunis,,29,2,cross_checked,high
+Algeria,ALG,5,DF,Zineddine Belaïd,Zineddine,Belaïd,BELAÏD,"March 20, 1999",JS Kabylie,,10,1,cross_checked,high
+Algeria,ALG,6,MF,Ramiz Zerrouki,Ramiz,Zerrouki,ZERROUKI,"May 26, 1998",Twente,,52,3,cross_checked,high
+Algeria,ALG,7,FW,Riyad Mahrez,Riyad,Mahrez,MAHREZ,"February 21, 1991",Al-Ahli,,114,38,cross_checked,high
+Algeria,ALG,8,MF,Houssem Aouar,Houssem,Aouar,AOUAR,"June 30, 1998",Al-Ittihad,,20,6,cross_checked,high
+Algeria,ALG,9,FW,Amine Gouiri,Amine,Gouiri,GOUIRI,"February 16, 2000",Marseille,,22,8,cross_checked,high
+Algeria,ALG,10,MF,Farès Chaïbi,Farès,Chaïbi,CHAÏBI,"November 28, 2002",Eintracht Frankfurt,,29,3,cross_checked,high
+Algeria,ALG,11,FW,Anis Hadj Moussa,Anis Hadj,Moussa,MOUSSA,"February 11, 2002",Feyenoord,,14,1,cross_checked,high
+Algeria,ALG,12,FW,Nadhir Benbouali,Nadhir,Benbouali,BENBOUALI,"April 17, 2000",Győri ETO,,3,1,cross_checked,high
+Algeria,ALG,13,DF,Jaouen Hadjam,Jaouen,Hadjam,HADJAM,"March 26, 2003",Young Boys,,17,3,cross_checked,high
+Algeria,ALG,14,MF,Hicham Boudaoui,Hicham,Boudaoui,BOUDAOUI,"September 23, 1999",Nice,,32,0,cross_checked,high
+Algeria,ALG,15,DF,Rayan Aït-Nouri,Rayan,Aït-Nouri,AÏT-NOURI,"June 6, 2001",Manchester City,,28,0,cross_checked,high
+Algeria,ALG,16,GK,Oussama Benbot,Oussama,Benbot,BENBOT,"October 11, 1994",USM Alger,,2,0,cross_checked,high
+Algeria,ALG,17,DF,Rafik Belghali,Rafik,Belghali,BELGHALI,"June 7, 2002",Hellas Verona,,12,1,cross_checked,high
+Algeria,ALG,18,FW,Mohamed Amoura,Mohamed,Amoura,AMOURA,"May 9, 2000",VfL Wolfsburg,,45,19,cross_checked,high
+Algeria,ALG,19,MF,Nabil Bentaleb,Nabil,Bentaleb,BENTALEB,"November 24, 1994",Lille,,59,6,cross_checked,high
+Algeria,ALG,20,FW,Adil Boulbina,Adil,Boulbina,BOULBINA,"May 2, 2003",Al-Duhail,,11,6,cross_checked,high
+Algeria,ALG,21,DF,Ramy Bensebaini,Ramy,Bensebaini,BENSEBAINI,"April 16, 1995",Borussia Dortmund,,81,7,cross_checked,high
+Algeria,ALG,22,MF,Ibrahim Maza,Ibrahim,Maza,MAZA,"November 24, 2005",Bayer Leverkusen,,16,2,cross_checked,high
+Algeria,ALG,23,GK,Luca Zidane,Luca,Zidane,ZIDANE,"May 13, 1998",Granada,,7,0,cross_checked,high
+Algeria,ALG,24,MF,Yacine Titraoui,Yacine,Titraoui,TITRAOUI,"July 26, 2003",Charleroi,,5,0,cross_checked,high
+Algeria,ALG,25,FW,Farès Ghedjemis,Farès,Ghedjemis,GHEDJEMIS,"September 6, 2002",Frosinone,,1,1,cross_checked,high
+Algeria,ALG,26,DF,Samir Chergui,Samir,Chergui,CHERGUI,"February 6, 1999",Paris FC,,4,0,cross_checked,high
+Argentina,ARG,1,GK,Juan Musso,Juan,Musso,MUSSO,"May 6, 1994",Atlético Madrid,,4,0,cross_checked,high
+Argentina,ARG,2,DF,Marcos Senesi,Marcos,Senesi,SENESI,"May 10, 1997",Bournemouth,,3,0,cross_checked,high
+Argentina,ARG,3,DF,Nicolás Tagliafico,Nicolás,Tagliafico,TAGLIAFICO,"August 31, 1992",Lyon,,76,1,cross_checked,high
+Argentina,ARG,4,DF,Gonzalo Montiel,Gonzalo,Montiel,MONTIEL,"January 1, 1997",River Plate,,39,2,cross_checked,high
+Argentina,ARG,5,MF,Leandro Paredes,Leandro,Paredes,PAREDES,"June 29, 1994",Boca Juniors,,77,5,cross_checked,high
+Argentina,ARG,6,DF,Lisandro Martínez,Lisandro,Martínez,MARTÍNEZ,"January 18, 1998",Manchester United,,28,1,cross_checked,high
+Argentina,ARG,7,MF,Rodrigo De Paul,Rodrigo De,Paul,PAUL,"May 24, 1994",Inter Miami CF,,87,2,cross_checked,high
+Argentina,ARG,8,MF,Valentín Barco,Valentín,Barco,BARCO,"July 23, 2004",Strasbourg,,4,2,cross_checked,high
+Argentina,ARG,9,FW,Julián Alvarez,Julián,Alvarez,ALVAREZ,"January 31, 2000",Atlético Madrid,,51,14,cross_checked,high
+Argentina,ARG,10,FW,Lionel Messi,Lionel,Messi,MESSI,"June 24, 1987",Inter Miami CF,,199,117,cross_checked,high
+Argentina,ARG,11,MF,Giovani Lo Celso,Giovani Lo,Celso,CELSO,"April 9, 1996",Real Betis,,67,4,cross_checked,high
+Argentina,ARG,12,GK,Gerónimo Rulli,Gerónimo,Rulli,RULLI,"May 20, 1992",Marseille,,8,0,cross_checked,high
+Argentina,ARG,13,DF,Cristian Romero,Cristian,Romero,ROMERO,"April 27, 1998",Tottenham Hotspur,,51,3,cross_checked,high
+Argentina,ARG,14,MF,Exequiel Palacios,Exequiel,Palacios,PALACIOS,"October 5, 1998",Bayer Leverkusen,,40,0,cross_checked,high
+Argentina,ARG,15,MF,Nicolás González,Nicolás,González,GONZÁLEZ,"April 6, 1998",Atlético Madrid,,51,6,cross_checked,high
+Argentina,ARG,16,FW,Thiago Almada,Thiago,Almada,ALMADA,"April 26, 2001",Atlético Madrid,,16,5,cross_checked,high
+Argentina,ARG,17,FW,Giuliano Simeone,Giuliano,Simeone,SIMEONE,"December 18, 2002",Atlético Madrid,,13,2,cross_checked,high
+Argentina,ARG,18,FW,Nico Paz,Nico,Paz,PAZ,"September 8, 2004",Como,,9,1,cross_checked,high
+Argentina,ARG,19,DF,Nicolás Otamendi,Nicolás,Otamendi,OTAMENDI,"February 12, 1988",Benfica,,132,8,cross_checked,high
+Argentina,ARG,20,MF,Alexis Mac Allister,Alexis Mac,Allister,ALLISTER,"December 24, 1998",Liverpool,,46,6,cross_checked,high
+Argentina,ARG,21,FW,José Manuel López,José Manuel,López,LÓPEZ,"December 6, 2000",Palmeiras,,5,0,cross_checked,high
+Argentina,ARG,22,FW,Lautaro Martínez,Lautaro,Martínez,MARTÍNEZ,"August 22, 1997",Inter Milan,,77,37,cross_checked,high
+Argentina,ARG,23,GK,Emiliano Martínez,Emiliano,Martínez,MARTÍNEZ,"September 2, 1992",Aston Villa,,59,0,cross_checked,high
+Argentina,ARG,24,MF,Enzo Fernández,Enzo,Fernández,FERNÁNDEZ,"January 17, 2001",Chelsea,,42,6,cross_checked,high
+Argentina,ARG,25,DF,Facundo Medina,Facundo,Medina,MEDINA,"May 28, 1999",Marseille,,9,0,cross_checked,high
+Argentina,ARG,26,DF,Nahuel Molina,Nahuel,Molina,MOLINA,"April 6, 1998",Atlético Madrid,,58,1,cross_checked,high
+Austria,AUT,1,GK,Alexander Schlager,Alexander,Schlager,SCHLAGER,"February 1, 1996",Red Bull Salzburg,,26,0,cross_checked,high
+Austria,AUT,2,DF,David Affengruber,David,Affengruber,AFFENGRUBER,"March 19, 2001",Elche,,1,0,cross_checked,high
+Austria,AUT,3,DF,Kevin Danso,Kevin,Danso,DANSO,"September 19, 1998",Tottenham Hotspur,,32,0,cross_checked,high
+Austria,AUT,4,MF,Xaver Schlager,Xaver,Schlager,SCHLAGER,"September 28, 1997",RB Leipzig,,51,4,cross_checked,high
+Austria,AUT,5,DF,Stefan Posch,Stefan,Posch,POSCH,"May 14, 1997",Mainz 05,,52,5,cross_checked,high
+Austria,AUT,6,MF,Nicolas Seiwald,Nicolas,Seiwald,SEIWALD,"May 4, 2001",RB Leipzig,,47,1,cross_checked,high
+Austria,AUT,7,FW,Marko Arnautović,Marko,Arnautović,ARNAUTOVIĆ,"April 19, 1989",Red Star Belgrade,,133,47,cross_checked,high
+Austria,AUT,8,DF,David Alaba,David,Alaba,ALABA,"June 24, 1992",Real Madrid,,113,15,cross_checked,high
+Austria,AUT,9,MF,Marcel Sabitzer,Marcel,Sabitzer,SABITZER,"March 17, 1994",Borussia Dortmund,,98,26,cross_checked,high
+Austria,AUT,10,MF,Florian Grillitsch,Florian,Grillitsch,GRILLITSCH,"August 7, 1995",Braga,,58,1,cross_checked,high
+Austria,AUT,11,FW,Michael Gregoritsch,Michael,Gregoritsch,GREGORITSCH,"April 18, 1994",FC Augsburg,,75,24,cross_checked,high
+Austria,AUT,12,GK,Florian Wiegele,Florian,Wiegele,WIEGELE,"March 21, 2001",Viktoria Plzeň,,1,0,cross_checked,high
+Austria,AUT,13,GK,Patrick Pentz,Patrick,Pentz,PENTZ,"January 2, 1997",Brøndby,,18,0,cross_checked,high
+Austria,AUT,14,FW,Saša Kalajdžić,Saša,Kalajdžić,KALAJDŽIĆ,"July 7, 1997",LASK,,22,4,cross_checked,high
+Austria,AUT,15,DF,Philipp Lienhart,Philipp,Lienhart,LIENHART,"July 11, 1996",SC Freiburg,,41,3,cross_checked,high
+Austria,AUT,16,DF,Phillipp Mwene,Phillipp,Mwene,MWENE,"January 29, 1994",Mainz 05,,30,0,cross_checked,high
+Austria,AUT,17,MF,Carney Chukwuemeka,Carney,Chukwuemeka,CHUKWUEMEKA,"October 20, 2003",Borussia Dortmund,,3,1,cross_checked,high
+Austria,AUT,18,MF,Romano Schmid,Romano,Schmid,SCHMID,"January 27, 2000",Werder Bremen,,34,3,cross_checked,high
+Austria,AUT,19,MF,Dejan Ljubičić,Dejan,Ljubičić,LJUBIČIĆ,"October 8, 1997",Schalke 04,,9,1,cross_checked,high
+Austria,AUT,20,MF,Konrad Laimer,Konrad,Laimer,LAIMER,"May 27, 1997",Bayern Munich,,57,7,cross_checked,high
+Austria,AUT,21,FW,Patrick Wimmer,Patrick,Wimmer,WIMMER,"May 30, 2001",VfL Wolfsburg,,30,1,cross_checked,high
+Austria,AUT,22,MF,Alexander Prass,Alexander,Prass,PRASS,"May 26, 2001",TSG Hoffenheim,,19,0,cross_checked,high
+Austria,AUT,23,DF,Marco Friedl,Marco,Friedl,FRIEDL,"March 16, 1998",Werder Bremen,,11,0,cross_checked,high
+Austria,AUT,24,MF,Paul Wanner,Paul,Wanner,WANNER,"December 23, 2005",PSV Eindhoven,,3,0,cross_checked,high
+Austria,AUT,25,DF,Michael Svoboda,Michael,Svoboda,SVOBODA,"October 15, 1998",Venezia,,4,0,cross_checked,high
+Austria,AUT,26,MF,Alessandro Schöpf,Alessandro,Schöpf,SCHÖPF,"February 7, 1994",Wolfsberger AC,,35,6,cross_checked,high
+Jordan,JOR,1,GK,Yazeed Abulaila,Yazeed,Abulaila,ABULAILA,"January 8, 1993",Al-Hussein,,76,0,cross_checked,high
+Jordan,JOR,2,DF,Mohammad Abu Hashish,Mohammad Abu,Hashish,HASHISH,"May 9, 1995",Al-Karma,,56,1,cross_checked,high
+Jordan,JOR,3,DF,Abdallah Nasib,Abdallah,Nasib,NASIB,"February 25, 1994",Al-Zawraa,,65,3,cross_checked,high
+Jordan,JOR,4,DF,Husam Abu Dahab,Husam Abu,Dahab,DAHAB,"May 13, 2000",Al-Faisaly,,18,0,cross_checked,high
+Jordan,JOR,5,DF,Yazan Al-Arab,Yazan,Al-Arab,AL-ARAB,"January 31, 1996",FC Seoul,,80,3,cross_checked,high
+Jordan,JOR,6,MF,Amer Jamous,Amer,Jamous,JAMOUS,"July 3, 2002",Al-Zawraa,,19,1,cross_checked,high
+Jordan,JOR,7,FW,Mohammad Abu Zrayq,Mohammad Abu,Zrayq,ZRAYQ,"December 30, 1997",Raja Casablanca,,41,5,cross_checked,high
+Jordan,JOR,8,MF,Noor Al-Rawabdeh,Noor,Al-Rawabdeh,AL-RAWABDEH,"February 24, 1997",Selangor,,68,3,cross_checked,high
+Jordan,JOR,9,FW,Ali Olwan,Ali,Olwan,OLWAN,"March 26, 2000",Al-Sailiya,,66,29,cross_checked,high
+Jordan,JOR,10,FW,Musa Al-Taamari,Musa,Al-Taamari,AL-TAAMARI,"June 10, 1997",Rennes,,92,24,cross_checked,high
+Jordan,JOR,11,FW,Odeh Al-Fakhouri,Odeh,Al-Fakhouri,AL-FAKHOURI,"November 22, 2005",Pyramids,,10,1,cross_checked,high
+Jordan,JOR,12,GK,Nour Bani Attiah,Nour Bani,Attiah,ATTIAH,"January 25, 1993",Al-Faisaly,,5,0,cross_checked,high
+Jordan,JOR,13,FW,Mahmoud Al-Mardi,Mahmoud,Al-Mardi,AL-MARDI,"October 6, 1993",Al-Hussein,,89,9,cross_checked,high
+Jordan,JOR,14,MF,Rajaei Ayed,Rajaei,Ayed,AYED,"July 25, 1993",Al-Hussein,,72,0,cross_checked,high
+Jordan,JOR,15,MF,Ibrahim Sadeh,Ibrahim,Sadeh,SADEH,"April 27, 2000",Al-Karma,,57,3,cross_checked,high
+Jordan,JOR,16,DF,Mo Abualnadi,Mo,Abualnadi,ABUALNADI,"February 8, 2001",Selangor,,18,0,cross_checked,high
+Jordan,JOR,17,DF,Salim Obaid,Salim,Obaid,OBAID,"January 17, 1992",Al-Hussein,,11,0,cross_checked,high
+Jordan,JOR,18,MF,Mohammad Taha,Mohammad,Taha,TAHA,"July 13, 2005",Al-Hussein,,2,0,cross_checked,high
+Jordan,JOR,19,DF,Saed Al-Rosan,Saed,Al-Rosan,AL-ROSAN,"February 1, 1997",Al-Hussein,,21,2,cross_checked,high
+Jordan,JOR,20,MF,Mohannad Abu Taha,Mohannad Abu,Taha,TAHA,"February 2, 2003",Al-Quwa Al-Jawiya,,29,1,cross_checked,high
+Jordan,JOR,21,MF,Nizar Al-Rashdan,Nizar,Al-Rashdan,AL-RASHDAN,"March 23, 1999",Qatar SC,,47,4,cross_checked,high
+Jordan,JOR,22,GK,Abdallah Al-Fakhouri,Abdallah,Al-Fakhouri,AL-FAKHOURI,"January 22, 2000",Al-Wehdat,,11,0,cross_checked,high
+Jordan,JOR,23,DF,Ihsan Haddad,Ihsan,Haddad,HADDAD,"February 5, 1994",Al-Hussein,,92,2,cross_checked,high
+Jordan,JOR,24,FW,Ali Azaizeh,Ali,Azaizeh,AZAIZEH,"April 13, 2004",Al-Shabab,,4,0,cross_checked,high
+Jordan,JOR,25,MF,Mohammad Al-Dawoud,Mohammad,Al-Dawoud,AL-DAWOUD,"April 12, 1992",Al-Wehdat,,13,1,cross_checked,high
+Jordan,JOR,26,DF,Anas Badawi,Anas,Badawi,BADAWI,"September 13, 1997",Al-Faisaly,,1,0,cross_checked,high
+Colombia,COL,1,GK,David Ospina,David,Ospina,OSPINA,"August 31, 1988",Atlético Nacional,,130,0,cross_checked,high
+Colombia,COL,2,DF,Daniel Muñoz,Daniel,Muñoz,MUÑOZ,"May 26, 1996",Crystal Palace,,46,3,cross_checked,high
+Colombia,COL,3,DF,Jhon Lucumí,Jhon,Lucumí,LUCUMÍ,"June 26, 1998",Bologna,,37,1,cross_checked,high
+Colombia,COL,4,DF,Santiago Arias,Santiago,Arias,ARIAS,"January 13, 1992",Independiente,,68,0,cross_checked,high
+Colombia,COL,5,MF,Kevin Castaño,Kevin,Castaño,CASTAÑO,"September 29, 2000",River Plate,,25,0,cross_checked,high
+Colombia,COL,6,MF,Richard Ríos,Richard,Ríos,RÍOS,"June 2, 2000",Benfica,,32,2,cross_checked,high
+Colombia,COL,7,FW,Luis Díaz,Luis,Díaz,DÍAZ,"January 13, 1997",Bayern Munich,,74,22,cross_checked,high
+Colombia,COL,8,MF,Jorge Carrascal,Jorge,Carrascal,CARRASCAL,"May 25, 1998",Flamengo,,24,2,cross_checked,high
+Colombia,COL,9,FW,Jhon Córdoba,Jhon,Córdoba,CÓRDOBA,"May 11, 1993",Krasnodar,,21,6,cross_checked,high
+Colombia,COL,10,MF,James Rodríguez,James,Rodríguez,RODRÍGUEZ,"July 12, 1991",Minnesota United FC,,126,31,cross_checked,high
+Colombia,COL,11,MF,Jhon Arias,Jhon,Arias,ARIAS,"September 21, 1997",Palmeiras,,38,6,cross_checked,high
+Colombia,COL,12,GK,Camilo Vargas,Camilo,Vargas,VARGAS,"March 9, 1989",Atlas,,42,0,cross_checked,high
+Colombia,COL,13,DF,Yerry Mina,Yerry,Mina,MINA,"September 23, 1994",Cagliari,,54,8,cross_checked,high
+Colombia,COL,14,DF,Gustavo Puerta,Gustavo,Puerta,PUERTA,"July 23, 2003",Racing Santander,,6,1,cross_checked,high
+Colombia,COL,15,MF,Juan Portilla,Juan,Portilla,PORTILLA,"September 12, 1998",Athletico Paranaense,,10,0,cross_checked,high
+Colombia,COL,16,MF,Jefferson Lerma,Jefferson,Lerma,LERMA,"October 25, 1994",Crystal Palace,,65,5,cross_checked,high
+Colombia,COL,17,DF,Johan Mojica,Johan,Mojica,MOJICA,"August 21, 1992",Mallorca,,45,1,cross_checked,high
+Colombia,COL,18,DF,Willer Ditta,Willer,Ditta,DITTA,"January 23, 1998",Cruz Azul,,5,0,cross_checked,high
+Colombia,COL,19,FW,Cucho Hernández,Cucho,Hernández,HERNÁNDEZ,"April 20, 1999",Real Betis,,9,2,cross_checked,high
+Colombia,COL,20,MF,Juan Fernando Quintero,Juan Fernando,Quintero,QUINTERO,"January 18, 1993",River Plate,,49,6,cross_checked,high
+Colombia,COL,21,FW,Jaminton Campaz,Jaminton,Campaz,CAMPAZ,"May 24, 2000",Rosario Central,,10,1,cross_checked,high
+Colombia,COL,22,DF,Deiver Machado,Deiver,Machado,MACHADO,"September 2, 1993",Nantes,,15,0,cross_checked,high
+Colombia,COL,23,DF,Davinson Sánchez,Davinson,Sánchez,SÁNCHEZ,"June 12, 1996",Galatasaray,,79,4,cross_checked,high
+Colombia,COL,24,GK,Álvaro Montero,Álvaro,Montero,MONTERO,"March 29, 1995",Vélez Sarsfield,,12,0,cross_checked,high
+Colombia,COL,25,FW,Luis Suárez,Luis,Suárez,SUÁREZ,"December 2, 1997",Sporting CP,,12,5,cross_checked,high
+Colombia,COL,26,FW,Andrés Gómez,Andrés,Gómez,GÓMEZ,"September 12, 2002",Vasco da Gama,,8,2,cross_checked,high
+DR Congo,COD,1,GK,Lionel Mpasi,Lionel,Mpasi,MPASI,"August 1, 1994",Le Havre,,29,0,cross_checked,high
+DR Congo,COD,2,DF,Aaron Wan-Bissaka,Aaron,Wan-Bissaka,WAN-BISSAKA,"November 26, 1997",West Ham United,,12,0,cross_checked,high
+DR Congo,COD,3,DF,Steve Kapuadi,Steve,Kapuadi,KAPUADI,"April 30, 1998",Widzew Łódź,,4,0,cross_checked,high
+DR Congo,COD,4,DF,Axel Tuanzebe,Axel,Tuanzebe,TUANZEBE,"November 14, 1997",Burnley,,14,1,cross_checked,high
+DR Congo,COD,5,DF,Dylan Batubinsika,Dylan,Batubinsika,BATUBINSIKA,"February 15, 1996",AEL,,14,1,cross_checked,high
+DR Congo,COD,6,MF,Ngal'ayel Mukau,Ngal'ayel,Mukau,MUKAU,"November 3, 2004",Lille,,14,0,cross_checked,high
+DR Congo,COD,7,MF,Nathanaël Mbuku,Nathanaël,Mbuku,MBUKU,"March 16, 2002",Montpellier,,19,2,cross_checked,high
+DR Congo,COD,8,MF,Samuel Moutoussamy,Samuel,Moutoussamy,MOUTOUSSAMY,"August 12, 1996",Atromitos,,58,0,cross_checked,high
+DR Congo,COD,9,FW,Brian Cipenga,Brian,Cipenga,CIPENGA,"March 11, 1998",Castellón,,8,0,cross_checked,high
+DR Congo,COD,10,MF,Théo Bongonda,Théo,Bongonda,BONGONDA,"November 20, 1995",Spartak Moscow,,38,7,cross_checked,high
+DR Congo,COD,11,FW,Gaël Kakuta,Gaël,Kakuta,KAKUTA,"June 21, 1991",AEL,,31,5,cross_checked,high
+DR Congo,COD,12,DF,Joris Kayembe,Joris,Kayembe,KAYEMBE,"August 8, 1994",Genk,,26,1,cross_checked,high
+DR Congo,COD,13,FW,Meschak Elia,Meschak,Elia,ELIA,"August 6, 1997",Alanyaspor,,69,12,cross_checked,high
+DR Congo,COD,14,MF,Noah Sadiki,Noah,Sadiki,SADIKI,"December 17, 2004",Sunderland,,20,0,cross_checked,high
+DR Congo,COD,15,MF,Aaron Tshibola,Aaron,Tshibola,TSHIBOLA,"January 2, 1995",Kilmarnock,,17,1,cross_checked,high
+DR Congo,COD,16,GK,Timothy Fayulu,Timothy,Fayulu,FAYULU,"July 24, 1999",Noah,,3,0,cross_checked,high
+DR Congo,COD,17,FW,Cédric Bakambu,Cédric,Bakambu,BAKAMBU,"April 11, 1991",Real Betis,,70,21,cross_checked,high
+DR Congo,COD,18,MF,Charles Pickel,Charles,Pickel,PICKEL,"May 15, 1997",Espanyol,,34,1,cross_checked,high
+DR Congo,COD,19,FW,Fiston Mayele,Fiston,Mayele,MAYELE,"June 24, 1994",Pyramids,,37,6,cross_checked,high
+DR Congo,COD,20,FW,Yoane Wissa,Yoane,Wissa,WISSA,"September 3, 1996",Newcastle United,,38,9,cross_checked,high
+DR Congo,COD,21,GK,Matthieu Epolo,Matthieu,Epolo,EPOLO,"January 15, 2005",Standard Liège,,1,0,cross_checked,high
+DR Congo,COD,22,DF,Chancel Mbemba,Chancel,Mbemba,MBEMBA,"August 8, 1994",Lille,,109,7,cross_checked,high
+DR Congo,COD,23,FW,Simon Banza,Simon,Banza,BANZA,"August 13, 1996",Al Jazira,,15,2,cross_checked,high
+DR Congo,COD,24,DF,Gédéon Kalulu,Gédéon,Kalulu,KALULU,"August 29, 1997",Aris Limassol,,28,0,cross_checked,high
+DR Congo,COD,25,MF,Edo Kayembe,Edo,Kayembe,KAYEMBE,"June 3, 1998",Watford,,43,2,cross_checked,high
+DR Congo,COD,26,DF,Arthur Masuaku,Arthur,Masuaku,MASUAKU,"November 7, 1993",Lens,,45,4,cross_checked,high
+Portugal,POR,1,GK,Diogo Costa,Diogo,Costa,COSTA,"September 19, 1999",Porto,,43,0,cross_checked,high
+Portugal,POR,2,DF,Nélson Semedo,Nélson,Semedo,SEMEDO,"November 16, 1993",Fenerbahçe,,50,0,cross_checked,high
+Portugal,POR,3,DF,Rúben Dias,Rúben,Dias,DIAS,"May 14, 1997",Manchester City,,76,3,cross_checked,high
+Portugal,POR,4,DF,Tomás Araújo,Tomás,Araújo,ARAÚJO,"May 16, 2002",Benfica,,5,0,cross_checked,high
+Portugal,POR,5,DF,Diogo Dalot,Diogo,Dalot,DALOT,"March 18, 1999",Manchester United,,35,3,cross_checked,high
+Portugal,POR,6,MF,Matheus Nunes,Matheus,Nunes,NUNES,"August 27, 1998",Manchester City,,20,2,cross_checked,high
+Portugal,POR,7,FW,Cristiano Ronaldo,Cristiano,Ronaldo,RONALDO,"February 5, 1985",Al-Nassr,,228,143,cross_checked,high
+Portugal,POR,8,MF,Bruno Fernandes,Bruno,Fernandes,FERNANDES,"September 8, 1994",Manchester United,,89,29,cross_checked,high
+Portugal,POR,9,FW,Gonçalo Ramos,Gonçalo,Ramos,RAMOS,"June 20, 2001",Paris Saint-Germain,,25,10,cross_checked,high
+Portugal,POR,10,MF,Bernardo Silva,Bernardo,Silva,SILVA,"August 10, 1994",Manchester City,,109,14,cross_checked,high
+Portugal,POR,11,FW,João Félix,João,Félix,FÉLIX,"November 10, 1999",Al-Nassr,,54,12,cross_checked,high
+Portugal,POR,12,GK,José Sá,José,Sá,SÁ,"January 17, 1993",Wolverhampton Wanderers,,5,0,cross_checked,high
+Portugal,POR,13,DF,Renato Veiga,Renato,Veiga,VEIGA,"July 29, 2003",Villarreal,,13,1,cross_checked,high
+Portugal,POR,14,DF,Gonçalo Inácio,Gonçalo,Inácio,INÁCIO,"August 25, 2001",Sporting CP,,22,2,cross_checked,high
+Portugal,POR,15,MF,João Neves,João,Neves,NEVES,"September 27, 2004",Paris Saint-Germain,,22,3,cross_checked,high
+Portugal,POR,16,FW,Francisco Trincão,Francisco,Trincão,TRINCÃO,"December 29, 1999",Sporting CP,,18,3,cross_checked,high
+Portugal,POR,17,FW,Rafael Leão,Rafael,Leão,LEÃO,"June 10, 1999",Milan,,44,5,cross_checked,high
+Portugal,POR,18,FW,Pedro Neto,Pedro,Neto,NETO,"March 9, 2000",Chelsea,,25,3,cross_checked,high
+Portugal,POR,19,FW,Gonçalo Guedes,Gonçalo,Guedes,GUEDES,"November 29, 1996",Real Sociedad,,34,8,cross_checked,high
+Portugal,POR,20,DF,João Cancelo,João,Cancelo,CANCELO,"May 27, 1994",Barcelona,,68,12,cross_checked,high
+Portugal,POR,21,MF,Rúben Neves,Rúben,Neves,NEVES,"March 13, 1997",Al-Hilal,,67,1,cross_checked,high
+Portugal,POR,22,GK,Rui Silva,Rui,Silva,SILVA,"February 7, 1994",Sporting CP,,3,0,cross_checked,high
+Portugal,POR,23,MF,Vitinha,,Vitinha,VITINHA,"February 13, 2000",Paris Saint-Germain,,38,0,cross_checked,high
+Portugal,POR,24,DF,Samú Costa,Samú,Costa,COSTA,"November 27, 2000",Mallorca,,6,0,cross_checked,high
+Portugal,POR,25,DF,Nuno Mendes,Nuno,Mendes,MENDES,"June 19, 2002",Paris Saint-Germain,,44,1,cross_checked,high
+Portugal,POR,26,FW,Francisco Conceição,Francisco,Conceição,CONCEIÇÃO,"December 14, 2002",Juventus,,17,4,cross_checked,high
+Uzbekistan,UZB,1,GK,Utkir Yusupov,Utkir,Yusupov,YUSUPOV,"January 4, 1991",Navbahor Namangan,,40,0,cross_checked,high
+Uzbekistan,UZB,2,DF,Abdukodir Khusanov,Abdukodir,Khusanov,KHUSANOV,"February 29, 2004",Manchester City,,27,0,cross_checked,high
+Uzbekistan,UZB,3,DF,Khojiakbar Alijonov,Khojiakbar,Alijonov,ALIJONOV,"April 19, 1997",Pakhtakor,,40,2,cross_checked,high
+Uzbekistan,UZB,4,DF,Farrukh Sayfiev,Farrukh,Sayfiev,SAYFIEV,"January 17, 1991",Neftchi Fergana,,46,1,cross_checked,high
+Uzbekistan,UZB,5,DF,Rustam Ashurmatov,Rustam,Ashurmatov,ASHURMATOV,"July 7, 1996",Esteghlal,,49,1,cross_checked,high
+Uzbekistan,UZB,6,MF,Akmal Mozgovoy,Akmal,Mozgovoy,MOZGOVOY,"April 2, 1999",Pakhtakor,,25,1,cross_checked,high
+Uzbekistan,UZB,7,MF,Otabek Shukurov,Otabek,Shukurov,SHUKUROV,"June 22, 1996",Baniyas,,84,9,cross_checked,high
+Uzbekistan,UZB,8,MF,Jamshid Iskanderov,Jamshid,Iskanderov,ISKANDEROV,"October 16, 1993",Neftchi Fergana,,38,4,cross_checked,high
+Uzbekistan,UZB,9,MF,Odiljon Hamrobekov,Odiljon,Hamrobekov,HAMROBEKOV,"February 13, 1996",Tractor,,72,1,cross_checked,high
+Uzbekistan,UZB,10,MF,Jaloliddin Masharipov,Jaloliddin,Masharipov,MASHARIPOV,"September 1, 1993",Esteghlal,,74,12,cross_checked,high
+Uzbekistan,UZB,11,MF,Oston Urunov,Oston,Urunov,URUNOV,"December 19, 2000",Persepolis,,42,10,cross_checked,high
+Uzbekistan,UZB,12,GK,Abduvohid Nematov,Abduvohid,Nematov,NEMATOV,"March 20, 2001",Nasaf,,8,0,cross_checked,high
+Uzbekistan,UZB,13,DF,Sherzod Nasrullaev,Sherzod,Nasrullaev,NASRULLAEV,"July 23, 1998",Nasaf,,31,2,cross_checked,high
+Uzbekistan,UZB,14,FW,Eldor Shomurodov,Eldor,Shomurodov,SHOMURODOV,"June 29, 1995",İstanbul Başakşehir,,92,44,cross_checked,high
+Uzbekistan,UZB,15,DF,Umar Eshmurodov,Umar,Eshmurodov,ESHMURODOV,"November 30, 1992",Nasaf,,29,0,cross_checked,high
+Uzbekistan,UZB,16,GK,Botirali Ergashev,Botirali,Ergashev,ERGASHEV,"June 23, 1995",Neftchi Fergana,,2,0,cross_checked,high
+Uzbekistan,UZB,17,MF,Dostonbek Khamdamov,Dostonbek,Khamdamov,KHAMDAMOV,"July 24, 1996",Pakhtakor,,34,5,cross_checked,high
+Uzbekistan,UZB,18,DF,Abdulla Abdullaev,Abdulla,Abdullaev,ABDULLAEV,"September 1, 1997",Dibba,,17,0,cross_checked,high
+Uzbekistan,UZB,19,MF,Azizjon Ganiev,Azizjon,Ganiev,GANIEV,"February 22, 1998",Al Bataeh,,19,0,cross_checked,high
+Uzbekistan,UZB,20,FW,Azizbek Amonov,Azizbek,Amonov,AMONOV,"October 30, 1997",Dinamo Samarqand,,12,2,cross_checked,high
+Uzbekistan,UZB,21,FW,Igor Sergeev,Igor,Sergeev,SERGEEV,"April 30, 1993",Persepolis,,83,25,cross_checked,high
+Uzbekistan,UZB,22,MF,Abbosbek Fayzullaev,Abbosbek,Fayzullaev,FAYZULLAEV,"October 3, 2003",İstanbul Başakşehir,,32,8,cross_checked,high
+Uzbekistan,UZB,23,MF,Sherzod Esanov,Sherzod,Esanov,ESANOV,"February 1, 2003",Bukhara,,1,0,cross_checked,high
+Uzbekistan,UZB,24,DF,Bekhruz Karimov,Bekhruz,Karimov,KARIMOV,"August 7, 2007",Surkhon Termiz,,2,0,cross_checked,high
+Uzbekistan,UZB,25,DF,Avazbek Ulmasaliev,Avazbek,Ulmasaliev,ULMASALIEV,"March 27, 2000",AGMK,,0,0,cross_checked,high
+Uzbekistan,UZB,26,DF,Jakhongir Urozov,Jakhongir,Urozov,UROZOV,"January 18, 2004",Dinamo Samarqand,,4,0,cross_checked,high
+Croatia,CRO,1,GK,Dominik Livaković,Dominik,Livaković,LIVAKOVIĆ,"January 9, 1995",Dinamo Zagreb,,75,0,cross_checked,high
+Croatia,CRO,2,DF,Josip Stanišić,Josip,Stanišić,STANIŠIĆ,"April 2, 2000",Bayern Munich,,31,0,cross_checked,high
+Croatia,CRO,3,DF,Marin Pongračić,Marin,Pongračić,PONGRAČIĆ,"September 11, 1997",Fiorentina,,20,0,cross_checked,high
+Croatia,CRO,4,DF,Joško Gvardiol,Joško,Gvardiol,GVARDIOL,"January 23, 2002",Manchester City,,48,4,cross_checked,high
+Croatia,CRO,5,DF,Duje Ćaleta-Car,Duje,Ćaleta-Car,ĆALETA-CAR,"September 17, 1996",Real Sociedad,,38,1,cross_checked,high
+Croatia,CRO,6,DF,Josip Šutalo,Josip,Šutalo,ŠUTALO,"February 28, 2000",Ajax,,33,0,cross_checked,high
+Croatia,CRO,7,MF,Nikola Moro,Nikola,Moro,MORO,"March 12, 1998",Bologna,,10,0,cross_checked,high
+Croatia,CRO,8,MF,Mateo Kovačić,Mateo,Kovačić,KOVAČIĆ,"May 6, 1994",Manchester City,,113,5,cross_checked,high
+Croatia,CRO,9,FW,Andrej Kramarić,Andrej,Kramarić,KRAMARIĆ,"June 19, 1991",TSG Hoffenheim,,116,36,cross_checked,high
+Croatia,CRO,10,MF,Luka Modrić,Luka,Modrić,MODRIĆ,"September 9, 1985",Milan,,198,29,cross_checked,high
+Croatia,CRO,11,FW,Ante Budimir,Ante,Budimir,BUDIMIR,"July 22, 1991",Osasuna,,38,6,cross_checked,high
+Croatia,CRO,12,GK,Ivor Pandur,Ivor,Pandur,PANDUR,"March 25, 2000",Hull City,,0,0,cross_checked,high
+Croatia,CRO,13,MF,Nikola Vlašić,Nikola,Vlašić,VLAŠIĆ,"October 4, 1997",Torino,,63,10,cross_checked,high
+Croatia,CRO,14,FW,Ivan Perišić,Ivan,Perišić,PERIŠIĆ,"February 2, 1989",PSV Eindhoven,,154,38,cross_checked,high
+Croatia,CRO,15,MF,Mario Pašalić,Mario,Pašalić,PAŠALIĆ,"February 9, 1995",Atalanta,,85,12,cross_checked,high
+Croatia,CRO,16,MF,Martin Baturina,Martin,Baturina,BATURINA,"February 16, 2003",Como,,19,1,cross_checked,high
+Croatia,CRO,17,MF,Petar Sučić,Petar,Sučić,SUČIĆ,"October 25, 2003",Inter Milan,,17,1,cross_checked,high
+Croatia,CRO,18,DF,Kristijan Jakić,Kristijan,Jakić,JAKIĆ,"May 14, 1997",FC Augsburg,,17,2,cross_checked,high
+Croatia,CRO,19,MF,Toni Fruk,Toni,Fruk,FRUK,"March 9, 2001",Rijeka,,7,1,cross_checked,high
+Croatia,CRO,20,FW,Igor Matanović,Igor,Matanović,MATANOVIĆ,"March 31, 2003",SC Freiburg,,9,2,cross_checked,high
+Croatia,CRO,21,MF,Luka Sučić,Luka,Sučić,SUČIĆ,"September 8, 2002",Real Sociedad,,21,1,cross_checked,high
+Croatia,CRO,22,DF,Luka Vušković,Luka,Vušković,VUŠKOVIĆ,"February 24, 2007",Hamburger SV,,5,1,cross_checked,high
+Croatia,CRO,23,GK,Dominik Kotarski,Dominik,Kotarski,KOTARSKI,"February 10, 2000",Copenhagen,,4,0,cross_checked,high
+Croatia,CRO,24,FW,Marco Pašalić,Marco,Pašalić,PAŠALIĆ,"September 14, 2000",Orlando City SC,,15,1,cross_checked,high
+Croatia,CRO,25,DF,Martin Erlić,Martin,Erlić,ERLIĆ,"January 24, 1998",Midtjylland,,13,1,cross_checked,high
+Croatia,CRO,26,FW,Petar Musa,Petar,Musa,MUSA,"March 4, 1998",FC Dallas,,11,1,cross_checked,high
+England,ENG,1,GK,Jordan Pickford,Jordan,Pickford,PICKFORD,"March 7, 1994",Everton,,84,0,cross_checked,high
+England,ENG,2,DF,Ezri Konsa,Ezri,Konsa,KONSA,"October 23, 1997",Aston Villa,,20,1,cross_checked,high
+England,ENG,3,DF,Nico O'Reilly,Nico,O'Reilly,O'REILLY,"March 21, 2005",Manchester City,,5,0,cross_checked,high
+England,ENG,4,MF,Declan Rice,Declan,Rice,RICE,"January 14, 1999",Arsenal,,73,7,cross_checked,high
+England,ENG,5,DF,John Stones,John,Stones,STONES,"May 28, 1994",Manchester City,,89,3,cross_checked,high
+England,ENG,6,DF,Marc Guéhi,Marc,Guéhi,GUÉHI,"July 13, 2000",Manchester City,,29,1,cross_checked,high
+England,ENG,7,FW,Bukayo Saka,Bukayo,Saka,SAKA,"September 5, 2001",Arsenal,,49,14,cross_checked,high
+England,ENG,8,MF,Elliot Anderson,Elliot,Anderson,ANDERSON,"November 6, 2002",Nottingham Forest,,9,0,cross_checked,high
+England,ENG,9,FW,Harry Kane,Harry,Kane,KANE,"July 28, 1993",Bayern Munich,,114,79,cross_checked,high
+England,ENG,10,MF,Jude Bellingham,Jude,Bellingham,BELLINGHAM,"June 29, 2003",Real Madrid,,48,6,cross_checked,high
+England,ENG,11,FW,Marcus Rashford,Marcus,Rashford,RASHFORD,"October 31, 1997",Barcelona,,72,18,cross_checked,high
+England,ENG,12,DF,Tino Livramento,Tino,Livramento,LIVRAMENTO,"November 12, 2002",Newcastle United,,6,0,cross_checked,high
+England,ENG,13,GK,Dean Henderson,Dean,Henderson,HENDERSON,"March 12, 1997",Crystal Palace,,5,0,cross_checked,high
+England,ENG,14,MF,Jordan Henderson,Jordan,Henderson,HENDERSON,"June 17, 1990",Brentford,,90,3,cross_checked,high
+England,ENG,15,DF,Dan Burn,Dan,Burn,BURN,"May 9, 1992",Newcastle United,,8,0,cross_checked,high
+England,ENG,16,MF,Kobbie Mainoo,Kobbie,Mainoo,MAINOO,"April 19, 2005",Manchester United,,14,0,cross_checked,high
+England,ENG,17,MF,Morgan Rogers,Morgan,Rogers,ROGERS,"July 26, 2002",Aston Villa,,15,1,cross_checked,high
+England,ENG,18,FW,Anthony Gordon,Anthony,Gordon,GORDON,"February 24, 2001",Newcastle United,,19,3,cross_checked,high
+England,ENG,19,FW,Ollie Watkins,Ollie,Watkins,WATKINS,"December 30, 1995",Aston Villa,,22,7,cross_checked,high
+England,ENG,20,FW,Noni Madueke,Noni,Madueke,MADUEKE,"March 10, 2002",Arsenal,,11,1,cross_checked,high
+England,ENG,21,MF,Eberechi Eze,Eberechi,Eze,EZE,"June 29, 1998",Arsenal,,17,3,cross_checked,high
+England,ENG,22,FW,Ivan Toney,Ivan,Toney,TONEY,"March 16, 1996",Al-Ahli,,8,1,cross_checked,high
+England,ENG,23,GK,James Trafford,James,Trafford,TRAFFORD,"October 10, 2002",Manchester City,,2,0,cross_checked,high
+England,ENG,24,DF,Reece James,Reece,James,JAMES,"December 8, 1999",Chelsea,,24,1,cross_checked,high
+England,ENG,25,DF,Djed Spence,Djed,Spence,SPENCE,"August 9, 2000",Tottenham Hotspur,,6,0,cross_checked,high
+England,ENG,26,DF,Jarell Quansah,Jarell,Quansah,QUANSAH,"January 29, 2003",Bayer Leverkusen,,3,0,cross_checked,high
+Ghana,GHA,1,GK,Lawrence Ati-Zigi,Lawrence,Ati-Zigi,ATI-ZIGI,"November 29, 1996",St. Gallen,,29,0,cross_checked,high
+Ghana,GHA,2,DF,Alidu Seidu,Alidu,Seidu,SEIDU,"June 4, 2000",Rennes,,24,1,cross_checked,high
+Ghana,GHA,3,MF,Caleb Yirenkyi,Caleb,Yirenkyi,YIRENKYI,"January 15, 2006",Nordsjælland,,11,1,cross_checked,high
+Ghana,GHA,4,DF,Jonas Adjetey,Jonas,Adjetey,ADJETEY,"December 13, 2003",VfL Wolfsburg,,10,0,cross_checked,high
+Ghana,GHA,5,MF,Thomas Partey,Thomas,Partey,PARTEY,"June 13, 1993",Villarreal,,57,15,cross_checked,high
+Ghana,GHA,6,DF,Abdul Mumin,Abdul,Mumin,MUMIN,"June 6, 1998",Rayo Vallecano,,5,0,cross_checked,high
+Ghana,GHA,7,FW,Abdul Fatawu,Abdul,Fatawu,FATAWU,"March 8, 2004",Leicester City,,28,3,cross_checked,high
+Ghana,GHA,8,MF,Kwasi Sibo,Kwasi,Sibo,SIBO,"June 24, 1998",Oviedo,,8,0,cross_checked,high
+Ghana,GHA,9,FW,Jordan Ayew,Jordan,Ayew,AYEW,"September 11, 1991",Leicester City,,120,34,cross_checked,high
+Ghana,GHA,10,FW,Brandon Thomas-Asante,Brandon,Thomas-Asante,THOMAS-ASANTE,"December 29, 1998",Coventry City,,8,1,cross_checked,high
+Ghana,GHA,11,MF,Antoine Semenyo,Antoine,Semenyo,SEMENYO,"January 7, 2000",Manchester City,,34,3,cross_checked,high
+Ghana,GHA,12,GK,Joseph Anang,Joseph,Anang,ANANG,"June 8, 2000",St Patrick's Athletic,,1,0,cross_checked,high
+Ghana,GHA,13,FW,Christopher Bonsu Baah,Christopher Bonsu,Baah,BAAH,"December 14, 2004",Al-Qadsiah,,9,0,cross_checked,high
+Ghana,GHA,14,DF,Gideon Mensah,Gideon,Mensah,MENSAH,"July 18, 1998",Auxerre,,40,0,cross_checked,high
+Ghana,GHA,15,MF,Elisha Owusu,Elisha,Owusu,OWUSU,"November 7, 1997",Auxerre,,20,0,cross_checked,high
+Ghana,GHA,16,GK,Benjamin Asare,Benjamin,Asare,ASARE,"July 13, 1992",Hearts of Oak,,11,0,cross_checked,high
+Ghana,GHA,17,DF,Abdul Rahman Baba,Abdul Rahman,Baba,BABA,"July 2, 1994",PAOK,,51,1,cross_checked,high
+Ghana,GHA,18,DF,Jerome Opoku,Jerome,Opoku,OPOKU,"October 14, 1998",İstanbul Başakşehir,,11,1,cross_checked,high
+Ghana,GHA,19,FW,Iñaki Williams,Iñaki,Williams,WILLIAMS,"June 15, 1994",Athletic Bilbao,,26,2,cross_checked,high
+Ghana,GHA,20,MF,Augustine Boakye,Augustine,Boakye,BOAKYE,"November 3, 2000",Saint-Étienne,,0,0,cross_checked,high
+Ghana,GHA,21,DF,Kojo Peprah Oppong,Kojo Peprah,Oppong,OPPONG,"June 4, 2004",Nice,,4,0,cross_checked,high
+Ghana,GHA,22,FW,Kamaldeen Sulemana,Kamaldeen,Sulemana,SULEMANA,"February 15, 2002",Atalanta,,28,1,cross_checked,high
+Ghana,GHA,23,DF,Derrick Luckassen,Derrick,Luckassen,LUCKASSEN,"July 3, 1995",Pafos,,1,0,cross_checked,high
+Ghana,GHA,24,FW,Ernest Nuamah,Ernest,Nuamah,NUAMAH,"November 1, 2003",Lyon,,18,4,cross_checked,high
+Ghana,GHA,25,FW,Prince Kwabena Adu,Prince Kwabena,Adu,ADU,"September 23, 2003",Viktoria Plzeň,,5,0,cross_checked,high
+Ghana,GHA,26,DF,Marvin Senaya,Marvin,Senaya,SENAYA,"January 28, 2001",Auxerre,,2,0,cross_checked,high
+Panama,PAN,1,GK,Luis Mejía,Luis,Mejía,MEJÍA,"March 16, 1991",Nacional,,56,0,cross_checked,high
+Panama,PAN,2,DF,César Blackman,César,Blackman,BLACKMAN,"April 2, 1998",Slovan Bratislava,,40,3,cross_checked,high
+Panama,PAN,3,DF,José Córdoba,José,Córdoba,CÓRDOBA,"June 3, 2001",Norwich City,,32,1,cross_checked,high
+Panama,PAN,4,DF,Fidel Escobar,Fidel,Escobar,ESCOBAR,"January 9, 1995",Saprissa,,99,4,cross_checked,high
+Panama,PAN,5,DF,Edgardo Fariña,Edgardo,Fariña,FARIÑA,"October 19, 2001",Pari Nizhny Novgorod,,18,0,cross_checked,high
+Panama,PAN,6,MF,Cristian Martínez,Cristian,Martínez,MARTÍNEZ,"February 6, 1997",Ironi Kiryat Shmona,,66,2,cross_checked,high
+Panama,PAN,7,MF,José Luis Rodríguez,José Luis,Rodríguez,RODRÍGUEZ,"June 19, 1998",Juárez,,70,8,cross_checked,high
+Panama,PAN,8,MF,Adalberto Carrasquilla,Adalberto,Carrasquilla,CARRASQUILLA,"November 28, 1998",UNAM,,73,3,cross_checked,high
+Panama,PAN,9,FW,Tomás Rodríguez,Tomás,Rodríguez,RODRÍGUEZ,"March 9, 1999",Saprissa,,13,4,cross_checked,high
+Panama,PAN,10,MF,Ismael Díaz,Ismael,Díaz,DÍAZ,"May 12, 1997",León,,57,17,cross_checked,high
+Panama,PAN,11,MF,Yoel Bárcenas,Yoel,Bárcenas,BÁRCENAS,"October 23, 1993",Mazatlán,,104,10,cross_checked,high
+Panama,PAN,12,GK,César Samudio,César,Samudio,SAMUDIO,"February 23, 1994",Marathón,,5,0,cross_checked,high
+Panama,PAN,13,DF,Jiovany Ramos,Jiovany,Ramos,RAMOS,"January 26, 1997",Puerto Cabello,,23,2,cross_checked,high
+Panama,PAN,14,DF,Carlos Harvey,Carlos,Harvey,HARVEY,"February 3, 2000",Minnesota United FC,,28,3,cross_checked,high
+Panama,PAN,15,DF,Eric Davis,Eric,Davis,DAVIS,"March 31, 1991",Plaza Amador,,107,9,cross_checked,high
+Panama,PAN,16,DF,Andrés Andrade,Andrés,Andrade,ANDRADE,"October 16, 1998",LASK,,50,1,cross_checked,high
+Panama,PAN,17,FW,José Fajardo,José,Fajardo,FAJARDO,"August 18, 1993",Universidad Católica,,68,17,cross_checked,high
+Panama,PAN,18,FW,Cecilio Waterman,Cecilio,Waterman,WATERMAN,"April 13, 1991",Universidad de Concepción,,55,15,cross_checked,high
+Panama,PAN,19,MF,Alberto Quintero,Alberto,Quintero,QUINTERO,"December 18, 1987",Plaza Amador,,141,7,cross_checked,high
+Panama,PAN,20,MF,Aníbal Godoy,Aníbal,Godoy,GODOY,"February 10, 1990",San Diego FC,,159,4,cross_checked,high
+Panama,PAN,21,MF,César Yanis,César,Yanis,YANIS,"January 28, 1996",Cobresal,,56,5,cross_checked,high
+Panama,PAN,22,GK,Orlando Mosquera,Orlando,Mosquera,MOSQUERA,"December 25, 1994",Al-Fayha,,48,0,cross_checked,high
+Panama,PAN,23,DF,Michael Amir Murillo,Michael Amir,Murillo,MURILLO,"February 11, 1996",Beşiktaş,,94,9,cross_checked,high
+Panama,PAN,24,FW,Azarias Londoño,Azarias,Londoño,LONDOÑO,"June 21, 2001",Universidad Católica,,11,0,cross_checked,high
+Panama,PAN,25,DF,Roderick Miller,Roderick,Miller,MILLER,"April 3, 1992",Turan Tovuz,,50,2,cross_checked,high
+Panama,PAN,26,DF,Jorge Gutiérrez,Jorge,Gutiérrez,GUTIÉRREZ,"September 1, 1998",Deportivo La Guaira,,18,0,cross_checked,high

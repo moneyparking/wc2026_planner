@@ -1,0 +1,34 @@
+{
+  "phase": "PHASE_1_29_FINAL_DATA_FILL",
+  "generated_at_utc": "2026-06-12T04:49:35+00:00",
+  "sources": {
+    "official_fixtures": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/fixtures",
+    "official_teams": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams",
+    "official_squads": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams",
+    "fixture_crosscheck": "https://www.espn.com/soccer/fixtures/_/league/FIFA.WORLD",
+    "public_extraction_fixtures_and_groups": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup",
+    "public_extraction_squads": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_squads"
+  },
+  "expected_counts": {
+    "groups": 12,
+    "teams": 48,
+    "matches": 104,
+    "group_stage_matches": 72,
+    "knockout_matches": 32,
+    "players_expected_if_full_26_each": 1248
+  },
+  "legal_positioning": {
+    "status": "Unofficial fan-made planning demo",
+    "forbidden": [
+      "FIFA logo",
+      "official World Cup emblem",
+      "official trophy replica",
+      "team federation crests",
+      "player likenesses",
+      "sponsor boards",
+      "betting odds",
+      "sportsbook language",
+      "affiliation or endorsement claims"
+    ]
+  }
+}

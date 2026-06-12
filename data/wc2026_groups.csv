@@ -1,0 +1,49 @@
+﻿group,seed,team,team_code,confederation,flag_emoji,source_status
+A,1,Mexico,MEX,CONCACAF,🇲🇽,cross_checked
+A,2,Korea Republic,KOR,AFC,🇰🇷,cross_checked
+A,3,Czech Republic,CZE,UEFA,🇨🇿,cross_checked
+A,4,South Africa,RSA,CAF,🇿🇦,cross_checked
+B,1,Canada,CAN,CONCACAF,🇨🇦,cross_checked
+B,2,Bosnia & Herzegovina,BIH,UEFA,🇧🇦,cross_checked
+B,3,Qatar,QAT,AFC,🇶🇦,cross_checked
+B,4,Switzerland,SUI,UEFA,🇨🇭,cross_checked
+C,1,Brazil,BRA,CONMEBOL,🇧🇷,cross_checked
+C,2,Morocco,MAR,CAF,🇲🇦,cross_checked
+C,3,Haiti,HAI,CONCACAF,🇭🇹,cross_checked
+C,4,Scotland,SCO,UEFA,🏴,cross_checked
+D,1,United States,USA,CONCACAF,🇺🇸,cross_checked
+D,2,Paraguay,PAR,CONMEBOL,🇵🇾,cross_checked
+D,3,Australia,AUS,AFC,🇦🇺,cross_checked
+D,4,Türkiye,TUR,UEFA,🇹🇷,cross_checked
+E,1,Germany,GER,UEFA,🇩🇪,cross_checked
+E,2,Curaçao,CUW,CONCACAF,🇨🇼,cross_checked
+E,3,Côte d'Ivoire,CIV,CAF,🇨🇮,cross_checked
+E,4,Ecuador,ECU,CONMEBOL,🇪🇨,cross_checked
+F,1,Netherlands,NED,UEFA,🇳🇱,cross_checked
+F,2,Japan,JPN,AFC,🇯🇵,cross_checked
+F,3,Sweden,SWE,UEFA,🇸🇪,cross_checked
+F,4,Tunisia,TUN,CAF,🇹🇳,cross_checked
+G,1,Belgium,BEL,UEFA,🇧🇪,cross_checked
+G,2,Egypt,EGY,CAF,🇪🇬,cross_checked
+G,3,IR Iran,IRN,AFC,🇮🇷,cross_checked
+G,4,New Zealand,NZL,OFC,🇳🇿,cross_checked
+H,1,Spain,ESP,UEFA,🇪🇸,cross_checked
+H,2,Cape Verde,CPV,CAF,🇨🇻,cross_checked
+H,3,Saudi Arabia,KSA,AFC,🇸🇦,cross_checked
+H,4,Uruguay,URU,CONMEBOL,🇺🇾,cross_checked
+I,1,France,FRA,UEFA,🇫🇷,cross_checked
+I,2,Senegal,SEN,CAF,🇸🇳,cross_checked
+I,3,Iraq,IRQ,AFC,🇮🇶,cross_checked
+I,4,Norway,NOR,UEFA,🇳🇴,cross_checked
+J,1,Argentina,ARG,CONMEBOL,🇦🇷,cross_checked
+J,2,Algeria,ALG,CAF,🇩🇿,cross_checked
+J,3,Austria,AUT,UEFA,🇦🇹,cross_checked
+J,4,Jordan,JOR,AFC,🇯🇴,cross_checked
+K,1,Portugal,POR,UEFA,🇵🇹,cross_checked
+K,2,DR Congo,COD,CAF,🇨🇩,cross_checked
+K,3,Uzbekistan,UZB,AFC,🇺🇿,cross_checked
+K,4,Colombia,COL,CONMEBOL,🇨🇴,cross_checked
+L,1,England,ENG,UEFA,🏴,cross_checked
+L,2,Croatia,CRO,UEFA,🇭🇷,cross_checked
+L,3,Ghana,GHA,CAF,🇬🇭,cross_checked
+L,4,Panama,PAN,CONCACAF,🇵🇦,cross_checked

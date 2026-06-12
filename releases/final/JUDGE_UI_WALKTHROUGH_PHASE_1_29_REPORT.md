@@ -1,0 +1,22 @@
+# Judge UI Walkthrough Phase 1.29
+
+- PASS: App loads — http://127.0.0.1:7860
+- PASS: Dashboard visible — Dashboard text detected.
+- PASS: 48 / 12 / 104 metrics visible — Core metrics detected.
+- PASS: Squad count visible — Squad count or validation present.
+- PASS: Load Demo Scenario button works — Clicked load demo control.
+- PASS: Recalculate War Room button works — Clicked recalc control.
+- PASS: Match Planner displays real teams — Real team names detected.
+- PASS: Match Planner includes dates — Real fixture dates detected.
+- PASS: Group Tracker shows groups — Group tracker content detected.
+- PASS: Bracket shows Round of 32 through Final — Knockout stages detected.
+- PASS: Friends League shows real match references — Real match references detected.
+- PASS: AI Scout returns squad-aware signal — Squad-aware scout text detected.
+- PASS: No forbidden terms visible — Forbidden terms absent from visible walkthrough text.
+- PASS: Unofficial disclaimer visible — Unofficial fan-made disclaimer detected.
+- PASS: Dashboard non-empty — 6408 visible characters.
+- PASS: Match Planner non-empty — 8350 visible characters.
+- PASS: Group Tracker non-empty — 3190 visible characters.
+- PASS: Bracket War Room non-empty — 3503 visible characters.
+- PASS: Friends League non-empty — 3503 visible characters.
+- PASS: AI Scout non-empty — 4320 visible characters.

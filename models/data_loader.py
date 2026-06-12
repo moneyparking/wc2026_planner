@@ -6,6 +6,8 @@ import warnings
 
 import pandas as pd
 
+from src.wc2026_data_loader import fixtures_as_match_planner, validate_wc2026_dataset
+
 from product_config import (
     EXPECTED_ANNEX_C_RECORD_COUNT,
     EXPECTED_MATCH_COUNT,
@@ -125,6 +127,15 @@ def load_workbook_state(path: str | Path | None = None) -> dict:
         load_warnings.append(f"Optional sheet(s) missing: {', '.join(missing_optional)}")
 
     matches = normalize_match_columns(_read_table(spreadsheet_path, SHEET_MATCH_PLANNER, MATCH_COLUMNS))
+    dataset_validation = validate_wc2026_dataset()
+    if not dataset_validation["errors"]:
+        matches = normalize_match_columns(fixtures_as_match_planner())
+        load_warnings.append(
+            "Real WC2026 data loaded: 48 teams, 12 groups, 104 fixtures, "
+            f"{dataset_validation['squad_rows_count']} squad rows."
+        )
+    else:
+        load_warnings.append("WC2026 data warning: " + " | ".join(dataset_validation["errors"]))
     friends = _normalize_friends_columns(_read_table(spreadsheet_path, SHEET_FRIENDS_LEAGUE, FRIENDS_COLUMNS))
     annex_c = _read_table(
         spreadsheet_path,

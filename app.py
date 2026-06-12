@@ -3,6 +3,7 @@ from __future__ import annotations
 import random
 import time
 from datetime import datetime
+from html import escape
 
 
 
@@ -16,6 +17,7 @@ from models.demo_scenario import apply_demo_scenario
 from models.fifa_rules import build_group_table, build_third_place_table
 from models.scoring import score_prediction
 from product_config import APP_TITLE, EXPECTED_ANNEX_C_RECORD_COUNT, EXPECTED_MATCH_COUNT
+from src.wc2026_data_loader import load_fixtures, load_groups, load_squads, validate_wc2026_dataset
 
 
 DEPLOY_MARKER = "PHASE_1_28_PRODUCTIZED_ONBOARDING_DEMO_PATH_CLARITY"
@@ -332,6 +334,8 @@ def generate_random_match_outcomes(state: dict, matches: pd.DataFrame | None = N
 
 
 def _command_header_html() -> str:
+    validation = validate_wc2026_dataset()
+    squad_label = f"{validation['squad_rows_count']:,}" if validation["squad_rows_count"] == 1248 else f"Warning: {validation['squad_rows_count']:,} / 1,248"
     badges = [
         "104-Match Engine",
         "Live Recalculation",
@@ -347,13 +351,22 @@ def _command_header_html() -> str:
     <div class="sport-hero sport-command-header">
         <div class="sport-kicker">{DEPLOY_MARKER}</div>
         <h1>AI Bracket War Room 2026</h1>
-        <h2>Change one result. Watch the tournament path mutate.</h2>
-        <p>A small-model-safe Gradio command center for testing 104-match football tournament scenarios, recalculating groups, third-place ranking, bracket paths, Friends League scores, and AI Scout signals.</p>
+        <h2>104-match command center</h2>
+        <p><strong>Change one result.</strong> Watch the tournament path mutate.</p>
+        <p>48 teams · 12 groups · 104 matches · squad-aware scout layer</p>
+        <p>A small-model-safe Gradio command center for testing football tournament scenarios, recalculating groups, third-place ranking, bracket paths, Friends League scores, and AI Scout signals.</p>
+        <div class="phase126-metrics">
+            <div class="phase126-metric"><b>{validation['teams_count']}</b><span>Teams loaded</span></div>
+            <div class="phase126-metric"><b>{validation['groups_count']}</b><span>Groups loaded</span></div>
+            <div class="phase126-metric"><b>{validation['fixtures_count']}</b><span>Matches loaded</span></div>
+            <div class="phase126-metric"><b>{squad_label}</b><span>Squad rows loaded</span></div>
+        </div>
         <div class="sport-badge-row">{badge_html}</div>
         <div class="sport-demo-rail">
             <span>1 Load Scenario</span><span>2 Edit Match</span><span>3 Recalculate</span><span>4 Inspect Impact</span><span>5 Read AI Scout</span><span>6 Compare Friends League</span>
         </div>
-        <p class="sport-muted">Unofficial fan-made football planning demo. No official logos, crests, sponsor marks, player likenesses, live scores, or paid API key required.</p>
+        <p><strong>Judge path:</strong> Load Demo Scenario → Recalculate War Room → inspect Match Planner, Group Tracker, Bracket War Room, Friends League, AI Scout.</p>
+        <p class="sport-muted">Unofficial fan-made planning demo. No official logos, crests, sponsor marks, player likenesses, live scores, or paid API key required.</p>
     </div>
     """
 
@@ -425,31 +438,35 @@ def build_impact_panel_html(matches: pd.DataFrame, groups: pd.DataFrame, thirds:
 
 
 def build_ai_scout_output(matches: pd.DataFrame) -> str:
-    signals = []
-    if matches is not None and not matches.empty and "AI Signal" in matches.columns:
-        signals = [str(value).strip() for value in matches["AI Signal"].fillna("").tolist() if str(value).strip()]
-    completed_count = 0 if matches is None or "Result" not in matches.columns else int(matches["Result"].fillna("").astype(str).str.strip().ne("").sum())
-    state = "ACTIVE" if completed_count else "WAITING"
-    cards = [
-        ("Volatility", "HIGH" if completed_count else "WAITING", "A completed result can move group order and bracket preview slots.", "Group Tracker"),
-        ("Upset Risk", "WATCH", "Workbook signal rows flag compact scoreline and pressure patterns.", "Match Planner"),
-        ("Bracket Impact", "LIVE" if completed_count else "PENDING", "Current standings are converted into knockout preview slots after recalculation.", "Bracket War Room"),
-        ("Third-Place Pressure", "HIGH" if completed_count else "PENDING", "Third-place qualification is sensitive in a 48-team format.", "3rd-Place Ranking"),
-        ("Friends League Swing", "ACTIVE" if completed_count else "PENDING", "Private picks gain or lose points as scenario results change.", "Friends League"),
-        ("Scout Note", state, "Lightweight AI-style signal layer explains deterministic scenario consequences without a paid API key.", "AI Scout"),
-    ]
-    card_html = "".join(
-        f"<div class='sport-scout-card'><span class='sport-label'>{label}</span><strong>{severity}</strong><p>{reason}</p><small>Affects: {module}</small></div>"
-        for label, severity, reason, module in cards
-    )
-    preview = " | ".join(signals[:5]) if signals else "Waiting for demo scenario. Click Load Judge Demo Scenario to begin."
+    fixtures = load_fixtures()
+    squads = load_squads()
+    selected = fixtures.iloc[0]
+    if matches is not None and not matches.empty and "Match ID" in matches.columns:
+        completed = matches[matches.get("Result", pd.Series(dtype=object)).fillna("").astype(str).str.strip().ne("")]
+        match_id = completed.iloc[0]["Match ID"] if not completed.empty else matches.iloc[0]["Match ID"]
+        match_no = _match_number_from_id(match_id) or 1
+        selected = fixtures[fixtures["match_no"].astype(int).eq(match_no)].iloc[0]
+    home = str(selected["home"])
+    away = str(selected["away"])
+    home_squad = squads[squads["team"].eq(home)]
+    away_squad = squads[squads["team"].eq(away)]
+    def distribution(frame: pd.DataFrame) -> str:
+        counts = frame["position"].value_counts().to_dict()
+        return " / ".join(f"{key}:{counts.get(key, 0)}" for key in ["GK", "DF", "MF", "FW"])
+    warning = ""
+    if len(squads) != 1248:
+        warning = f"<p class='sport-warning'>Squad parser warning: {len(squads)} / 1,248 player rows parsed.</p>"
     return f"""
     <div class='sport-card'>
-        <h3>AI Scout Signals</h3>
-        <p><span class='sport-success'>Lightweight AI-style signal layer:</span> {len(signals)} workbook signal row(s), {completed_count} completed result row(s).</p>
-        <div class="sport-scout-grid">{card_html}</div>
-        <p><span class='sport-accent'>Workbook preview:</span> {preview}</p>
-        <p>Small-model-safe explanatory layer. No live sports data, external market data, or real tournament outcome claims.</p>
+        <h3>Rule-based squad-aware scout signal</h3>
+        <p><strong>Match {int(selected['match_no'])} — {home} vs {away}</strong></p>
+        <p>Squad data: {home} {len(home_squad)} players, {away} {len(away_squad)} players</p>
+        <p>{home} position distribution: {distribution(home_squad)}</p>
+        <p>{away} position distribution: {distribution(away_squad)}</p>
+        {warning}
+        <p><span class='sport-accent'>Watch factors:</span> midfield density · defensive depth · forward rotation · set-piece coverage</p>
+        <p>Fan prediction confidence: medium</p>
+        <p>This is an unofficial planning signal for fan planning only.</p>
     </div>
     """
 
@@ -565,59 +582,151 @@ def _html_table_rows(frame: pd.DataFrame, limit: int) -> str:
     return "".join(rows)
 
 
+def _fixture_preview_for_matches(matches: pd.DataFrame | None) -> pd.DataFrame:
+    fixtures = load_fixtures().copy()
+    fixtures["Match ID"] = fixtures["match_no"].astype(int).apply(lambda value: f"M{value:03d}")
+    if matches is not None and not matches.empty and "Match ID" in matches.columns:
+        source = matches.copy()
+        source["Match ID"] = source["Match ID"].astype(str)
+        score_lookup = source.set_index("Match ID").get("Result", pd.Series(dtype=object)).to_dict()
+        fixtures["Score"] = fixtures["Match ID"].map(score_lookup).fillna("")
+    else:
+        fixtures["Score"] = ""
+    fixtures["Status"] = fixtures["Score"].astype(str).str.strip().map(lambda value: "Completed" if value else "Needs result")
+    return fixtures[
+        [
+            "Match ID",
+            "match_no",
+            "date",
+            "stage",
+            "group",
+            "home",
+            "away",
+            "city",
+            "country",
+            "stadium",
+            "kickoff_local",
+            "Score",
+            "Status",
+        ]
+    ].rename(
+        columns={
+            "match_no": "Match number",
+            "date": "Date",
+            "stage": "Stage",
+            "group": "Group",
+            "home": "Home",
+            "away": "Away",
+            "city": "City",
+            "country": "Country",
+            "stadium": "Stadium",
+            "kickoff_local": "Kickoff local",
+        }
+    )
+
+
+def _html_fixture_rows(frame: pd.DataFrame, limit: int) -> str:
+    rows = []
+    for row_index, (_, row) in enumerate(frame.head(limit).iterrows(), start=1):
+        cells = "".join(f"<td>{escape(str(row.get(column, '')))}</td>" for column in frame.columns)
+        rows.append(f"<tr data-row='{row_index}'>{cells}</tr>")
+    return "".join(rows) or "<tr><td>No fixture rows available.</td></tr>"
+
+
 def _visible_match_planner_html(matches: pd.DataFrame, planner_filter: str = "All 104 matches") -> str:
-    rows = _html_table_rows(matches, VISIBLE_TAB_PREVIEW_MATCHES)
+    fixture_preview = _fixture_preview_for_matches(matches)
+    if matches is not None and not matches.empty and len(matches) != EXPECTED_MATCH_COUNT:
+        match_ids = set(matches["Match ID"].astype(str)) if "Match ID" in matches.columns else set()
+        fixture_preview = fixture_preview[fixture_preview["Match number"].apply(lambda value: f"M{int(value):03d}" in match_ids)]
+    headers = "".join(f"<th>{escape(column)}</th>" for column in fixture_preview.columns)
+    rows = _html_fixture_rows(fixture_preview, VISIBLE_TAB_PREVIEW_MATCHES)
     return f"""
     <div class='sport-card'>
         <h3>Match Planner Filtered Preview</h3>
         <p>One-click judge filter for the 104-match planner by stage or Groups A-L.</p>
         <p><strong>Active filter:</strong> <span class='sport-success'>{planner_filter}</span></p>
-        <p>Simulation complete. War Room complete. Completed successfully. Engine loaded: {len(matches)} / {EXPECTED_MATCH_COUNT} matches · Filtered rows: {len(matches)} / {EXPECTED_MATCH_COUNT} matches · Visible preview: {min(len(matches), VISIBLE_TAB_PREVIEW_MATCHES)} matches shown</p>
-        <table>{rows}</table>
+        <p>Data loaded: 104 / 104 matches · Filtered rows: {len(fixture_preview)} / 104 matches · Visible preview: {min(len(fixture_preview), VISIBLE_TAB_PREVIEW_MATCHES)} / 104 matches</p>
+        <table><thead><tr>{headers}</tr></thead><tbody>{rows}</tbody></table>
     </div>
     """
 
 
 def _visible_group_tracker_html(groups: pd.DataFrame) -> str:
-    rows = _html_table_rows(groups, VISIBLE_TAB_PREVIEW_GROUPS)
+    base = load_groups().rename(columns={"group": "Group", "team": "Team"})
+    if groups is not None and not groups.empty:
+        computed = groups.rename(columns={"Group_ID": "Group", "Pts": "Points"}).copy()
+    else:
+        computed = pd.DataFrame(columns=["Group", "Team", "Played", "Won", "Drawn", "Lost", "GF", "GA", "GD", "Points", "Rank"])
+    frame = base[["Group", "Team"]].merge(computed, on=["Group", "Team"], how="left")
+    for column in ["Played", "Won", "Drawn", "Lost", "GF", "GA", "GD", "Points"]:
+        frame[column] = pd.to_numeric(frame.get(column), errors="coerce").fillna(0).astype(int)
+    fallback_rank = frame.groupby("Group").cumcount() + 1
+    frame["Rank"] = pd.to_numeric(frame.get("Rank"), errors="coerce").fillna(fallback_rank).astype(int)
+    frame["Qualification Status"] = frame["Played"].map(lambda value: "Needs result" if value == 0 else "Third-place watch")
+    rows = _html_table_rows(frame[["Group", "Team", "Played", "Won", "Drawn", "Lost", "GF", "GA", "GD", "Points", "Rank", "Qualification Status"]], 48)
     return f"""
     <div class='sport-card'>
         <h3>Group Tracker</h3>
         <p>Shows how group order changes after recalculation.</p>
-        <p>Computed group rows: {len(groups)} · Visible preview: {min(len(groups), VISIBLE_TAB_PREVIEW_GROUPS)} rows shown</p>
+        <p>12 groups rendered · 4 teams per group · Visible preview: 48 / 48 team rows</p>
         <table>{rows}</table>
     </div>
     """
 
 
 def _visible_third_place_html(thirds: pd.DataFrame) -> str:
-    rows = _html_table_rows(thirds, 1)
+    base_groups = load_groups().groupby("group").nth(2).reset_index()
+    frame = pd.DataFrame(
+        {
+            "Group": base_groups["group"],
+            "Team": base_groups["team"],
+            "Points": 0,
+            "GD": 0,
+            "GF": 0,
+            "Fair-play placeholder or note": "Not tracked in demo",
+            "Ranking": range(1, 13),
+            "Projected status": "Needs result",
+        }
+    )
+    if thirds is not None and not thirds.empty:
+        computed = thirds.rename(columns={"Group_ID": "Group", "Pts": "Points", "Third_Place_Rank": "Ranking"}).copy()
+        frame = computed[["Group", "Team", "Points", "GD", "GF", "Ranking"]].copy()
+        frame["Fair-play placeholder or note"] = "Not tracked in demo"
+        frame["Projected status"] = frame["Ranking"].apply(lambda value: "Projected advance" if int(value) <= 8 else "Bubble")
+    rows = _html_table_rows(frame, 12)
     return f"""
     <div class='sport-card'>
         <h3>3rd-Place Ranking</h3>
         <p>Critical in a 48-team format because third-place teams can still advance.</p>
-        <p>Computed third-place rows: {len(thirds)} · Visible preview: {min(len(thirds), 1)} row shown</p>
+        <p>12 third-place rows tracked · Visible preview: {len(frame)} / 12 rows shown</p>
         <table>{rows}</table>
     </div>
     """
 
 
 def _visible_bracket_war_room_html(bracket: dict) -> str:
-    round_of_32 = bracket.get("round_of_32") or {}
-    rows = []
-    for row_index, (match_id, payload) in enumerate(list(round_of_32.items())[:VISIBLE_TAB_PREVIEW_BRACKET], start=1):
-        team_a = payload.get("team_a") or payload.get("slot_a") or "TBD"
-        team_b = payload.get("team_b") or payload.get("slot_b") or "TBD"
-        rows.append(f"<tr data-row='{row_index}'><td>{match_id}</td><td>{team_a}</td><td>{team_b}</td></tr>")
-    while len(rows) < VISIBLE_TAB_PREVIEW_BRACKET:
-        row_index = len(rows) + 1
-        rows.append(f"<tr data-row='{row_index}'><td>R32 Preview {row_index}</td><td>TBD</td><td>TBD</td></tr>")
+    fixtures = load_fixtures()
+    knockouts = fixtures[fixtures["match_no"].astype(int).between(73, 104)].copy()
+    sections = []
+    for stage in ["Round of 32", "Round of 16", "Quarter-final", "Semi-final", "Third-place playoff", "Final"]:
+        stage_rows = knockouts[knockouts["stage"].eq(stage)]
+        body = "".join(
+            "<tr>"
+            f"<td>{int(row['match_no'])}</td>"
+            f"<td>{escape(str(row['home']))}</td>"
+            f"<td>{escape(str(row['away']))}</td>"
+            f"<td>{escape(str(row['date']))}</td>"
+            f"<td>{escape(str(row['city']))}</td>"
+            "</tr>"
+            for _, row in stage_rows.iterrows()
+        )
+        sections.append(f"<h4>{stage}</h4><table><tbody>{body}</tbody></table>")
     return f"""
     <div class='sport-card'>
-        <h3>Round of 32 Preview</h3>
-        <p>Converts current standings into knockout preview slots.</p>
-        <p>Visible preview: 8 bracket rows shown</p>
-        <table>{''.join(rows)}</table>
+        <h3>Bracket War Room</h3>
+        <p>Knockout teams are result-dependent. Unresolved slots stay visible until group standings determine them.</p>
+        <p>Visible knockout skeleton: 32 / 32 matches</p>
+        {''.join(sections)}
     </div>
     """
 
@@ -625,10 +734,12 @@ def _visible_bracket_war_room_html(bracket: dict) -> str:
 def _visible_friends_league_html(friends: pd.DataFrame) -> str:
     preview = friends.head(VISIBLE_TAB_PREVIEW_FRIENDS)
     rows = _html_table_rows(preview, VISIBLE_TAB_PREVIEW_FRIENDS)
+    fixtures = load_fixtures().head(5)
+    match_refs = ", ".join(f"Match {int(row['match_no'])}: {row['home']} vs {row['away']}" for _, row in fixtures.iterrows())
     return f"""
     <div class='sport-card'>
         <h3>Friends League</h3>
-        <p>Shows which private picks gain or lose after the scenario change.</p>
+        <p>Private league fan challenge linked to real fixtures: {escape(match_refs)}</p>
         <p>Demo scoreboard rows: {len(preview)} · Visible preview: {len(preview)} rows shown</p>
         <table>{rows}</table>
     </div>

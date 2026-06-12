@@ -1,0 +1,116 @@
+{
+  "generated_at_utc": "2026-06-12T05:06:17.806574+00:00",
+  "url": "http://127.0.0.1:7860",
+  "dataset_validation": {
+    "groups_count": 12,
+    "teams_count": 48,
+    "fixtures_count": 104,
+    "group_stage_count": 72,
+    "knockout_count": 32,
+    "squad_rows_count": 1248,
+    "errors": [],
+    "warnings": []
+  },
+  "checks": [
+    {
+      "check": "App loads",
+      "status": "PASS",
+      "detail": "http://127.0.0.1:7860"
+    },
+    {
+      "check": "Dashboard visible",
+      "status": "PASS",
+      "detail": "Dashboard text detected."
+    },
+    {
+      "check": "48 / 12 / 104 metrics visible",
+      "status": "PASS",
+      "detail": "Core metrics detected."
+    },
+    {
+      "check": "Squad count visible",
+      "status": "PASS",
+      "detail": "Squad count or validation present."
+    },
+    {
+      "check": "Load Demo Scenario button works",
+      "status": "PASS",
+      "detail": "Clicked load demo control."
+    },
+    {
+      "check": "Recalculate War Room button works",
+      "status": "PASS",
+      "detail": "Clicked recalc control."
+    },
+    {
+      "check": "Match Planner displays real teams",
+      "status": "PASS",
+      "detail": "Real team names detected."
+    },
+    {
+      "check": "Match Planner includes dates",
+      "status": "PASS",
+      "detail": "Real fixture dates detected."
+    },
+    {
+      "check": "Group Tracker shows groups",
+      "status": "PASS",
+      "detail": "Group tracker content detected."
+    },
+    {
+      "check": "Bracket shows Round of 32 through Final",
+      "status": "PASS",
+      "detail": "Knockout stages detected."
+    },
+    {
+      "check": "Friends League shows real match references",
+      "status": "PASS",
+      "detail": "Real match references detected."
+    },
+    {
+      "check": "AI Scout returns squad-aware signal",
+      "status": "PASS",
+      "detail": "Squad-aware scout text detected."
+    },
+    {
+      "check": "No forbidden terms visible",
+      "status": "PASS",
+      "detail": "Forbidden terms absent from visible walkthrough text."
+    },
+    {
+      "check": "Unofficial disclaimer visible",
+      "status": "PASS",
+      "detail": "Unofficial fan-made disclaimer detected."
+    },
+    {
+      "check": "Dashboard non-empty",
+      "status": "PASS",
+      "detail": "6408 visible characters."
+    },
+    {
+      "check": "Match Planner non-empty",
+      "status": "PASS",
+      "detail": "8350 visible characters."
+    },
+    {
+      "check": "Group Tracker non-empty",
+      "status": "PASS",
+      "detail": "3190 visible characters."
+    },
+    {
+      "check": "Bracket War Room non-empty",
+      "status": "PASS",
+      "detail": "3503 visible characters."
+    },
+    {
+      "check": "Friends League non-empty",
+      "status": "PASS",
+      "detail": "3503 visible characters."
+    },
+    {
+      "check": "AI Scout non-empty",
+      "status": "PASS",
+      "detail": "4320 visible characters."
+    }
+  ]
+}
