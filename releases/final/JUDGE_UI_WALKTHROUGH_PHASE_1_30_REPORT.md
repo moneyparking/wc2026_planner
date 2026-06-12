@@ -2,15 +2,21 @@
 
 - PASS: App loads — http://127.0.0.1:12000
 - PASS: Phase 1.30 visible — PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME
-- PASS: PHASE 1.31 visible — Phase 1.31 AppStore Product Polish detected.
+- PASS: PHASE 1.31 visible — Phase 1.31+ AppStore Product Polish detected.
+- PASS: PHASE 1.32 visible — Phase 1.32 Production Visual QA Complete detected.
 - PASS: ABW logo visible — ABW logo mark detected.
 - PASS: Icon navigation visible — Icon nav row detected.
 - PASS: Today’s Match Center visible — Today match center detected.
+- PASS: M001 visible before raw table content — M001 match center appears before raw table content.
+- PASS: What Changed visible — What Changed panel detected.
 - PASS: App cards visible — Card shell classes detected.
 - PASS: Google Sheet Control visible — Google Sheet module detected.
+- PASS: Google Sheet Control Snapshot visible — Sheet snapshot detected.
 - PASS: AI Scout Match Control Panel visible — AI Scout module detected.
 - PASS: No stale Phase 1.28 marker visible — Visible header marker is current.
 - PASS: Old autonomous local engine hidden — Legacy engine banner absent.
+- PASS: Old Tactical Slip hidden — Legacy Tactical Slip copy absent.
+- PASS: Old local runtime engine hidden — Legacy local runtime engine copy absent.
 - PASS: Dashboard visible — Dashboard or app module text detected.
 - PASS: 48 / 12 / 104 metrics visible — Core metrics detected.
 - PASS: Squad count visible — Squad count or validation present.
@@ -41,11 +47,13 @@
 - PASS: Google Sheet Control tab explains connection — Connection instructions detected.
 - PASS: No forbidden terms visible — Forbidden terms absent from visible walkthrough text.
 - PASS: Old autonomous local engine absent — Legacy engine copy absent from walkthrough.
+- PASS: Old Tactical Slip absent — Legacy Tactical Slip copy absent from walkthrough.
+- PASS: Old local runtime engine absent — Legacy local runtime engine copy absent from walkthrough.
 - PASS: Unofficial disclaimer visible — Unofficial fan-made disclaimer detected.
-- PASS: Dashboard non-empty — 5785 visible characters.
-- PASS: Match Planner non-empty — 9716 visible characters.
-- PASS: Group Tracker non-empty — 8372 visible characters.
-- PASS: Bracket War Room non-empty — 7325 visible characters.
-- PASS: Friends League non-empty — 7313 visible characters.
-- PASS: AI Scout non-empty — 7313 visible characters.
-- PASS: Google Sheet Control non-empty — 7310 visible characters.
+- PASS: Dashboard non-empty — 6745 visible characters.
+- PASS: Match Planner non-empty — 10862 visible characters.
+- PASS: Group Tracker non-empty — 9332 visible characters.
+- PASS: Bracket War Room non-empty — 8444 visible characters.
+- PASS: Friends League non-empty — 8273 visible characters.
+- PASS: AI Scout non-empty — 8273 visible characters.
+- PASS: Google Sheet Control non-empty — 8270 visible characters.

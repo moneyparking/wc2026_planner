@@ -365,14 +365,18 @@ body,
 }
 
 .today-module-grid,
-.product-module-grid {
+.product-module-grid,
+.runtime-status-cards,
+.quick-navigation-cards {
     display: grid;
     gap: 16px;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .mini-module,
-.module-card {
+.module-card,
+.status-card,
+.nav-card {
     background: #F8FAFC !important;
     border: 1px solid #CBD5E1 !important;
     border-radius: 16px;
@@ -387,12 +391,35 @@ body,
 }
 
 .mini-module strong,
-.module-card h3 {
+.module-card h3,
+.status-card strong,
+.nav-card strong {
     color: #0F172A !important;
     display: block;
     font-size: 16px;
     font-weight: 900;
     margin: 4px 0 0;
+}
+
+.status-card span,
+.nav-card span {
+    color: #64748B !important;
+    display: block;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.nav-card > span {
+    color: #0F172A !important;
+    font-size: 22px;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.what-changed-panel,
+.google-sheet-snapshot {
+    display: grid;
+    gap: 12px;
 }
 
 .next-action-row {

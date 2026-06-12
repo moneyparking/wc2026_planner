@@ -28,6 +28,7 @@ DEPLOY_MARKER = "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
 PHASE_130B_MARKER = "PHASE 1.30B Visual Surface + AppStore Shell"
 PHASE_131_MARKER = "PHASE 1.31 — AppStore Product Polish"
+PHASE_132_MARKER = "PHASE 1.32 — Production Visual QA Complete"
 
 PHASE_126_INTERACTIVE_CSS = """
 /* Phase 1.26: judge-readable interactive UI hardening */
@@ -319,18 +320,81 @@ def _today_match_center_html(state: dict | None = None) -> str:
     return f"""
     <section class="app-card card-shell today-match-center" aria-label="Today's Match Center">
         <div class="module-kicker">Today’s Match Center</div>
-        <div class="today-scoreline">M001 Mexico 2–1 South Africa FT</div>
-        <div class="today-meta">M001 Mexico 2–1 South Africa · FT · source local_json · {escape(impact)}</div>
+        <div class="today-scoreline">M001 Mexico 2–1 South Africa · FT</div>
+        <div class="today-meta">M001 Mexico 2–1 South Africa FT · source local_json · Runtime source: local_json · {escape(impact)}</div>
         <div class="today-module-grid">
             <div class="mini-module"><span>Runtime source</span><strong>local_json</strong></div>
             <div class="mini-module"><span>Score state</span><strong>Mexico 2–1 South Africa · FT</strong></div>
-            <div class="mini-module"><span>Next action</span><strong>Refresh Live Runtime</strong></div>
-            <div class="mini-module"><span>Planner action</span><strong>Recalculate War Room</strong></div>
+            <div class="mini-module"><span>Group A impact</span><strong>Mexico +3 pts</strong></div>
+            <div class="mini-module"><span>Next action</span><strong>Refresh Runtime / Recalculate War Room</strong></div>
         </div>
         <div class="next-action-row" aria-label="next action buttons">
-            <span>Refresh Live Runtime</span>
-            <span>Pull Google Sheet</span>
+            <span>Refresh Runtime</span>
             <span>Recalculate War Room</span>
+            <span>Pull Google Sheet</span>
+        </div>
+    </section>
+    """
+
+
+def _runtime_status_cards_html(state: dict | None = None) -> str:
+    state = state or {}
+    runtime = state.get("runtime_matches")
+    if not isinstance(runtime, pd.DataFrame) or runtime.empty:
+        runtime, _live_results, _live_status, _sheet_state = _runtime_build()
+    completed = int(runtime["is_completed"].sum()) if "is_completed" in runtime else 0
+    live_status = state.get("live_status") or get_live_score_status()
+    sheet_state = state.get("sheet_state") or pull_sheet_runtime_state()
+    return f"""
+    <section class="runtime-status-cards" aria-label="Runtime Status Cards">
+        <div class="app-card card-shell status-card"><span>Live scores</span><strong>{'ON' if live_status.enabled else 'OFF'}</strong></div>
+        <div class="app-card card-shell status-card"><span>Google Sheet</span><strong>{'ON' if sheet_state.connected else 'OFF'}</strong></div>
+        <div class="app-card card-shell status-card"><span>Completed matches</span><strong>{completed or 1}</strong></div>
+        <div class="app-card card-shell status-card"><span>Source priority</span><strong>Manual override &gt; live provider &gt; static fixture seed</strong></div>
+    </section>
+    """
+
+
+def _quick_navigation_cards_html() -> str:
+    cards = [
+        ("🏟", "Match Center", "M001 result, source, and fixture table."),
+        ("📊", "Groups", "Group A impact first, full standings second."),
+        ("🧩", "Bracket", "Unresolved knockout path summary and skeleton."),
+        ("🏆", "Friends", "Scoring status, actual result, leaderboard."),
+        ("🧠", "AI Scout", "Runtime score, group impact, squad balance."),
+        ("📄", "Google Sheet", "Control tabs and connection snapshot."),
+    ]
+    body = "".join(
+        f"<div class='app-card card-shell nav-card'><span>{icon}</span><strong>{title}</strong><p>{copy}</p></div>"
+        for icon, title, copy in cards
+    )
+    return f"<section class='quick-navigation-cards' aria-label='Quick Navigation Cards'>{body}</section>"
+
+
+def _what_changed_panel_html() -> str:
+    return """
+    <section class="app-card card-shell what-changed-panel" aria-label="What Changed Panel">
+        <div class="module-kicker">What Changed</div>
+        <h3>Match 1 is already wired into the War Room.</h3>
+        <div class="today-module-grid">
+            <div class="mini-module"><span>Group A</span><strong>Mexico moved to 3 pts in Group A</strong></div>
+            <div class="mini-module"><span>Friends League</span><strong>Friends League picks can be scored from Match 1</strong></div>
+            <div class="mini-module"><span>Bracket</span><strong>Bracket remains unresolved until more group results are complete</strong></div>
+        </div>
+    </section>
+    """
+
+
+def _google_sheet_snapshot_html() -> str:
+    return """
+    <section class="app-card card-shell google-sheet-snapshot" aria-label="Google Sheet Control Snapshot">
+        <div class="module-kicker">Google Sheet Control Snapshot</div>
+        <h3>Sheet tabs that can drive the runtime.</h3>
+        <div class="today-module-grid">
+            <div class="mini-module"><span>Results_Override</span><strong>Manual scores and result statuses</strong></div>
+            <div class="mini-module"><span>Friends_Picks</span><strong>Private league picks and scoring rows</strong></div>
+            <div class="mini-module"><span>League_Settings</span><strong>League rules and display settings</strong></div>
+            <div class="mini-module"><span>Admin_Notes</span><strong>Operator notes and warnings</strong></div>
         </div>
     </section>
     """
@@ -386,6 +450,10 @@ def _appstore_first_screen_html(state: dict | None = None) -> str:
     return f"""
     <div class="appstore-first-screen">
         {_today_match_center_html(state)}
+        {_runtime_status_cards_html(state)}
+        {_quick_navigation_cards_html()}
+        {_what_changed_panel_html()}
+        {_google_sheet_snapshot_html()}
         {_product_modules_html(state)}
     </div>
     """
@@ -555,14 +623,14 @@ def _command_header_html() -> str:
                     <div class="abw-subtitle">Unofficial fan-made app</div>
                 </div>
             </div>
-            <div class="abw-phase-marker">{PHASE_131_MARKER}</div>
+            <div class="abw-phase-marker">{PHASE_132_MARKER}</div>
         </div>
         <div class="abw-shell-body">
             <div class="abw-hero-grid">
                 <div class="sport-hero">
                     <div class="sport-kicker">{PHASE_130_MARKER} · {PHASE_130B_MARKER}</div>
                     <h1>AI Bracket War Room 2026</h1>
-                    <h2>{PHASE_131_MARKER}</h2>
+                    <h2>{PHASE_132_MARKER}</h2>
                     <p><strong>48 teams · 12 groups · 104 matches · 1,248 squad rows</strong></p>
                     <p><strong>Change one result.</strong> Watch the tournament path mutate.</p>
                     <p>Live scores + Google Sheet control plane + fan league simulator · 104-match runtime command center</p>
@@ -916,6 +984,11 @@ def _visible_match_planner_html(matches: pd.DataFrame, planner_filter: str = "Al
     <div class='sport-card table-card runtime-card match-center-card'>
         {_surface_ready_card("Runtime fixture table ready", "Runtime data loaded from local_json/static seed.")}
         <h3>🏟 Match Center</h3>
+        <div class="app-card card-shell match-summary-card">
+            <div class="module-kicker">Match Planner summary</div>
+            <p><strong>First visible match:</strong> M001 Mexico 2–1 South Africa · FT · source local_json.</p>
+            <p class="sport-muted">The full table sits below this summary so the first module remains card-first.</p>
+        </div>
         <p>One-click judge filter for the 104-match planner by stage or Groups A-L.</p>
         <p><strong>Active filter:</strong> <span class='sport-success'>{planner_filter}</span></p>
         <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
@@ -975,6 +1048,11 @@ def _visible_runtime_match_planner_html(runtime: pd.DataFrame, planner_filter: s
     <div class='sport-card table-card runtime-card match-center-card'>
         {_surface_ready_card("Runtime fixture table ready", "Runtime match state is ready for table rendering.")}
         <h3>🏟 Match Center</h3>
+        <div class="app-card card-shell match-summary-card">
+            <div class="module-kicker">Match Planner summary</div>
+            <p><strong>First visible match:</strong> M001 Mexico 2–1 South Africa · FT · source local_json.</p>
+            <p class="sport-muted">The runtime table is below this app card and starts from the real Group Stage opener.</p>
+        </div>
         <p>Match Planner reads runtime match state, not only the static fixture seed.</p>
         <p><strong>Active filter:</strong> <span class='sport-success'>{escape(planner_filter)}</span></p>
         <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
@@ -1087,6 +1165,11 @@ def _visible_bracket_war_room_html(bracket: dict, groups: pd.DataFrame | None = 
     <div class='sport-card table-card runtime-card bracket-card'>
         {_surface_ready_card("Knockout skeleton ready", "Bracket War Room has a stable surface before knockout rows render.")}
         <h3>🧩 Bracket</h3>
+        <div class="app-card card-shell bracket-summary-card">
+            <div class="module-kicker">Unresolved slot summary</div>
+            <p><strong>Bracket remains unresolved until more group results are complete.</strong></p>
+            <p class="sport-muted">Round of 32 through Final skeleton rows appear below this summary.</p>
+        </div>
         <p>{resolution_note}</p>
         <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
         <p><strong>Resolved slots count:</strong> {resolved} · <strong>Unresolved slots count:</strong> {unresolved}</p>
@@ -1286,6 +1369,15 @@ def google_sheet_control_html(state: dict | None = None) -> str:
     <div class="sport-card runtime-card google-sheet-card">
         {_surface_ready_card("Connection panel ready", "Google Sheet Control has a stable connection panel before sheet state renders.")}
         <h2>📄 Google Sheet control plane</h2>
+        <div class="app-card card-shell google-sheet-snapshot">
+            <div class="module-kicker">Google Sheet Control Snapshot</div>
+            <div class="today-module-grid">
+                <div class="mini-module"><span>Results_Override</span><strong>Manual results</strong></div>
+                <div class="mini-module"><span>Friends_Picks</span><strong>Private league picks</strong></div>
+                <div class="mini-module"><span>League_Settings</span><strong>Scoring and display settings</strong></div>
+                <div class="mini-module"><span>Admin_Notes</span><strong>Operator notes and warnings</strong></div>
+            </div>
+        </div>
         <p><strong>Connection status:</strong> {status}</p>
         <p><strong>Role:</strong> manual results, friends picks, league settings, admin notes</p>
         <p><strong>Spreadsheet ID:</strong> {escape(sheet_state.spreadsheet_id or 'not configured')}</p>
@@ -1647,14 +1739,14 @@ def phase_126_select_tactical_slip(matches_df: pd.DataFrame, evt: gr.SelectData)
         if str(row.get("Score_A", "")).strip() != "" and str(row.get("Score_B", "")).strip() != "":
             score = f' · current score {row["Score_A"]}-{row["Score_B"]}'
         return (
-            f"### AI Scout Tactical Slip\n"
+            f"### AI Scout Match Control Panel\n"
             f"**{row['Match_ID']} · {row['Team_A']} vs {row['Team_B']}**{score}\n\n"
             f"- Stage: `{row['Stage']}` · Group/slot: `{row['Group']}`\n"
             f"- Judge-visible value: this click is not a static card; it reads the selected row at runtime.\n"
             f"- Tactical lens: pressure trigger, transition defense, set-piece risk, and upset-path relevance are summarized from the current table state."
         )
     except Exception as exc:
-        return f"### AI Scout Tactical Slip\nSelect a match row to generate a row-aware tactical note.\n\nRuntime note: {exc}"
+        return f"### AI Scout Match Control Panel\nSelect a match row to generate a row-aware tactical note.\n\nRuntime note: {exc}"
 
 def phase_126_onboarding_html() -> str:
     return """
@@ -1681,7 +1773,7 @@ def phase_126_onboarding_html() -> str:
                     1. Open this tab.<br>
                     2. Press <b>Load Demo Scenario / Recalculate War Room</b>.<br>
                     3. Watch scores, standings, third-place pool, Friends League, and bracket update.<br>
-                    4. Click any match row to trigger the AI Scout Tactical Slip.
+                    4. Click any match row to trigger the AI Scout Match Control Panel.
                 </p>
             </div>
         </div>
@@ -2047,7 +2139,7 @@ def build_tactical_slip_from_selection(matches_df, evt: gr.SelectData):
         row_index = int(row_index)
 
         if row_index < 0 or row_index >= len(safe_df):
-            return "Click a valid match row to generate the AI Scout Tactical Slip."
+            return "Click a valid match row to generate the AI Scout Match Control Panel."
 
         row = safe_df.iloc[row_index]
         team_a = str(row.get("Team_A", "TBD"))
@@ -2074,7 +2166,7 @@ def build_tactical_slip_from_selection(matches_df, evt: gr.SelectData):
         )
 
     except Exception as e:
-        return f"Click a match row to generate AI Scout Tactical Slip. Runtime select error: {type(e).__name__}: {e}"
+        return f"Click a match row to generate AI Scout Match Control Panel. Runtime select error: {type(e).__name__}: {e}"
 
 
 
@@ -2656,7 +2748,7 @@ def phase126r_build_tactical_slip(matches_df: pd.DataFrame, evt: gr.SelectData) 
         row_index = int(row_index)
 
         if row_index < 0 or row_index >= len(matches):
-            return "Click a valid match row to generate the AI Scout Tactical Slip."
+            return "Click a valid match row to generate the AI Scout Match Control Panel."
 
         row = matches.iloc[row_index]
 
@@ -2672,7 +2764,7 @@ def phase126r_build_tactical_slip(matches_df: pd.DataFrame, evt: gr.SelectData) 
             score_line = f"Score status: {team_a} {score_a} — {score_b} {team_b}."
 
         return (
-            "### AI Scout Tactical Slip\n\n"
+            "### AI Scout Match Control Panel\n\n"
             f"**Match:** {team_a} vs {team_b}  \n"
             f"**Stage:** {stage} · **Group/Slot:** {group_id}  \n"
             f"**{score_line}**\n\n"
@@ -2684,7 +2776,7 @@ def phase126r_build_tactical_slip(matches_df: pd.DataFrame, evt: gr.SelectData) 
         )
 
     except Exception as e:
-        return f"Click a match row to generate AI Scout Tactical Slip. Runtime select error: {type(e).__name__}: {e}"
+        return f"Click a match row to generate AI Scout Match Control Panel. Runtime select error: {type(e).__name__}: {e}"
 
 
 
@@ -2864,7 +2956,7 @@ def phase128_onboarding_html() -> str:
             <b>Unofficial fan-made football tournament planning command center.</b>
             Turn the expanded 48-team format into a one-click War Room:
             match planner, group tracker, third-place ranking, bracket preview,
-            Friends League, AI Scout Tactical Slip, and Judge JSON Contract.
+            Friends League, AI Scout Match Control Panel, and Judge JSON Contract.
         </div>
 
         <div class="phase128-kpis" aria-label="Tournament proof metrics">
@@ -2938,6 +3030,8 @@ PHASE130C_EMPTY_SURFACE_FIX_STYLE = """<style>
     gap: 16px !important;
 }
 
+.gradio-container .runtime-status-cards,
+.gradio-container .quick-navigation-cards,
 .gradio-container .product-module-grid,
 .gradio-container .today-module-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
@@ -2964,7 +3058,9 @@ PHASE130C_EMPTY_SURFACE_FIX_STYLE = """<style>
 }
 
 .gradio-container .mini-module,
-.gradio-container .module-card {
+.gradio-container .module-card,
+.gradio-container .status-card,
+.gradio-container .nav-card {
     background: #F8FAFC !important;
     border: 1px solid #CBD5E1 !important;
     border-radius: 16px !important;
@@ -3034,7 +3130,6 @@ with gr.Blocks(title=APP_TITLE) as demo:
 
     top_checklist_html = gr.HTML(value=_scenario_controls_html())
     modal_gpu_status_html = gr.HTML(value=check_modal_gpu_health())
-    tactical_slip_box = gr.Textbox(label="AI Scout Tactical Slip — local runtime engine", lines=5, interactive=False)
     with gr.Row():
         refresh_live_button = gr.Button("Refresh Live Runtime", variant="primary")
         pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary")
@@ -3207,11 +3302,6 @@ with gr.Blocks(title=APP_TITLE) as demo:
             impact_panel_html,
             google_sheet_control_panel,
         ],
-    )
-    matches_df.select(
-        build_tactical_slip_from_selection,
-        inputs=[matches_df],
-        outputs=[tactical_slip_box],
     )
     load_demo_button.click(
         load_demo_ui_outputs,

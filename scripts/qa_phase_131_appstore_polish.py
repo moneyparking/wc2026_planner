@@ -44,7 +44,7 @@ def main() -> None:
         ]
     )
 
-    assert_contains(initial, "PHASE 1.31", "Phase marker")
+    assert "PHASE 1.31" in initial or "PHASE 1.32" in initial, "Phase marker missing"
     assert_contains(initial, "ABW", "ABW logo mark")
     for nav_label in ("🏟 Match Center", "📊 Groups", "🧩 Bracket", "🏆 Friends", "🧠 Scout", "📄 Sheet"):
         assert_contains(initial, nav_label, "Icon navigation")
@@ -58,7 +58,7 @@ def main() -> None:
     assert_contains(initial, "Actual result card", "Friends League actual result card")
 
     for old_copy in (
-        "AI Scout Tactical Slip — autonomous local engine",
+        "AI Scout Match Control Panel — local match engine",
         "Runtime Match Planner · 104 rows",
         "Qualified Slot",
         "R32+",
@@ -85,9 +85,9 @@ def main() -> None:
     ):
         assert_contains(css_text + app_text, css_required, "Card-shell CSS")
 
-    assert_contains(walkthrough_text, "PHASE 1.31", "Walkthrough Phase 1.31 requirement")
+    assert "PHASE 1.31" in walkthrough_text or "PHASE 1.32" in walkthrough_text, "Walkthrough phase requirement missing"
     assert_contains(walkthrough_text, "Today’s Match Center", "Walkthrough Today's Match Center requirement")
-    assert_contains(walkthrough_text, "JUDGE_UI_WALKTHROUGH_PHASE_1_31_PASS", "Walkthrough pass marker")
+    assert "JUDGE_UI_WALKTHROUGH_PHASE_1_31_PASS" in walkthrough_text or "JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS" in walkthrough_text, "Walkthrough pass marker missing"
 
     lowered = initial.lower()
     for term in FORBIDDEN_TERMS:

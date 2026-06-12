@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-12T13:18:07.197013+00:00",
+  "generated_at_utc": "2026-06-12T13:52:50.025365+00:00",
   "url": "http://127.0.0.1:12000",
   "dataset_validation": {
     "groups_count": 12,
@@ -25,7 +25,12 @@
     {
       "check": "PHASE 1.31 visible",
       "status": "PASS",
-      "detail": "Phase 1.31 AppStore Product Polish detected."
+      "detail": "Phase 1.31+ AppStore Product Polish detected."
+    },
+    {
+      "check": "PHASE 1.32 visible",
+      "status": "PASS",
+      "detail": "Phase 1.32 Production Visual QA Complete detected."
     },
     {
       "check": "ABW logo visible",
@@ -43,6 +48,16 @@
       "detail": "Today match center detected."
     },
     {
+      "check": "M001 visible before raw table content",
+      "status": "PASS",
+      "detail": "M001 match center appears before raw table content."
+    },
+    {
+      "check": "What Changed visible",
+      "status": "PASS",
+      "detail": "What Changed panel detected."
+    },
+    {
       "check": "App cards visible",
       "status": "PASS",
       "detail": "Card shell classes detected."
@@ -51,6 +66,11 @@
       "check": "Google Sheet Control visible",
       "status": "PASS",
       "detail": "Google Sheet module detected."
+    },
+    {
+      "check": "Google Sheet Control Snapshot visible",
+      "status": "PASS",
+      "detail": "Sheet snapshot detected."
     },
     {
       "check": "AI Scout Match Control Panel visible",
@@ -66,6 +86,16 @@
       "check": "Old autonomous local engine hidden",
       "status": "PASS",
       "detail": "Legacy engine banner absent."
+    },
+    {
+      "check": "Old Tactical Slip hidden",
+      "status": "PASS",
+      "detail": "Legacy Tactical Slip copy absent."
+    },
+    {
+      "check": "Old local runtime engine hidden",
+      "status": "PASS",
+      "detail": "Legacy local runtime engine copy absent."
     },
     {
       "check": "Dashboard visible",
@@ -218,6 +248,16 @@
       "detail": "Legacy engine copy absent from walkthrough."
     },
     {
+      "check": "Old Tactical Slip absent",
+      "status": "PASS",
+      "detail": "Legacy Tactical Slip copy absent from walkthrough."
+    },
+    {
+      "check": "Old local runtime engine absent",
+      "status": "PASS",
+      "detail": "Legacy local runtime engine copy absent from walkthrough."
+    },
+    {
       "check": "Unofficial disclaimer visible",
       "status": "PASS",
       "detail": "Unofficial fan-made disclaimer detected."
@@ -225,37 +265,37 @@
     {
       "check": "Dashboard non-empty",
       "status": "PASS",
-      "detail": "5785 visible characters."
+      "detail": "6745 visible characters."
     },
     {
       "check": "Match Planner non-empty",
       "status": "PASS",
-      "detail": "9716 visible characters."
+      "detail": "10862 visible characters."
     },
     {
       "check": "Group Tracker non-empty",
       "status": "PASS",
-      "detail": "8372 visible characters."
+      "detail": "9332 visible characters."
     },
     {
       "check": "Bracket War Room non-empty",
       "status": "PASS",
-      "detail": "7325 visible characters."
+      "detail": "8444 visible characters."
     },
     {
       "check": "Friends League non-empty",
       "status": "PASS",
-      "detail": "7313 visible characters."
+      "detail": "8273 visible characters."
     },
     {
       "check": "AI Scout non-empty",
       "status": "PASS",
-      "detail": "7313 visible characters."
+      "detail": "8273 visible characters."
     },
     {
       "check": "Google Sheet Control non-empty",
       "status": "PASS",
-      "detail": "7310 visible characters."
+      "detail": "8270 visible characters."
     }
   ]
 }

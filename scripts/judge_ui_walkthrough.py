@@ -32,7 +32,10 @@ REPORT_JSON = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_30_REPORT.json"
 FORBIDDEN_TERMS = ("odds", "betting", "wager", "sportsbook", "parlay", "payout")
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
 PHASE_131_MARKER = "PHASE 1.31"
+PHASE_132_MARKER = "PHASE 1.32"
 OLD_ENGINE_COPY = "AUTONOMOUS LOCAL ENGINE ACTIVE"
+OLD_TACTICAL_COPY = "AI Scout Tactical Slip"
+OLD_LOCAL_ENGINE_COPY = "local runtime engine"
 
 
 def click_if_present(page, pattern: str, timeout: int) -> bool:
@@ -97,7 +100,8 @@ def main() -> int:
         initial_lower = initial.lower()
         record("App loads", "AI Bracket War Room 2026" in initial, args.url)
         record("Phase 1.30 visible", "PHASE 1.30" in initial or PHASE_130_MARKER in initial, PHASE_130_MARKER)
-        record("PHASE 1.31 visible", PHASE_131_MARKER in initial, "Phase 1.31 AppStore Product Polish detected.")
+        record("PHASE 1.31 visible", PHASE_131_MARKER in initial or PHASE_132_MARKER in initial, "Phase 1.31+ AppStore Product Polish detected.")
+        record("PHASE 1.32 visible", PHASE_132_MARKER in initial, "Phase 1.32 Production Visual QA Complete detected.")
         record("ABW logo visible", "ABW" in initial and "AI Bracket War Room" in initial, "ABW logo mark detected.")
         icon_nav_ok = all(label in initial for label in ("🏟 Match Center", "📊 Groups", "🧩 Bracket", "🏆 Friends", "🧠 Scout", "📄 Sheet"))
         record("Icon navigation visible", icon_nav_ok, "Icon nav row detected.")
@@ -106,11 +110,19 @@ def main() -> int:
             and bool(re.search(r"M001\s+Mexico\s+2[\-–]1\s+South Africa\s+FT", initial, re.I))
         )
         record("Today’s Match Center visible", today_center_ok, "Today match center detected.")
+        m001_index = initial.find("M001")
+        raw_table_markers = [initial.find(marker) for marker in ("MATCH_PLANNER", "Date\nStage", "Planner quick filter") if initial.find(marker) != -1]
+        table_index = min(raw_table_markers) if raw_table_markers else -1
+        record("M001 visible before raw table content", m001_index != -1 and (table_index == -1 or m001_index < table_index), "M001 match center appears before raw table content.")
+        record("What Changed visible", "what changed" in initial_lower and "mexico moved to 3 pts in group a" in initial_lower, "What Changed panel detected.")
         record("App cards visible", "card-shell" in page.content() and "today-match-center" in page.content(), "Card shell classes detected.")
         record("Google Sheet Control visible", "Google Sheet Control explanation" in initial, "Google Sheet module detected.")
+        record("Google Sheet Control Snapshot visible", "google sheet control snapshot" in initial_lower and "results_override" in initial_lower and "friends_picks" in initial_lower, "Sheet snapshot detected.")
         record("AI Scout Match Control Panel visible", "AI Scout Match Control Panel" in initial, "AI Scout module detected.")
         record("No stale Phase 1.28 marker visible", "PHASE_1_28" not in initial and "Phase 1.28" not in initial, "Visible header marker is current.")
         record("Old autonomous local engine hidden", OLD_ENGINE_COPY.lower() not in initial.lower(), "Legacy engine banner absent.")
+        record("Old Tactical Slip hidden", OLD_TACTICAL_COPY.lower() not in initial.lower(), "Legacy Tactical Slip copy absent.")
+        record("Old local runtime engine hidden", OLD_LOCAL_ENGINE_COPY.lower() not in initial.lower(), "Legacy local runtime engine copy absent.")
         record("Dashboard visible", "Production Fan App Runtime" in initial or "Dashboard" in initial or "today" in initial_lower, "Dashboard or app module text detected.")
         record("48 / 12 / 104 metrics visible", all(token in initial for token in ("48", "12", "104")), "Core metrics detected.")
         record("Squad count visible", "1,248" in initial or "1248" in initial or validation["squad_rows_count"] == 1248, "Squad count or validation present.")
@@ -192,6 +204,8 @@ def main() -> int:
         combined = "\n".join([initial, after_actions, planner, groups, bracket, friends, scout, sheet_control]).lower()
         record("No forbidden terms visible", not any(term in combined for term in FORBIDDEN_TERMS), "Forbidden terms absent from visible walkthrough text.")
         record("Old autonomous local engine absent", OLD_ENGINE_COPY.lower() not in combined, "Legacy engine copy absent from walkthrough.")
+        record("Old Tactical Slip absent", OLD_TACTICAL_COPY.lower() not in combined, "Legacy Tactical Slip copy absent from walkthrough.")
+        record("Old local runtime engine absent", OLD_LOCAL_ENGINE_COPY.lower() not in combined, "Legacy local runtime engine copy absent from walkthrough.")
         record("Unofficial disclaimer visible", "unofficial fan-made" in combined, "Unofficial fan-made disclaimer detected.")
         for tab_name, text in [
             ("Dashboard", initial),
@@ -221,9 +235,9 @@ def main() -> int:
     )
 
     if any(item["status"] == "FAIL" for item in checks):
-        print("JUDGE_UI_WALKTHROUGH_PHASE_1_31_FAIL")
+        print("JUDGE_UI_WALKTHROUGH_PHASE_1_32_FAIL")
         return 1
-    print("JUDGE_UI_WALKTHROUGH_PHASE_1_31_PASS")
+    print("JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS")
     return 0
 
 
