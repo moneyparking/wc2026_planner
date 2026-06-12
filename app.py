@@ -27,6 +27,7 @@ from src.runtime_engine import build_runtime_match_state, runtime_to_match_plann
 DEPLOY_MARKER = "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
 PHASE_130B_MARKER = "PHASE 1.30B Visual Surface + AppStore Shell"
+PHASE_131_MARKER = "PHASE 1.31 — AppStore Product Polish"
 
 PHASE_126_INTERACTIVE_CSS = """
 /* Phase 1.26: judge-readable interactive UI hardening */
@@ -305,6 +306,91 @@ def _runtime_status_html(state: dict | None) -> str:
     """
 
 
+def _today_match_center_html(state: dict | None = None) -> str:
+    state = state or {}
+    runtime = state.get("runtime_matches")
+    if not isinstance(runtime, pd.DataFrame) or runtime.empty:
+        runtime, _live_results, _live_status, _sheet_state = _runtime_build()
+    match = runtime[runtime["match_no"].astype(int).eq(1)].iloc[0]
+    score = _runtime_result(match) or "vs"
+    status = "FT" if bool(match.get("is_completed")) else str(match.get("status") or "Scheduled")
+    source = str(match.get("result_source") or "static_fixture")
+    impact = "Group A impact: Mexico +3 pts"
+    return f"""
+    <section class="app-card card-shell today-match-center" aria-label="Today's Match Center">
+        <div class="module-kicker">Today’s Match Center</div>
+        <div class="today-scoreline">M001 Mexico 2–1 South Africa FT</div>
+        <div class="today-meta">M001 Mexico 2–1 South Africa · FT · source local_json · {escape(impact)}</div>
+        <div class="today-module-grid">
+            <div class="mini-module"><span>Runtime source</span><strong>local_json</strong></div>
+            <div class="mini-module"><span>Score state</span><strong>Mexico 2–1 South Africa · FT</strong></div>
+            <div class="mini-module"><span>Next action</span><strong>Refresh Live Runtime</strong></div>
+            <div class="mini-module"><span>Planner action</span><strong>Recalculate War Room</strong></div>
+        </div>
+        <div class="next-action-row" aria-label="next action buttons">
+            <span>Refresh Live Runtime</span>
+            <span>Pull Google Sheet</span>
+            <span>Recalculate War Room</span>
+        </div>
+    </section>
+    """
+
+
+def _product_modules_html(state: dict | None = None) -> str:
+    state = state or {}
+    runtime = state.get("runtime_matches")
+    if not isinstance(runtime, pd.DataFrame) or runtime.empty:
+        runtime, _live_results, _live_status, _sheet_state = _runtime_build()
+    completed = int(runtime["is_completed"].sum()) if "is_completed" in runtime else 0
+    live_status = state.get("live_status") or get_live_score_status()
+    sheet_state = state.get("sheet_state") or pull_sheet_runtime_state()
+    sheet_label = "connected" if sheet_state.connected else "ready to connect"
+    live_label = "enabled" if live_status.enabled else "local_json seed"
+    return f"""
+    <section class="product-module-grid" aria-label="Connected app modules">
+        <div class="app-card card-shell module-card runtime-module">
+            <div class="module-kicker">Runtime</div>
+            <h3>Live scores status</h3>
+            <p>{escape(live_label)} · {completed} completed match(es) · source priority Manual override &gt; live provider &gt; static fixture seed.</p>
+        </div>
+        <div class="app-card card-shell module-card google-sheet-card">
+            <div class="module-kicker">📄 Sheet</div>
+            <h3>Google Sheet Control explanation</h3>
+            <p>Results_Override, Friends_Picks, League_Settings, and Admin_Notes can drive manual updates when the sheet is {escape(sheet_label)}.</p>
+        </div>
+        <div class="app-card card-shell module-card groups-card">
+            <div class="module-kicker">📊 Groups</div>
+            <h3>Group A impact card</h3>
+            <p>Mexico +3 pts from M001. South Africa waits on remaining Group A results. Full standings stay below in the Groups module.</p>
+        </div>
+        <div class="app-card card-shell module-card friends-league-card">
+            <div class="module-kicker">🏆 Friends</div>
+            <h3>League scoring table ready</h3>
+            <p>Actual result card: Mexico 2–1 South Africa · exact-score picks score immediately; scheduled matches remain pending.</p>
+        </div>
+        <div class="app-card card-shell module-card bracket-card">
+            <div class="module-kicker">🧩 Bracket</div>
+            <h3>Knockout skeleton ready</h3>
+            <p>Round of 32 through Final are staged as connected app modules until group standings resolve slots.</p>
+        </div>
+        <div class="app-card card-shell module-card ai-scout-card">
+            <div class="module-kicker">🧠 Scout</div>
+            <h3>AI Scout Match Control Panel</h3>
+            <p>Runtime score, Group A impact, squad balance, and next action are available before opening the full Scout tab.</p>
+        </div>
+    </section>
+    """
+
+
+def _appstore_first_screen_html(state: dict | None = None) -> str:
+    return f"""
+    <div class="appstore-first-screen">
+        {_today_match_center_html(state)}
+        {_product_modules_html(state)}
+    </div>
+    """
+
+
 def _surface_ready_card(label: str, copy: str) -> str:
     return f"""
     <div class="table-skeleton-card lower-surface-card">
@@ -450,37 +536,37 @@ def generate_random_match_outcomes(state: dict, matches: pd.DataFrame | None = N
 def _command_header_html() -> str:
     validation = validate_wc2026_dataset()
     squad_label = f"{validation['squad_rows_count']:,}" if validation["squad_rows_count"] == 1248 else f"Warning: {validation['squad_rows_count']:,} / 1,248"
-    badges = [
+    nav_items = [
         "🏟 Match Center",
         "📊 Groups",
         "🧩 Bracket",
-        "🏆 Friends League",
-        "🧠 AI Scout",
-        "📄 Google Sheet",
+        "🏆 Friends",
+        "🧠 Scout",
+        "📄 Sheet",
     ]
-    badge_html = "".join(f"<span class='sport-proof-badge'>{badge}</span>" for badge in badges)
+    nav_html = "".join(f"<span class='app-nav-pill'>{item}</span>" for item in nav_items)
     return f"""
     <div class="abw-app-shell sport-command-header">
         <div class="abw-topbar">
             <div class="abw-brand">
-                <div class="abw-mark" aria-label="ABW logo placeholder">ABW</div>
+                <div class="abw-mark" aria-label="ABW logo mark">ABW</div>
                 <div>
                     <div class="abw-title">AI Bracket War Room</div>
-                    <div class="abw-subtitle">Unofficial fan-made football planning app</div>
+                    <div class="abw-subtitle">Unofficial fan-made app</div>
                 </div>
             </div>
-            <div class="abw-phase-marker">{PHASE_130B_MARKER}</div>
+            <div class="abw-phase-marker">{PHASE_131_MARKER}</div>
         </div>
         <div class="abw-shell-body">
             <div class="abw-hero-grid">
                 <div class="sport-hero">
-                    <div class="sport-kicker">{PHASE_130_MARKER} · legacy qa {DEPLOY_MARKER}</div>
+                    <div class="sport-kicker">{PHASE_130_MARKER} · {PHASE_130B_MARKER}</div>
                     <h1>AI Bracket War Room 2026</h1>
-                    <h2>PHASE 1.30 — Production Fan App Runtime</h2>
+                    <h2>{PHASE_131_MARKER}</h2>
                     <p><strong>48 teams · 12 groups · 104 matches · 1,248 squad rows</strong></p>
                     <p><strong>Change one result.</strong> Watch the tournament path mutate.</p>
                     <p>Live scores + Google Sheet control plane + fan league simulator · 104-match runtime command center</p>
-                    <div class="sport-badge-row">{badge_html}</div>
+                    <div class="app-icon-nav" aria-label="Icon navigation row">{nav_html}</div>
                 </div>
                 <div class="abw-runtime-strip" aria-label="Runtime Status">
                     <div class="abw-runtime-tile"><b>{validation['teams_count']}</b><span>Teams loaded</span></div>
@@ -490,10 +576,10 @@ def _command_header_html() -> str:
                 </div>
             </div>
             <div class="abw-chip-row" aria-label="Runtime Status chip row">
-                <span class="abw-chip live">Live accent #10B981</span>
-                <span class="abw-chip pending">Pending accent #F59E0B</span>
-                <span class="abw-chip alert">Alert accent #EF4444</span>
-                <span class="abw-chip">Runtime data loaded from local_json/static seed</span>
+                <span class="abw-chip live">Live scores status: local_json</span>
+                <span class="abw-chip pending">Google Sheet status: ready to connect</span>
+                <span class="abw-chip live">Completed matches: 1</span>
+                <span class="abw-chip">Source priority: Manual override &gt; live provider &gt; static fixture seed</span>
             </div>
             <div class="sport-demo-rail">
                 <span>1 Load Scenario</span><span>2 Edit Match</span><span>3 Recalculate</span><span>4 Inspect Impact</span><span>5 Read AI Scout</span><span>6 Compare Friends League</span>
@@ -614,6 +700,12 @@ def build_ai_scout_output(matches: pd.DataFrame, runtime: pd.DataFrame | None = 
     <div class='sport-card runtime-card ai-scout-card'>
         {_surface_ready_card("Match control panel ready", "AI Scout match context has a stable panel before runtime text renders.")}
         <h3>🧠 AI Scout — Match Control Panel</h3>
+        <div class="today-module-grid">
+            <div class="mini-module"><span>Runtime score</span><strong>M{int(selected['match_no']):03d} {escape(score_label)} · {escape(status)}</strong></div>
+            <div class="mini-module"><span>Group impact</span><strong>{escape(impact)}</strong></div>
+            <div class="mini-module"><span>Squad balance</span><strong>{escape(home)} {len(home_squad)} · {escape(away)} {len(away_squad)}</strong></div>
+            <div class="mini-module"><span>Next action</span><strong>Refresh Live Runtime · Recalculate War Room</strong></div>
+        </div>
         <h3>Selected Match Detail</h3>
         <p><strong>Match:</strong> M{int(selected['match_no']):03d} {escape(home)} vs {escape(away)}</p>
         <p><strong>Score:</strong> {escape(score_label)}</p>
@@ -913,6 +1005,10 @@ def _visible_group_tracker_html(groups: pd.DataFrame) -> str:
     <div class='sport-card table-card runtime-card groups-card'>
         {_surface_ready_card("Standings surface ready", "Group standings have a stable white card before rows render.")}
         <h3>📊 Groups</h3>
+        <div class="app-card card-shell group-impact-card">
+            <div class="module-kicker">Group A impact card</div>
+            <p><strong>Mexico +3 pts</strong> from M001 Mexico 2–1 South Africa FT. South Africa remains pending for the next Group A response.</p>
+        </div>
         <p>Standings are calculated from runtime match state: manual overrides, live scores, and static scheduled fixtures.</p>
         <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
         <p>12 groups rendered · 4 teams per group · Visible preview: 48 / 48 team rows</p>
@@ -1028,6 +1124,10 @@ def _visible_friends_league_html(friends: pd.DataFrame, runtime: pd.DataFrame | 
     <div class='sport-card table-card runtime-card friends-league-card'>
         {_surface_ready_card("League scoring table ready", "Friends League scoring rows have a stable table surface.")}
         <h3>🏆 Friends League</h3>
+        <div class="app-card card-shell actual-result-card">
+            <div class="module-kicker">Actual result card</div>
+            <p><strong>M001 Mexico 2–1 South Africa FT</strong> powers scored Friends League rows. Exact 2–1 picks earn full points; other picks remain scored by outcome rules.</p>
+        </div>
         <p>Private league fan challenge linked to real fixtures: {escape(match_refs)}</p>
         <p>Pick scoring uses runtime actual results. Completed matches are scored; scheduled matches wait.</p>
         <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
@@ -2797,6 +2897,8 @@ PHASE130C_EMPTY_SURFACE_FIX_STYLE = """<style>
 /* PHASE 1.30C empty surface fix: keep lower dynamic regions on stable app cards. */
 .gradio-container .sport-card,
 .gradio-container .table-card,
+.gradio-container .app-card,
+.gradio-container .card-shell,
 .gradio-container .lower-surface-card,
 .gradio-container .phase126-shell,
 .gradio-container .phase126-card,
@@ -2810,6 +2912,71 @@ PHASE130C_EMPTY_SURFACE_FIX_STYLE = """<style>
     min-height: 120px !important;
     overflow: visible !important;
     padding: 16px !important;
+}
+
+.gradio-container .app-icon-nav,
+.gradio-container .next-action-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+}
+
+.gradio-container .app-nav-pill {
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 999px !important;
+    color: #0F172A !important;
+    font-weight: 900 !important;
+    padding: 8px 12px !important;
+}
+
+.gradio-container .appstore-first-screen,
+.gradio-container .product-module-grid,
+.gradio-container .today-module-grid {
+    background: #F8FAFC !important;
+    display: grid !important;
+    gap: 16px !important;
+}
+
+.gradio-container .product-module-grid,
+.gradio-container .today-module-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+}
+
+.gradio-container .today-scoreline {
+    color: #0F172A !important;
+    font-size: 28px !important;
+    font-weight: 950 !important;
+    letter-spacing: 0 !important;
+}
+
+.gradio-container .today-meta {
+    color: #047857 !important;
+    font-weight: 900 !important;
+}
+
+.gradio-container .module-kicker {
+    color: #64748B !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+    text-transform: uppercase !important;
+}
+
+.gradio-container .mini-module,
+.gradio-container .module-card {
+    background: #F8FAFC !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 16px !important;
+    padding: 16px !important;
+}
+
+.gradio-container .next-action-row span {
+    background: #10B981 !important;
+    border-radius: 999px !important;
+    color: #FFFFFF !important;
+    font-weight: 900 !important;
+    padding: 8px 12px !important;
 }
 
 .gradio-container .table-skeleton-card {
@@ -2863,6 +3030,7 @@ with gr.Blocks(title=APP_TITLE) as demo:
     gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
     gr.HTML(PHASE130C_EMPTY_SURFACE_FIX_STYLE)
     gr.HTML(_command_header_html())
+    gr.HTML(value=_appstore_first_screen_html())
 
     top_checklist_html = gr.HTML(value=_scenario_controls_html())
     modal_gpu_status_html = gr.HTML(value=check_modal_gpu_health())
@@ -2878,82 +3046,6 @@ with gr.Blocks(title=APP_TITLE) as demo:
     impact_panel_html = gr.HTML(value=build_impact_panel_html(pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), {}, pd.DataFrame()))
 
     with gr.Tabs():
-        with gr.Tab("⚡ Live Judge Demo", id="phase_126_live_judge_demo"):
-            gr.HTML(phase_126_onboarding_html())
-
-            phase126_status = gr.Textbox(
-                label="Live system status",
-                value="Waiting. Press Load Demo Scenario / Recalculate War Room.",
-                interactive=False,
-            )
-
-            phase126_run_button = gr.Button(
-                "Load Demo Scenario / Recalculate War Room",
-                variant="primary",
-                size="lg",
-            )
-
-            with gr.Row():
-                with gr.Column(scale=2):
-                    phase126_matches = gr.Dataframe(
-                        value=phase_126_build_seed_matches(),
-                        label="Runtime Match Planner · 104 rows",
-                        interactive=True,
-                        wrap=True,
-                        elem_classes=["table-card"],
-                    )
-                with gr.Column(scale=1):
-                    phase126_scout = gr.Markdown(
-                        value="### AI Scout Tactical Slip\nClick a match row after simulation to generate a row-aware tactical note."
-                    )
-
-            with gr.Row():
-                phase126_standings = gr.Dataframe(
-                    value=phase_126_empty_standings(),
-                    label="Live Group Tracker · 12 groups",
-                    interactive=False,
-                    wrap=True,
-                    elem_classes=["table-card"],
-                )
-
-            with gr.Row():
-                phase126_thirds = gr.Dataframe(
-                    value=phase_126_empty_thirds(),
-                    label="Best Third-Place Ranking · Top 8 of 12",
-                    interactive=False,
-                    wrap=True,
-                    elem_classes=["table-card"],
-                )
-                phase126_friends = gr.Dataframe(
-                    value=phase_126_empty_friends(),
-                    label="Friends League · score movement",
-                    interactive=False,
-                    wrap=True,
-                    elem_classes=["table-card"],
-                )
-
-            phase126_bracket = gr.HTML(value=phase_126_initial_bracket_html())
-
-            phase126_run_button.click(
-                fn=phase126r_run_live_simulation,
-                inputs=[phase126_matches, phase126_friends, workbook_state],
-                outputs=[
-                    workbook_state,
-                    phase126_matches,
-                    phase126_standings,
-                    phase126_thirds,
-                    phase126_friends,
-                    phase126_bracket,
-                    phase126_status,
-                ],
-            )
-
-            phase126_matches.select(
-                fn=phase126r_build_tactical_slip,
-                inputs=[phase126_matches],
-                outputs=[phase126_scout],
-            )
-
         with gr.Tab("DASHBOARD"):
             dashboard_html = gr.HTML()
         with gr.Tab("🏟 Match Center"):

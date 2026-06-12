@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-12T12:39:13.700449+00:00",
+  "generated_at_utc": "2026-06-12T13:18:07.197013+00:00",
   "url": "http://127.0.0.1:12000",
   "dataset_validation": {
     "groups_count": 12,
@@ -23,6 +23,41 @@
       "detail": "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
     },
     {
+      "check": "PHASE 1.31 visible",
+      "status": "PASS",
+      "detail": "Phase 1.31 AppStore Product Polish detected."
+    },
+    {
+      "check": "ABW logo visible",
+      "status": "PASS",
+      "detail": "ABW logo mark detected."
+    },
+    {
+      "check": "Icon navigation visible",
+      "status": "PASS",
+      "detail": "Icon nav row detected."
+    },
+    {
+      "check": "Today\u2019s Match Center visible",
+      "status": "PASS",
+      "detail": "Today match center detected."
+    },
+    {
+      "check": "App cards visible",
+      "status": "PASS",
+      "detail": "Card shell classes detected."
+    },
+    {
+      "check": "Google Sheet Control visible",
+      "status": "PASS",
+      "detail": "Google Sheet module detected."
+    },
+    {
+      "check": "AI Scout Match Control Panel visible",
+      "status": "PASS",
+      "detail": "AI Scout module detected."
+    },
+    {
       "check": "No stale Phase 1.28 marker visible",
       "status": "PASS",
       "detail": "Visible header marker is current."
@@ -35,7 +70,7 @@
     {
       "check": "Dashboard visible",
       "status": "PASS",
-      "detail": "Dashboard text detected."
+      "detail": "Dashboard or app module text detected."
     },
     {
       "check": "48 / 12 / 104 metrics visible",
@@ -93,6 +128,11 @@
       "detail": "M001 Mexico vs South Africa appears before knockout placeholders."
     },
     {
+      "check": "No placeholder-first M001",
+      "status": "PASS",
+      "detail": "M001 does not start as knockout placeholder."
+    },
+    {
       "check": "Match 1 score/result visible if local_json demo mode is active",
       "status": "PASS",
       "detail": "M001 result/source detected."
@@ -145,7 +185,7 @@
     {
       "check": "Friends League table visible",
       "status": "PASS",
-      "detail": "visible_tables=6"
+      "detail": "visible_tables=2"
     },
     {
       "check": "AI Scout shows runtime score and group impact",
@@ -185,37 +225,37 @@
     {
       "check": "Dashboard non-empty",
       "status": "PASS",
-      "detail": "7004 visible characters."
+      "detail": "5785 visible characters."
     },
     {
       "check": "Match Planner non-empty",
       "status": "PASS",
-      "detail": "8498 visible characters."
+      "detail": "9716 visible characters."
     },
     {
       "check": "Group Tracker non-empty",
       "status": "PASS",
-      "detail": "7021 visible characters."
+      "detail": "8372 visible characters."
     },
     {
       "check": "Bracket War Room non-empty",
       "status": "PASS",
-      "detail": "6107 visible characters."
+      "detail": "7325 visible characters."
     },
     {
       "check": "Friends League non-empty",
       "status": "PASS",
-      "detail": "6107 visible characters."
+      "detail": "7313 visible characters."
     },
     {
       "check": "AI Scout non-empty",
       "status": "PASS",
-      "detail": "4633 visible characters."
+      "detail": "7313 visible characters."
     },
     {
       "check": "Google Sheet Control non-empty",
       "status": "PASS",
-      "detail": "4630 visible characters."
+      "detail": "7310 visible characters."
     }
   ]
 }

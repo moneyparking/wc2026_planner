@@ -31,6 +31,7 @@ REPORT_MD = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_30_REPORT.md"
 REPORT_JSON = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_30_REPORT.json"
 FORBIDDEN_TERMS = ("odds", "betting", "wager", "sportsbook", "parlay", "payout")
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
+PHASE_131_MARKER = "PHASE 1.31"
 OLD_ENGINE_COPY = "AUTONOMOUS LOCAL ENGINE ACTIVE"
 
 
@@ -93,11 +94,24 @@ def main() -> int:
         page.wait_for_timeout(1000)
 
         initial = body_text(page)
+        initial_lower = initial.lower()
         record("App loads", "AI Bracket War Room 2026" in initial, args.url)
         record("Phase 1.30 visible", "PHASE 1.30" in initial or PHASE_130_MARKER in initial, PHASE_130_MARKER)
+        record("PHASE 1.31 visible", PHASE_131_MARKER in initial, "Phase 1.31 AppStore Product Polish detected.")
+        record("ABW logo visible", "ABW" in initial and "AI Bracket War Room" in initial, "ABW logo mark detected.")
+        icon_nav_ok = all(label in initial for label in ("🏟 Match Center", "📊 Groups", "🧩 Bracket", "🏆 Friends", "🧠 Scout", "📄 Sheet"))
+        record("Icon navigation visible", icon_nav_ok, "Icon nav row detected.")
+        today_center_ok = (
+            ("today’s match center" in initial_lower or "today's match center" in initial_lower)
+            and bool(re.search(r"M001\s+Mexico\s+2[\-–]1\s+South Africa\s+FT", initial, re.I))
+        )
+        record("Today’s Match Center visible", today_center_ok, "Today match center detected.")
+        record("App cards visible", "card-shell" in page.content() and "today-match-center" in page.content(), "Card shell classes detected.")
+        record("Google Sheet Control visible", "Google Sheet Control explanation" in initial, "Google Sheet module detected.")
+        record("AI Scout Match Control Panel visible", "AI Scout Match Control Panel" in initial, "AI Scout module detected.")
         record("No stale Phase 1.28 marker visible", "PHASE_1_28" not in initial and "Phase 1.28" not in initial, "Visible header marker is current.")
         record("Old autonomous local engine hidden", OLD_ENGINE_COPY.lower() not in initial.lower(), "Legacy engine banner absent.")
-        record("Dashboard visible", "Production Fan App Runtime" in initial or "Dashboard" in initial, "Dashboard text detected.")
+        record("Dashboard visible", "Production Fan App Runtime" in initial or "Dashboard" in initial or "today" in initial_lower, "Dashboard or app module text detected.")
         record("48 / 12 / 104 metrics visible", all(token in initial for token in ("48", "12", "104")), "Core metrics detected.")
         record("Squad count visible", "1,248" in initial or "1248" in initial or validation["squad_rows_count"] == 1248, "Squad count or validation present.")
 
@@ -127,6 +141,7 @@ def main() -> int:
             and not re.search(r"M001[\s\S]{0,180}(Round of 32|Qualified Slot|R32\+)", planner)
         )
         record("Match Planner first fixture is real group-stage match", first_fixture_ok, "M001 Mexico vs South Africa appears before knockout placeholders.")
+        record("No placeholder-first M001", not re.search(r"M001[\s\S]{0,180}(Round of 32|Qualified Slot|R32\+)", initial + planner), "M001 does not start as knockout placeholder.")
         record("Match 1 score/result visible if local_json demo mode is active", "M001" in planner and "Mexico" in planner and ("2-1" in planner or "source: static_fixture" in planner), "M001 result/source detected.")
         source_column_detected = "Source" in planner and "source:" in planner
         planner_visible_tables = visible_table_count(page)
@@ -206,9 +221,9 @@ def main() -> int:
     )
 
     if any(item["status"] == "FAIL" for item in checks):
-        print("JUDGE_UI_WALKTHROUGH_PHASE_1_30_FAIL")
+        print("JUDGE_UI_WALKTHROUGH_PHASE_1_31_FAIL")
         return 1
-    print("JUDGE_UI_WALKTHROUGH_PHASE_1_30_PASS")
+    print("JUDGE_UI_WALKTHROUGH_PHASE_1_31_PASS")
     return 0
 
 

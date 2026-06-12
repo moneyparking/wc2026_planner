@@ -34,7 +34,9 @@ body,
 
 .abw-app-shell,
 .sport-card,
-.table-card {
+.table-card,
+.app-card,
+.card-shell {
     background: var(--abw-card) !important;
     border: 1px solid var(--abw-border) !important;
     border-radius: 16px !important;
@@ -293,6 +295,120 @@ body,
     font-size: 12px;
     font-weight: 800;
     padding: 7px 10px;
+}
+
+.app-icon-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0 0;
+}
+
+.app-nav-pill {
+    align-items: center;
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 999px;
+    color: #0F172A !important;
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 900;
+    min-height: 36px;
+    padding: 8px 12px;
+}
+
+.appstore-first-screen {
+    background: #F8FAFC !important;
+    display: grid;
+    gap: 16px;
+    margin: 0 0 16px !important;
+}
+
+.app-card,
+.card-shell {
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 16px !important;
+    box-shadow: var(--abw-shadow) !important;
+    color: #0F172A !important;
+    margin-bottom: 16px !important;
+    min-height: 120px !important;
+    overflow: visible !important;
+    padding: 20px !important;
+}
+
+.today-match-center {
+    display: grid;
+    gap: 12px;
+}
+
+.module-kicker {
+    color: #64748B !important;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0 !important;
+    text-transform: uppercase;
+}
+
+.today-scoreline {
+    color: #0F172A !important;
+    font-size: 28px;
+    font-weight: 950;
+    letter-spacing: 0;
+    line-height: 1.08;
+}
+
+.today-meta {
+    color: #047857 !important;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.today-module-grid,
+.product-module-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.mini-module,
+.module-card {
+    background: #F8FAFC !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.mini-module span,
+.module-card p {
+    color: #64748B !important;
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.mini-module strong,
+.module-card h3 {
+    color: #0F172A !important;
+    display: block;
+    font-size: 16px;
+    font-weight: 900;
+    margin: 4px 0 0;
+}
+
+.next-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.next-action-row span {
+    background: #10B981 !important;
+    border: 1px solid #10B981 !important;
+    border-radius: 999px;
+    color: #FFFFFF !important;
+    font-size: 12px;
+    font-weight: 900;
+    padding: 8px 12px;
 }
 
 .table-card {

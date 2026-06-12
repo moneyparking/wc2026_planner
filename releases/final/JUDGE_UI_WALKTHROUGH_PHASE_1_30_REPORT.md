@@ -2,9 +2,16 @@
 
 - PASS: App loads — http://127.0.0.1:12000
 - PASS: Phase 1.30 visible — PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME
+- PASS: PHASE 1.31 visible — Phase 1.31 AppStore Product Polish detected.
+- PASS: ABW logo visible — ABW logo mark detected.
+- PASS: Icon navigation visible — Icon nav row detected.
+- PASS: Today’s Match Center visible — Today match center detected.
+- PASS: App cards visible — Card shell classes detected.
+- PASS: Google Sheet Control visible — Google Sheet module detected.
+- PASS: AI Scout Match Control Panel visible — AI Scout module detected.
 - PASS: No stale Phase 1.28 marker visible — Visible header marker is current.
 - PASS: Old autonomous local engine hidden — Legacy engine banner absent.
-- PASS: Dashboard visible — Dashboard text detected.
+- PASS: Dashboard visible — Dashboard or app module text detected.
 - PASS: 48 / 12 / 104 metrics visible — Core metrics detected.
 - PASS: Squad count visible — Squad count or validation present.
 - PASS: Load Demo Scenario button works — Clicked load demo control.
@@ -16,6 +23,7 @@
 - PASS: Match Planner displays real teams — Real team names detected.
 - PASS: Match Planner includes dates — Real fixture dates detected.
 - PASS: Match Planner first fixture is real group-stage match — M001 Mexico vs South Africa appears before knockout placeholders.
+- PASS: No placeholder-first M001 — M001 does not start as knockout placeholder.
 - PASS: Match 1 score/result visible if local_json demo mode is active — M001 result/source detected.
 - PASS: Match Planner shows source column — Source column detected.
 - PASS: Match Planner table visible — visible_tables=2
@@ -26,7 +34,7 @@
 - PASS: Bracket shows Round of 32 through Final — Knockout stages detected.
 - PASS: Friends League shows real match references — Real match references detected.
 - PASS: Friends League shows Actual Result / Status — Actual Result and Status columns detected.
-- PASS: Friends League table visible — visible_tables=6
+- PASS: Friends League table visible — visible_tables=2
 - PASS: AI Scout shows runtime score and group impact — Runtime score and impact detected.
 - PASS: AI Scout is match-context-aware — Match control panel detected.
 - PASS: AI Scout lists loaded players — Player-loaded squad output detected.
@@ -34,10 +42,10 @@
 - PASS: No forbidden terms visible — Forbidden terms absent from visible walkthrough text.
 - PASS: Old autonomous local engine absent — Legacy engine copy absent from walkthrough.
 - PASS: Unofficial disclaimer visible — Unofficial fan-made disclaimer detected.
-- PASS: Dashboard non-empty — 7004 visible characters.
-- PASS: Match Planner non-empty — 8498 visible characters.
-- PASS: Group Tracker non-empty — 7021 visible characters.
-- PASS: Bracket War Room non-empty — 6107 visible characters.
-- PASS: Friends League non-empty — 6107 visible characters.
-- PASS: AI Scout non-empty — 4633 visible characters.
-- PASS: Google Sheet Control non-empty — 4630 visible characters.
+- PASS: Dashboard non-empty — 5785 visible characters.
+- PASS: Match Planner non-empty — 9716 visible characters.
+- PASS: Group Tracker non-empty — 8372 visible characters.
+- PASS: Bracket War Room non-empty — 7325 visible characters.
+- PASS: Friends League non-empty — 7313 visible characters.
+- PASS: AI Scout non-empty — 7313 visible characters.
+- PASS: Google Sheet Control non-empty — 7310 visible characters.
