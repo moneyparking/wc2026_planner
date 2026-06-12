@@ -12,23 +12,46 @@ pinned: false
 
 Unofficial fan-made 104-match football tournament command center for planning, prediction tracking, private leagues, bracket simulation, and squad-aware scout signals.
 
-This Build Small Hackathon demo is a narrow working vertical slice: real 2026 tournament structure, real groups, real fixtures, real squad source data, runtime recalculation, bracket propagation, Friends League scoring, and rule-based AI Scout signals.
+Phase 1.30 turns the demo into a production fan app runtime: official fixture seed, optional live score adapter, Google Sheet/manual override control plane, runtime tournament engine, and UI tabs that show source priority.
 
 ## One-sentence pitch
 
-Change one result, filter the 104-match planner by stage or Group A-L, generate a full 104-match random stress scenario, and watch Group Tracker, 3rd-Place Ranking, Bracket War Room, Friends League, and AI Scout update.
+Refresh live runtime, pull Google Sheet overrides, load the local demo result, filter the 104-match planner by stage or Group A-L, and watch Group Tracker, Bracket War Room, Friends League, and AI Scout update from runtime scores.
+
+## Phase 1.30 Runtime Sources
+
+Runtime source priority is visible in the app:
+
+```text
+Manual override > live provider > static fixture seed
+```
+
+- Static fixture seed: `data/wc2026_fixtures.csv`.
+- Live score adapter: `src/live_score_adapter.py`.
+- Google Sheet control plane: `src/google_sheet_adapter.py`.
+- Local override: `data/live_results_override.json` for QA/demo already-played results.
+
+Environment variables:
+
+```bash
+LIVE_SCORE_PROVIDER=none
+LIVE_SCORE_API_KEY=
+LIVE_SCORE_COMPETITION_ID=
+GOOGLE_SHEET_ID=
+GOOGLE_SERVICE_ACCOUNT_JSON=
+GOOGLE_SHEET_ENABLED=false
+LIVE_REFRESH_SECONDS=60
+```
+
+Supported live providers are `none`, `local_json`, `api_football`, `sportmonks`, and `football_data`. The external providers are safe stubs until endpoint mapping is completed; missing credentials render visible UI warnings instead of stack traces.
 
 ## Judge Demo Path
 
-1. Click **Load Judge Demo Scenario**.
-2. Change one match result.
-3. Click **Recalculate War Room**.
-4. Review **Tournament Impact Panel**.
-5. Review **Group Tracker**.
-6. Review **3rd-Place Ranking**.
-7. Review **Bracket War Room**.
-8. Review **Friends League**.
-9. Review **AI Scout Signals**.
+1. Click **Refresh Live Runtime**.
+2. Click **Pull Google Sheet**.
+3. Click **Load Demo Scenario**.
+4. Click **Recalculate War Room**.
+5. Review Runtime Status, Match Planner, Group Tracker, Bracket War Room, Friends League, AI Scout, and Google Sheet Control.
 
 ## What works now
 
@@ -47,6 +70,9 @@ Change one result, filter the 104-match planner by stage or Group A-L, generate 
 - Unofficial fan-made demo.
 - Tournament Impact Panel.
 - No paid API key required for the judge demo.
+- Runtime Status panel.
+- Live score adapter with `local_json` QA/demo mode.
+- Google Sheet Control tab explaining manual results, friends picks, league settings, and admin notes.
 
 ## 90-second judge verification
 
@@ -83,6 +109,7 @@ Built AI Bracket War Room 2026 for the Hugging Face Build Small Hackathon: an un
 pip install -r requirements.txt
 python app.py
 python scripts/run_hackathon_smoke_tests.py
+python scripts/qa_phase_130_runtime_product.py
 ```
 
 ## Smoke test
@@ -158,4 +185,3 @@ HACKATHON_SMOKE_TESTS_PASS
 JUDGE_UI_WALKTHROUGH_PASS
 [PASS] Step 7 — Visual contrast audit
 ```
-

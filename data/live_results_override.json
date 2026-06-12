@@ -1,0 +1,12 @@
+[
+  {
+    "match_no": 1,
+    "home_score": 2,
+    "away_score": 1,
+    "status": "FT",
+    "minute": null,
+    "source": "local_json",
+    "synced_at_utc": "2026-06-12T08:30:00Z",
+    "confidence": "manual_demo"
+  }
+]

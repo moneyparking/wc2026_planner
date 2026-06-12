@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 from pathlib import Path
+import os
 import sys
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
+
+os.environ["LIVE_SCORE_PROVIDER"] = "local_json"
+os.environ.setdefault("GOOGLE_SHEET_ENABLED", "false")
 
 from models.bracket_mapper import build_bracket_mapping
 from models.data_loader import load_workbook_state
@@ -112,6 +116,12 @@ def main() -> None:
     filtered_group_a_html = app.filter_match_planner(demo_outputs[1], "Group A")
     filtered_knockout_html = app.filter_match_planner(demo_outputs[1], "Knockout Stage")
     random_outputs = app.generate_random_match_outcomes(demo_outputs[0], demo_outputs[1])
+    runtime_outputs = app.compute_outputs(state)
+    runtime_state = runtime_outputs[0]["runtime_matches"]
+    match1_runtime = runtime_state[runtime_state["match_no"].eq(1)].iloc[0]
+    group_a_runtime = runtime_outputs[2][runtime_outputs[2]["Group_ID"].eq("A")]
+    google_sheet_control = app.google_sheet_control_html(runtime_outputs[0])
+    ai_scout_runtime = app.build_ai_scout_output(runtime_outputs[1], runtime_state, runtime_outputs[6])
 
     assert len(demo_groups) > 0, "Demo scenario should create group rows"
     assert len(demo_thirds) > 0, "Demo scenario should create third-place rows"
@@ -138,6 +148,11 @@ def main() -> None:
     assert "Filtered rows: 32 / 104" in filtered_knockout_html
     assert int(random_outputs[1]["Result"].astype(str).str.strip().ne("").sum()) == 104
     assert random_outputs[5]["contract_version"] == "BracketJSON_v1_phase_1_21"
+    assert int(match1_runtime["home_score"]) == 2 and int(match1_runtime["away_score"]) == 1
+    assert match1_runtime["result_source"] in {"local_json", "manual override", "local manual edit"}
+    assert int(group_a_runtime[group_a_runtime["Team"].eq("Mexico")].iloc[0]["Pts"]) == 3
+    assert "Google Sheet control plane" in google_sheet_control
+    assert "Mexico 2-1 South Africa" in ai_scout_runtime and "Result impact" in ai_scout_runtime
     for required_copy in ("Change one result", "104-match", "AI Scout", "Friends League"):
         assert required_copy in first_screen_copy, f"First-screen copy missing: {required_copy}"
     assert "PHASE_1_18H_HONEST_PREVIEW_LABELS" not in first_screen_copy
@@ -165,6 +180,11 @@ def main() -> None:
     print("phase_1_21_planner_filters=PASS")
     print("phase_1_21_bracket_json_contract=PASS")
     print("phase_1_21_random_104_outcomes=PASS")
+    print("runtime_state=PASS")
+    print("match1_result_ingestion=PASS")
+    print("group_a_runtime_standings=PASS")
+    print("google_sheet_control=PASS")
+    print("ai_scout_runtime_context=PASS")
 
 
 if __name__ == "__main__":

@@ -53,7 +53,7 @@ def _group_match_plan() -> dict[str, dict[str, str]]:
 
 
 def apply_demo_scenario(matches_df: pd.DataFrame) -> pd.DataFrame:
-    demo = matches_df.copy(deep=True)
+    demo = matches_df.copy(deep=True).astype(object)
     plan = _group_match_plan()
 
     for column in ("Phase", "Side A", "Side B", "Prediction", "AI Signal", "Confidence %", "Watch Priority", "Notes", "Result"):

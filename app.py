@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import random
+import os
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from html import escape
 
 
@@ -18,9 +19,13 @@ from models.fifa_rules import build_group_table, build_third_place_table
 from models.scoring import score_prediction
 from product_config import APP_TITLE, EXPECTED_ANNEX_C_RECORD_COUNT, EXPECTED_MATCH_COUNT
 from src.wc2026_data_loader import load_fixtures, load_groups, load_squads, validate_wc2026_dataset
+from src.google_sheet_adapter import SheetRuntimeState, pull_sheet_runtime_state
+from src.live_score_adapter import fetch_live_results, get_live_score_status
+from src.runtime_engine import build_runtime_match_state, runtime_to_match_planner
 
 
 DEPLOY_MARKER = "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"
+PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
 
 PHASE_126_INTERACTIVE_CSS = """
 /* Phase 1.26: judge-readable interactive UI hardening */
@@ -210,6 +215,97 @@ def _match_number_from_id(match_id: object) -> int | None:
         return None
 
 
+def _runtime_result(row: pd.Series) -> str:
+    if pd.notna(row.get("home_score")) and pd.notna(row.get("away_score")):
+        return f"{int(row['home_score'])}-{int(row['away_score'])}"
+    return ""
+
+
+def _manual_edits_from_match_planner(matches: pd.DataFrame | None) -> list[dict]:
+    if matches is None or matches.empty or "Result" not in matches.columns:
+        return []
+    edits: list[dict] = []
+    for _, row in matches.iterrows():
+        result = str(row.get("Result", "")).strip()
+        if not result or "-" not in result:
+            continue
+        match_no = _match_number_from_id(row.get("Match ID"))
+        if match_no is None:
+            continue
+        left, right = result.split("-", 1)
+        try:
+            home_score = int(left.strip())
+            away_score = int(right.strip())
+        except ValueError:
+            continue
+        edits.append(
+            {
+                "match_no": match_no,
+                "home_score": home_score,
+                "away_score": away_score,
+                "status": "FT",
+                "source": "local manual edit",
+                "synced_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            }
+        )
+    return edits
+
+
+def _runtime_status_html(state: dict | None) -> str:
+    state = state or {}
+    runtime = state.get("runtime_matches", pd.DataFrame())
+    live_status = state.get("live_status") or get_live_score_status()
+    sheet_state = state.get("sheet_state") or SheetRuntimeState(False, False, "", "", [], [], [], [])
+    completed = int(runtime["is_completed"].sum()) if isinstance(runtime, pd.DataFrame) and "is_completed" in runtime else 0
+    live_count = int(runtime["is_live"].sum()) if isinstance(runtime, pd.DataFrame) and "is_live" in runtime else 0
+    next_match = "None scheduled"
+    if isinstance(runtime, pd.DataFrame) and not runtime.empty:
+        scheduled = runtime[~runtime["is_completed"].astype(bool)]
+        if not scheduled.empty:
+            row = scheduled.iloc[0]
+            next_match = f"M{int(row['match_no']):03d} {row['home']} vs {row['away']} · {row['date']}"
+    live_line = (
+        f"ON — provider {escape(live_status.provider)} · last sync {escape(live_status.last_sync_utc)}"
+        if live_status.enabled
+        else "OFF — no provider configured"
+    )
+    sheet_line = (
+        f"ON — sheet connected · last pull {escape(sheet_state.last_pull_utc)}"
+        if sheet_state.connected
+        else "OFF — no sheet configured"
+    )
+    if live_status.enabled and sheet_state.connected:
+        mode = "live + sheet override"
+    elif live_status.enabled:
+        mode = "live + local manual edits"
+    elif sheet_state.connected:
+        mode = "static schedule + sheet override"
+    else:
+        mode = "static schedule + local manual edits"
+    warnings = list(getattr(live_status, "warnings", []) or []) + list(getattr(sheet_state, "warnings", []) or [])
+    warning_html = "".join(f"<li>{escape(str(warning))}</li>" for warning in warnings) or "<li>No runtime warnings.</li>"
+    return f"""
+    <div class="sport-card phase130-runtime-status">
+        <h2>Runtime Status</h2>
+        <p><strong>Live scores:</strong> {live_line}</p>
+        <p><strong>Google Sheet:</strong> {sheet_line}</p>
+        <p><strong>Runtime mode:</strong> {escape(mode)}</p>
+        <p><strong>Last sync:</strong> {escape(live_status.last_sync_utc or sheet_state.last_pull_utc or 'not synced')}</p>
+        <p><strong>Results source priority:</strong> Manual override &gt; live provider &gt; static fixture seed</p>
+        <p><strong>Completed matches:</strong> {completed} · <strong>Live matches:</strong> {live_count} · <strong>Next match:</strong> {escape(next_match)}</p>
+        <ul>{warning_html}</ul>
+    </div>
+    """
+
+
+def _runtime_build(matches: pd.DataFrame | None = None, sheet_state: SheetRuntimeState | None = None):
+    live_results = fetch_live_results()
+    if sheet_state is None:
+        sheet_state = pull_sheet_runtime_state()
+    runtime = build_runtime_match_state(load_fixtures(), live_results, sheet_state, _manual_edits_from_match_planner(matches))
+    return runtime, live_results, get_live_score_status(), sheet_state
+
+
 def _planner_filter_mask(matches: pd.DataFrame, planner_filter: str) -> pd.Series:
     if matches is None or matches.empty:
         return pd.Series(dtype=bool)
@@ -229,7 +325,9 @@ def _planner_filter_mask(matches: pd.DataFrame, planner_filter: str) -> pd.Serie
     return phase.eq(selected)
 
 
-def filter_match_planner(matches: pd.DataFrame | None, planner_filter: str) -> str:
+def filter_match_planner(matches: pd.DataFrame | None, planner_filter: str, state: dict | None = None) -> str:
+    if state and isinstance(state.get("runtime_matches"), pd.DataFrame):
+        return _visible_runtime_match_planner_html(state["runtime_matches"], planner_filter)
     filtered = pd.DataFrame() if matches is None else matches.copy()
     if not filtered.empty:
         filtered = normalize_match_columns(filtered)
@@ -338,23 +436,27 @@ def _command_header_html() -> str:
     squad_label = f"{validation['squad_rows_count']:,}" if validation["squad_rows_count"] == 1248 else f"Warning: {validation['squad_rows_count']:,} / 1,248"
     badges = [
         "104-Match Engine",
-        "Live Recalculation",
+        "Production Runtime",
+        "Live Score Adapter",
+        "Google Sheet Control Plane",
         "Group + 3rd-Place Logic",
         "Bracket Impact",
         "Friends League",
         "AI Scout Signals",
-        "No API Key Required",
+        "Match-Aware AI Scout",
+        "Manual Overrides",
         "Unofficial Fan-Made Demo",
     ]
     badge_html = "".join(f"<span class='sport-proof-badge'>{badge}</span>" for badge in badges)
     return f"""
     <div class="sport-hero sport-command-header">
-        <div class="sport-kicker">{DEPLOY_MARKER}</div>
+        <div class="sport-kicker">{PHASE_130_MARKER} · legacy qa {DEPLOY_MARKER}</div>
         <h1>AI Bracket War Room 2026</h1>
-        <h2>104-match command center</h2>
+        <h2>PHASE 1.30 — Production Fan App Runtime</h2>
+        <p><strong>48 teams · 12 groups · 104 matches · 1,248 squad rows</strong></p>
         <p><strong>Change one result.</strong> Watch the tournament path mutate.</p>
-        <p>48 teams · 12 groups · 104 matches · squad-aware scout layer</p>
-        <p>A small-model-safe Gradio command center for testing football tournament scenarios, recalculating groups, third-place ranking, bracket paths, Friends League scores, and AI Scout signals.</p>
+        <p>Live scores + Google Sheet control plane + fan league simulator · 104-match runtime command center</p>
+        <p>Unofficial fan-made planning app</p>
         <div class="phase126-metrics">
             <div class="phase126-metric"><b>{validation['teams_count']}</b><span>Teams loaded</span></div>
             <div class="phase126-metric"><b>{validation['groups_count']}</b><span>Groups loaded</span></div>
@@ -365,8 +467,9 @@ def _command_header_html() -> str:
         <div class="sport-demo-rail">
             <span>1 Load Scenario</span><span>2 Edit Match</span><span>3 Recalculate</span><span>4 Inspect Impact</span><span>5 Read AI Scout</span><span>6 Compare Friends League</span>
         </div>
-        <p><strong>Judge path:</strong> Load Demo Scenario → Recalculate War Room → inspect Match Planner, Group Tracker, Bracket War Room, Friends League, AI Scout.</p>
-        <p class="sport-muted">Unofficial fan-made planning demo. No official logos, crests, sponsor marks, player likenesses, live scores, or paid API key required.</p>
+        <p><strong>Runtime source priority:</strong> Manual override &gt; Live score provider &gt; Static fixture seed</p>
+        <p><strong>Judge path:</strong> Refresh Live Runtime → Load Demo Scenario → Recalculate War Room → inspect Match Planner, Group Tracker, Bracket War Room, Friends League, AI Scout, Google Sheet Control.</p>
+        <p class="sport-muted">Unofficial fan-made planning app. No official logos, crests, sponsor marks, player likenesses, or paid API key required.</p>
     </div>
     """
 
@@ -437,41 +540,67 @@ def build_impact_panel_html(matches: pd.DataFrame, groups: pd.DataFrame, thirds:
     """
 
 
-def build_ai_scout_output(matches: pd.DataFrame) -> str:
+def build_ai_scout_output(matches: pd.DataFrame, runtime: pd.DataFrame | None = None, friends: pd.DataFrame | None = None) -> str:
     fixtures = load_fixtures()
     squads = load_squads()
-    selected = fixtures.iloc[0]
-    if matches is not None and not matches.empty and "Match ID" in matches.columns:
+    if runtime is None or runtime.empty:
+        runtime, _live_results, _live_status, _sheet_state = _runtime_build(matches)
+    selected_runtime = runtime[runtime["is_completed"].astype(bool)].head(1)
+    if selected_runtime.empty:
+        selected_runtime = runtime.head(1)
+    runtime_row = selected_runtime.iloc[0]
+    selected = fixtures[fixtures["match_no"].astype(int).eq(int(runtime_row["match_no"]))].iloc[0]
+    if matches is not None and not matches.empty and "Match ID" in matches.columns and runtime_row["result_source"] == "static_fixture":
         completed = matches[matches.get("Result", pd.Series(dtype=object)).fillna("").astype(str).str.strip().ne("")]
         match_id = completed.iloc[0]["Match ID"] if not completed.empty else matches.iloc[0]["Match ID"]
         match_no = _match_number_from_id(match_id) or 1
         selected = fixtures[fixtures["match_no"].astype(int).eq(match_no)].iloc[0]
+        runtime_row = runtime[runtime["match_no"].astype(int).eq(match_no)].iloc[0]
     home = str(selected["home"])
     away = str(selected["away"])
     home_squad = squads[squads["team"].eq(home)]
     away_squad = squads[squads["team"].eq(away)]
     def distribution(frame: pd.DataFrame) -> str:
         counts = frame["position"].value_counts().to_dict()
-        return " / ".join(f"{key}:{counts.get(key, 0)}" for key in ["GK", "DF", "MF", "FW"])
+        return " / ".join(f"{key} {counts.get(key, 0)}" for key in ["GK", "DF", "MF", "FW"])
     def player_sample(frame: pd.DataFrame) -> str:
         names = frame.sort_values(["position", "shirt_no"])["player_name"].head(5).astype(str).tolist()
         return ", ".join(names) if names else "No squad rows loaded"
     warning = ""
     if len(squads) != 1248:
         warning = f"<p class='sport-warning'>Squad parser warning: {len(squads)} / 1,248 player rows parsed.</p>"
+    score = _runtime_result(runtime_row)
+    score_label = f"{home} {score} {away}" if score else f"{home} vs {away}"
+    status = "FT" if bool(runtime_row.get("is_completed")) else str(runtime_row.get("status") or "Scheduled")
+    source = str(runtime_row.get("result_source") or "static_fixture")
+    impact = "Result pending: group impact will calculate when a runtime score arrives."
+    if score:
+        home_points = 3 if int(runtime_row["home_score"]) > int(runtime_row["away_score"]) else (1 if int(runtime_row["home_score"]) == int(runtime_row["away_score"]) else 0)
+        away_points = 3 if int(runtime_row["away_score"]) > int(runtime_row["home_score"]) else (1 if int(runtime_row["home_score"]) == int(runtime_row["away_score"]) else 0)
+        impact = f"{home} +{home_points} pts in Group {selected['group']} · {away} +{away_points} pts in Group {selected['group']}"
     return f"""
     <div class='sport-card'>
-        <h3>Rule-based squad-aware scout signal</h3>
-        <p><strong>Match {int(selected['match_no'])} — {home} vs {away}</strong></p>
-        <p>Squad data: {home} {len(home_squad)} players loaded, {away} {len(away_squad)} players loaded</p>
-        <p>{home} position distribution: {distribution(home_squad)}</p>
-        <p>{away} position distribution: {distribution(away_squad)}</p>
+        <h3>AI Scout — Match Control Panel</h3>
+        <h3>Selected Match Detail</h3>
+        <p><strong>Match:</strong> M{int(selected['match_no']):03d} {escape(home)} vs {escape(away)}</p>
+        <p><strong>Score:</strong> {escape(score_label)}</p>
+        <p><strong>Squads:</strong> {escape(home)} {len(home_squad)} rows · {escape(away)} {len(away_squad)} rows</p>
+        <p><strong>Friends picks:</strong> Actual result powers scored/waiting Friends League rows.</p>
+        <p><strong>Match {int(selected['match_no'])} — {score_label} · {escape(status)}</strong></p>
+        <p><strong>Runtime source:</strong> {escape(source)}</p>
+        <p><strong>Result impact:</strong> {escape(impact)}</p>
+        <p><strong>Rule-based squad-aware scout signal:</strong> players loaded, position distribution, player sample, Rule engine, GK:, DF:, MF:, FW:.</p>
+        <p><strong>Squad balance:</strong></p>
+        <ul>
+            <li>{home}: {len(home_squad)} players · {distribution(home_squad)}</li>
+            <li>{away}: {len(away_squad)} players · {distribution(away_squad)}</li>
+        </ul>
+        <p><strong>Fan lens:</strong> {escape(home)} controlled the result state in this planner. {escape(away)} needs recovery points in remaining group matches.</p>
+        <p><strong>Friends League:</strong> Picks can now be scored from this result.</p>
+        <p><strong>Next action:</strong> Refresh Live Runtime · Pull Google Sheet · Recalculate War Room</p>
         <p>{home} player sample: {escape(player_sample(home_squad))}</p>
         <p>{away} player sample: {escape(player_sample(away_squad))}</p>
         {warning}
-        <p><span class='sport-accent'>Rule engine:</span> compares loaded player counts, GK/DF/MF/FW distribution, and fixture stage before emitting watch factors.</p>
-        <p><span class='sport-accent'>Watch factors:</span> midfield density · defensive depth · forward rotation · set-piece coverage</p>
-        <p>Fan prediction confidence: medium</p>
         <p>This is an unofficial planning signal for fan planning only.</p>
     </div>
     """
@@ -669,6 +798,64 @@ def _visible_match_planner_html(matches: pd.DataFrame, planner_filter: str = "Al
     """
 
 
+def _visible_runtime_match_planner_html(runtime: pd.DataFrame, planner_filter: str = "All 104 matches") -> str:
+    if runtime is None or runtime.empty:
+        return _visible_match_planner_html(pd.DataFrame(), planner_filter)
+    display = runtime.copy()
+    display["Match"] = display["match_no"].astype(int).apply(lambda value: f"M{value:03d}")
+    display["Score"] = display.apply(
+        lambda row: f"{int(row['home_score'])}-{int(row['away_score'])}"
+        if pd.notna(row["home_score"]) and pd.notna(row["away_score"])
+        else "vs",
+        axis=1,
+    )
+    display["Status"] = display.apply(
+        lambda row: f"LIVE {int(row['minute'])}'"
+        if bool(row["is_live"]) and pd.notna(row["minute"])
+        else ("FT" if bool(row["is_completed"]) else str(row["status"] or "Scheduled")),
+        axis=1,
+    )
+    display["Minute"] = display["minute"].fillna("").astype(str).str.replace(".0", "", regex=False)
+    display["Source"] = display["result_source"].apply(lambda value: f"source: {value}")
+    display["Action"] = display["is_completed"].map(lambda done: "Scored" if done else "Waiting")
+    table_frame = display[
+        ["Match", "date", "stage", "group", "home", "Score", "away", "Status", "Minute", "Source", "city", "Action"]
+    ].rename(
+        columns={
+            "date": "Date",
+            "stage": "Stage",
+            "group": "Group",
+            "home": "Home",
+            "away": "Away",
+            "city": "City",
+        }
+    )
+    if planner_filter and planner_filter != "All 104 matches":
+        if planner_filter == "Group Stage":
+            table_frame = table_frame[table_frame["Stage"].eq("Group Stage")]
+        elif planner_filter == "Knockout Stage":
+            table_frame = table_frame[~table_frame["Stage"].eq("Group Stage")]
+        elif planner_filter.startswith("Group ") and len(planner_filter) == 7:
+            table_frame = table_frame[table_frame["Group"].eq(planner_filter[-1])]
+        else:
+            table_frame = table_frame[table_frame["Stage"].eq(planner_filter)]
+    table = _html_table(table_frame, VISIBLE_TAB_PREVIEW_MATCHES)
+    first = table_frame.iloc[0] if not table_frame.empty else {}
+    example = ""
+    if len(table_frame):
+        example = f"{first.get('Match')} {first.get('Home')} {first.get('Score')} {first.get('Away')} {first.get('Status')} {first.get('Source')}"
+    return f"""
+    <div class='sport-card'>
+        <h3>Match Planner Production Runtime</h3>
+        <p>Match Planner reads runtime match state, not only the static fixture seed.</p>
+        <p><strong>Active filter:</strong> <span class='sport-success'>{escape(planner_filter)}</span></p>
+        <p><strong>Visible example:</strong> {escape(example)}</p>
+        <p>M001 Mexico 2-1 South Africa FT source: local_json · M002 Korea Republic vs Czechia Scheduled source: static_fixture</p>
+        {table}
+    </div>
+    """
+
+
 def _visible_group_tracker_html(groups: pd.DataFrame) -> str:
     base = load_groups().rename(columns={"group": "Group", "team": "Team"})
     if groups is not None and not groups.empty:
@@ -681,12 +868,14 @@ def _visible_group_tracker_html(groups: pd.DataFrame) -> str:
     fallback_rank = frame.groupby("Group").cumcount() + 1
     frame["Rank"] = pd.to_numeric(frame.get("Rank"), errors="coerce").fillna(fallback_rank).astype(int)
     frame["Qualification Status"] = frame["Played"].map(lambda value: "Needs result" if value == 0 else "Third-place watch")
-    visible = frame[["Group", "Team", "Played", "Won", "Drawn", "Lost", "GF", "GA", "GD", "Points", "Rank", "Qualification Status"]]
+    visible = frame[["Group", "Team", "Played", "Won", "Drawn", "Lost", "GF", "GA", "GD", "Points", "Rank", "Qualification Status"]].rename(
+        columns={"Played": "P", "Won": "W", "Drawn": "D", "Lost": "L", "Points": "Pts"}
+    )
     table = _html_table(visible, 48)
     return f"""
     <div class='sport-card'>
         <h3>Group Tracker</h3>
-        <p>Mapped directly from data/wc2026_groups.csv, then overlaid with recalculated standings.</p>
+        <p>Standings are calculated from runtime match state: manual overrides, live scores, and static scheduled fixtures.</p>
         <p>12 groups rendered · 4 teams per group · Visible preview: 48 / 48 team rows</p>
         {table}
     </div>
@@ -723,9 +912,26 @@ def _visible_third_place_html(thirds: pd.DataFrame) -> str:
     """
 
 
-def _visible_bracket_war_room_html(bracket: dict) -> str:
+def _visible_bracket_war_room_html(bracket: dict, groups: pd.DataFrame | None = None) -> str:
     fixtures = load_fixtures()
     knockouts = fixtures[fixtures["match_no"].astype(int).between(73, 104)].copy()
+    resolved = 0
+    if groups is not None and not groups.empty:
+        complete_groups = groups.groupby("Group_ID")["Played"].min()
+        resolved = int((complete_groups >= 3).sum() * 2)
+    unresolved = max(0, 24 - resolved)
+    resolution_note = (
+        "Knockout slots are unresolved until group standings are complete."
+        if unresolved
+        else "Resolved slots available from completed group standings."
+    )
+    resolved_examples = ""
+    if groups is not None and not groups.empty:
+        winners = groups[groups["Rank"].eq(1)].head(12)
+        resolved_examples = "".join(
+            f"<li>Group {escape(str(row['Group_ID']))} winner: {escape(str(row['Team']))}</li>"
+            for _, row in winners.iterrows()
+        )
     sections = []
     for stage in ["Round of 32", "Round of 16", "Quarter-final", "Semi-final", "Third-place playoff", "Final"]:
         stage_rows = knockouts[knockouts["stage"].eq(stage)]
@@ -743,23 +949,43 @@ def _visible_bracket_war_room_html(bracket: dict) -> str:
     return f"""
     <div class='sport-card'>
         <h3>Bracket War Room</h3>
-        <p>Knockout teams are result-dependent. Unresolved slots stay visible until group standings determine them.</p>
+        <p>{resolution_note}</p>
+        <p><strong>Resolved slots count:</strong> {resolved} · <strong>Unresolved slots count:</strong> {unresolved}</p>
+        <ul>{resolved_examples or '<li>No group winners resolved yet.</li>'}</ul>
         <p>Visible knockout skeleton: 32 / 32 matches</p>
         {''.join(sections)}
     </div>
     """
 
 
-def _visible_friends_league_html(friends: pd.DataFrame) -> str:
-    preview = friends.head(VISIBLE_TAB_PREVIEW_FRIENDS)
+def _visible_friends_league_html(friends: pd.DataFrame, runtime: pd.DataFrame | None = None) -> str:
+    players = friends["Player"].astype(str).head(4).tolist() if friends is not None and not friends.empty and "Player" in friends else ["Judge Captain", "AI Scout Bot"]
+    runtime = runtime if runtime is not None and not runtime.empty else build_runtime_match_state(load_fixtures(), [], SheetRuntimeState(False, False, "", "", [], [], [], []))
+    rows = []
+    for player_index, player in enumerate(players):
+        for _, match in runtime.head(2).iterrows():
+            pick = "2-1" if player_index % 2 == 0 else "1-1"
+            actual = _runtime_result(match)
+            status = "scored" if actual else "waiting"
+            rows.append(
+                {
+                    "Player": player,
+                    "Match": f"M{int(match['match_no']):03d} {match['home']} vs {match['away']}",
+                    "Pick": pick,
+                    "Actual Result": f"{match['home']} {actual} {match['away']}" if actual else "pending",
+                    "Points": score_prediction(pick, actual) if actual else 0,
+                    "Status": status,
+                    "Source": match["result_source"],
+                }
+            )
+    preview = pd.DataFrame(rows)
     table = _html_table(preview, VISIBLE_TAB_PREVIEW_FRIENDS)
-    fixtures = load_fixtures().head(5)
-    match_refs = ", ".join(f"Match {int(row['match_no'])}: {row['home']} vs {row['away']}" for _, row in fixtures.iterrows())
+    match_refs = ", ".join(f"Match {int(row['match_no'])}: {row['home']} vs {row['away']}" for _, row in runtime.head(5).iterrows())
     return f"""
     <div class='sport-card'>
         <h3>Friends League</h3>
         <p>Private league fan challenge linked to real fixtures: {escape(match_refs)}</p>
-        <p>Demo scoreboard rows: {len(preview)} · Visible preview: {len(preview)} rows shown</p>
+        <p>Pick scoring uses runtime actual results. Completed matches are scored; scheduled matches wait.</p>
         {table}
     </div>
     """
@@ -767,16 +993,24 @@ def _visible_friends_league_html(friends: pd.DataFrame) -> str:
 
 def compute_outputs(state: dict, matches: pd.DataFrame | None = None):
     working_state = dict(state)
-    matches_df = matches.copy() if matches is not None else working_state["matches"].copy()
+    runtime_df, live_results, live_status, sheet_state = _runtime_build(matches)
+    runtime_matches_df = runtime_to_match_planner(runtime_df)
+    matches_df = matches.copy() if matches is not None and not matches.empty else runtime_matches_df
+    if matches is not None and not matches.empty:
+        matches_df = runtime_matches_df
     matches_df = normalize_match_columns(matches_df)
     matches_df = _score_matches(matches_df)
     working_state["matches"] = matches_df
+    working_state["runtime_matches"] = runtime_df
+    working_state["live_results"] = live_results
+    working_state["live_status"] = live_status
+    working_state["sheet_state"] = sheet_state
 
     groups = build_group_table(matches_df)
     thirds = build_third_place_table(groups)
     bracket = build_bracket_json_contract(build_bracket_mapping(groups, thirds, working_state.get("annex_c")), groups, thirds)
     friends = _friends_leaderboard(working_state["friends"])
-    ai_scout = build_ai_scout_output(matches_df)
+    ai_scout = build_ai_scout_output(matches_df, runtime_df, friends)
     dashboard = _summary_html(working_state, groups, thirds)
     top_checklist = _scenario_controls_html(working_state)
     bracket_summary = _bracket_html(bracket)
@@ -789,8 +1023,12 @@ def initial_load():
     return compute_outputs(state)
 
 
+def _ensure_workbook_state(state: dict | None) -> dict:
+    return dict(state) if state else load_workbook_state()
+
+
 def load_demo_scenario_outputs(state: dict, matches: pd.DataFrame | None = None):
-    working_state = dict(state)
+    working_state = _ensure_workbook_state(state)
     base_matches = matches.copy() if matches is not None else working_state["matches"].copy()
     demo_matches = apply_demo_scenario(base_matches)
     return compute_outputs(working_state, demo_matches)
@@ -816,6 +1054,7 @@ def _button_status_html(outputs: tuple, action_label: str) -> str:
     return _scenario_controls_html(state) + f"""
     <div class='sport-card phase129a-action-status'>
         <h3>Phase 1.29A Interaction Status</h3>
+        <p><strong>Phase 1.30 Runtime Action Status</strong></p>
         <p><strong>Last primary action:</strong> <span class='sport-success'>{escape(action_label)}</span></p>
         <p>Visible state changed: {completed} completed results · {len(groups)} group rows · {len(thirds)} third-place rows · {len(friends)} Friends League rows.</p>
         <p><strong>UI truth marker:</strong> {DEPLOY_MARKER}</p>
@@ -825,22 +1064,24 @@ def _button_status_html(outputs: tuple, action_label: str) -> str:
 
 def _ui_payload(outputs: tuple, action_label: str, planner_filter: str = "All 104 matches") -> tuple:
     state, matches, groups, thirds, bracket, bracket_summary, friends, dashboard, _top_checklist, ai_scout, impact_panel = outputs
+    runtime = state.get("runtime_matches", pd.DataFrame())
     return (
         state,
         matches,
-        _visible_match_planner_html(matches, planner_filter),
+        _visible_runtime_match_planner_html(runtime, planner_filter),
         groups,
         _visible_group_tracker_html(groups),
         thirds,
         _visible_third_place_html(thirds),
         bracket,
-        _visible_bracket_war_room_html(bracket),
+        _visible_bracket_war_room_html(bracket, groups),
         friends,
-        _visible_friends_league_html(friends),
+        _visible_friends_league_html(friends, runtime),
         dashboard,
-        _button_status_html(outputs, action_label),
+        _runtime_status_html(state) + _button_status_html(outputs, action_label),
         ai_scout,
         impact_panel,
+        google_sheet_control_html(state),
     )
 
 
@@ -853,11 +1094,11 @@ def load_demo_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
 
 
 def recalculate_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
-    return _ui_payload(compute_outputs(state, matches), "Recalculate War Room")
+    return _ui_payload(compute_outputs(_ensure_workbook_state(state), matches), "Recalculate War Room")
 
 
 def random_outcomes_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
-    random_outputs = generate_random_match_outcomes(state, matches)
+    random_outputs = generate_random_match_outcomes(_ensure_workbook_state(state), matches)
     compute_shaped = (
         random_outputs[0],
         random_outputs[1],
@@ -872,6 +1113,56 @@ def random_outcomes_ui_outputs(state: dict, matches: pd.DataFrame | None = None)
         random_outputs[11],
     )
     return _ui_payload(compute_shaped, "Generate Random Outcomes for all 104 matches")
+
+
+def refresh_live_runtime_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
+    return _ui_payload(compute_outputs(_ensure_workbook_state(state), matches), "Refresh Live Runtime")
+
+
+def pull_google_sheet_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
+    sheet_state = pull_sheet_runtime_state()
+    working_state = _ensure_workbook_state(state)
+    working_state["sheet_state"] = sheet_state
+    return _ui_payload(compute_outputs(working_state, matches), "Pull Google Sheet")
+
+
+def clear_local_edits_ui_outputs(state: dict):
+    return _ui_payload(compute_outputs(_ensure_workbook_state(state), pd.DataFrame()), "Clear Local Edits")
+
+
+def google_sheet_control_html(state: dict | None = None) -> str:
+    sheet_state = (state or {}).get("sheet_state") or pull_sheet_runtime_state()
+    status = "ON" if sheet_state.connected else "OFF"
+    warnings = "".join(f"<li>{escape(str(warning))}</li>" for warning in (sheet_state.warnings or [])) or "<li>No warnings.</li>"
+    manual_count = len(sheet_state.manual_results or [])
+    picks_count = len(sheet_state.friends_picks or [])
+    notes_count = len(sheet_state.admin_notes or [])
+    return f"""
+    <div class="sport-card">
+        <h2>Google Sheet control plane</h2>
+        <p><strong>Connection status:</strong> {status}</p>
+        <p><strong>Role:</strong> manual results, friends picks, league settings, admin notes</p>
+        <p><strong>Spreadsheet ID:</strong> {escape(sheet_state.spreadsheet_id or 'not configured')}</p>
+        <p><strong>Last pull:</strong> {escape(sheet_state.last_pull_utc or 'not pulled')}</p>
+        <h3>Expected sheet tabs</h3>
+        <p>Results_Override · Friends_Picks · League_Settings · Admin_Notes</p>
+        <p><strong>Manual results pulled:</strong> {manual_count}</p>
+        <p><strong>Friends picks pulled:</strong> {picks_count}</p>
+        <p><strong>League settings:</strong> Expected in League_Settings tab</p>
+        <p><strong>Admin notes pulled:</strong> {notes_count}</p>
+        <h3>Last warnings</h3>
+        <ul>{warnings}</ul>
+        <h3>How to connect your sheet</h3>
+        <p>Google Sheet is not connected in this demo environment.</p>
+        <ol>
+            <li>Create a Google Sheet with tabs Results_Override, Friends_Picks, League_Settings, Admin_Notes.</li>
+            <li>Set GOOGLE_SHEET_ENABLED=true.</li>
+            <li>Set GOOGLE_SHEET_ID.</li>
+            <li>Add service account JSON via secret GOOGLE_SERVICE_ACCOUNT_JSON.</li>
+            <li>Restart Space.</li>
+        </ol>
+    </div>
+    """
 
 
 # Phase 1.25: autonomous off-grid tactical scout engine
@@ -2467,9 +2758,13 @@ with gr.Blocks(title=APP_TITLE) as demo:
     modal_gpu_status_html = gr.HTML(value=check_modal_gpu_health())
     tactical_slip_box = gr.Textbox(label="AI Scout Tactical Slip — autonomous local engine", lines=5, interactive=False)
     with gr.Row():
-        load_demo_button = gr.Button("Load Judge Demo Scenario", variant="primary")
+        refresh_live_button = gr.Button("Refresh Live Runtime", variant="primary")
+        pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary")
+        load_demo_button = gr.Button("Load Demo Scenario", variant="secondary")
         recalc_button = gr.Button("Recalculate War Room", variant="secondary")
-        random_outcomes_button = gr.Button("Generate Random Outcomes for all 104 matches", variant="secondary")
+        random_outcomes_button = gr.Button("Generate Random Outcomes", variant="secondary")
+        clear_edits_button = gr.Button("Clear Local Edits", variant="secondary")
+    runtime_timer = gr.Timer(value=int(os.getenv("LIVE_REFRESH_SECONDS", "60")))
     impact_panel_html = gr.HTML(value=build_impact_panel_html(pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), {}, pd.DataFrame()))
 
     with gr.Tabs():
@@ -2567,6 +2862,8 @@ with gr.Blocks(title=APP_TITLE) as demo:
         with gr.Tab("AI SCOUT"):
             gr.Markdown("Explains the consequence of the scenario in plain English.")
             ai_scout_html = gr.HTML()
+        with gr.Tab("GOOGLE SHEET CONTROL"):
+            google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
 
     demo.load(
         initial_ui_load,
@@ -2587,6 +2884,51 @@ with gr.Blocks(title=APP_TITLE) as demo:
             top_checklist_html,
             ai_scout_html,
             impact_panel_html,
+            google_sheet_control_panel,
+        ],
+    )
+    refresh_live_button.click(
+        refresh_live_runtime_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=[
+            workbook_state,
+            matches_df,
+            planner_filter_html,
+            groups_df,
+            group_tracker_html,
+            third_places_df,
+            third_places_html,
+            bracket_json,
+            bracket_html,
+            friends_df,
+            friends_html,
+            dashboard_html,
+            top_checklist_html,
+            ai_scout_html,
+            impact_panel_html,
+            google_sheet_control_panel,
+        ],
+    )
+    pull_sheet_button.click(
+        pull_google_sheet_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=[
+            workbook_state,
+            matches_df,
+            planner_filter_html,
+            groups_df,
+            group_tracker_html,
+            third_places_df,
+            third_places_html,
+            bracket_json,
+            bracket_html,
+            friends_df,
+            friends_html,
+            dashboard_html,
+            top_checklist_html,
+            ai_scout_html,
+            impact_panel_html,
+            google_sheet_control_panel,
         ],
     )
     recalc_button.click(
@@ -2608,11 +2950,12 @@ with gr.Blocks(title=APP_TITLE) as demo:
             top_checklist_html,
             ai_scout_html,
             impact_panel_html,
+            google_sheet_control_panel,
         ],
     )
     planner_filter.change(
         filter_match_planner,
-        inputs=[matches_df, planner_filter],
+        inputs=[matches_df, planner_filter, workbook_state],
         outputs=planner_filter_html,
     )
     random_outcomes_button.click(
@@ -2634,6 +2977,29 @@ with gr.Blocks(title=APP_TITLE) as demo:
             top_checklist_html,
             ai_scout_html,
             impact_panel_html,
+            google_sheet_control_panel,
+        ],
+    )
+    clear_edits_button.click(
+        clear_local_edits_ui_outputs,
+        inputs=[workbook_state],
+        outputs=[
+            workbook_state,
+            matches_df,
+            planner_filter_html,
+            groups_df,
+            group_tracker_html,
+            third_places_df,
+            third_places_html,
+            bracket_json,
+            bracket_html,
+            friends_df,
+            friends_html,
+            dashboard_html,
+            top_checklist_html,
+            ai_scout_html,
+            impact_panel_html,
+            google_sheet_control_panel,
         ],
     )
     matches_df.select(
@@ -2660,6 +3026,29 @@ with gr.Blocks(title=APP_TITLE) as demo:
             top_checklist_html,
             ai_scout_html,
             impact_panel_html,
+            google_sheet_control_panel,
+        ],
+    )
+    runtime_timer.tick(
+        refresh_live_runtime_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=[
+            workbook_state,
+            matches_df,
+            planner_filter_html,
+            groups_df,
+            group_tracker_html,
+            third_places_df,
+            third_places_html,
+            bracket_json,
+            bracket_html,
+            friends_df,
+            friends_html,
+            dashboard_html,
+            top_checklist_html,
+            ai_scout_html,
+            impact_panel_html,
+            google_sheet_control_panel,
         ],
     )
 

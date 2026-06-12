@@ -1,0 +1,211 @@
+{
+  "generated_at_utc": "2026-06-12T08:16:43.062754+00:00",
+  "url": "http://127.0.0.1:7860",
+  "dataset_validation": {
+    "groups_count": 12,
+    "teams_count": 48,
+    "fixtures_count": 104,
+    "group_stage_count": 72,
+    "knockout_count": 32,
+    "squad_rows_count": 1248,
+    "errors": [],
+    "warnings": []
+  },
+  "checks": [
+    {
+      "check": "App loads",
+      "status": "PASS",
+      "detail": "http://127.0.0.1:7860"
+    },
+    {
+      "check": "Phase 1.30 visible",
+      "status": "PASS",
+      "detail": "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
+    },
+    {
+      "check": "No stale Phase 1.28 marker visible",
+      "status": "PASS",
+      "detail": "Visible header marker is current."
+    },
+    {
+      "check": "Dashboard visible",
+      "status": "PASS",
+      "detail": "Dashboard text detected."
+    },
+    {
+      "check": "48 / 12 / 104 metrics visible",
+      "status": "PASS",
+      "detail": "Core metrics detected."
+    },
+    {
+      "check": "Squad count visible",
+      "status": "PASS",
+      "detail": "Squad count or validation present."
+    },
+    {
+      "check": "Load Demo Scenario button works",
+      "status": "PASS",
+      "detail": "Clicked load demo control."
+    },
+    {
+      "check": "Recalculate War Room button works",
+      "status": "PASS",
+      "detail": "Clicked recalc control."
+    },
+    {
+      "check": "Primary buttons change status",
+      "status": "PASS",
+      "detail": "Action status changed after click."
+    },
+    {
+      "check": "Runtime Status panel visible",
+      "status": "PASS",
+      "detail": "Runtime status detected."
+    },
+    {
+      "check": "Live scores status visible",
+      "status": "PASS",
+      "detail": "Live scores status detected."
+    },
+    {
+      "check": "Google Sheet status visible",
+      "status": "PASS",
+      "detail": "Google Sheet status detected."
+    },
+    {
+      "check": "Match Planner displays real teams",
+      "status": "PASS",
+      "detail": "Real team names detected."
+    },
+    {
+      "check": "Match Planner includes dates",
+      "status": "PASS",
+      "detail": "Real fixture dates detected."
+    },
+    {
+      "check": "Match Planner first fixture is real group-stage match",
+      "status": "PASS",
+      "detail": "M001 Mexico vs South Africa appears before knockout placeholders."
+    },
+    {
+      "check": "Match 1 score/result visible if local_json demo mode is active",
+      "status": "PASS",
+      "detail": "M001 result/source detected."
+    },
+    {
+      "check": "Match Planner shows source column",
+      "status": "PASS",
+      "detail": "Source column detected."
+    },
+    {
+      "check": "Match Planner table visible",
+      "status": "PASS",
+      "detail": "visible_tables=2"
+    },
+    {
+      "check": "Group Tracker shows groups",
+      "status": "PASS",
+      "detail": "Group tracker content detected."
+    },
+    {
+      "check": "Group Tracker maps real CSV teams",
+      "status": "PASS",
+      "detail": "Group A real teams detected."
+    },
+    {
+      "check": "Group Tracker reflects Match 1 result",
+      "status": "PASS",
+      "detail": "Runtime standings visible."
+    },
+    {
+      "check": "Group Tracker table visible",
+      "status": "PASS",
+      "detail": "visible_tables=2"
+    },
+    {
+      "check": "Bracket shows Round of 32 through Final",
+      "status": "PASS",
+      "detail": "Knockout stages detected."
+    },
+    {
+      "check": "Friends League shows real match references",
+      "status": "PASS",
+      "detail": "Real match references detected."
+    },
+    {
+      "check": "Friends League shows Actual Result / Status",
+      "status": "PASS",
+      "detail": "Actual Result and Status columns detected."
+    },
+    {
+      "check": "Friends League table visible",
+      "status": "PASS",
+      "detail": "visible_tables=6"
+    },
+    {
+      "check": "AI Scout shows runtime score and group impact",
+      "status": "PASS",
+      "detail": "Runtime score and impact detected."
+    },
+    {
+      "check": "AI Scout is match-context-aware",
+      "status": "PASS",
+      "detail": "Match control panel detected."
+    },
+    {
+      "check": "AI Scout lists loaded players",
+      "status": "PASS",
+      "detail": "Player-loaded squad output detected."
+    },
+    {
+      "check": "Google Sheet Control tab explains connection",
+      "status": "PASS",
+      "detail": "Connection instructions detected."
+    },
+    {
+      "check": "No forbidden terms visible",
+      "status": "PASS",
+      "detail": "Forbidden terms absent from visible walkthrough text."
+    },
+    {
+      "check": "Unofficial disclaimer visible",
+      "status": "PASS",
+      "detail": "Unofficial fan-made disclaimer detected."
+    },
+    {
+      "check": "Dashboard non-empty",
+      "status": "PASS",
+      "detail": "7631 visible characters."
+    },
+    {
+      "check": "Match Planner non-empty",
+      "status": "PASS",
+      "detail": "8991 visible characters."
+    },
+    {
+      "check": "Group Tracker non-empty",
+      "status": "PASS",
+      "detail": "7494 visible characters."
+    },
+    {
+      "check": "Bracket War Room non-empty",
+      "status": "PASS",
+      "detail": "6576 visible characters."
+    },
+    {
+      "check": "Friends League non-empty",
+      "status": "PASS",
+      "detail": "6576 visible characters."
+    },
+    {
+      "check": "AI Scout non-empty",
+      "status": "PASS",
+      "detail": "5259 visible characters."
+    },
+    {
+      "check": "Google Sheet Control non-empty",
+      "status": "PASS",
+      "detail": "5259 visible characters."
+    }
+  ]
+}

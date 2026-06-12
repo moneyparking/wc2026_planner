@@ -95,7 +95,9 @@ def normalize_match_columns(matches: pd.DataFrame) -> pd.DataFrame:
     normalized = normalized[normalized["Match ID"].ne("") & normalized["Match ID"].ne("nan")].reset_index(drop=True)
     normalized = normalized[normalized["Match ID"].str.match(r"^M(0[0-9][1-9]|0[1-9][0-9]|10[0-4])$", na=False)]
     normalized = normalized.head(EXPECTED_MATCH_COUNT).reset_index(drop=True)
-    normalized["Phase"] = normalized["Match ID"].apply(phase_for_match_id)
+    derived_phase = normalized["Match ID"].apply(phase_for_match_id)
+    existing_phase = normalized["Phase"].fillna("").astype(str).str.strip()
+    normalized["Phase"] = existing_phase.where(existing_phase.str.match(r"^Group [A-L]$"), derived_phase)
     return normalized
 
 
