@@ -26,6 +26,7 @@ from src.runtime_engine import build_runtime_match_state, runtime_to_match_plann
 
 DEPLOY_MARKER = "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
+PHASE_130B_MARKER = "PHASE 1.30B Visual Surface + AppStore Shell"
 
 PHASE_126_INTERACTIVE_CSS = """
 /* Phase 1.26: judge-readable interactive UI hardening */
@@ -285,8 +286,14 @@ def _runtime_status_html(state: dict | None) -> str:
     warnings = list(getattr(live_status, "warnings", []) or []) + list(getattr(sheet_state, "warnings", []) or [])
     warning_html = "".join(f"<li>{escape(str(warning))}</li>" for warning in warnings) or "<li>No runtime warnings.</li>"
     return f"""
-    <div class="sport-card phase130-runtime-status">
+    <div class="sport-card runtime-card phase130-runtime-status">
         <h2>Runtime Status</h2>
+        <div class="abw-chip-row" aria-label="Runtime Status chip row">
+            <span class="abw-chip {'live' if live_status.enabled or live_count else 'pending'}">Live scores: {escape('ON' if live_status.enabled else 'OFF')}</span>
+            <span class="abw-chip {'live' if sheet_state.connected else 'pending'}">Google Sheet: {escape('ON' if sheet_state.connected else 'OFF')}</span>
+            <span class="abw-chip {'live' if completed else 'pending'}">Completed: {completed}</span>
+            <span class="abw-chip">Runtime data loaded from local_json/static seed</span>
+        </div>
         <p><strong>Live scores:</strong> {live_line}</p>
         <p><strong>Google Sheet:</strong> {sheet_line}</p>
         <p><strong>Runtime mode:</strong> {escape(mode)}</p>
@@ -435,41 +442,57 @@ def _command_header_html() -> str:
     validation = validate_wc2026_dataset()
     squad_label = f"{validation['squad_rows_count']:,}" if validation["squad_rows_count"] == 1248 else f"Warning: {validation['squad_rows_count']:,} / 1,248"
     badges = [
-        "104-Match Engine",
-        "Production Runtime",
-        "Live Score Adapter",
-        "Google Sheet Control Plane",
-        "Group + 3rd-Place Logic",
-        "Bracket Impact",
-        "Friends League",
-        "AI Scout Signals",
-        "Match-Aware AI Scout",
-        "Manual Overrides",
-        "Unofficial Fan-Made Demo",
+        "🏟 Match Center",
+        "📊 Groups",
+        "🧩 Bracket",
+        "🏆 Friends League",
+        "🧠 AI Scout",
+        "📄 Google Sheet",
     ]
     badge_html = "".join(f"<span class='sport-proof-badge'>{badge}</span>" for badge in badges)
     return f"""
-    <div class="sport-hero sport-command-header">
-        <div class="sport-kicker">{PHASE_130_MARKER} · legacy qa {DEPLOY_MARKER}</div>
-        <h1>AI Bracket War Room 2026</h1>
-        <h2>PHASE 1.30 — Production Fan App Runtime</h2>
-        <p><strong>48 teams · 12 groups · 104 matches · 1,248 squad rows</strong></p>
-        <p><strong>Change one result.</strong> Watch the tournament path mutate.</p>
-        <p>Live scores + Google Sheet control plane + fan league simulator · 104-match runtime command center</p>
-        <p>Unofficial fan-made planning app</p>
-        <div class="phase126-metrics">
-            <div class="phase126-metric"><b>{validation['teams_count']}</b><span>Teams loaded</span></div>
-            <div class="phase126-metric"><b>{validation['groups_count']}</b><span>Groups loaded</span></div>
-            <div class="phase126-metric"><b>{validation['fixtures_count']}</b><span>Matches loaded</span></div>
-            <div class="phase126-metric"><b>{squad_label}</b><span>Squad rows loaded</span></div>
+    <div class="abw-app-shell sport-command-header">
+        <div class="abw-topbar">
+            <div class="abw-brand">
+                <div class="abw-mark" aria-label="ABW logo placeholder">ABW</div>
+                <div>
+                    <div class="abw-title">AI Bracket War Room</div>
+                    <div class="abw-subtitle">Unofficial fan-made football planning app</div>
+                </div>
+            </div>
+            <div class="abw-phase-marker">{PHASE_130B_MARKER}</div>
         </div>
-        <div class="sport-badge-row">{badge_html}</div>
-        <div class="sport-demo-rail">
-            <span>1 Load Scenario</span><span>2 Edit Match</span><span>3 Recalculate</span><span>4 Inspect Impact</span><span>5 Read AI Scout</span><span>6 Compare Friends League</span>
+        <div class="abw-shell-body">
+            <div class="abw-hero-grid">
+                <div class="sport-hero">
+                    <div class="sport-kicker">{PHASE_130_MARKER} · legacy qa {DEPLOY_MARKER}</div>
+                    <h1>AI Bracket War Room 2026</h1>
+                    <h2>PHASE 1.30 — Production Fan App Runtime</h2>
+                    <p><strong>48 teams · 12 groups · 104 matches · 1,248 squad rows</strong></p>
+                    <p><strong>Change one result.</strong> Watch the tournament path mutate.</p>
+                    <p>Live scores + Google Sheet control plane + fan league simulator · 104-match runtime command center</p>
+                    <div class="sport-badge-row">{badge_html}</div>
+                </div>
+                <div class="abw-runtime-strip" aria-label="Runtime Status">
+                    <div class="abw-runtime-tile"><b>{validation['teams_count']}</b><span>Teams loaded</span></div>
+                    <div class="abw-runtime-tile"><b>{validation['groups_count']}</b><span>Groups loaded</span></div>
+                    <div class="abw-runtime-tile"><b>{validation['fixtures_count']}</b><span>Matches loaded</span></div>
+                    <div class="abw-runtime-tile"><b>{squad_label}</b><span>Squad rows loaded</span></div>
+                </div>
+            </div>
+            <div class="abw-chip-row" aria-label="Runtime Status chip row">
+                <span class="abw-chip live">Live accent #10B981</span>
+                <span class="abw-chip pending">Pending accent #F59E0B</span>
+                <span class="abw-chip alert">Alert accent #EF4444</span>
+                <span class="abw-chip">Runtime data loaded from local_json/static seed</span>
+            </div>
+            <div class="sport-demo-rail">
+                <span>1 Load Scenario</span><span>2 Edit Match</span><span>3 Recalculate</span><span>4 Inspect Impact</span><span>5 Read AI Scout</span><span>6 Compare Friends League</span>
+            </div>
+            <p><strong>Runtime source priority:</strong> Manual override &gt; Live score provider &gt; Static fixture seed</p>
+            <p><strong>Judge path:</strong> Refresh Live Runtime → Load Demo Scenario → Recalculate War Room → inspect Match Planner, Group Tracker, Bracket War Room, Friends League, AI Scout, Google Sheet Control.</p>
+            <p class="sport-muted">Unofficial fan-made planning app. No official logos, crests, sponsor marks, player likenesses, or paid API key required.</p>
         </div>
-        <p><strong>Runtime source priority:</strong> Manual override &gt; Live score provider &gt; Static fixture seed</p>
-        <p><strong>Judge path:</strong> Refresh Live Runtime → Load Demo Scenario → Recalculate War Room → inspect Match Planner, Group Tracker, Bracket War Room, Friends League, AI Scout, Google Sheet Control.</p>
-        <p class="sport-muted">Unofficial fan-made planning app. No official logos, crests, sponsor marks, player likenesses, or paid API key required.</p>
     </div>
     """
 
@@ -579,8 +602,8 @@ def build_ai_scout_output(matches: pd.DataFrame, runtime: pd.DataFrame | None = 
         away_points = 3 if int(runtime_row["away_score"]) > int(runtime_row["home_score"]) else (1 if int(runtime_row["home_score"]) == int(runtime_row["away_score"]) else 0)
         impact = f"{home} +{home_points} pts in Group {selected['group']} · {away} +{away_points} pts in Group {selected['group']}"
     return f"""
-    <div class='sport-card'>
-        <h3>AI Scout — Match Control Panel</h3>
+    <div class='sport-card runtime-card ai-scout-card'>
+        <h3>🧠 AI Scout — Match Control Panel</h3>
         <h3>Selected Match Detail</h3>
         <p><strong>Match:</strong> M{int(selected['match_no']):03d} {escape(home)} vs {escape(away)}</p>
         <p><strong>Score:</strong> {escape(score_label)}</p>
@@ -696,8 +719,8 @@ def _bracket_html(bracket: dict) -> str:
             f"<h4>Round of 32 Preview</h4><div>{r32_body}</div>"
         )
     return f"""
-    <div class="sport-card">
-        <h3>Canonical Bracket Summary</h3>
+    <div class="sport-card runtime-card bracket-card">
+        <h3>🧩 Canonical Bracket Summary</h3>
         <p>Status: <span class="sport-accent">{bracket.get("status")}</span></p>
         <p>Third-place key: <span class="sport-success">{bracket.get("third_place_key", "") or "pending"}</span></p>
         <div>{body}</div>
@@ -788,12 +811,13 @@ def _visible_match_planner_html(matches: pd.DataFrame, planner_filter: str = "Al
     headers = "".join(f"<th>{escape(column)}</th>" for column in fixture_preview.columns)
     rows = _html_fixture_rows(fixture_preview, VISIBLE_TAB_PREVIEW_MATCHES)
     return f"""
-    <div class='sport-card'>
-        <h3>Match Planner Filtered Preview</h3>
+    <div class='sport-card table-card runtime-card match-center-card'>
+        <h3>🏟 Match Center</h3>
         <p>One-click judge filter for the 104-match planner by stage or Groups A-L.</p>
         <p><strong>Active filter:</strong> <span class='sport-success'>{planner_filter}</span></p>
+        <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
         <p>Data loaded: 104 / 104 matches · Filtered rows: {len(fixture_preview)} / 104 matches · Visible preview: {min(len(fixture_preview), VISIBLE_TAB_PREVIEW_MATCHES)} / 104 matches</p>
-        <table><thead><tr>{headers}</tr></thead><tbody>{rows}</tbody></table>
+        <div class='table-scroll'><table><thead><tr>{headers}</tr></thead><tbody>{rows}</tbody></table></div>
     </div>
     """
 
@@ -845,13 +869,14 @@ def _visible_runtime_match_planner_html(runtime: pd.DataFrame, planner_filter: s
     if len(table_frame):
         example = f"{first.get('Match')} {first.get('Home')} {first.get('Score')} {first.get('Away')} {first.get('Status')} {first.get('Source')}"
     return f"""
-    <div class='sport-card'>
-        <h3>Match Planner Production Runtime</h3>
+    <div class='sport-card table-card runtime-card match-center-card'>
+        <h3>🏟 Match Center</h3>
         <p>Match Planner reads runtime match state, not only the static fixture seed.</p>
         <p><strong>Active filter:</strong> <span class='sport-success'>{escape(planner_filter)}</span></p>
+        <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
         <p><strong>Visible example:</strong> {escape(example)}</p>
         <p>M001 Mexico 2-1 South Africa FT source: local_json · M002 Korea Republic vs Czechia Scheduled source: static_fixture</p>
-        {table}
+        <div class='table-scroll'>{table}</div>
     </div>
     """
 
@@ -873,11 +898,12 @@ def _visible_group_tracker_html(groups: pd.DataFrame) -> str:
     )
     table = _html_table(visible, 48)
     return f"""
-    <div class='sport-card'>
-        <h3>Group Tracker</h3>
+    <div class='sport-card table-card runtime-card groups-card'>
+        <h3>📊 Groups</h3>
         <p>Standings are calculated from runtime match state: manual overrides, live scores, and static scheduled fixtures.</p>
+        <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
         <p>12 groups rendered · 4 teams per group · Visible preview: 48 / 48 team rows</p>
-        {table}
+        <div class='table-scroll'>{table}</div>
     </div>
     """
 
@@ -903,11 +929,12 @@ def _visible_third_place_html(thirds: pd.DataFrame) -> str:
         frame["Projected status"] = frame["Ranking"].apply(lambda value: "Projected advance" if int(value) <= 8 else "Bubble")
     table = _html_table(frame, 12)
     return f"""
-    <div class='sport-card'>
-        <h3>3rd-Place Ranking</h3>
+    <div class='sport-card table-card runtime-card groups-card'>
+        <h3>📊 3rd-Place Ranking</h3>
         <p>Critical in a 48-team format because third-place teams can still advance.</p>
+        <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
         <p>12 third-place rows tracked · Visible preview: {len(frame)} / 12 rows shown</p>
-        {table}
+        <div class='table-scroll'>{table}</div>
     </div>
     """
 
@@ -945,11 +972,12 @@ def _visible_bracket_war_room_html(bracket: dict, groups: pd.DataFrame | None = 
             "</tr>"
             for _, row in stage_rows.iterrows()
         )
-        sections.append(f"<h4>{stage}</h4><table><tbody>{body}</tbody></table>")
+        sections.append(f"<h4>{stage}</h4><div class='table-scroll'><table><tbody>{body}</tbody></table></div>")
     return f"""
-    <div class='sport-card'>
-        <h3>Bracket War Room</h3>
+    <div class='sport-card table-card runtime-card bracket-card'>
+        <h3>🧩 Bracket</h3>
         <p>{resolution_note}</p>
+        <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
         <p><strong>Resolved slots count:</strong> {resolved} · <strong>Unresolved slots count:</strong> {unresolved}</p>
         <ul>{resolved_examples or '<li>No group winners resolved yet.</li>'}</ul>
         <p>Visible knockout skeleton: 32 / 32 matches</p>
@@ -982,11 +1010,12 @@ def _visible_friends_league_html(friends: pd.DataFrame, runtime: pd.DataFrame | 
     table = _html_table(preview, VISIBLE_TAB_PREVIEW_FRIENDS)
     match_refs = ", ".join(f"Match {int(row['match_no'])}: {row['home']} vs {row['away']}" for _, row in runtime.head(5).iterrows())
     return f"""
-    <div class='sport-card'>
-        <h3>Friends League</h3>
+    <div class='sport-card table-card runtime-card friends-league-card'>
+        <h3>🏆 Friends League</h3>
         <p>Private league fan challenge linked to real fixtures: {escape(match_refs)}</p>
         <p>Pick scoring uses runtime actual results. Completed matches are scored; scheduled matches wait.</p>
-        {table}
+        <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
+        <div class='table-scroll'>{table}</div>
     </div>
     """
 
@@ -1138,8 +1167,8 @@ def google_sheet_control_html(state: dict | None = None) -> str:
     picks_count = len(sheet_state.friends_picks or [])
     notes_count = len(sheet_state.admin_notes or [])
     return f"""
-    <div class="sport-card">
-        <h2>Google Sheet control plane</h2>
+    <div class="sport-card runtime-card google-sheet-card">
+        <h2>📄 Google Sheet control plane</h2>
         <p><strong>Connection status:</strong> {status}</p>
         <p><strong>Role:</strong> manual results, friends picks, league settings, admin notes</p>
         <p><strong>Spreadsheet ID:</strong> {escape(sheet_state.spreadsheet_id or 'not configured')}</p>
@@ -2751,8 +2780,6 @@ with gr.Blocks(title=APP_TITLE) as demo:
     workbook_state = gr.State()
     gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
     gr.HTML(_command_header_html())
-    gr.HTML(value=PHASE128_ONBOARDING_STYLE)
-    gr.HTML(value=phase128_onboarding_html(), elem_classes=["phase128-onboarding-shell"])
 
     top_checklist_html = gr.HTML(value=_scenario_controls_html())
     modal_gpu_status_html = gr.HTML(value=check_modal_gpu_health())
@@ -2790,6 +2817,7 @@ with gr.Blocks(title=APP_TITLE) as demo:
                         label="Runtime Match Planner · 104 rows",
                         interactive=True,
                         wrap=True,
+                        elem_classes=["table-card"],
                     )
                 with gr.Column(scale=1):
                     phase126_scout = gr.Markdown(
@@ -2802,6 +2830,7 @@ with gr.Blocks(title=APP_TITLE) as demo:
                     label="Live Group Tracker · 12 groups",
                     interactive=False,
                     wrap=True,
+                    elem_classes=["table-card"],
                 )
 
             with gr.Row():
@@ -2810,12 +2839,14 @@ with gr.Blocks(title=APP_TITLE) as demo:
                     label="Best Third-Place Ranking · Top 8 of 12",
                     interactive=False,
                     wrap=True,
+                    elem_classes=["table-card"],
                 )
                 phase126_friends = gr.Dataframe(
                     value=phase_126_empty_friends(),
                     label="Friends League · score movement",
                     interactive=False,
                     wrap=True,
+                    elem_classes=["table-card"],
                 )
 
             phase126_bracket = gr.HTML(value=phase_126_initial_bracket_html())
@@ -2842,27 +2873,27 @@ with gr.Blocks(title=APP_TITLE) as demo:
 
         with gr.Tab("DASHBOARD"):
             dashboard_html = gr.HTML()
-        with gr.Tab("MATCH PLANNER"):
+        with gr.Tab("🏟 Match Center"):
             gr.Markdown("**Change this result. Then click Recalculate War Room. Use the quick filter to inspect stages or Groups A-L without scrolling 104 rows.**")
             planner_filter = gr.Dropdown(choices=list(PLANNER_FILTER_CHOICES), value="All 104 matches", label="Planner quick filter", interactive=True)
             planner_filter_html = gr.HTML(value=_visible_match_planner_html(pd.DataFrame(), "All 104 matches"))
-            matches_df = gr.Dataframe(label="MATCH_PLANNER — editable full 104-match scenario input", interactive=True, wrap=True)
-        with gr.Tab("GROUP TRACKER"):
+            matches_df = gr.Dataframe(label="MATCH_PLANNER — editable full 104-match scenario input", interactive=True, wrap=True, elem_classes=["table-card"])
+        with gr.Tab("📊 Groups"):
             group_tracker_html = gr.HTML(value=_visible_group_tracker_html(pd.DataFrame()))
-            groups_df = gr.Dataframe(label="Computed Group Table", interactive=False, wrap=True)
-        with gr.Tab("3RD-PLACE RANKING"):
+            groups_df = gr.Dataframe(label="Computed Group Table", interactive=False, wrap=True, elem_classes=["table-card"])
+        with gr.Tab("📊 3RD-PLACE RANKING"):
             third_places_html = gr.HTML(value=_visible_third_place_html(pd.DataFrame()))
-            third_places_df = gr.Dataframe(label="Top Third-Place Ranking", interactive=False, wrap=True)
-        with gr.Tab("BRACKET WAR ROOM"):
+            third_places_df = gr.Dataframe(label="Top Third-Place Ranking", interactive=False, wrap=True, elem_classes=["table-card"])
+        with gr.Tab("🧩 Bracket"):
             bracket_json = gr.State()
             bracket_html = gr.HTML()
-        with gr.Tab("FRIENDS LEAGUE"):
+        with gr.Tab("🏆 Friends League"):
             friends_html = gr.HTML(value=_visible_friends_league_html(pd.DataFrame()))
-            friends_df = gr.Dataframe(label="Friends League Leaderboard", interactive=True, wrap=True)
-        with gr.Tab("AI SCOUT"):
+            friends_df = gr.Dataframe(label="Friends League Leaderboard", interactive=True, wrap=True, elem_classes=["table-card"])
+        with gr.Tab("🧠 AI Scout"):
             gr.Markdown("Explains the consequence of the scenario in plain English.")
             ai_scout_html = gr.HTML()
-        with gr.Tab("GOOGLE SHEET CONTROL"):
+        with gr.Tab("📄 Google Sheet"):
             google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
 
     demo.load(
