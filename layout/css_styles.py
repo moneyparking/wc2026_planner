@@ -316,6 +316,54 @@ body,
     padding: 12px;
 }
 
+.lower-surface-card,
+.table-skeleton-card,
+.runtime-card,
+.gradio-container .phase126-shell,
+.gradio-container .phase126-card,
+.gradio-container .phase126-match-card,
+.gradio-container .phase126r-card {
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 16px !important;
+    color: #0F172A !important;
+    margin-bottom: 16px !important;
+    min-height: 120px !important;
+    overflow: visible !important;
+    padding: 16px !important;
+}
+
+.table-skeleton-card {
+    background: #F8FAFC !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    margin: 0 0 16px !important;
+}
+
+.table-skeleton-card strong {
+    color: #0F172A !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+}
+
+.table-skeleton-card span {
+    color: #64748B !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+}
+
+.runtime-skeleton {
+    min-height: 0 !important;
+}
+
+.gradio-container .gap,
+.gradio-container .form,
+.gradio-container .block,
+.gradio-container .tabitem {
+    margin-bottom: 24px !important;
+}
+
 table,
 .table-wrap,
 .gradio-dataframe,

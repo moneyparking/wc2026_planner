@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-06-12T08:16:43.062754+00:00",
-  "url": "http://127.0.0.1:7860",
+  "generated_at_utc": "2026-06-12T12:39:13.700449+00:00",
+  "url": "http://127.0.0.1:12000",
   "dataset_validation": {
     "groups_count": 12,
     "teams_count": 48,
@@ -15,7 +15,7 @@
     {
       "check": "App loads",
       "status": "PASS",
-      "detail": "http://127.0.0.1:7860"
+      "detail": "http://127.0.0.1:12000"
     },
     {
       "check": "Phase 1.30 visible",
@@ -26,6 +26,11 @@
       "check": "No stale Phase 1.28 marker visible",
       "status": "PASS",
       "detail": "Visible header marker is current."
+    },
+    {
+      "check": "Old autonomous local engine hidden",
+      "status": "PASS",
+      "detail": "Legacy engine banner absent."
     },
     {
       "check": "Dashboard visible",
@@ -168,6 +173,11 @@
       "detail": "Forbidden terms absent from visible walkthrough text."
     },
     {
+      "check": "Old autonomous local engine absent",
+      "status": "PASS",
+      "detail": "Legacy engine copy absent from walkthrough."
+    },
+    {
       "check": "Unofficial disclaimer visible",
       "status": "PASS",
       "detail": "Unofficial fan-made disclaimer detected."
@@ -175,37 +185,37 @@
     {
       "check": "Dashboard non-empty",
       "status": "PASS",
-      "detail": "7631 visible characters."
+      "detail": "7004 visible characters."
     },
     {
       "check": "Match Planner non-empty",
       "status": "PASS",
-      "detail": "8991 visible characters."
+      "detail": "8498 visible characters."
     },
     {
       "check": "Group Tracker non-empty",
       "status": "PASS",
-      "detail": "7494 visible characters."
+      "detail": "7021 visible characters."
     },
     {
       "check": "Bracket War Room non-empty",
       "status": "PASS",
-      "detail": "6576 visible characters."
+      "detail": "6107 visible characters."
     },
     {
       "check": "Friends League non-empty",
       "status": "PASS",
-      "detail": "6576 visible characters."
+      "detail": "6107 visible characters."
     },
     {
       "check": "AI Scout non-empty",
       "status": "PASS",
-      "detail": "5259 visible characters."
+      "detail": "4633 visible characters."
     },
     {
       "check": "Google Sheet Control non-empty",
       "status": "PASS",
-      "detail": "5259 visible characters."
+      "detail": "4630 visible characters."
     }
   ]
 }

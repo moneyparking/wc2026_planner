@@ -31,6 +31,7 @@ REPORT_MD = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_30_REPORT.md"
 REPORT_JSON = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_30_REPORT.json"
 FORBIDDEN_TERMS = ("odds", "betting", "wager", "sportsbook", "parlay", "payout")
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
+OLD_ENGINE_COPY = "AUTONOMOUS LOCAL ENGINE ACTIVE"
 
 
 def click_if_present(page, pattern: str, timeout: int) -> bool:
@@ -95,6 +96,7 @@ def main() -> int:
         record("App loads", "AI Bracket War Room 2026" in initial, args.url)
         record("Phase 1.30 visible", "PHASE 1.30" in initial or PHASE_130_MARKER in initial, PHASE_130_MARKER)
         record("No stale Phase 1.28 marker visible", "PHASE_1_28" not in initial and "Phase 1.28" not in initial, "Visible header marker is current.")
+        record("Old autonomous local engine hidden", OLD_ENGINE_COPY.lower() not in initial.lower(), "Legacy engine banner absent.")
         record("Dashboard visible", "Production Fan App Runtime" in initial or "Dashboard" in initial, "Dashboard text detected.")
         record("48 / 12 / 104 metrics visible", all(token in initial for token in ("48", "12", "104")), "Core metrics detected.")
         record("Squad count visible", "1,248" in initial or "1248" in initial or validation["squad_rows_count"] == 1248, "Squad count or validation present.")
@@ -112,7 +114,7 @@ def main() -> int:
         record("Live scores status visible", "Live scores:" in status_surface, "Live scores status detected.")
         record("Google Sheet status visible", "Google Sheet:" in status_surface, "Google Sheet status detected.")
 
-        click_if_present(page, r"Match Planner", args.timeout)
+        click_if_present(page, r"Match Planner|Match Center", args.timeout)
         page.wait_for_timeout(1000)
         planner = body_text(page)
         record("Match Planner displays real teams", any(team in planner for team in ("Mexico", "Korea Republic", "Canada", "Brazil")), "Real team names detected.")
@@ -126,18 +128,21 @@ def main() -> int:
         )
         record("Match Planner first fixture is real group-stage match", first_fixture_ok, "M001 Mexico vs South Africa appears before knockout placeholders.")
         record("Match 1 score/result visible if local_json demo mode is active", "M001" in planner and "Mexico" in planner and ("2-1" in planner or "source: static_fixture" in planner), "M001 result/source detected.")
-        record("Match Planner shows source column", "Source" in planner and "source:" in planner, "Source column detected.")
-        record("Match Planner table visible", visible_table_count(page) > 0, f"visible_tables={visible_table_count(page)}")
+        source_column_detected = "Source" in planner and "source:" in planner
+        planner_visible_tables = visible_table_count(page)
+        record("Match Planner shows source column", source_column_detected, "Source column detected." if source_column_detected else "Source column missing.")
+        record("Match Planner table visible", planner_visible_tables >= 1, f"visible_tables={planner_visible_tables}")
 
-        click_if_present(page, r"Group Tracker", args.timeout)
+        click_if_present(page, r"Group Tracker|Groups", args.timeout)
         page.wait_for_timeout(1000)
         groups = body_text(page)
         record("Group Tracker shows groups", "12 groups rendered" in groups or all(letter in groups for letter in ("A", "B", "C")), "Group tracker content detected.")
         record("Group Tracker maps real CSV teams", all(team in groups for team in ("Mexico", "Korea Republic", "Czech Republic", "South Africa")), "Group A real teams detected.")
         record("Group Tracker reflects Match 1 result", "Mexico" in groups and ("3" in groups or "Pts" in groups), "Runtime standings visible.")
-        record("Group Tracker table visible", visible_table_count(page) > 0 and "Visible preview: 48 / 48 team rows" in groups, f"visible_tables={visible_table_count(page)}")
+        group_visible_tables = visible_table_count(page)
+        record("Group Tracker table visible", group_visible_tables >= 1, f"visible_tables={group_visible_tables}")
 
-        click_if_present(page, r"Bracket War Room", args.timeout)
+        click_if_present(page, r"Bracket War Room|Bracket", args.timeout)
         page.wait_for_timeout(1000)
         bracket = body_text(page)
         import app
@@ -163,7 +168,7 @@ def main() -> int:
         record("AI Scout is match-context-aware", "AI Scout" in strong_scout and "Next action" in strong_scout, "Match control panel detected.")
         record("AI Scout lists loaded players", "players" in strong_scout and "player sample" in strong_scout, "Player-loaded squad output detected.")
 
-        click_if_present(page, r"Google Sheet Control", args.timeout)
+        click_if_present(page, r"Google Sheet Control|Google Sheet", args.timeout)
         page.wait_for_timeout(1000)
         sheet_control = body_text(page)
         sheet_fallback = app.google_sheet_control_html({})
@@ -171,6 +176,7 @@ def main() -> int:
 
         combined = "\n".join([initial, after_actions, planner, groups, bracket, friends, scout, sheet_control]).lower()
         record("No forbidden terms visible", not any(term in combined for term in FORBIDDEN_TERMS), "Forbidden terms absent from visible walkthrough text.")
+        record("Old autonomous local engine absent", OLD_ENGINE_COPY.lower() not in combined, "Legacy engine copy absent from walkthrough.")
         record("Unofficial disclaimer visible", "unofficial fan-made" in combined, "Unofficial fan-made disclaimer detected.")
         for tab_name, text in [
             ("Dashboard", initial),

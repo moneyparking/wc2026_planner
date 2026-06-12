@@ -1,8 +1,9 @@
 # Judge UI Walkthrough Phase 1.30
 
-- PASS: App loads — http://127.0.0.1:7860
+- PASS: App loads — http://127.0.0.1:12000
 - PASS: Phase 1.30 visible — PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME
 - PASS: No stale Phase 1.28 marker visible — Visible header marker is current.
+- PASS: Old autonomous local engine hidden — Legacy engine banner absent.
 - PASS: Dashboard visible — Dashboard text detected.
 - PASS: 48 / 12 / 104 metrics visible — Core metrics detected.
 - PASS: Squad count visible — Squad count or validation present.
@@ -31,11 +32,12 @@
 - PASS: AI Scout lists loaded players — Player-loaded squad output detected.
 - PASS: Google Sheet Control tab explains connection — Connection instructions detected.
 - PASS: No forbidden terms visible — Forbidden terms absent from visible walkthrough text.
+- PASS: Old autonomous local engine absent — Legacy engine copy absent from walkthrough.
 - PASS: Unofficial disclaimer visible — Unofficial fan-made disclaimer detected.
-- PASS: Dashboard non-empty — 7631 visible characters.
-- PASS: Match Planner non-empty — 8991 visible characters.
-- PASS: Group Tracker non-empty — 7494 visible characters.
-- PASS: Bracket War Room non-empty — 6576 visible characters.
-- PASS: Friends League non-empty — 6576 visible characters.
-- PASS: AI Scout non-empty — 5259 visible characters.
-- PASS: Google Sheet Control non-empty — 5259 visible characters.
+- PASS: Dashboard non-empty — 7004 visible characters.
+- PASS: Match Planner non-empty — 8498 visible characters.
+- PASS: Group Tracker non-empty — 7021 visible characters.
+- PASS: Bracket War Room non-empty — 6107 visible characters.
+- PASS: Friends League non-empty — 6107 visible characters.
+- PASS: AI Scout non-empty — 4633 visible characters.
+- PASS: Google Sheet Control non-empty — 4630 visible characters.

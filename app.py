@@ -305,6 +305,15 @@ def _runtime_status_html(state: dict | None) -> str:
     """
 
 
+def _surface_ready_card(label: str, copy: str) -> str:
+    return f"""
+    <div class="table-skeleton-card lower-surface-card">
+        <strong>{escape(label)}</strong>
+        <span>{escape(copy)}</span>
+    </div>
+    """
+
+
 def _runtime_build(matches: pd.DataFrame | None = None, sheet_state: SheetRuntimeState | None = None):
     live_results = fetch_live_results()
     if sheet_state is None:
@@ -603,6 +612,7 @@ def build_ai_scout_output(matches: pd.DataFrame, runtime: pd.DataFrame | None = 
         impact = f"{home} +{home_points} pts in Group {selected['group']} · {away} +{away_points} pts in Group {selected['group']}"
     return f"""
     <div class='sport-card runtime-card ai-scout-card'>
+        {_surface_ready_card("Match control panel ready", "AI Scout match context has a stable panel before runtime text renders.")}
         <h3>🧠 AI Scout — Match Control Panel</h3>
         <h3>Selected Match Detail</h3>
         <p><strong>Match:</strong> M{int(selected['match_no']):03d} {escape(home)} vs {escape(away)}</p>
@@ -706,7 +716,7 @@ def _bracket_html(bracket: dict) -> str:
     )
     if not group_cards and not r32_cards:
         body = (
-            "<div class='sport-card' style='background:#0d131d;'>"
+            "<div class='sport-card lower-surface-card'>"
             "<p class='sport-accent'>Waiting for completed results.</p>"
             "<p>Enter completed scores in MATCH_PLANNER, then recalculate to build tables and bracket outputs.</p>"
             "</div>"
@@ -812,6 +822,7 @@ def _visible_match_planner_html(matches: pd.DataFrame, planner_filter: str = "Al
     rows = _html_fixture_rows(fixture_preview, VISIBLE_TAB_PREVIEW_MATCHES)
     return f"""
     <div class='sport-card table-card runtime-card match-center-card'>
+        {_surface_ready_card("Runtime fixture table ready", "Runtime data loaded from local_json/static seed.")}
         <h3>🏟 Match Center</h3>
         <p>One-click judge filter for the 104-match planner by stage or Groups A-L.</p>
         <p><strong>Active filter:</strong> <span class='sport-success'>{planner_filter}</span></p>
@@ -870,6 +881,7 @@ def _visible_runtime_match_planner_html(runtime: pd.DataFrame, planner_filter: s
         example = f"{first.get('Match')} {first.get('Home')} {first.get('Score')} {first.get('Away')} {first.get('Status')} {first.get('Source')}"
     return f"""
     <div class='sport-card table-card runtime-card match-center-card'>
+        {_surface_ready_card("Runtime fixture table ready", "Runtime match state is ready for table rendering.")}
         <h3>🏟 Match Center</h3>
         <p>Match Planner reads runtime match state, not only the static fixture seed.</p>
         <p><strong>Active filter:</strong> <span class='sport-success'>{escape(planner_filter)}</span></p>
@@ -899,6 +911,7 @@ def _visible_group_tracker_html(groups: pd.DataFrame) -> str:
     table = _html_table(visible, 48)
     return f"""
     <div class='sport-card table-card runtime-card groups-card'>
+        {_surface_ready_card("Standings surface ready", "Group standings have a stable white card before rows render.")}
         <h3>📊 Groups</h3>
         <p>Standings are calculated from runtime match state: manual overrides, live scores, and static scheduled fixtures.</p>
         <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
@@ -930,6 +943,7 @@ def _visible_third_place_html(thirds: pd.DataFrame) -> str:
     table = _html_table(frame, 12)
     return f"""
     <div class='sport-card table-card runtime-card groups-card'>
+        {_surface_ready_card("Standings surface ready", "Third-place standings have a stable white card before rows render.")}
         <h3>📊 3rd-Place Ranking</h3>
         <p>Critical in a 48-team format because third-place teams can still advance.</p>
         <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
@@ -975,6 +989,7 @@ def _visible_bracket_war_room_html(bracket: dict, groups: pd.DataFrame | None = 
         sections.append(f"<h4>{stage}</h4><div class='table-scroll'><table><tbody>{body}</tbody></table></div>")
     return f"""
     <div class='sport-card table-card runtime-card bracket-card'>
+        {_surface_ready_card("Knockout skeleton ready", "Bracket War Room has a stable surface before knockout rows render.")}
         <h3>🧩 Bracket</h3>
         <p>{resolution_note}</p>
         <div class='runtime-skeleton'>Loading runtime table… Runtime data loaded from local_json/static seed.</div>
@@ -1011,6 +1026,7 @@ def _visible_friends_league_html(friends: pd.DataFrame, runtime: pd.DataFrame | 
     match_refs = ", ".join(f"Match {int(row['match_no'])}: {row['home']} vs {row['away']}" for _, row in runtime.head(5).iterrows())
     return f"""
     <div class='sport-card table-card runtime-card friends-league-card'>
+        {_surface_ready_card("League scoring table ready", "Friends League scoring rows have a stable table surface.")}
         <h3>🏆 Friends League</h3>
         <p>Private league fan challenge linked to real fixtures: {escape(match_refs)}</p>
         <p>Pick scoring uses runtime actual results. Completed matches are scored; scheduled matches wait.</p>
@@ -1168,6 +1184,7 @@ def google_sheet_control_html(state: dict | None = None) -> str:
     notes_count = len(sheet_state.admin_notes or [])
     return f"""
     <div class="sport-card runtime-card google-sheet-card">
+        {_surface_ready_card("Connection panel ready", "Google Sheet Control has a stable connection panel before sheet state renders.")}
         <h2>📄 Google Sheet control plane</h2>
         <p><strong>Connection status:</strong> {status}</p>
         <p><strong>Role:</strong> manual results, friends picks, league settings, admin notes</p>
@@ -1200,10 +1217,10 @@ OFFGRID_ENGINE_MARKER = "PHASE_1_25_OFFGRID_LOCAL_ENGINE"
 
 def check_modal_gpu_health() -> str:
     return """
-    <div style="border-left: 4px solid #3b82f6; background: #172554; padding: 12px; border-radius: 6px; margin-bottom: 15px;">
-        <h3 style="margin: 0 0 5px 0; color: #eff6ff; font-size: 14px; font-family: monospace;">War Room OS Engine</h3>
-        <p style="margin: 0; color: #60a5fa; font-weight: bold; font-size: 12px;">🟢 AUTONOMOUS LOCAL ENGINE ACTIVE</p>
-        <p style="margin: 5px 0 0 0; color: #93c5fd; font-size: 11px;">Build Small off-grid mode: match math, bracket logic, Friends League scoring, and tactical scout summaries run locally in Python Runtime.</p>
+    <div class="sport-card lower-surface-card runtime-engine-status">
+        <h3>War Room Runtime Engine</h3>
+        <p><strong>Local Python runtime active</strong></p>
+        <p class="sport-muted">Match math, bracket logic, Friends League scoring, and tactical scout summaries run locally in Python Runtime.</p>
     </div>
     """
 
@@ -2776,14 +2793,80 @@ PHASE128W_ACTIVATION_SUCCESS_MARKER = (
     "Simulation complete. War Room complete. Completed successfully."
 )
 
+PHASE130C_EMPTY_SURFACE_FIX_STYLE = """<style>
+/* PHASE 1.30C empty surface fix: keep lower dynamic regions on stable app cards. */
+.gradio-container .sport-card,
+.gradio-container .table-card,
+.gradio-container .lower-surface-card,
+.gradio-container .phase126-shell,
+.gradio-container .phase126-card,
+.gradio-container .phase126-match-card,
+.gradio-container .phase126r-card {
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 16px !important;
+    color: #0F172A !important;
+    margin-bottom: 16px !important;
+    min-height: 120px !important;
+    overflow: visible !important;
+    padding: 16px !important;
+}
+
+.gradio-container .table-skeleton-card {
+    align-items: flex-start !important;
+    background: #F8FAFC !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 16px !important;
+    color: #0F172A !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    margin: 0 0 16px !important;
+    min-height: 120px !important;
+    overflow: visible !important;
+    padding: 16px !important;
+}
+
+.gradio-container .table-skeleton-card strong {
+    color: #0F172A !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+}
+
+.gradio-container .table-skeleton-card span {
+    color: #64748B !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+}
+
+.gradio-container .phase126-shell *,
+.gradio-container .phase126-card *,
+.gradio-container .phase126-match-card *,
+.gradio-container .phase126r-card * {
+    color: #0F172A !important;
+}
+
+.gradio-container .runtime-skeleton {
+    min-height: 0 !important;
+}
+
+.gradio-container .gap,
+.gradio-container .form,
+.gradio-container .block,
+.gradio-container .tabitem {
+    margin-bottom: 24px !important;
+}
+</style>"""
+
 with gr.Blocks(title=APP_TITLE) as demo:
     workbook_state = gr.State()
     gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
+    gr.HTML(PHASE130C_EMPTY_SURFACE_FIX_STYLE)
     gr.HTML(_command_header_html())
 
     top_checklist_html = gr.HTML(value=_scenario_controls_html())
     modal_gpu_status_html = gr.HTML(value=check_modal_gpu_health())
-    tactical_slip_box = gr.Textbox(label="AI Scout Tactical Slip — autonomous local engine", lines=5, interactive=False)
+    tactical_slip_box = gr.Textbox(label="AI Scout Tactical Slip — local runtime engine", lines=5, interactive=False)
     with gr.Row():
         refresh_live_button = gr.Button("Refresh Live Runtime", variant="primary")
         pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary")
@@ -2889,7 +2972,7 @@ with gr.Blocks(title=APP_TITLE) as demo:
             bracket_html = gr.HTML()
         with gr.Tab("🏆 Friends League"):
             friends_html = gr.HTML(value=_visible_friends_league_html(pd.DataFrame()))
-            friends_df = gr.Dataframe(label="Friends League Leaderboard", interactive=True, wrap=True, elem_classes=["table-card"])
+            friends_df = gr.Dataframe(label="Friends League Leaderboard", interactive=False, wrap=True, elem_classes=["table-card"])
         with gr.Tab("🧠 AI Scout"):
             gr.Markdown("Explains the consequence of the scenario in plain English.")
             ai_scout_html = gr.HTML()

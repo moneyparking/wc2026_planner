@@ -41,6 +41,7 @@ def main() -> None:
     friends_empty = app._visible_friends_league_html(pd.DataFrame())
     sheet_control = app.google_sheet_control_html()
     scout = app.build_ai_scout_output(pd.DataFrame())
+    runtime_engine_status = app.check_modal_gpu_health()
 
     visible_html = "\n".join(
         [
@@ -53,6 +54,7 @@ def main() -> None:
             friends_empty,
             sheet_control,
             scout,
+            runtime_engine_status,
         ]
     )
 
@@ -94,6 +96,36 @@ def main() -> None:
     _assert_contains(visible_html, "Loading runtime table…", "Skeleton copy")
     _assert_contains(visible_html, "Runtime data loaded from local_json/static seed", "Empty-state copy")
     _assert_contains(visible_html, "table-scroll", "Readable table surface")
+    for skeleton_copy in (
+        "Runtime fixture table ready",
+        "Standings surface ready",
+        "Knockout skeleton ready",
+        "League scoring table ready",
+        "Match control panel ready",
+        "Connection panel ready",
+    ):
+        _assert_contains(visible_html, skeleton_copy, "Phase 1.30C skeleton copy")
+
+    for required_surface_css in (
+        ".table-skeleton-card",
+        ".lower-surface-card",
+        "min-height: 120px",
+        "overflow: visible",
+        "margin-bottom: 24px",
+    ):
+        _assert_contains(css_text + app_text, required_surface_css, "Phase 1.30C lower surface CSS")
+
+    combined_source = app_text + "\n" + css_text
+    for forbidden_surface in ("empty-filler", "blank-fill", "giant-spacer", "min-height: 600px"):
+        _assert_not_contains(combined_source, forbidden_surface, "Forbidden filler surface")
+    _assert_not_contains(visible_html, "AUTONOMOUS LOCAL ENGINE ACTIVE", "Old engine copy")
+
+    walkthrough_text = (REPO_ROOT / "scripts" / "judge_ui_walkthrough.py").read_text(encoding="utf-8")
+    _assert_contains(walkthrough_text, "source_column_detected =", "Walkthrough source column variable")
+    _assert_contains(walkthrough_text, 'record("Match Planner shows source column", source_column_detected', "Walkthrough source column condition")
+    _assert_contains(walkthrough_text, "group_visible_tables >= 1", "Walkthrough group table visibility condition")
+    _assert_contains(walkthrough_text, "planner_visible_tables >= 1", "Walkthrough planner table visibility condition")
+    _assert_contains(walkthrough_text, 'if any(item["status"] == "FAIL" for item in checks):', "Walkthrough final marker guard")
 
     lowered_visible = visible_html.lower()
     for term in FORBIDDEN_TERMS:
@@ -104,6 +136,8 @@ def main() -> None:
     print("runtime_cards=PASS")
     print("table_card_wrappers=PASS")
     print("skeleton_empty_state=PASS")
+    print("phase_130c_empty_surface=PASS")
+    print("phase_130c_walkthrough_logic=PASS")
     print("forbidden_language=PASS")
     print("PHASE_1_30B_VISUAL_SHELL_QA_PASS")
 
