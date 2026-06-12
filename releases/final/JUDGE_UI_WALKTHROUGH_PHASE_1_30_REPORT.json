@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-12T13:52:50.025365+00:00",
+  "generated_at_utc": "2026-06-12T14:13:16.820089+00:00",
   "url": "http://127.0.0.1:12000",
   "dataset_validation": {
     "groups_count": 12,
@@ -18,9 +18,9 @@
       "detail": "http://127.0.0.1:12000"
     },
     {
-      "check": "Phase 1.30 visible",
+      "check": "Old Phase 1.30 marker hidden",
       "status": "PASS",
-      "detail": "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
+      "detail": "Legacy Phase 1.30 marker absent."
     },
     {
       "check": "PHASE 1.31 visible",
@@ -31,6 +31,46 @@
       "check": "PHASE 1.32 visible",
       "status": "PASS",
       "detail": "Phase 1.32 Production Visual QA Complete detected."
+    },
+    {
+      "check": "PHASE 1.32A visible",
+      "status": "PASS",
+      "detail": "Phase 1.32A Final Product Shell detected."
+    },
+    {
+      "check": "Old marker hidden: PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME",
+      "status": "PASS",
+      "detail": "Old phase marker absent from first surface."
+    },
+    {
+      "check": "Old marker hidden: PHASE 1.30B Visual Surface + AppStore Shell",
+      "status": "PASS",
+      "detail": "Old phase marker absent from first surface."
+    },
+    {
+      "check": "Old marker hidden: PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX",
+      "status": "PASS",
+      "detail": "Old phase marker absent from first surface."
+    },
+    {
+      "check": "Debug copy hidden: Scenario Controls",
+      "status": "PASS",
+      "detail": "Debug copy absent from dashboard."
+    },
+    {
+      "check": "Debug copy hidden: Build Small Status",
+      "status": "PASS",
+      "detail": "Debug copy absent from dashboard."
+    },
+    {
+      "check": "Debug copy hidden: Workbook:",
+      "status": "PASS",
+      "detail": "Debug copy absent from dashboard."
+    },
+    {
+      "check": "Debug copy hidden: 90-second Judge Verification",
+      "status": "PASS",
+      "detail": "Debug copy absent from dashboard."
     },
     {
       "check": "ABW logo visible",
@@ -71,6 +111,16 @@
       "check": "Google Sheet Control Snapshot visible",
       "status": "PASS",
       "detail": "Sheet snapshot detected."
+    },
+    {
+      "check": "Runtime counters consistent",
+      "status": "PASS",
+      "detail": "completed=1 live=0 next=M002."
+    },
+    {
+      "check": "Google Sheet final wording visible",
+      "status": "PASS",
+      "detail": "Google Sheet status is non-contradictory."
     },
     {
       "check": "AI Scout Match Control Panel visible",
@@ -128,9 +178,9 @@
       "detail": "Action status changed after click."
     },
     {
-      "check": "Runtime Status panel visible",
+      "check": "Runtime Status Cards visible",
       "status": "PASS",
-      "detail": "Runtime status detected."
+      "detail": "Runtime status cards detected."
     },
     {
       "check": "Live scores status visible",
@@ -265,37 +315,37 @@
     {
       "check": "Dashboard non-empty",
       "status": "PASS",
-      "detail": "6745 visible characters."
+      "detail": "8858 visible characters."
     },
     {
       "check": "Match Planner non-empty",
       "status": "PASS",
-      "detail": "10862 visible characters."
+      "detail": "8996 visible characters."
     },
     {
       "check": "Group Tracker non-empty",
       "status": "PASS",
-      "detail": "9332 visible characters."
+      "detail": "7466 visible characters."
     },
     {
       "check": "Bracket War Room non-empty",
       "status": "PASS",
-      "detail": "8444 visible characters."
+      "detail": "6578 visible characters."
     },
     {
       "check": "Friends League non-empty",
       "status": "PASS",
-      "detail": "8273 visible characters."
+      "detail": "6407 visible characters."
     },
     {
       "check": "AI Scout non-empty",
       "status": "PASS",
-      "detail": "8273 visible characters."
+      "detail": "6407 visible characters."
     },
     {
       "check": "Google Sheet Control non-empty",
       "status": "PASS",
-      "detail": "8270 visible characters."
+      "detail": "6407 visible characters."
     }
   ]
 }

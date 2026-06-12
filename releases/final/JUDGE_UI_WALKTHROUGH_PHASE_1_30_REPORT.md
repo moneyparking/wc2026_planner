@@ -1,9 +1,17 @@
 # Judge UI Walkthrough Phase 1.30
 
 - PASS: App loads — http://127.0.0.1:12000
-- PASS: Phase 1.30 visible — PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME
+- PASS: Old Phase 1.30 marker hidden — Legacy Phase 1.30 marker absent.
 - PASS: PHASE 1.31 visible — Phase 1.31+ AppStore Product Polish detected.
 - PASS: PHASE 1.32 visible — Phase 1.32 Production Visual QA Complete detected.
+- PASS: PHASE 1.32A visible — Phase 1.32A Final Product Shell detected.
+- PASS: Old marker hidden: PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME — Old phase marker absent from first surface.
+- PASS: Old marker hidden: PHASE 1.30B Visual Surface + AppStore Shell — Old phase marker absent from first surface.
+- PASS: Old marker hidden: PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX — Old phase marker absent from first surface.
+- PASS: Debug copy hidden: Scenario Controls — Debug copy absent from dashboard.
+- PASS: Debug copy hidden: Build Small Status — Debug copy absent from dashboard.
+- PASS: Debug copy hidden: Workbook: — Debug copy absent from dashboard.
+- PASS: Debug copy hidden: 90-second Judge Verification — Debug copy absent from dashboard.
 - PASS: ABW logo visible — ABW logo mark detected.
 - PASS: Icon navigation visible — Icon nav row detected.
 - PASS: Today’s Match Center visible — Today match center detected.
@@ -12,6 +20,8 @@
 - PASS: App cards visible — Card shell classes detected.
 - PASS: Google Sheet Control visible — Google Sheet module detected.
 - PASS: Google Sheet Control Snapshot visible — Sheet snapshot detected.
+- PASS: Runtime counters consistent — completed=1 live=0 next=M002.
+- PASS: Google Sheet final wording visible — Google Sheet status is non-contradictory.
 - PASS: AI Scout Match Control Panel visible — AI Scout module detected.
 - PASS: No stale Phase 1.28 marker visible — Visible header marker is current.
 - PASS: Old autonomous local engine hidden — Legacy engine banner absent.
@@ -23,7 +33,7 @@
 - PASS: Load Demo Scenario button works — Clicked load demo control.
 - PASS: Recalculate War Room button works — Clicked recalc control.
 - PASS: Primary buttons change status — Action status changed after click.
-- PASS: Runtime Status panel visible — Runtime status detected.
+- PASS: Runtime Status Cards visible — Runtime status cards detected.
 - PASS: Live scores status visible — Live scores status detected.
 - PASS: Google Sheet status visible — Google Sheet status detected.
 - PASS: Match Planner displays real teams — Real team names detected.
@@ -50,10 +60,10 @@
 - PASS: Old Tactical Slip absent — Legacy Tactical Slip copy absent from walkthrough.
 - PASS: Old local runtime engine absent — Legacy local runtime engine copy absent from walkthrough.
 - PASS: Unofficial disclaimer visible — Unofficial fan-made disclaimer detected.
-- PASS: Dashboard non-empty — 6745 visible characters.
-- PASS: Match Planner non-empty — 10862 visible characters.
-- PASS: Group Tracker non-empty — 9332 visible characters.
-- PASS: Bracket War Room non-empty — 8444 visible characters.
-- PASS: Friends League non-empty — 8273 visible characters.
-- PASS: AI Scout non-empty — 8273 visible characters.
-- PASS: Google Sheet Control non-empty — 8270 visible characters.
+- PASS: Dashboard non-empty — 8858 visible characters.
+- PASS: Match Planner non-empty — 8996 visible characters.
+- PASS: Group Tracker non-empty — 7466 visible characters.
+- PASS: Bracket War Room non-empty — 6578 visible characters.
+- PASS: Friends League non-empty — 6407 visible characters.
+- PASS: AI Scout non-empty — 6407 visible characters.
+- PASS: Google Sheet Control non-empty — 6407 visible characters.

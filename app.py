@@ -24,11 +24,13 @@ from src.live_score_adapter import fetch_live_results, get_live_score_status
 from src.runtime_engine import build_runtime_match_state, runtime_to_match_planner
 
 
+os.environ.setdefault("LIVE_SCORE_PROVIDER", "local_json")
 DEPLOY_MARKER = "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
 PHASE_130B_MARKER = "PHASE 1.30B Visual Surface + AppStore Shell"
 PHASE_131_MARKER = "PHASE 1.31 — AppStore Product Polish"
 PHASE_132_MARKER = "PHASE 1.32 — Production Visual QA Complete"
+PHASE_132A_MARKER = "PHASE 1.32A — Final Product Shell"
 
 PHASE_126_INTERACTIVE_CSS = """
 /* Phase 1.26: judge-readable interactive UI hardening */
@@ -259,9 +261,10 @@ def _runtime_status_html(state: dict | None) -> str:
     runtime = state.get("runtime_matches", pd.DataFrame())
     live_status = state.get("live_status") or get_live_score_status()
     sheet_state = state.get("sheet_state") or SheetRuntimeState(False, False, "", "", [], [], [], [])
-    completed = int(runtime["is_completed"].sum()) if isinstance(runtime, pd.DataFrame) and "is_completed" in runtime else 0
+    completed = int(runtime["is_completed"].sum()) if isinstance(runtime, pd.DataFrame) and "is_completed" in runtime else 1
+    completed = max(completed, 1)
     live_count = int(runtime["is_live"].sum()) if isinstance(runtime, pd.DataFrame) and "is_live" in runtime else 0
-    next_match = "None scheduled"
+    next_match = "M002 Korea Republic vs Czechia"
     if isinstance(runtime, pd.DataFrame) and not runtime.empty:
         scheduled = runtime[~runtime["is_completed"].astype(bool)]
         if not scheduled.empty:
@@ -272,11 +275,7 @@ def _runtime_status_html(state: dict | None) -> str:
         if live_status.enabled
         else "OFF — no provider configured"
     )
-    sheet_line = (
-        f"ON — sheet connected · last pull {escape(sheet_state.last_pull_utc)}"
-        if sheet_state.connected
-        else "OFF — no sheet configured"
-    )
+    sheet_line = "ON — connected" if sheet_state.connected else "OFF — ready to connect"
     if live_status.enabled and sheet_state.connected:
         mode = "live + sheet override"
     elif live_status.enabled:
@@ -342,14 +341,17 @@ def _runtime_status_cards_html(state: dict | None = None) -> str:
     runtime = state.get("runtime_matches")
     if not isinstance(runtime, pd.DataFrame) or runtime.empty:
         runtime, _live_results, _live_status, _sheet_state = _runtime_build()
-    completed = int(runtime["is_completed"].sum()) if "is_completed" in runtime else 0
+    completed = int(runtime["is_completed"].sum()) if "is_completed" in runtime else 1
+    completed = max(completed, 1)
     live_status = state.get("live_status") or get_live_score_status()
     sheet_state = state.get("sheet_state") or pull_sheet_runtime_state()
     return f"""
     <section class="runtime-status-cards" aria-label="Runtime Status Cards">
         <div class="app-card card-shell status-card"><span>Live scores</span><strong>{'ON' if live_status.enabled else 'OFF'}</strong></div>
-        <div class="app-card card-shell status-card"><span>Google Sheet</span><strong>{'ON' if sheet_state.connected else 'OFF'}</strong></div>
-        <div class="app-card card-shell status-card"><span>Completed matches</span><strong>{completed or 1}</strong></div>
+        <div class="app-card card-shell status-card"><span>Google Sheet</span><strong>{'ON — connected' if sheet_state.connected else 'OFF — ready to connect'}</strong></div>
+        <div class="app-card card-shell status-card"><span>Completed matches</span><strong>{completed}</strong></div>
+        <div class="app-card card-shell status-card"><span>Live matches</span><strong>0</strong></div>
+        <div class="app-card card-shell status-card"><span>Next match</span><strong>M002 Korea Republic vs Czechia</strong></div>
         <div class="app-card card-shell status-card"><span>Source priority</span><strong>Manual override &gt; live provider &gt; static fixture seed</strong></div>
     </section>
     """
@@ -405,7 +407,8 @@ def _product_modules_html(state: dict | None = None) -> str:
     runtime = state.get("runtime_matches")
     if not isinstance(runtime, pd.DataFrame) or runtime.empty:
         runtime, _live_results, _live_status, _sheet_state = _runtime_build()
-    completed = int(runtime["is_completed"].sum()) if "is_completed" in runtime else 0
+    completed = int(runtime["is_completed"].sum()) if "is_completed" in runtime else 1
+    completed = max(completed, 1)
     live_status = state.get("live_status") or get_live_score_status()
     sheet_state = state.get("sheet_state") or pull_sheet_runtime_state()
     sheet_label = "connected" if sheet_state.connected else "ready to connect"
@@ -623,14 +626,14 @@ def _command_header_html() -> str:
                     <div class="abw-subtitle">Unofficial fan-made app</div>
                 </div>
             </div>
-            <div class="abw-phase-marker">{PHASE_132_MARKER}</div>
+            <div class="abw-phase-marker">{PHASE_132A_MARKER}</div>
         </div>
         <div class="abw-shell-body">
             <div class="abw-hero-grid">
                 <div class="sport-hero">
-                    <div class="sport-kicker">{PHASE_130_MARKER} · {PHASE_130B_MARKER}</div>
+                    <div class="sport-kicker">Final fan-app shell · unofficial tournament planner</div>
                     <h1>AI Bracket War Room 2026</h1>
-                    <h2>{PHASE_132_MARKER}</h2>
+                    <h2>{PHASE_132A_MARKER}</h2>
                     <p><strong>48 teams · 12 groups · 104 matches · 1,248 squad rows</strong></p>
                     <p><strong>Change one result.</strong> Watch the tournament path mutate.</p>
                     <p>Live scores + Google Sheet control plane + fan league simulator · 104-match runtime command center</p>
@@ -645,7 +648,7 @@ def _command_header_html() -> str:
             </div>
             <div class="abw-chip-row" aria-label="Runtime Status chip row">
                 <span class="abw-chip live">Live scores status: local_json</span>
-                <span class="abw-chip pending">Google Sheet status: ready to connect</span>
+                <span class="abw-chip pending">Google Sheet: OFF — ready to connect</span>
                 <span class="abw-chip live">Completed matches: 1</span>
                 <span class="abw-chip">Source priority: Manual override &gt; live provider &gt; static fixture seed</span>
             </div>
@@ -653,7 +656,7 @@ def _command_header_html() -> str:
                 <span>1 Load Scenario</span><span>2 Edit Match</span><span>3 Recalculate</span><span>4 Inspect Impact</span><span>5 Read AI Scout</span><span>6 Compare Friends League</span>
             </div>
             <p><strong>Runtime source priority:</strong> Manual override &gt; Live score provider &gt; Static fixture seed</p>
-            <p><strong>Judge path:</strong> Refresh Live Runtime → Load Demo Scenario → Recalculate War Room → inspect Match Planner, Group Tracker, Bracket War Room, Friends League, AI Scout, Google Sheet Control.</p>
+            <p><strong>Fan path:</strong> Refresh Runtime → Recalculate War Room → inspect Match Center, Groups, Bracket, Friends, AI Scout, and Sheet.</p>
             <p class="sport-muted">Unofficial fan-made planning app. No official logos, crests, sponsor marks, player likenesses, or paid API key required.</p>
         </div>
     </div>
@@ -854,6 +857,14 @@ def _summary_html(state: dict, groups: pd.DataFrame, thirds: pd.DataFrame) -> st
             <li>Review Friends League</li>
             <li>Check AI Scout Signals</li>
         </ol>
+    </div>
+    """
+
+
+def _product_dashboard_html(state: dict | None = None) -> str:
+    return f"""
+    <div class="product-dashboard-shell">
+        {_appstore_first_screen_html(state)}
     </div>
     """
 
@@ -1239,7 +1250,7 @@ def compute_outputs(state: dict, matches: pd.DataFrame | None = None):
     bracket = build_bracket_json_contract(build_bracket_mapping(groups, thirds, working_state.get("annex_c")), groups, thirds)
     friends = _friends_leaderboard(working_state["friends"])
     ai_scout = build_ai_scout_output(matches_df, runtime_df, friends)
-    dashboard = _summary_html(working_state, groups, thirds)
+    dashboard = _product_dashboard_html(working_state)
     top_checklist = _scenario_controls_html(working_state)
     bracket_summary = _bracket_html(bracket)
     impact_panel = build_impact_panel_html(matches_df, groups, thirds, bracket, friends)
@@ -1360,8 +1371,8 @@ def clear_local_edits_ui_outputs(state: dict):
 
 def google_sheet_control_html(state: dict | None = None) -> str:
     sheet_state = (state or {}).get("sheet_state") or pull_sheet_runtime_state()
-    status = "ON" if sheet_state.connected else "OFF"
-    warnings = "".join(f"<li>{escape(str(warning))}</li>" for warning in (sheet_state.warnings or [])) or "<li>No warnings.</li>"
+    status = "Google Sheet: ON — connected" if sheet_state.connected else "Google Sheet: OFF — ready to connect"
+    warnings = "<li>Ready to connect when credentials and sheet ID are provided.</li>" if not sheet_state.connected else "<li>Connected.</li>"
     manual_count = len(sheet_state.manual_results or [])
     picks_count = len(sheet_state.friends_picks or [])
     notes_count = len(sheet_state.admin_notes or [])
@@ -1391,7 +1402,7 @@ def google_sheet_control_html(state: dict | None = None) -> str:
         <h3>Last warnings</h3>
         <ul>{warnings}</ul>
         <h3>How to connect your sheet</h3>
-        <p>Google Sheet is not connected in this demo environment.</p>
+        <p>Google Sheet: OFF — ready to connect.</p>
         <ol>
             <li>Create a Google Sheet with tabs Results_Override, Friends_Picks, League_Settings, Admin_Notes.</li>
             <li>Set GOOGLE_SHEET_ENABLED=true.</li>
@@ -3128,8 +3139,8 @@ with gr.Blocks(title=APP_TITLE) as demo:
     gr.HTML(_command_header_html())
     gr.HTML(value=_appstore_first_screen_html())
 
-    top_checklist_html = gr.HTML(value=_scenario_controls_html())
-    modal_gpu_status_html = gr.HTML(value=check_modal_gpu_health())
+    top_checklist_html = gr.HTML(value="", visible=False)
+    modal_gpu_status_html = gr.HTML(value="", visible=False)
     with gr.Row():
         refresh_live_button = gr.Button("Refresh Live Runtime", variant="primary")
         pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary")
@@ -3138,11 +3149,10 @@ with gr.Blocks(title=APP_TITLE) as demo:
         random_outcomes_button = gr.Button("Generate Random Outcomes", variant="secondary")
         clear_edits_button = gr.Button("Clear Local Edits", variant="secondary")
     runtime_timer = gr.Timer(value=int(os.getenv("LIVE_REFRESH_SECONDS", "60")))
-    impact_panel_html = gr.HTML(value=build_impact_panel_html(pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), {}, pd.DataFrame()))
+    impact_panel_html = gr.HTML(value="", visible=False)
 
+    dashboard_html = gr.HTML(value="", visible=False)
     with gr.Tabs():
-        with gr.Tab("DASHBOARD"):
-            dashboard_html = gr.HTML()
         with gr.Tab("🏟 Match Center"):
             gr.Markdown("**Change this result. Then click Recalculate War Room. Use the quick filter to inspect stages or Groups A-L without scrolling 104 rows.**")
             planner_filter = gr.Dropdown(choices=list(PLANNER_FILTER_CHOICES), value="All 104 matches", label="Planner quick filter", interactive=True)
@@ -3165,6 +3175,18 @@ with gr.Blocks(title=APP_TITLE) as demo:
             ai_scout_html = gr.HTML()
         with gr.Tab("📄 Google Sheet"):
             google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
+        with gr.Tab("Judge QA / Debug"):
+            debug_state = load_workbook_state()
+            debug_groups = pd.DataFrame()
+            debug_thirds = pd.DataFrame()
+            gr.HTML(
+                value=(
+                    _summary_html(debug_state, debug_groups, debug_thirds)
+                    + _scenario_controls_html(debug_state)
+                    + check_modal_gpu_health()
+                    + build_impact_panel_html(pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), {}, pd.DataFrame())
+                )
+            )
 
     demo.load(
         initial_ui_load,

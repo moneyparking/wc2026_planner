@@ -58,13 +58,15 @@ def main() -> None:
         ]
     )
 
-    _assert_contains(header, "PHASE 1.30B Visual Surface + AppStore Shell", "App shell")
+    assert "PHASE 1.30B Visual Surface + AppStore Shell" in header or "PHASE 1.32A — Final Product Shell" in header, "App shell marker missing"
     _assert_contains(app_text, "PHASE_130B_MARKER", "App marker constant")
     _assert_contains(header, "ABW", "Logo text mark")
     _assert_contains(header, "AI Bracket War Room", "Logo subtitle")
     _assert_contains(header, "Runtime Status chip row", "Runtime chip row")
 
-    for icon_label in ("🏟 Match Center", "📊 Groups", "🧩 Bracket", "🏆 Friends League", "🧠 AI Scout", "📄 Google Sheet"):
+    for icon_label in ("🏟 Match Center", "📊 Groups", "🧩 Bracket"):
+        _assert_contains(visible_html + app_text, icon_label, "Icon label")
+    for icon_label in ("🏆 Friends", "🧠 Scout", "📄 Sheet"):
         _assert_contains(visible_html + app_text, icon_label, "Icon label")
 
     for stale_marker in ("PHASE_1_28", "PHASE 1.28", "Phase 1.28"):

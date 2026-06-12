@@ -87,7 +87,11 @@ def main() -> None:
 
     assert "PHASE 1.31" in walkthrough_text or "PHASE 1.32" in walkthrough_text, "Walkthrough phase requirement missing"
     assert_contains(walkthrough_text, "Today’s Match Center", "Walkthrough Today's Match Center requirement")
-    assert "JUDGE_UI_WALKTHROUGH_PHASE_1_31_PASS" in walkthrough_text or "JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS" in walkthrough_text, "Walkthrough pass marker missing"
+    assert (
+        "JUDGE_UI_WALKTHROUGH_PHASE_1_31_PASS" in walkthrough_text
+        or "JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS" in walkthrough_text
+        or "JUDGE_UI_WALKTHROUGH_PHASE_1_32A_PASS" in walkthrough_text
+    ), "Walkthrough pass marker missing"
 
     lowered = initial.lower()
     for term in FORBIDDEN_TERMS:

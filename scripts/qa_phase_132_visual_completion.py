@@ -88,7 +88,10 @@ def main() -> None:
         assert_contains(source_text, required_css, "Visual system CSS")
 
     assert_contains(walkthrough_text, "PHASE 1.32", "Walkthrough Phase 1.32 requirement")
-    assert_contains(walkthrough_text, "JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS", "Walkthrough Phase 1.32 marker")
+    assert (
+        "JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS" in walkthrough_text
+        or "JUDGE_UI_WALKTHROUGH_PHASE_1_32A_PASS" in walkthrough_text
+    ), "Walkthrough Phase 1.32 marker missing"
 
     lowered = initial.lower()
     for term in FORBIDDEN_TERMS:

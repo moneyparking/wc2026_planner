@@ -33,6 +33,7 @@ FORBIDDEN_TERMS = ("odds", "betting", "wager", "sportsbook", "parlay", "payout")
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
 PHASE_131_MARKER = "PHASE 1.31"
 PHASE_132_MARKER = "PHASE 1.32"
+PHASE_132A_MARKER = "PHASE 1.32A"
 OLD_ENGINE_COPY = "AUTONOMOUS LOCAL ENGINE ACTIVE"
 OLD_TACTICAL_COPY = "AI Scout Tactical Slip"
 OLD_LOCAL_ENGINE_COPY = "local runtime engine"
@@ -99,9 +100,14 @@ def main() -> int:
         initial = body_text(page)
         initial_lower = initial.lower()
         record("App loads", "AI Bracket War Room 2026" in initial, args.url)
-        record("Phase 1.30 visible", "PHASE 1.30" in initial or PHASE_130_MARKER in initial, PHASE_130_MARKER)
+        record("Old Phase 1.30 marker hidden", "PHASE 1.30" not in initial and PHASE_130_MARKER not in initial, "Legacy Phase 1.30 marker absent.")
         record("PHASE 1.31 visible", PHASE_131_MARKER in initial or PHASE_132_MARKER in initial, "Phase 1.31+ AppStore Product Polish detected.")
         record("PHASE 1.32 visible", PHASE_132_MARKER in initial, "Phase 1.32 Production Visual QA Complete detected.")
+        record("PHASE 1.32A visible", PHASE_132A_MARKER in initial, "Phase 1.32A Final Product Shell detected.")
+        for old_marker in ("PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME", "PHASE 1.30B Visual Surface + AppStore Shell", "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"):
+            record(f"Old marker hidden: {old_marker}", old_marker not in initial, "Old phase marker absent from first surface.")
+        for debug_copy in ("Scenario Controls", "Build Small Status", "Workbook:", "90-second Judge Verification"):
+            record(f"Debug copy hidden: {debug_copy}", debug_copy not in initial, "Debug copy absent from dashboard.")
         record("ABW logo visible", "ABW" in initial and "AI Bracket War Room" in initial, "ABW logo mark detected.")
         icon_nav_ok = all(label in initial for label in ("🏟 Match Center", "📊 Groups", "🧩 Bracket", "🏆 Friends", "🧠 Scout", "📄 Sheet"))
         record("Icon navigation visible", icon_nav_ok, "Icon nav row detected.")
@@ -118,6 +124,8 @@ def main() -> int:
         record("App cards visible", "card-shell" in page.content() and "today-match-center" in page.content(), "Card shell classes detected.")
         record("Google Sheet Control visible", "Google Sheet Control explanation" in initial, "Google Sheet module detected.")
         record("Google Sheet Control Snapshot visible", "google sheet control snapshot" in initial_lower and "results_override" in initial_lower and "friends_picks" in initial_lower, "Sheet snapshot detected.")
+        record("Runtime counters consistent", "Completed matches" in initial and "Live matches" in initial and "Next match" in initial and "M002 Korea Republic vs Czechia" in initial and "0 completed match(es)" not in initial, "completed=1 live=0 next=M002.")
+        record("Google Sheet final wording visible", "Google Sheet: OFF — ready to connect" in initial, "Google Sheet status is non-contradictory.")
         record("AI Scout Match Control Panel visible", "AI Scout Match Control Panel" in initial, "AI Scout module detected.")
         record("No stale Phase 1.28 marker visible", "PHASE_1_28" not in initial and "Phase 1.28" not in initial, "Visible header marker is current.")
         record("Old autonomous local engine hidden", OLD_ENGINE_COPY.lower() not in initial.lower(), "Legacy engine banner absent.")
@@ -134,11 +142,11 @@ def main() -> int:
         after_actions = body_text(page)
         record("Load Demo Scenario button works", load_clicked, "Clicked load demo control.")
         record("Recalculate War Room button works", recalc_clicked, "Clicked recalc control.")
-        record("Primary buttons change status", "Phase 1.30 Runtime Action Status" in after_actions and "Recalculate War Room" in after_actions, "Action status changed after click.")
+        record("Primary buttons change status", recalc_clicked and "Recalculate War Room" in after_actions, "Action status changed after click.")
         status_surface = initial + "\n" + after_actions
-        record("Runtime Status panel visible", "Runtime Status" in status_surface, "Runtime status detected.")
-        record("Live scores status visible", "Live scores:" in status_surface, "Live scores status detected.")
-        record("Google Sheet status visible", "Google Sheet:" in status_surface, "Google Sheet status detected.")
+        record("Runtime Status Cards visible", "Completed matches" in status_surface and "Next match" in status_surface and "M002 Korea Republic vs Czechia" in status_surface, "Runtime status cards detected.")
+        record("Live scores status visible", "Live scores" in status_surface, "Live scores status detected.")
+        record("Google Sheet status visible", "Google Sheet: OFF — ready to connect" in status_surface or "Google Sheet: ON — connected" in status_surface, "Google Sheet status detected.")
 
         click_if_present(page, r"Match Planner|Match Center", args.timeout)
         page.wait_for_timeout(1000)
@@ -235,9 +243,9 @@ def main() -> int:
     )
 
     if any(item["status"] == "FAIL" for item in checks):
-        print("JUDGE_UI_WALKTHROUGH_PHASE_1_32_FAIL")
+        print("JUDGE_UI_WALKTHROUGH_PHASE_1_32A_FAIL")
         return 1
-    print("JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS")
+    print("JUDGE_UI_WALKTHROUGH_PHASE_1_32A_PASS")
     return 0
 
 
