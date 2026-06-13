@@ -3837,4 +3837,6 @@ with gr.Blocks(title=APP_TITLE, css=PREMIUM_DARK_SPORT_CSS) as demo:
 
 
 if __name__ == "__main__":
+
+if __name__ == "__main__":
     demo.launch()
