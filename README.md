@@ -1,12 +1,13 @@
 ---
 title: AI Bracket War Room 2026
-emoji: 🏟️
+emoji: ⚽
 colorFrom: blue
 colorTo: gray
 sdk: gradio
 sdk_version: 4.44.1
 app_file: app.py
-pinned: false---
+pinned: false
+---
 
 # AI Bracket War Room 2026
 
