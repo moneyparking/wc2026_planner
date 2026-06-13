@@ -819,14 +819,14 @@ def _command_header_html() -> str:
                     <div class="abw-subtitle">Unofficial fan-made app</div>
                 </div>
             </div>
-            <div class="abw-phase-marker">{PHASE_134_MARKER}</div>
+            <div class="abw-phase-marker">{PHASE_135_MARKER}</div>
         </div>
         <div class="abw-shell-body">
             <div class="abw-hero-grid">
                 <div class="sport-hero">
                     <div class="sport-kicker">Final fan-app shell · unofficial tournament planner</div>
                     <h1>AI Bracket War Room 2026</h1>
-                    <h2>{PHASE_134_MARKER}</h2>
+                    <h2>{PHASE_135_MARKER}</h2>
                     <p><strong>48 teams · 12 groups · 104 matches · 1,248 squad rows</strong></p>
                     <p><strong>Change one result.</strong> Watch the tournament path mutate.</p>
                     <p>Live scores + Google Sheet control plane + fan league simulator · 104-match runtime command center</p>
@@ -3444,26 +3444,37 @@ PHASE130C_EMPTY_SURFACE_FIX_STYLE = """<style>
 
 PHASE_135_PREMIUM_CSS = """
 <style>
+/* -------------------------------------------------------------------------
+   PHASE 1.35 — Premium Monetization + Submission Polish
+   Mobile-first football fan monetization shell.
+   Does not change tournament logic; only improves conversion clarity.
+------------------------------------------------------------------------- */
 .premium-strip {
     display: grid;
     grid-template-columns: minmax(0, 1.5fr) minmax(220px, .7fr);
     gap: 18px;
     align-items: center;
-    border: 1px solid rgba(255, 209, 102, .45) !important;
+    border: 1px solid rgba(255, 209, 102, .46) !important;
     background:
-        radial-gradient(circle at 10% 0%, rgba(167,255,0,.14), transparent 32%),
-        linear-gradient(135deg, #09111d 0%, #101827 52%, #17120a 100%) !important;
+        radial-gradient(circle at 8% 0%, rgba(167, 255, 0, .16), transparent 34%),
+        radial-gradient(circle at 100% 0%, rgba(53, 214, 232, .13), transparent 30%),
+        linear-gradient(135deg, #071018 0%, #0B1320 54%, #17120a 100%) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .28);
 }
 
 .premium-strip h2,
-.price-card h3 {
-    color: #fff !important;
+.price-card h3,
+.premium-export-card h2,
+.submission-card h2 {
+    color: #ffffff !important;
     margin: 0 0 8px 0;
 }
 
 .premium-strip p,
 .price-card p,
-.premium-disclaimer {
+.premium-disclaimer,
+.premium-export-card p,
+.submission-card li {
     color: #cbd5e1 !important;
 }
 
@@ -3483,7 +3494,8 @@ PHASE_135_PREMIUM_CSS = """
     padding: 10px 16px;
     font-weight: 900;
     text-decoration: none !important;
-    border: 1px solid rgba(255,255,255,.18);
+    border: 1px solid rgba(255, 255, 255, .18);
+    letter-spacing: .01em;
 }
 
 .premium-button.primary {
@@ -3494,7 +3506,7 @@ PHASE_135_PREMIUM_CSS = """
 .premium-button.secondary {
     background: rgba(53, 214, 232, .12);
     color: #E6FBFF !important;
-    border-color: rgba(53, 214, 232, .38);
+    border-color: rgba(53, 214, 232, .40);
 }
 
 .premium-button.full {
@@ -3509,17 +3521,24 @@ PHASE_135_PREMIUM_CSS = """
     margin: 14px 0;
 }
 
-.price-card {
+.price-card,
+.premium-export-card,
+.submission-card,
+.premium-disclaimer {
     border-radius: 18px;
     padding: 16px;
     background: #0f172a;
     border: 1px solid #263244;
-    box-shadow: 0 14px 40px rgba(0,0,0,.18);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .18);
 }
 
 .price-card.premium,
 .price-card.ultimate {
-    border-color: rgba(255, 209, 102, .48);
+    border-color: rgba(255, 209, 102, .52);
+}
+
+.price-card.source {
+    border-color: rgba(53, 214, 232, .42);
 }
 
 .price-card ul {
@@ -3553,13 +3572,32 @@ PHASE_135_PREMIUM_CSS = """
     border-collapse: collapse;
     overflow: hidden;
     border-radius: 14px;
+    margin: 12px 0;
 }
 
 .premium-export-table th,
 .premium-export-table td {
     padding: 10px;
     border-bottom: 1px solid #263244;
-    text-align: left;
+    vertical-align: top;
+}
+
+.premium-export-table th {
+    color: #ffffff !important;
+    background: #111827 !important;
+}
+
+.premium-export-table td {
+    color: #e5e7eb !important;
+}
+
+.module-kicker {
+    color: #A7FF00;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    font-weight: 900;
+    margin-bottom: 6px;
 }
 
 @media (max-width: 900px) {
@@ -3574,6 +3612,12 @@ PHASE_135_PREMIUM_CSS = """
 
     .premium-button {
         width: 100%;
+    }
+
+    .premium-export-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 }
 </style>
@@ -3605,7 +3649,6 @@ def _premium_cta_strip_html() -> str:
         </div>
     </section>
     """
-
 
 def _premium_pricing_html() -> str:
     return f"""
@@ -3648,13 +3691,12 @@ def _premium_pricing_html() -> str:
             </a>
         </article>
     </section>
-    <section class="app-card card-shell premium-disclaimer">
+    <section class="premium-disclaimer">
         <strong>Fan-safe monetization:</strong>
         No gambling, no official federation marks, no player likeness dependency, no paid live-score requirement.
         Premium is for exports, planning tools, templates, ad-free UI, and source access.
     </section>
     """
-
 
 def _premium_locked_exports_html() -> str:
     rows = [
@@ -3679,7 +3721,7 @@ def _premium_locked_exports_html() -> str:
     )
 
     return f"""
-    <section class="app-card card-shell">
+    <section class="premium-export-card">
         <div class="module-kicker">Premium Export Center</div>
         <h2>Locked exports make the business model obvious without blocking the demo.</h2>
         <p>
@@ -3703,10 +3745,9 @@ def _premium_locked_exports_html() -> str:
     </section>
     """
 
-
 def _submission_package_html() -> str:
     return f"""
-    <section class="app-card card-shell">
+    <section class="submission-card">
         <div class="module-kicker">Submission Package</div>
         <h2>Build Small Hackathon final checklist</h2>
         <ol>

@@ -210,3 +210,38 @@ AI Bracket War Room 2026 uses a judge-safe free core with visible premium upgrad
 | Source License | $49+ | Deployable Gradio source bundle, templates, private league starter, deployment guide |
 
 Fan-safe boundary: unofficial fan-made planner, no gambling language, no official federation marks, no player likeness dependency, and no paid live-score requirement.
+
+## Phase 1.35 — Premium Monetization + Submission Polish
+
+Phase 1.35 turns the running War Room into a monetizable fan product without blocking the judge demo.
+
+### Free core
+
+The free app remains fully judgeable:
+
+* 104-match runtime planner.
+* Group table and third-place ranking.
+* Bracket preview.
+* Friends League demo scoring.
+* AI Scout preview.
+* Judge demo scenario.
+* Google Sheet/manual override status panels.
+
+### Premium tiers
+
+* **Premium Matchday — $9:** advanced AI Scout cards, matchday planner exports, private Friends League export pack, ad-free app shell, share-ready scenario summaries.
+* **Ultimate Fan Pack — $27:** 184-page GoodNotes/PDF command center, 104 dedicated match logs, office pool/watch party kit, 500 PNG/SVG sticker bundle, printable A4/Letter exports.
+* **Gumroad Source — $49+:** deployable Gradio source bundle, premium templates, private league starter kit, commercial-use setup notes, Hugging Face deployment guide.
+
+### Phase 1.35 visible UI validation
+
+* First screen shows a Premium Fan Mode CTA strip.
+* Premium tab shows Free Core, Premium Matchday, Ultimate Fan Pack, and Gumroad Source.
+* Locked Export Center shows export value without disabling the demo.
+* Gumroad CTA buttons are visible for premium and source.
+* Deploy marker appears as `PHASE 1.35 — Premium Monetization + Submission Polish`.
+
+### Monetization safety boundary
+
+Unofficial fan-made planner. No gambling, no money-staked prediction market, no official marks, no player likeness dependency, no paid live-score requirement. Premium sells exports, planning templates, ad-free experience, GoodNotes/PDF fan packs, and source access.
+
