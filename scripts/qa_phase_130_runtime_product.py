@@ -11,7 +11,7 @@ if str(REPO_ROOT) not in sys.path:
 
 
 def main() -> None:
-    os.environ["LIVE_SCORE_PROVIDER"] = "local_json"
+    os.environ["LIVE_SCORE_PROVIDER"] = "verified_cache"
     os.environ.setdefault("GOOGLE_SHEET_ENABLED", "false")
 
     import app
@@ -33,8 +33,8 @@ def main() -> None:
     runtime = build_runtime_match_state(load_fixtures(), live_results, sheet_state)
     match1 = runtime[runtime["match_no"].eq(1)].iloc[0]
     assert match1["home"] == "Mexico" and match1["away"] == "South Africa", "Match 1 fixture mismatch"
-    assert int(match1["home_score"]) == 2 and int(match1["away_score"]) == 1, "Match 1 result not ingested"
-    assert match1["result_source"] in {"local_json", "manual override", "local manual edit"}, "Match 1 source mismatch"
+    assert int(match1["home_score"]) == 2 and int(match1["away_score"]) == 0, "Match 1 result not ingested"
+    assert match1["result_source"] in {"verified public results cache", "manual override", "local manual edit"}, "Match 1 source mismatch"
 
     state = app.load_workbook_state()
     outputs = app.compute_outputs(state)
@@ -50,7 +50,7 @@ def main() -> None:
     assert "How to connect your sheet" in sheet_copy
 
     ai_scout = app.build_ai_scout_output(outputs[1], outputs[0]["runtime_matches"], outputs[6])
-    for required in ("Mexico 2-1 South Africa", "Result impact", "26 players", "Next action"):
+    for required in ("Mexico 2–0 South Africa", "Result impact", "26 players", "Next action"):
         assert required in ai_scout, f"AI Scout missing runtime context: {required}"
     forbidden = ("betting", "odds", "sportsbook")
     assert not any(term in ai_scout.lower() for term in forbidden), "AI Scout contains forbidden betting terms"

@@ -1,0 +1,54 @@
+[
+  {
+    "match_no": 1,
+    "home": "Mexico",
+    "away": "South Africa",
+    "home_score": 2,
+    "away_score": 0,
+    "status": "FT",
+    "verified_at_utc": "2026-06-13T05:05:00Z",
+    "primary_source": "FIFA/public verified result",
+    "secondary_source": "World Cup schedule snapshot",
+    "confidence": "verified",
+    "notes": "Mexico 2-0 South Africa"
+  },
+  {
+    "match_no": 2,
+    "home": "Korea Republic",
+    "away": "Czechia",
+    "home_score": 2,
+    "away_score": 1,
+    "status": "FT",
+    "verified_at_utc": "2026-06-13T05:05:00Z",
+    "primary_source": "public verified result",
+    "secondary_source": "World Cup schedule snapshot",
+    "confidence": "verified",
+    "notes": "Korea Republic 2-1 Czechia"
+  },
+  {
+    "match_no": 3,
+    "home": "Canada",
+    "away": "Bosnia & Herzegovina",
+    "home_score": 1,
+    "away_score": 1,
+    "status": "FT",
+    "verified_at_utc": "2026-06-13T05:05:00Z",
+    "primary_source": "FIFA/public verified result",
+    "secondary_source": "World Cup schedule snapshot",
+    "confidence": "verified",
+    "notes": "Canada 1-1 Bosnia & Herzegovina"
+  },
+  {
+    "match_no": 4,
+    "home": "United States",
+    "away": "Paraguay",
+    "home_score": 4,
+    "away_score": 1,
+    "status": "FT",
+    "verified_at_utc": "2026-06-13T05:05:00Z",
+    "primary_source": "public verified result",
+    "secondary_source": "World Cup schedule snapshot",
+    "confidence": "verified",
+    "notes": "United States 4-1 Paraguay"
+  }
+]

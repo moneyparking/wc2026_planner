@@ -1,0 +1,76 @@
+# Judge UI Walkthrough Phase 1.33
+
+- PASS: App loads — http://127.0.0.1:9000
+- PASS: Old Phase 1.30 marker hidden — Legacy Phase 1.30 marker absent.
+- PASS: PHASE 1.31+ visible — Phase 1.31+ AppStore/Product phase detected.
+- PASS: PHASE 1.32+ visible — Phase 1.32+ production shell detected.
+- PASS: PHASE 1.33 visible — Phase 1.33 Real Results + Live Ingestion Ready detected.
+- PASS: Old marker hidden: PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME — Old phase marker absent from first surface.
+- PASS: Old marker hidden: PHASE 1.30B Visual Surface + AppStore Shell — Old phase marker absent from first surface.
+- PASS: Old marker hidden: PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX — Old phase marker absent from first surface.
+- PASS: Debug copy hidden: Scenario Controls — Debug copy absent from dashboard.
+- PASS: Debug copy hidden: Build Small Status — Debug copy absent from dashboard.
+- PASS: Debug copy hidden: Workbook: — Debug copy absent from dashboard.
+- PASS: Debug copy hidden: 90-second Judge Verification — Debug copy absent from dashboard.
+- PASS: ABW logo visible — ABW logo mark detected.
+- PASS: Icon navigation visible — Icon nav row detected.
+- PASS: Today’s Match Center visible — Today match center detected.
+- PASS: M001 visible before raw table content — M001 match center appears before raw table content.
+- PASS: What Changed visible — What Changed panel detected.
+- PASS: App cards visible — Card shell classes detected.
+- PASS: Google Sheet Control visible — Google Sheet module detected.
+- PASS: Google Sheet Control Snapshot visible — Sheet snapshot detected.
+- PASS: Runtime counters consistent — completed=4 live=0 next first uncompleted fixture.
+- PASS: Google Sheet final wording visible — Google Sheet status is non-contradictory.
+- PASS: Result Source Truth visible — Result Source Truth card detected.
+- PASS: Live scores verified cache wording visible — Live scores OFF verified cache wording detected.
+- PASS: M001 Mexico 2–0 South Africa visible — Verified completed result visible.
+- PASS: M002 Korea Republic 2–1 Czechia visible — Verified completed result visible.
+- PASS: M003 Canada 1–1 Bosnia & Herzegovina visible — Verified completed result visible.
+- PASS: M004 United States 4–1 Paraguay visible — Verified completed result visible.
+- PASS: No old M001 2-1 visible — Old M001 result absent.
+- PASS: AI Scout Match Control Panel visible — AI Scout module detected.
+- PASS: No stale Phase 1.28 marker visible — Visible header marker is current.
+- PASS: Old autonomous local engine hidden — Legacy engine banner absent.
+- PASS: Old Tactical Slip hidden — Legacy Tactical Slip copy absent.
+- PASS: Old local runtime engine hidden — Legacy local runtime engine copy absent.
+- PASS: Dashboard visible — Dashboard or app module text detected.
+- PASS: 48 / 12 / 104 metrics visible — Core metrics detected.
+- PASS: Squad count visible — Squad count or validation present.
+- PASS: Load Demo Scenario button works — Clicked load demo control.
+- PASS: Recalculate War Room button works — Clicked recalc control.
+- PASS: Primary buttons change status — Action status changed after click.
+- PASS: Runtime Status Cards visible — Runtime status cards detected.
+- PASS: Live scores status visible — Live scores status detected.
+- PASS: Google Sheet status visible — Google Sheet status detected.
+- PASS: Match Planner displays real teams — Real team names detected.
+- PASS: Match Planner includes dates — Real fixture dates detected.
+- PASS: Match Planner first fixture is real group-stage match — M001 Mexico vs South Africa appears before knockout placeholders.
+- PASS: No placeholder-first M001 — M001 does not start as knockout placeholder.
+- PASS: Match 1 verified result visible — M001 result/source detected.
+- PASS: Match Planner shows source column — Source column detected.
+- PASS: Match Planner table visible — visible_tables=2
+- PASS: Group Tracker shows groups — Group tracker content detected.
+- PASS: Group Tracker maps real CSV teams — Group A real teams detected.
+- PASS: Group Tracker reflects Match 1 result — Runtime standings visible.
+- PASS: Group Tracker table visible — visible_tables=2
+- PASS: Bracket shows Round of 32 through Final — Knockout stages detected.
+- PASS: Friends League shows real match references — Real match references detected.
+- PASS: Friends League shows Actual Result / Status — Actual Result and Status columns detected.
+- PASS: Friends League table visible — visible_tables=2
+- PASS: AI Scout shows runtime score and group impact — Runtime score and impact detected.
+- PASS: AI Scout is match-context-aware — Match control panel detected.
+- PASS: AI Scout lists loaded players — Player-loaded squad output detected.
+- PASS: Google Sheet Control tab explains connection — Connection instructions detected.
+- PASS: No forbidden terms visible — Forbidden terms absent from visible walkthrough text.
+- PASS: Old autonomous local engine absent — Legacy engine copy absent from walkthrough.
+- PASS: Old Tactical Slip absent — Legacy Tactical Slip copy absent from walkthrough.
+- PASS: Old local runtime engine absent — Legacy local runtime engine copy absent from walkthrough.
+- PASS: Unofficial disclaimer visible — Unofficial fan-made disclaimer detected.
+- PASS: Dashboard non-empty — 9741 visible characters.
+- PASS: Match Planner non-empty — 9741 visible characters.
+- PASS: Group Tracker non-empty — 8134 visible characters.
+- PASS: Bracket War Room non-empty — 7283 visible characters.
+- PASS: Friends League non-empty — 7176 visible characters.
+- PASS: AI Scout non-empty — 7176 visible characters.
+- PASS: Google Sheet Control non-empty — 7176 visible characters.

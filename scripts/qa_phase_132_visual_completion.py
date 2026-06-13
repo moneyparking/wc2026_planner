@@ -12,7 +12,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-os.environ["LIVE_SCORE_PROVIDER"] = "local_json"
+os.environ["LIVE_SCORE_PROVIDER"] = "verified_cache"
 os.environ.setdefault("GOOGLE_SHEET_ENABLED", "false")
 
 
@@ -48,14 +48,14 @@ def main() -> None:
         ]
     )
 
-    assert_contains(initial, "PHASE 1.32", "Phase 1.32 marker")
+    assert "PHASE 1.32" in initial or "PHASE 1.33" in initial, "Phase marker missing"
     assert_contains(initial, "ABW", "ABW logo")
     assert_contains(initial, "Today’s Match Center", "Today's Match Center")
     assert_contains(initial, "What Changed", "What Changed panel")
     assert_contains(initial, "Runtime Status Cards", "Runtime Status Cards")
     assert_contains(initial, "Quick Navigation Cards", "Quick Navigation Cards")
     assert_contains(initial, "Google Sheet Control Snapshot", "Google Sheet snapshot")
-    assert_contains(initial, "M001 Mexico 2–1 South Africa · FT", "M001 runtime score")
+    assert_contains(initial, "M001 Mexico 2–0 South Africa · FT", "M001 runtime score")
     assert_contains(initial, "Mexico +3 pts", "Mexico points")
     assert_contains(initial, "AI Scout — Match Control Panel", "AI Scout panel")
     assert_contains(initial, "Actual Result", "Friends League actual result")
@@ -91,6 +91,7 @@ def main() -> None:
     assert (
         "JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS" in walkthrough_text
         or "JUDGE_UI_WALKTHROUGH_PHASE_1_32A_PASS" in walkthrough_text
+        or "JUDGE_UI_WALKTHROUGH_PHASE_1_33_PASS" in walkthrough_text
     ), "Walkthrough Phase 1.32 marker missing"
 
     lowered = initial.lower()

@@ -27,13 +27,14 @@ from src.wc2026_data_loader import validate_wc2026_dataset
 
 
 REPORT_DIR = REPO_ROOT / "releases" / "final"
-REPORT_MD = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_30_REPORT.md"
-REPORT_JSON = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_30_REPORT.json"
+REPORT_MD = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_33_REPORT.md"
+REPORT_JSON = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_33_REPORT.json"
 FORBIDDEN_TERMS = ("odds", "betting", "wager", "sportsbook", "parlay", "payout")
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
 PHASE_131_MARKER = "PHASE 1.31"
 PHASE_132_MARKER = "PHASE 1.32"
 PHASE_132A_MARKER = "PHASE 1.32A"
+PHASE_133_MARKER = "PHASE 1.33"
 OLD_ENGINE_COPY = "AUTONOMOUS LOCAL ENGINE ACTIVE"
 OLD_TACTICAL_COPY = "AI Scout Tactical Slip"
 OLD_LOCAL_ENGINE_COPY = "local runtime engine"
@@ -101,9 +102,9 @@ def main() -> int:
         initial_lower = initial.lower()
         record("App loads", "AI Bracket War Room 2026" in initial, args.url)
         record("Old Phase 1.30 marker hidden", "PHASE 1.30" not in initial and PHASE_130_MARKER not in initial, "Legacy Phase 1.30 marker absent.")
-        record("PHASE 1.31 visible", PHASE_131_MARKER in initial or PHASE_132_MARKER in initial, "Phase 1.31+ AppStore Product Polish detected.")
-        record("PHASE 1.32 visible", PHASE_132_MARKER in initial, "Phase 1.32 Production Visual QA Complete detected.")
-        record("PHASE 1.32A visible", PHASE_132A_MARKER in initial, "Phase 1.32A Final Product Shell detected.")
+        record("PHASE 1.31+ visible", PHASE_131_MARKER in initial or PHASE_132_MARKER in initial or PHASE_133_MARKER in initial, "Phase 1.31+ AppStore/Product phase detected.")
+        record("PHASE 1.32+ visible", PHASE_132_MARKER in initial or PHASE_133_MARKER in initial, "Phase 1.32+ production shell detected.")
+        record("PHASE 1.33 visible", PHASE_133_MARKER in initial, "Phase 1.33 Real Results + Live Ingestion Ready detected.")
         for old_marker in ("PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME", "PHASE 1.30B Visual Surface + AppStore Shell", "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"):
             record(f"Old marker hidden: {old_marker}", old_marker not in initial, "Old phase marker absent from first surface.")
         for debug_copy in ("Scenario Controls", "Build Small Status", "Workbook:", "90-second Judge Verification"):
@@ -113,7 +114,7 @@ def main() -> int:
         record("Icon navigation visible", icon_nav_ok, "Icon nav row detected.")
         today_center_ok = (
             ("today’s match center" in initial_lower or "today's match center" in initial_lower)
-            and bool(re.search(r"M001\s+Mexico\s+2[\-–]1\s+South Africa\s+FT", initial, re.I))
+            and bool(re.search(r"M001\s+Mexico\s+2[\-–]0\s+South Africa\s+.*FT", initial, re.I))
         )
         record("Today’s Match Center visible", today_center_ok, "Today match center detected.")
         m001_index = initial.find("M001")
@@ -124,8 +125,18 @@ def main() -> int:
         record("App cards visible", "card-shell" in page.content() and "today-match-center" in page.content(), "Card shell classes detected.")
         record("Google Sheet Control visible", "Google Sheet Control explanation" in initial, "Google Sheet module detected.")
         record("Google Sheet Control Snapshot visible", "google sheet control snapshot" in initial_lower and "results_override" in initial_lower and "friends_picks" in initial_lower, "Sheet snapshot detected.")
-        record("Runtime counters consistent", "Completed matches" in initial and "Live matches" in initial and "Next match" in initial and "M002 Korea Republic vs Czechia" in initial and "0 completed match(es)" not in initial, "completed=1 live=0 next=M002.")
+        record("Runtime counters consistent", "Completed matches" in initial and "Live matches" in initial and "Next match" in initial and "Completed matches\n4" in initial and "0 completed match(es)" not in initial, "completed=4 live=0 next first uncompleted fixture.")
         record("Google Sheet final wording visible", "Google Sheet: OFF — ready to connect" in initial, "Google Sheet status is non-contradictory.")
+        record("Result Source Truth visible", "Result Source Truth" in initial, "Result Source Truth card detected.")
+        record("Live scores verified cache wording visible", "Live scores: OFF — using verified public results cache" in initial or "OFF — using verified public results cache" in initial, "Live scores OFF verified cache wording detected.")
+        for result_text in (
+            "M001 Mexico 2–0 South Africa",
+            "M002 Korea Republic 2–1 Czechia",
+            "M003 Canada 1–1 Bosnia & Herzegovina",
+            "M004 United States 4–1 Paraguay",
+        ):
+            record(f"{result_text} visible", result_text in initial, "Verified completed result visible.")
+        record("No old M001 2-1 visible", not re.search(r"M001\s+Mexico\s+2[\-–]1\s+South Africa", initial), "Old M001 result absent.")
         record("AI Scout Match Control Panel visible", "AI Scout Match Control Panel" in initial, "AI Scout module detected.")
         record("No stale Phase 1.28 marker visible", "PHASE_1_28" not in initial and "Phase 1.28" not in initial, "Visible header marker is current.")
         record("Old autonomous local engine hidden", OLD_ENGINE_COPY.lower() not in initial.lower(), "Legacy engine banner absent.")
@@ -144,7 +155,7 @@ def main() -> int:
         record("Recalculate War Room button works", recalc_clicked, "Clicked recalc control.")
         record("Primary buttons change status", recalc_clicked and "Recalculate War Room" in after_actions, "Action status changed after click.")
         status_surface = initial + "\n" + after_actions
-        record("Runtime Status Cards visible", "Completed matches" in status_surface and "Next match" in status_surface and "M002 Korea Republic vs Czechia" in status_surface, "Runtime status cards detected.")
+        record("Runtime Status Cards visible", "Completed matches" in status_surface and "Next match" in status_surface and "4" in status_surface, "Runtime status cards detected.")
         record("Live scores status visible", "Live scores" in status_surface, "Live scores status detected.")
         record("Google Sheet status visible", "Google Sheet: OFF — ready to connect" in status_surface or "Google Sheet: ON — connected" in status_surface, "Google Sheet status detected.")
 
@@ -162,7 +173,7 @@ def main() -> int:
         )
         record("Match Planner first fixture is real group-stage match", first_fixture_ok, "M001 Mexico vs South Africa appears before knockout placeholders.")
         record("No placeholder-first M001", not re.search(r"M001[\s\S]{0,180}(Round of 32|Qualified Slot|R32\+)", initial + planner), "M001 does not start as knockout placeholder.")
-        record("Match 1 score/result visible if local_json demo mode is active", "M001" in planner and "Mexico" in planner and ("2-1" in planner or "source: static_fixture" in planner), "M001 result/source detected.")
+        record("Match 1 verified result visible", "M001" in planner and "Mexico" in planner and ("2-0" in planner or "2–0" in planner) and "verified public results cache" in planner, "M001 result/source detected.")
         source_column_detected = "Source" in planner and "source:" in planner
         planner_visible_tables = visible_table_count(page)
         record("Match Planner shows source column", source_column_detected, "Source column detected." if source_column_detected else "Source column missing.")
@@ -198,7 +209,7 @@ def main() -> int:
         page.wait_for_timeout(1000)
         scout = body_text(page)
         scout_fallback = app.build_ai_scout_output(pd.DataFrame())
-        record("AI Scout shows runtime score and group impact", "Result impact" in (scout + scout_fallback) and ("Mexico 2-1 South Africa" in (scout + scout_fallback) or "Runtime source" in (scout + scout_fallback)), "Runtime score and impact detected.")
+        record("AI Scout shows runtime score and group impact", "Result impact" in (scout + scout_fallback) and ("Mexico 2–0 South Africa" in (scout + scout_fallback) or "Runtime source" in (scout + scout_fallback)), "Runtime score and impact detected.")
         strong_scout = scout + scout_fallback
         record("AI Scout is match-context-aware", "AI Scout" in strong_scout and "Next action" in strong_scout, "Match control panel detected.")
         record("AI Scout lists loaded players", "players" in strong_scout and "player sample" in strong_scout, "Player-loaded squad output detected.")
@@ -236,16 +247,16 @@ def main() -> int:
     }
     REPORT_JSON.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     REPORT_MD.write_text(
-        "# Judge UI Walkthrough Phase 1.30\n\n"
+        "# Judge UI Walkthrough Phase 1.33\n\n"
         + "\n".join(f"- {item['status']}: {item['check']} — {item['detail']}" for item in checks)
         + "\n",
         encoding="utf-8",
     )
 
     if any(item["status"] == "FAIL" for item in checks):
-        print("JUDGE_UI_WALKTHROUGH_PHASE_1_32A_FAIL")
+        print("JUDGE_UI_WALKTHROUGH_PHASE_1_33_FAIL")
         return 1
-    print("JUDGE_UI_WALKTHROUGH_PHASE_1_32A_PASS")
+    print("JUDGE_UI_WALKTHROUGH_PHASE_1_33_PASS")
     return 0
 
 

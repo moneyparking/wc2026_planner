@@ -11,7 +11,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-os.environ["LIVE_SCORE_PROVIDER"] = "local_json"
+os.environ["LIVE_SCORE_PROVIDER"] = "verified_cache"
 os.environ.setdefault("GOOGLE_SHEET_ENABLED", "false")
 
 
@@ -44,13 +44,13 @@ def main() -> None:
         ]
     )
 
-    assert "PHASE 1.31" in initial or "PHASE 1.32" in initial, "Phase marker missing"
+    assert "PHASE 1.31" in initial or "PHASE 1.32" in initial or "PHASE 1.33" in initial, "Phase marker missing"
     assert_contains(initial, "ABW", "ABW logo mark")
     for nav_label in ("🏟 Match Center", "📊 Groups", "🧩 Bracket", "🏆 Friends", "🧠 Scout", "📄 Sheet"):
         assert_contains(initial, nav_label, "Icon navigation")
     assert_contains(initial, "Today’s Match Center", "Today's Match Center")
-    assert_contains(initial, "M001 Mexico 2–1 South Africa FT", "Today's match scoreline")
-    assert_contains(initial, "source local_json", "Runtime source")
+    assert_contains(initial, "M001 Mexico 2–0 South Africa", "Today's match scoreline")
+    assert_contains(initial, "verified public results cache", "Runtime source")
     assert_contains(initial, "Group A impact: Mexico +3 pts", "Group impact")
     assert_contains(initial, "Google Sheet Control explanation", "Google Sheet module")
     assert_contains(initial, "AI Scout Match Control Panel", "AI Scout module")
@@ -85,12 +85,13 @@ def main() -> None:
     ):
         assert_contains(css_text + app_text, css_required, "Card-shell CSS")
 
-    assert "PHASE 1.31" in walkthrough_text or "PHASE 1.32" in walkthrough_text, "Walkthrough phase requirement missing"
+    assert "PHASE 1.31" in walkthrough_text or "PHASE 1.32" in walkthrough_text or "PHASE 1.33" in walkthrough_text, "Walkthrough phase requirement missing"
     assert_contains(walkthrough_text, "Today’s Match Center", "Walkthrough Today's Match Center requirement")
     assert (
         "JUDGE_UI_WALKTHROUGH_PHASE_1_31_PASS" in walkthrough_text
         or "JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS" in walkthrough_text
         or "JUDGE_UI_WALKTHROUGH_PHASE_1_32A_PASS" in walkthrough_text
+        or "JUDGE_UI_WALKTHROUGH_PHASE_1_33_PASS" in walkthrough_text
     ), "Walkthrough pass marker missing"
 
     lowered = initial.lower()

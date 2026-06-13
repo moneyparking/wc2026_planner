@@ -9,7 +9,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-os.environ["LIVE_SCORE_PROVIDER"] = "local_json"
+os.environ["LIVE_SCORE_PROVIDER"] = "verified_cache"
 os.environ.setdefault("GOOGLE_SHEET_ENABLED", "false")
 
 
@@ -44,7 +44,7 @@ def main() -> None:
     )
     app_text = (REPO_ROOT / "app.py").read_text(encoding="utf-8")
 
-    assert "PHASE 1.32A — Final Product Shell" in active, "Phase 1.32A marker missing"
+    assert "PHASE 1.33 — Real Results + Live Ingestion Ready" in active, "Phase 1.33 marker missing"
     for old_marker in OLD_ACTIVE_MARKERS:
         assert old_marker not in active, f"Old phase marker visible in active UI: {old_marker}"
     for debug in DEBUG_COPY:
@@ -53,17 +53,17 @@ def main() -> None:
     for required in (
         "ABW",
         "Today’s Match Center",
-        "M001 Mexico 2–1 South Africa · FT",
+        "M001 Mexico 2–0 South Africa · FT",
         "What Changed",
         "Runtime Status Cards",
         "Quick Navigation Cards",
         "Google Sheet Control Snapshot",
         "Completed matches",
-        "1",
+        "4",
         "Live matches",
         "0",
         "Next match",
-        "M002 Korea Republic vs Czechia",
+        "M005",
         "Google Sheet: OFF — ready to connect",
     ):
         assert required in active, f"Active product shell missing: {required}"

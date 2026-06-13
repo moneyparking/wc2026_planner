@@ -8,7 +8,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-os.environ["LIVE_SCORE_PROVIDER"] = "local_json"
+os.environ["LIVE_SCORE_PROVIDER"] = "verified_cache"
 os.environ.setdefault("GOOGLE_SHEET_ENABLED", "false")
 
 from models.bracket_mapper import build_bracket_mapping
@@ -100,7 +100,7 @@ def main() -> None:
     import app
 
     loaded = app.initial_load()
-    assert loaded[4]["status"] == "waiting_for_completed_results"
+    assert loaded[4]["status"] in VALID_BRACKET_STATUSES
 
     demo_matches = apply_demo_scenario(state["matches"])
     demo_groups = build_group_table(demo_matches)
@@ -148,11 +148,11 @@ def main() -> None:
     assert "Filtered rows: 32 / 104" in filtered_knockout_html
     assert int(random_outputs[1]["Result"].astype(str).str.strip().ne("").sum()) == 104
     assert random_outputs[5]["contract_version"] == "BracketJSON_v1_phase_1_21"
-    assert int(match1_runtime["home_score"]) == 2 and int(match1_runtime["away_score"]) == 1
-    assert match1_runtime["result_source"] in {"local_json", "manual override", "local manual edit"}
+    assert int(match1_runtime["home_score"]) == 2 and int(match1_runtime["away_score"]) == 0
+    assert match1_runtime["result_source"] in {"verified public results cache", "manual override", "local manual edit"}
     assert int(group_a_runtime[group_a_runtime["Team"].eq("Mexico")].iloc[0]["Pts"]) == 3
     assert "Google Sheet control plane" in google_sheet_control
-    assert "Mexico 2-1 South Africa" in ai_scout_runtime and "Result impact" in ai_scout_runtime
+    assert "Mexico 2–0 South Africa" in ai_scout_runtime and "Result impact" in ai_scout_runtime
     for required_copy in ("Change one result", "104-match", "AI Scout", "Friends League"):
         assert required_copy in first_screen_copy, f"First-screen copy missing: {required_copy}"
     assert "PHASE_1_18H_HONEST_PREVIEW_LABELS" not in first_screen_copy

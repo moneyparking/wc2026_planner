@@ -53,7 +53,8 @@ def main() -> None:
     groups = load_groups()
     for _, row in groups.iterrows():
         assert_contains(group_html, str(row["group"]), "Group tracker")
-        assert_contains(group_html, escape(str(row["team"])), "Group tracker")
+        display_team = app._display_team(row["team"]) if hasattr(app, "_display_team") else str(row["team"])
+        assert_contains(group_html, escape(display_team), "Group tracker")
     assert_contains(group_html, "<thead>", "Group tracker table")
     assert_contains(group_html, "Visible preview: 48 / 48 team rows", "Group tracker")
 

@@ -11,7 +11,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-os.environ["LIVE_SCORE_PROVIDER"] = "local_json"
+os.environ["LIVE_SCORE_PROVIDER"] = "verified_cache"
 os.environ.setdefault("GOOGLE_SHEET_ENABLED", "false")
 
 
@@ -58,7 +58,11 @@ def main() -> None:
         ]
     )
 
-    assert "PHASE 1.30B Visual Surface + AppStore Shell" in header or "PHASE 1.32A — Final Product Shell" in header, "App shell marker missing"
+    assert (
+        "PHASE 1.30B Visual Surface + AppStore Shell" in header
+        or "PHASE 1.32A — Final Product Shell" in header
+        or "PHASE 1.33 — Real Results + Live Ingestion Ready" in header
+    ), "App shell marker missing"
     _assert_contains(app_text, "PHASE_130B_MARKER", "App marker constant")
     _assert_contains(header, "ABW", "Logo text mark")
     _assert_contains(header, "AI Bracket War Room", "Logo subtitle")
@@ -96,7 +100,7 @@ def main() -> None:
     _assert_contains(visible_html, "table-card", "Table-card wrapper")
     _assert_contains(app_text, 'elem_classes=["table-card"]', "Gradio dataframe card wrapper")
     _assert_contains(visible_html, "Loading runtime table…", "Skeleton copy")
-    _assert_contains(visible_html, "Runtime data loaded from local_json/static seed", "Empty-state copy")
+    _assert_contains(visible_html, "Runtime data loaded from verified public cache/static seed", "Empty-state copy")
     _assert_contains(visible_html, "table-scroll", "Readable table surface")
     for skeleton_copy in (
         "Runtime fixture table ready",

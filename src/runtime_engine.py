@@ -98,6 +98,8 @@ def _normalize_live(live_result: Any) -> dict | None:
         "minute": _score(row.get("minute")),
         "source": str(row.get("source") or "live provider"),
         "synced_at_utc": str(row.get("synced_at_utc") or ""),
+        "source_note": str(row.get("source_note") or ""),
+        "confidence": str(row.get("confidence") or ""),
     }
 
 
@@ -154,6 +156,8 @@ def build_runtime_match_state(
                 "status": status,
                 "minute": minute,
                 "result_source": result_source,
+                "source_note": source_row.get("source_note", "") if source_row else "",
+                "confidence": source_row.get("confidence", "") if source_row else "",
                 "synced_at_utc": synced_at,
                 "is_completed": status_upper in COMPLETED_STATUSES or (home_score is not None and away_score is not None and status_upper == "FT"),
                 "is_live": status_upper in LIVE_STATUSES,

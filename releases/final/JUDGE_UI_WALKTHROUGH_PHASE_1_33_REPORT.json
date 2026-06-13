@@ -1,0 +1,386 @@
+{
+  "generated_at_utc": "2026-06-13T05:37:43.101068+00:00",
+  "url": "http://127.0.0.1:9000",
+  "dataset_validation": {
+    "groups_count": 12,
+    "teams_count": 48,
+    "fixtures_count": 104,
+    "group_stage_count": 72,
+    "knockout_count": 32,
+    "squad_rows_count": 1248,
+    "errors": [],
+    "warnings": []
+  },
+  "checks": [
+    {
+      "check": "App loads",
+      "status": "PASS",
+      "detail": "http://127.0.0.1:9000"
+    },
+    {
+      "check": "Old Phase 1.30 marker hidden",
+      "status": "PASS",
+      "detail": "Legacy Phase 1.30 marker absent."
+    },
+    {
+      "check": "PHASE 1.31+ visible",
+      "status": "PASS",
+      "detail": "Phase 1.31+ AppStore/Product phase detected."
+    },
+    {
+      "check": "PHASE 1.32+ visible",
+      "status": "PASS",
+      "detail": "Phase 1.32+ production shell detected."
+    },
+    {
+      "check": "PHASE 1.33 visible",
+      "status": "PASS",
+      "detail": "Phase 1.33 Real Results + Live Ingestion Ready detected."
+    },
+    {
+      "check": "Old marker hidden: PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME",
+      "status": "PASS",
+      "detail": "Old phase marker absent from first surface."
+    },
+    {
+      "check": "Old marker hidden: PHASE 1.30B Visual Surface + AppStore Shell",
+      "status": "PASS",
+      "detail": "Old phase marker absent from first surface."
+    },
+    {
+      "check": "Old marker hidden: PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX",
+      "status": "PASS",
+      "detail": "Old phase marker absent from first surface."
+    },
+    {
+      "check": "Debug copy hidden: Scenario Controls",
+      "status": "PASS",
+      "detail": "Debug copy absent from dashboard."
+    },
+    {
+      "check": "Debug copy hidden: Build Small Status",
+      "status": "PASS",
+      "detail": "Debug copy absent from dashboard."
+    },
+    {
+      "check": "Debug copy hidden: Workbook:",
+      "status": "PASS",
+      "detail": "Debug copy absent from dashboard."
+    },
+    {
+      "check": "Debug copy hidden: 90-second Judge Verification",
+      "status": "PASS",
+      "detail": "Debug copy absent from dashboard."
+    },
+    {
+      "check": "ABW logo visible",
+      "status": "PASS",
+      "detail": "ABW logo mark detected."
+    },
+    {
+      "check": "Icon navigation visible",
+      "status": "PASS",
+      "detail": "Icon nav row detected."
+    },
+    {
+      "check": "Today\u2019s Match Center visible",
+      "status": "PASS",
+      "detail": "Today match center detected."
+    },
+    {
+      "check": "M001 visible before raw table content",
+      "status": "PASS",
+      "detail": "M001 match center appears before raw table content."
+    },
+    {
+      "check": "What Changed visible",
+      "status": "PASS",
+      "detail": "What Changed panel detected."
+    },
+    {
+      "check": "App cards visible",
+      "status": "PASS",
+      "detail": "Card shell classes detected."
+    },
+    {
+      "check": "Google Sheet Control visible",
+      "status": "PASS",
+      "detail": "Google Sheet module detected."
+    },
+    {
+      "check": "Google Sheet Control Snapshot visible",
+      "status": "PASS",
+      "detail": "Sheet snapshot detected."
+    },
+    {
+      "check": "Runtime counters consistent",
+      "status": "PASS",
+      "detail": "completed=4 live=0 next first uncompleted fixture."
+    },
+    {
+      "check": "Google Sheet final wording visible",
+      "status": "PASS",
+      "detail": "Google Sheet status is non-contradictory."
+    },
+    {
+      "check": "Result Source Truth visible",
+      "status": "PASS",
+      "detail": "Result Source Truth card detected."
+    },
+    {
+      "check": "Live scores verified cache wording visible",
+      "status": "PASS",
+      "detail": "Live scores OFF verified cache wording detected."
+    },
+    {
+      "check": "M001 Mexico 2\u20130 South Africa visible",
+      "status": "PASS",
+      "detail": "Verified completed result visible."
+    },
+    {
+      "check": "M002 Korea Republic 2\u20131 Czechia visible",
+      "status": "PASS",
+      "detail": "Verified completed result visible."
+    },
+    {
+      "check": "M003 Canada 1\u20131 Bosnia & Herzegovina visible",
+      "status": "PASS",
+      "detail": "Verified completed result visible."
+    },
+    {
+      "check": "M004 United States 4\u20131 Paraguay visible",
+      "status": "PASS",
+      "detail": "Verified completed result visible."
+    },
+    {
+      "check": "No old M001 2-1 visible",
+      "status": "PASS",
+      "detail": "Old M001 result absent."
+    },
+    {
+      "check": "AI Scout Match Control Panel visible",
+      "status": "PASS",
+      "detail": "AI Scout module detected."
+    },
+    {
+      "check": "No stale Phase 1.28 marker visible",
+      "status": "PASS",
+      "detail": "Visible header marker is current."
+    },
+    {
+      "check": "Old autonomous local engine hidden",
+      "status": "PASS",
+      "detail": "Legacy engine banner absent."
+    },
+    {
+      "check": "Old Tactical Slip hidden",
+      "status": "PASS",
+      "detail": "Legacy Tactical Slip copy absent."
+    },
+    {
+      "check": "Old local runtime engine hidden",
+      "status": "PASS",
+      "detail": "Legacy local runtime engine copy absent."
+    },
+    {
+      "check": "Dashboard visible",
+      "status": "PASS",
+      "detail": "Dashboard or app module text detected."
+    },
+    {
+      "check": "48 / 12 / 104 metrics visible",
+      "status": "PASS",
+      "detail": "Core metrics detected."
+    },
+    {
+      "check": "Squad count visible",
+      "status": "PASS",
+      "detail": "Squad count or validation present."
+    },
+    {
+      "check": "Load Demo Scenario button works",
+      "status": "PASS",
+      "detail": "Clicked load demo control."
+    },
+    {
+      "check": "Recalculate War Room button works",
+      "status": "PASS",
+      "detail": "Clicked recalc control."
+    },
+    {
+      "check": "Primary buttons change status",
+      "status": "PASS",
+      "detail": "Action status changed after click."
+    },
+    {
+      "check": "Runtime Status Cards visible",
+      "status": "PASS",
+      "detail": "Runtime status cards detected."
+    },
+    {
+      "check": "Live scores status visible",
+      "status": "PASS",
+      "detail": "Live scores status detected."
+    },
+    {
+      "check": "Google Sheet status visible",
+      "status": "PASS",
+      "detail": "Google Sheet status detected."
+    },
+    {
+      "check": "Match Planner displays real teams",
+      "status": "PASS",
+      "detail": "Real team names detected."
+    },
+    {
+      "check": "Match Planner includes dates",
+      "status": "PASS",
+      "detail": "Real fixture dates detected."
+    },
+    {
+      "check": "Match Planner first fixture is real group-stage match",
+      "status": "PASS",
+      "detail": "M001 Mexico vs South Africa appears before knockout placeholders."
+    },
+    {
+      "check": "No placeholder-first M001",
+      "status": "PASS",
+      "detail": "M001 does not start as knockout placeholder."
+    },
+    {
+      "check": "Match 1 verified result visible",
+      "status": "PASS",
+      "detail": "M001 result/source detected."
+    },
+    {
+      "check": "Match Planner shows source column",
+      "status": "PASS",
+      "detail": "Source column detected."
+    },
+    {
+      "check": "Match Planner table visible",
+      "status": "PASS",
+      "detail": "visible_tables=2"
+    },
+    {
+      "check": "Group Tracker shows groups",
+      "status": "PASS",
+      "detail": "Group tracker content detected."
+    },
+    {
+      "check": "Group Tracker maps real CSV teams",
+      "status": "PASS",
+      "detail": "Group A real teams detected."
+    },
+    {
+      "check": "Group Tracker reflects Match 1 result",
+      "status": "PASS",
+      "detail": "Runtime standings visible."
+    },
+    {
+      "check": "Group Tracker table visible",
+      "status": "PASS",
+      "detail": "visible_tables=2"
+    },
+    {
+      "check": "Bracket shows Round of 32 through Final",
+      "status": "PASS",
+      "detail": "Knockout stages detected."
+    },
+    {
+      "check": "Friends League shows real match references",
+      "status": "PASS",
+      "detail": "Real match references detected."
+    },
+    {
+      "check": "Friends League shows Actual Result / Status",
+      "status": "PASS",
+      "detail": "Actual Result and Status columns detected."
+    },
+    {
+      "check": "Friends League table visible",
+      "status": "PASS",
+      "detail": "visible_tables=2"
+    },
+    {
+      "check": "AI Scout shows runtime score and group impact",
+      "status": "PASS",
+      "detail": "Runtime score and impact detected."
+    },
+    {
+      "check": "AI Scout is match-context-aware",
+      "status": "PASS",
+      "detail": "Match control panel detected."
+    },
+    {
+      "check": "AI Scout lists loaded players",
+      "status": "PASS",
+      "detail": "Player-loaded squad output detected."
+    },
+    {
+      "check": "Google Sheet Control tab explains connection",
+      "status": "PASS",
+      "detail": "Connection instructions detected."
+    },
+    {
+      "check": "No forbidden terms visible",
+      "status": "PASS",
+      "detail": "Forbidden terms absent from visible walkthrough text."
+    },
+    {
+      "check": "Old autonomous local engine absent",
+      "status": "PASS",
+      "detail": "Legacy engine copy absent from walkthrough."
+    },
+    {
+      "check": "Old Tactical Slip absent",
+      "status": "PASS",
+      "detail": "Legacy Tactical Slip copy absent from walkthrough."
+    },
+    {
+      "check": "Old local runtime engine absent",
+      "status": "PASS",
+      "detail": "Legacy local runtime engine copy absent from walkthrough."
+    },
+    {
+      "check": "Unofficial disclaimer visible",
+      "status": "PASS",
+      "detail": "Unofficial fan-made disclaimer detected."
+    },
+    {
+      "check": "Dashboard non-empty",
+      "status": "PASS",
+      "detail": "9741 visible characters."
+    },
+    {
+      "check": "Match Planner non-empty",
+      "status": "PASS",
+      "detail": "9741 visible characters."
+    },
+    {
+      "check": "Group Tracker non-empty",
+      "status": "PASS",
+      "detail": "8134 visible characters."
+    },
+    {
+      "check": "Bracket War Room non-empty",
+      "status": "PASS",
+      "detail": "7283 visible characters."
+    },
+    {
+      "check": "Friends League non-empty",
+      "status": "PASS",
+      "detail": "7176 visible characters."
+    },
+    {
+      "check": "AI Scout non-empty",
+      "status": "PASS",
+      "detail": "7176 visible characters."
+    },
+    {
+      "check": "Google Sheet Control non-empty",
+      "status": "PASS",
+      "detail": "7176 visible characters."
+    }
+  ]
+}
