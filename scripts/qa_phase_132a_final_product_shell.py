@@ -44,7 +44,10 @@ def main() -> None:
     )
     app_text = (REPO_ROOT / "app.py").read_text(encoding="utf-8")
 
-    assert "PHASE 1.33 — Real Results + Live Ingestion Ready" in active, "Phase 1.33 marker missing"
+    assert (
+        "PHASE 1.33 — Real Results + Live Ingestion Ready" in active
+        or "PHASE 1.34 — Fully Clickable Fan App" in active
+    ), "Current phase marker missing"
     for old_marker in OLD_ACTIVE_MARKERS:
         assert old_marker not in active, f"Old phase marker visible in active UI: {old_marker}"
     for debug in DEBUG_COPY:

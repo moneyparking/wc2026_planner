@@ -44,7 +44,7 @@ def main() -> None:
         ]
     )
 
-    assert "PHASE 1.31" in initial or "PHASE 1.32" in initial or "PHASE 1.33" in initial, "Phase marker missing"
+    assert "PHASE 1.31" in initial or "PHASE 1.32" in initial or "PHASE 1.33" in initial or "PHASE 1.34" in initial, "Phase marker missing"
     assert_contains(initial, "ABW", "ABW logo mark")
     for nav_label in ("🏟 Match Center", "📊 Groups", "🧩 Bracket", "🏆 Friends", "🧠 Scout", "📄 Sheet"):
         assert_contains(initial, nav_label, "Icon navigation")
@@ -85,13 +85,14 @@ def main() -> None:
     ):
         assert_contains(css_text + app_text, css_required, "Card-shell CSS")
 
-    assert "PHASE 1.31" in walkthrough_text or "PHASE 1.32" in walkthrough_text or "PHASE 1.33" in walkthrough_text, "Walkthrough phase requirement missing"
+    assert "PHASE 1.31" in walkthrough_text or "PHASE 1.32" in walkthrough_text or "PHASE 1.33" in walkthrough_text or "PHASE 1.34" in walkthrough_text, "Walkthrough phase requirement missing"
     assert_contains(walkthrough_text, "Today’s Match Center", "Walkthrough Today's Match Center requirement")
     assert (
         "JUDGE_UI_WALKTHROUGH_PHASE_1_31_PASS" in walkthrough_text
         or "JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS" in walkthrough_text
         or "JUDGE_UI_WALKTHROUGH_PHASE_1_32A_PASS" in walkthrough_text
         or "JUDGE_UI_WALKTHROUGH_PHASE_1_33_PASS" in walkthrough_text
+        or "JUDGE_UI_WALKTHROUGH_PHASE_1_34_PASS" in walkthrough_text
     ), "Walkthrough pass marker missing"
 
     lowered = initial.lower()

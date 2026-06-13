@@ -59,7 +59,10 @@ def main() -> None:
     )
     active = unescape(active)
 
-    _assert_contains(active, "PHASE 1.33 — Real Results + Live Ingestion Ready", "Phase marker")
+    assert (
+        "PHASE 1.33 — Real Results + Live Ingestion Ready" in active
+        or "PHASE 1.34 — Fully Clickable Fan App" in active
+    ), "Phase marker missing"
     for provider in PROVIDERS:
         _assert_contains(adapter_text, provider, f"Provider support {provider}")
 
@@ -139,7 +142,10 @@ def main() -> None:
     for term in FORBIDDEN_TERMS:
         _assert_absent(active.lower(), term, "Active UI forbidden language")
 
-    _assert_contains(judge_text, "JUDGE_UI_WALKTHROUGH_PHASE_1_33_PASS", "Walkthrough Phase 1.33 pass marker")
+    assert (
+        "JUDGE_UI_WALKTHROUGH_PHASE_1_33_PASS" in judge_text
+        or "JUDGE_UI_WALKTHROUGH_PHASE_1_34_PASS" in judge_text
+    ), "Walkthrough Phase 1.33+ pass marker missing"
 
     print("phase_133_marker=PASS")
     print("live_adapter_providers=PASS")

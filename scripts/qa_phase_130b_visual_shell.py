@@ -62,6 +62,7 @@ def main() -> None:
         "PHASE 1.30B Visual Surface + AppStore Shell" in header
         or "PHASE 1.32A — Final Product Shell" in header
         or "PHASE 1.33 — Real Results + Live Ingestion Ready" in header
+        or "PHASE 1.34 — Fully Clickable Fan App" in header
     ), "App shell marker missing"
     _assert_contains(app_text, "PHASE_130B_MARKER", "App marker constant")
     _assert_contains(header, "ABW", "Logo text mark")

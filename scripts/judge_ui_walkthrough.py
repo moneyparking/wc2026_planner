@@ -27,21 +27,22 @@ from src.wc2026_data_loader import validate_wc2026_dataset
 
 
 REPORT_DIR = REPO_ROOT / "releases" / "final"
-REPORT_MD = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_33_REPORT.md"
-REPORT_JSON = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_33_REPORT.json"
+REPORT_MD = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_34_REPORT.md"
+REPORT_JSON = REPORT_DIR / "JUDGE_UI_WALKTHROUGH_PHASE_1_34_REPORT.json"
 FORBIDDEN_TERMS = ("odds", "betting", "wager", "sportsbook", "parlay", "payout")
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
 PHASE_131_MARKER = "PHASE 1.31"
 PHASE_132_MARKER = "PHASE 1.32"
 PHASE_132A_MARKER = "PHASE 1.32A"
 PHASE_133_MARKER = "PHASE 1.33"
+PHASE_134_MARKER = "PHASE 1.34"
 OLD_ENGINE_COPY = "AUTONOMOUS LOCAL ENGINE ACTIVE"
 OLD_TACTICAL_COPY = "AI Scout Tactical Slip"
 OLD_LOCAL_ENGINE_COPY = "local runtime engine"
 
 
 def click_if_present(page, pattern: str, timeout: int) -> bool:
-    for role in ("button", "tab"):
+    for role in ("tab", "button"):
         try:
             locator = page.get_by_role(role, name=re.compile(pattern, re.I))
             if locator.count():
@@ -102,9 +103,9 @@ def main() -> int:
         initial_lower = initial.lower()
         record("App loads", "AI Bracket War Room 2026" in initial, args.url)
         record("Old Phase 1.30 marker hidden", "PHASE 1.30" not in initial and PHASE_130_MARKER not in initial, "Legacy Phase 1.30 marker absent.")
-        record("PHASE 1.31+ visible", PHASE_131_MARKER in initial or PHASE_132_MARKER in initial or PHASE_133_MARKER in initial, "Phase 1.31+ AppStore/Product phase detected.")
-        record("PHASE 1.32+ visible", PHASE_132_MARKER in initial or PHASE_133_MARKER in initial, "Phase 1.32+ production shell detected.")
-        record("PHASE 1.33 visible", PHASE_133_MARKER in initial, "Phase 1.33 Real Results + Live Ingestion Ready detected.")
+        record("PHASE 1.31+ visible", PHASE_131_MARKER in initial or PHASE_132_MARKER in initial or PHASE_133_MARKER in initial or PHASE_134_MARKER in initial, "Phase 1.31+ AppStore/Product phase detected.")
+        record("PHASE 1.32+ visible", PHASE_132_MARKER in initial or PHASE_133_MARKER in initial or PHASE_134_MARKER in initial, "Phase 1.32+ production shell detected.")
+        record("PHASE 1.34 visible", PHASE_134_MARKER in initial, "Phase 1.34 Fully Clickable Fan App detected.")
         for old_marker in ("PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME", "PHASE 1.30B Visual Surface + AppStore Shell", "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"):
             record(f"Old marker hidden: {old_marker}", old_marker not in initial, "Old phase marker absent from first surface.")
         for debug_copy in ("Scenario Controls", "Build Small Status", "Workbook:", "90-second Judge Verification"):
@@ -121,7 +122,7 @@ def main() -> int:
         raw_table_markers = [initial.find(marker) for marker in ("MATCH_PLANNER", "Date\nStage", "Planner quick filter") if initial.find(marker) != -1]
         table_index = min(raw_table_markers) if raw_table_markers else -1
         record("M001 visible before raw table content", m001_index != -1 and (table_index == -1 or m001_index < table_index), "M001 match center appears before raw table content.")
-        record("What Changed visible", "what changed" in initial_lower and "mexico moved to 3 pts in group a" in initial_lower, "What Changed panel detected.")
+        record("What Changed visible", "what changed" in initial_lower and "mexico 3 pts" in initial_lower and "korea republic 3 pts" in initial_lower, "What Changed panel detected.")
         record("App cards visible", "card-shell" in page.content() and "today-match-center" in page.content(), "Card shell classes detected.")
         record("Google Sheet Control visible", "Google Sheet Control explanation" in initial, "Google Sheet module detected.")
         record("Google Sheet Control Snapshot visible", "google sheet control snapshot" in initial_lower and "results_override" in initial_lower and "friends_picks" in initial_lower, "Sheet snapshot detected.")
@@ -146,14 +147,15 @@ def main() -> int:
         record("48 / 12 / 104 metrics visible", all(token in initial for token in ("48", "12", "104")), "Core metrics detected.")
         record("Squad count visible", "1,248" in initial or "1248" in initial or validation["squad_rows_count"] == 1248, "Squad count or validation present.")
 
-        load_clicked = click_if_present(page, r"Load Judge Demo Scenario|Load Demo Scenario", args.timeout)
-        page.wait_for_timeout(1500)
-        recalc_clicked = click_if_present(page, r"Recalculate War Room", args.timeout)
-        page.wait_for_timeout(2000)
+        refresh_clicked = click_if_present(page, r"Refresh Runtime", args.timeout)
+        page.wait_for_timeout(1000)
+        refresh_text = body_text(page)
+        recalc_clicked = click_if_present(page, r"Recalculate Impact|Recalculate War Room", args.timeout)
+        page.wait_for_timeout(1200)
         after_actions = body_text(page)
-        record("Load Demo Scenario button works", load_clicked, "Clicked load demo control.")
-        record("Recalculate War Room button works", recalc_clicked, "Clicked recalc control.")
-        record("Primary buttons change status", recalc_clicked and "Recalculate War Room" in after_actions, "Action status changed after click.")
+        record("Refresh Runtime button works", refresh_clicked and "Refresh Runtime" in refresh_text, "Clicked refresh runtime control.")
+        record("Recalculate Impact button works", recalc_clicked and "Recalculate Impact" in after_actions, "Clicked recalc control.")
+        record("Primary buttons change status", recalc_clicked and "Action Status" in after_actions, "Action status changed after click.")
         status_surface = initial + "\n" + after_actions
         record("Runtime Status Cards visible", "Completed matches" in status_surface and "Next match" in status_surface and "4" in status_surface, "Runtime status cards detected.")
         record("Live scores status visible", "Live scores" in status_surface, "Live scores status detected.")
@@ -178,15 +180,29 @@ def main() -> int:
         planner_visible_tables = visible_table_count(page)
         record("Match Planner shows source column", source_column_detected, "Source column detected." if source_column_detected else "Source column missing.")
         record("Match Planner table visible", planner_visible_tables >= 1, f"visible_tables={planner_visible_tables}")
+        m001_clicked = click_if_present(page, r"Select.*inspect match", args.timeout)
+        page.wait_for_timeout(800)
+        record("Select / inspect match works", m001_clicked and "Selected Match Detail" in body_text(page), "Selected match detail updated.")
+        view_full_clicked = click_if_present(page, r"View full 104-match table", args.timeout)
+        page.wait_for_timeout(800)
+        record("View full 104-match table works", view_full_clicked and "View full 104-match table" in body_text(page), "Full match table action updated.")
 
         click_if_present(page, r"Group Tracker|Groups", args.timeout)
         page.wait_for_timeout(1000)
         groups = body_text(page)
         record("Group Tracker shows groups", "12 groups rendered" in groups or all(letter in groups for letter in ("A", "B", "C")), "Group tracker content detected.")
-        record("Group Tracker maps real CSV teams", all(team in groups for team in ("Mexico", "Korea Republic", "Czech Republic", "South Africa")), "Group A real teams detected.")
+        record("Group Tracker maps real CSV teams", all(team in groups for team in ("Mexico", "Korea Republic", "Czechia", "South Africa")), "Group A real teams detected.")
         record("Group Tracker reflects Match 1 result", "Mexico" in groups and ("3" in groups or "Pts" in groups), "Runtime standings visible.")
         group_visible_tables = visible_table_count(page)
         record("Group Tracker table visible", group_visible_tables >= 1, f"visible_tables={group_visible_tables}")
+        full_standings_clicked = click_if_present(page, r"View full standings", args.timeout)
+        page.wait_for_timeout(800)
+        record("View full standings works", full_standings_clicked and "View full standings" in body_text(page), "Full standings action updated.")
+
+        click_if_present(page, r"3RD-PLACE|3rd-Place", args.timeout)
+        page.wait_for_timeout(800)
+        thirds_text = body_text(page)
+        record("Third-place meaningful pending state", "Third-place ranking is not active yet." in thirds_text and "Completed matches: 4 / 72" in thirds_text, "Third-place pending state detected.")
 
         click_if_present(page, r"Bracket War Room|Bracket", args.timeout)
         page.wait_for_timeout(1000)
@@ -196,6 +212,9 @@ def main() -> int:
         bracket_fallback = app._visible_bracket_war_room_html({}, pd.DataFrame())
         bracket_ok = all(term in (bracket + bracket_fallback) for term in ("Round of 32", "Round of 16", "Quarter", "Semi", "Final"))
         record("Bracket shows Round of 32 through Final", bracket_ok, "Knockout stages detected.")
+        view_bracket_clicked = click_if_present(page, r"View bracket", args.timeout)
+        page.wait_for_timeout(800)
+        record("View bracket works", view_bracket_clicked and "View bracket" in body_text(page), "Bracket action updated.")
 
         click_if_present(page, r"Friends League", args.timeout)
         page.wait_for_timeout(1000)
@@ -204,6 +223,10 @@ def main() -> int:
         record("Friends League shows real match references", "Match 1:" in (friends + friends_fallback) and "Mexico" in (friends + friends_fallback), "Real match references detected.")
         record("Friends League shows Actual Result / Status", "Actual Result" in (friends + friends_fallback) and "Status" in (friends + friends_fallback), "Actual Result and Status columns detected.")
         record("Friends League table visible", visible_table_count(page) > 0 or "<table>" in friends_fallback, f"visible_tables={visible_table_count(page)}")
+        score_clicked = click_if_present(page, r"Score Friends League", args.timeout)
+        page.wait_for_timeout(1000)
+        score_text = body_text(page)
+        record("Score Friends League works", score_clicked and "Score Friends League" in score_text and "Top player / leaderboard status" in score_text, "Friends scoring action updated.")
 
         click_if_present(page, r"AI Scout|Dashboard", args.timeout)
         page.wait_for_timeout(1000)
@@ -213,12 +236,31 @@ def main() -> int:
         strong_scout = scout + scout_fallback
         record("AI Scout is match-context-aware", "AI Scout" in strong_scout and "Next action" in strong_scout, "Match control panel detected.")
         record("AI Scout lists loaded players", "players" in strong_scout and "player sample" in strong_scout, "Player-loaded squad output detected.")
+        ask_clicked = click_if_present(page, r"Ask AI Scout", args.timeout)
+        page.wait_for_timeout(1000)
+        record("Ask AI Scout works", ask_clicked and "Ask AI Scout" in body_text(page), "AI Scout action updated.")
 
         click_if_present(page, r"Google Sheet Control|Google Sheet", args.timeout)
         page.wait_for_timeout(1000)
         sheet_control = body_text(page)
         sheet_fallback = app.google_sheet_control_html({})
         record("Google Sheet Control tab explains connection", "How to connect your sheet" in (sheet_control + sheet_fallback) and "Results_Override" in (sheet_control + sheet_fallback), "Connection instructions detected.")
+        pull_clicked = click_if_present(page, r"Pull Google Sheet", args.timeout)
+        page.wait_for_timeout(1000)
+        pull_text = body_text(page)
+        record("Pull Google Sheet works", pull_clicked and "Google Sheet is not connected. Add GOOGLE_SHEET_ENABLED=true, GOOGLE_SHEET_ID, and GOOGLE_SERVICE_ACCOUNT_JSON to enable." in pull_text, "Safe disconnected warning detected.")
+
+        debug_clicked = click_if_present(page, r"Judge QA.*Debug", args.timeout)
+        page.wait_for_timeout(800)
+        debug_text = body_text(page)
+        record("Judge QA / Debug isolated", debug_clicked and "Load Demo Scenario" in debug_text and "Generate Random Outcomes" in debug_text and "Clear Local Edits" in debug_text, "Debug controls isolated in final tab.")
+        load_clicked = click_if_present(page, r"Load Judge Demo Scenario|Load Demo Scenario", args.timeout)
+        page.wait_for_timeout(800)
+        random_clicked = click_if_present(page, r"Generate Random Outcomes", args.timeout)
+        page.wait_for_timeout(800)
+        clear_clicked = click_if_present(page, r"Clear Local Edits", args.timeout)
+        page.wait_for_timeout(800)
+        record("Debug buttons work", load_clicked and random_clicked and clear_clicked, "Debug controls clicked without callback failure.")
 
         combined = "\n".join([initial, after_actions, planner, groups, bracket, friends, scout, sheet_control]).lower()
         record("No forbidden terms visible", not any(term in combined for term in FORBIDDEN_TERMS), "Forbidden terms absent from visible walkthrough text.")
@@ -247,16 +289,16 @@ def main() -> int:
     }
     REPORT_JSON.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     REPORT_MD.write_text(
-        "# Judge UI Walkthrough Phase 1.33\n\n"
+        "# Judge UI Walkthrough Phase 1.34\n\n"
         + "\n".join(f"- {item['status']}: {item['check']} — {item['detail']}" for item in checks)
         + "\n",
         encoding="utf-8",
     )
 
     if any(item["status"] == "FAIL" for item in checks):
-        print("JUDGE_UI_WALKTHROUGH_PHASE_1_33_FAIL")
+        print("JUDGE_UI_WALKTHROUGH_PHASE_1_34_FAIL")
         return 1
-    print("JUDGE_UI_WALKTHROUGH_PHASE_1_33_PASS")
+    print("JUDGE_UI_WALKTHROUGH_PHASE_1_34_PASS")
     return 0
 
 

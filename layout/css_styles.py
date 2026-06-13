@@ -593,6 +593,23 @@ button,
     color: var(--abw-text) !important;
 }
 
+.gradio-container .tab-container,
+.gradio-container [role='tablist'] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.gradio-container [role='tab'] {
+    border: 1px solid var(--abw-border) !important;
+    border-radius: 999px !important;
+    flex: 0 0 auto !important;
+    margin: 0 0 4px 0 !important;
+    position: relative !important;
+}
+
 input,
 textarea,
 select {

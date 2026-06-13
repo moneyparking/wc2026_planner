@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-06-13T05:53:45.691944+00:00",
-  "url": "https://moneyparking-ai-bracket-war-room-2026.hf.space",
+  "generated_at_utc": "2026-06-13T06:50:31.804405+00:00",
+  "url": "http://127.0.0.1:9000",
   "dataset_validation": {
     "groups_count": 12,
     "teams_count": 48,
@@ -15,7 +15,7 @@
     {
       "check": "App loads",
       "status": "PASS",
-      "detail": "https://moneyparking-ai-bracket-war-room-2026.hf.space"
+      "detail": "http://127.0.0.1:9000"
     },
     {
       "check": "Old Phase 1.30 marker hidden",
@@ -33,9 +33,9 @@
       "detail": "Phase 1.32+ production shell detected."
     },
     {
-      "check": "PHASE 1.33 visible",
+      "check": "PHASE 1.34 visible",
       "status": "PASS",
-      "detail": "Phase 1.33 Real Results + Live Ingestion Ready detected."
+      "detail": "Phase 1.34 Fully Clickable Fan App detected."
     },
     {
       "check": "Old marker hidden: PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME",
@@ -198,12 +198,12 @@
       "detail": "Squad count or validation present."
     },
     {
-      "check": "Load Demo Scenario button works",
+      "check": "Refresh Runtime button works",
       "status": "PASS",
-      "detail": "Clicked load demo control."
+      "detail": "Clicked refresh runtime control."
     },
     {
-      "check": "Recalculate War Room button works",
+      "check": "Recalculate Impact button works",
       "status": "PASS",
       "detail": "Clicked recalc control."
     },
@@ -260,7 +260,17 @@
     {
       "check": "Match Planner table visible",
       "status": "PASS",
-      "detail": "visible_tables=2"
+      "detail": "visible_tables=1"
+    },
+    {
+      "check": "Select / inspect match works",
+      "status": "PASS",
+      "detail": "Selected match detail updated."
+    },
+    {
+      "check": "View full 104-match table works",
+      "status": "PASS",
+      "detail": "Full match table action updated."
     },
     {
       "check": "Group Tracker shows groups",
@@ -280,12 +290,27 @@
     {
       "check": "Group Tracker table visible",
       "status": "PASS",
-      "detail": "visible_tables=2"
+      "detail": "visible_tables=1"
+    },
+    {
+      "check": "View full standings works",
+      "status": "PASS",
+      "detail": "Full standings action updated."
+    },
+    {
+      "check": "Third-place meaningful pending state",
+      "status": "PASS",
+      "detail": "Third-place pending state detected."
     },
     {
       "check": "Bracket shows Round of 32 through Final",
       "status": "PASS",
       "detail": "Knockout stages detected."
+    },
+    {
+      "check": "View bracket works",
+      "status": "PASS",
+      "detail": "Bracket action updated."
     },
     {
       "check": "Friends League shows real match references",
@@ -300,7 +325,12 @@
     {
       "check": "Friends League table visible",
       "status": "PASS",
-      "detail": "visible_tables=2"
+      "detail": "visible_tables=1"
+    },
+    {
+      "check": "Score Friends League works",
+      "status": "PASS",
+      "detail": "Friends scoring action updated."
     },
     {
       "check": "AI Scout shows runtime score and group impact",
@@ -318,9 +348,29 @@
       "detail": "Player-loaded squad output detected."
     },
     {
+      "check": "Ask AI Scout works",
+      "status": "PASS",
+      "detail": "AI Scout action updated."
+    },
+    {
       "check": "Google Sheet Control tab explains connection",
       "status": "PASS",
       "detail": "Connection instructions detected."
+    },
+    {
+      "check": "Pull Google Sheet works",
+      "status": "PASS",
+      "detail": "Safe disconnected warning detected."
+    },
+    {
+      "check": "Judge QA / Debug isolated",
+      "status": "PASS",
+      "detail": "Debug controls isolated in final tab."
+    },
+    {
+      "check": "Debug buttons work",
+      "status": "PASS",
+      "detail": "Debug controls clicked without callback failure."
     },
     {
       "check": "No forbidden terms visible",
@@ -350,37 +400,37 @@
     {
       "check": "Dashboard non-empty",
       "status": "PASS",
-      "detail": "9784 visible characters."
+      "detail": "8703 visible characters."
     },
     {
       "check": "Match Planner non-empty",
       "status": "PASS",
-      "detail": "9784 visible characters."
+      "detail": "9370 visible characters."
     },
     {
       "check": "Group Tracker non-empty",
       "status": "PASS",
-      "detail": "8177 visible characters."
+      "detail": "9767 visible characters."
     },
     {
       "check": "Bracket War Room non-empty",
       "status": "PASS",
-      "detail": "7326 visible characters."
+      "detail": "9376 visible characters."
     },
     {
       "check": "Friends League non-empty",
       "status": "PASS",
-      "detail": "7219 visible characters."
+      "detail": "8704 visible characters."
     },
     {
       "check": "AI Scout non-empty",
       "status": "PASS",
-      "detail": "7219 visible characters."
+      "detail": "8448 visible characters."
     },
     {
       "check": "Google Sheet Control non-empty",
       "status": "PASS",
-      "detail": "7219 visible characters."
+      "detail": "8440 visible characters."
     }
   ]
 }

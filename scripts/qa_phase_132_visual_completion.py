@@ -48,7 +48,7 @@ def main() -> None:
         ]
     )
 
-    assert "PHASE 1.32" in initial or "PHASE 1.33" in initial, "Phase marker missing"
+    assert "PHASE 1.32" in initial or "PHASE 1.33" in initial or "PHASE 1.34" in initial, "Phase marker missing"
     assert_contains(initial, "ABW", "ABW logo")
     assert_contains(initial, "Today’s Match Center", "Today's Match Center")
     assert_contains(initial, "What Changed", "What Changed panel")
@@ -87,11 +87,12 @@ def main() -> None:
     for required_css in ("#07111F", "#F8FAFC", "#FFFFFF", "#0F172A", "#64748B", "#CBD5E1", "#10B981", "#F59E0B", "#EF4444", "border-radius: 16px"):
         assert_contains(source_text, required_css, "Visual system CSS")
 
-    assert_contains(walkthrough_text, "PHASE 1.32", "Walkthrough Phase 1.32 requirement")
+    assert "PHASE 1.32" in walkthrough_text or "PHASE 1.34" in walkthrough_text, "Walkthrough Phase requirement missing"
     assert (
         "JUDGE_UI_WALKTHROUGH_PHASE_1_32_PASS" in walkthrough_text
         or "JUDGE_UI_WALKTHROUGH_PHASE_1_32A_PASS" in walkthrough_text
         or "JUDGE_UI_WALKTHROUGH_PHASE_1_33_PASS" in walkthrough_text
+        or "JUDGE_UI_WALKTHROUGH_PHASE_1_34_PASS" in walkthrough_text
     ), "Walkthrough Phase 1.32 marker missing"
 
     lowered = initial.lower()

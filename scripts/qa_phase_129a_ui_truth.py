@@ -76,9 +76,12 @@ def main() -> None:
         ("Generate Random Outcomes for all 104 matches", random_payload),
     ):
         status_html = payload[12]
-        assert_contains(status_html, "Phase 1.29A Interaction Status", label)
-        assert_contains(status_html, label, label)
-        assert_contains(status_html, app.DEPLOY_MARKER, label)
+        assert_contains(status_html, "Action Status", label)
+        if label == "Recalculate War Room":
+            assert "Recalculate War Room" in status_html or "Recalculate Impact / War Room" in status_html, label
+        else:
+            assert_contains(status_html, label, label)
+        assert_contains(status_html, "Completed matches", label)
         assert_contains(payload[2], "<table>", f"{label} match planner preview")
         assert_contains(payload[4], "<table>", f"{label} group tracker preview")
         assert_contains(payload[6], "<table>", f"{label} third-place preview")

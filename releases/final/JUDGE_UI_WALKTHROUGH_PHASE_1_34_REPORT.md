@@ -1,10 +1,10 @@
-# Judge UI Walkthrough Phase 1.33
+# Judge UI Walkthrough Phase 1.34
 
-- PASS: App loads — https://moneyparking-ai-bracket-war-room-2026.hf.space
+- PASS: App loads — http://127.0.0.1:9000
 - PASS: Old Phase 1.30 marker hidden — Legacy Phase 1.30 marker absent.
 - PASS: PHASE 1.31+ visible — Phase 1.31+ AppStore/Product phase detected.
 - PASS: PHASE 1.32+ visible — Phase 1.32+ production shell detected.
-- PASS: PHASE 1.33 visible — Phase 1.33 Real Results + Live Ingestion Ready detected.
+- PASS: PHASE 1.34 visible — Phase 1.34 Fully Clickable Fan App detected.
 - PASS: Old marker hidden: PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME — Old phase marker absent from first surface.
 - PASS: Old marker hidden: PHASE 1.30B Visual Surface + AppStore Shell — Old phase marker absent from first surface.
 - PASS: Old marker hidden: PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX — Old phase marker absent from first surface.
@@ -37,8 +37,8 @@
 - PASS: Dashboard visible — Dashboard or app module text detected.
 - PASS: 48 / 12 / 104 metrics visible — Core metrics detected.
 - PASS: Squad count visible — Squad count or validation present.
-- PASS: Load Demo Scenario button works — Clicked load demo control.
-- PASS: Recalculate War Room button works — Clicked recalc control.
+- PASS: Refresh Runtime button works — Clicked refresh runtime control.
+- PASS: Recalculate Impact button works — Clicked recalc control.
 - PASS: Primary buttons change status — Action status changed after click.
 - PASS: Runtime Status Cards visible — Runtime status cards detected.
 - PASS: Live scores status visible — Live scores status detected.
@@ -49,28 +49,38 @@
 - PASS: No placeholder-first M001 — M001 does not start as knockout placeholder.
 - PASS: Match 1 verified result visible — M001 result/source detected.
 - PASS: Match Planner shows source column — Source column detected.
-- PASS: Match Planner table visible — visible_tables=2
+- PASS: Match Planner table visible — visible_tables=1
+- PASS: Select / inspect match works — Selected match detail updated.
+- PASS: View full 104-match table works — Full match table action updated.
 - PASS: Group Tracker shows groups — Group tracker content detected.
 - PASS: Group Tracker maps real CSV teams — Group A real teams detected.
 - PASS: Group Tracker reflects Match 1 result — Runtime standings visible.
-- PASS: Group Tracker table visible — visible_tables=2
+- PASS: Group Tracker table visible — visible_tables=1
+- PASS: View full standings works — Full standings action updated.
+- PASS: Third-place meaningful pending state — Third-place pending state detected.
 - PASS: Bracket shows Round of 32 through Final — Knockout stages detected.
+- PASS: View bracket works — Bracket action updated.
 - PASS: Friends League shows real match references — Real match references detected.
 - PASS: Friends League shows Actual Result / Status — Actual Result and Status columns detected.
-- PASS: Friends League table visible — visible_tables=2
+- PASS: Friends League table visible — visible_tables=1
+- PASS: Score Friends League works — Friends scoring action updated.
 - PASS: AI Scout shows runtime score and group impact — Runtime score and impact detected.
 - PASS: AI Scout is match-context-aware — Match control panel detected.
 - PASS: AI Scout lists loaded players — Player-loaded squad output detected.
+- PASS: Ask AI Scout works — AI Scout action updated.
 - PASS: Google Sheet Control tab explains connection — Connection instructions detected.
+- PASS: Pull Google Sheet works — Safe disconnected warning detected.
+- PASS: Judge QA / Debug isolated — Debug controls isolated in final tab.
+- PASS: Debug buttons work — Debug controls clicked without callback failure.
 - PASS: No forbidden terms visible — Forbidden terms absent from visible walkthrough text.
 - PASS: Old autonomous local engine absent — Legacy engine copy absent from walkthrough.
 - PASS: Old Tactical Slip absent — Legacy Tactical Slip copy absent from walkthrough.
 - PASS: Old local runtime engine absent — Legacy local runtime engine copy absent from walkthrough.
 - PASS: Unofficial disclaimer visible — Unofficial fan-made disclaimer detected.
-- PASS: Dashboard non-empty — 9784 visible characters.
-- PASS: Match Planner non-empty — 9784 visible characters.
-- PASS: Group Tracker non-empty — 8177 visible characters.
-- PASS: Bracket War Room non-empty — 7326 visible characters.
-- PASS: Friends League non-empty — 7219 visible characters.
-- PASS: AI Scout non-empty — 7219 visible characters.
-- PASS: Google Sheet Control non-empty — 7219 visible characters.
+- PASS: Dashboard non-empty — 8703 visible characters.
+- PASS: Match Planner non-empty — 9370 visible characters.
+- PASS: Group Tracker non-empty — 9767 visible characters.
+- PASS: Bracket War Room non-empty — 9376 visible characters.
+- PASS: Friends League non-empty — 8704 visible characters.
+- PASS: AI Scout non-empty — 8448 visible characters.
+- PASS: Google Sheet Control non-empty — 8440 visible characters.
