@@ -9,7 +9,7 @@ python_version: '3.12'
 app_file: app.py
 pinned: false
 license: mit
-short_description: "Fan-made WC2026 scenario planner: predictions, brackets, Friends League, AI Scout, and premium matchday exports."
+short_description: "Fan-made WC2026 bracket planner with AI Scout."
 tags:
   - gradio
   - football
