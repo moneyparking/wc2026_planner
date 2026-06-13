@@ -5,11 +5,20 @@ colorFrom: blue
 colorTo: gray
 sdk: gradio
 sdk_version: 4.44.1
-python_version: "3.12"
+python_version: '3.12'
 app_file: app.py
 pinned: false
+license: mit
+short_description: "Fan-made WC2026 scenario planner: predictions, brackets, Friends League, AI Scout, and premium matchday exports."
+tags:
+  - gradio
+  - football
+  - sports
+  - world-cup
+  - bracket
+  - predictions
+  - hackathon
 ---
-
 # AI Bracket War Room 2026
 
 Unofficial fan-made 104-match football tournament command center for planning, prediction tracking, private leagues, bracket simulation, and squad-aware scout signals.
@@ -187,3 +196,17 @@ HACKATHON_SMOKE_TESTS_PASS
 JUDGE_UI_WALKTHROUGH_PASS
 [PASS] Step 7 — Visual contrast audit
 ```
+
+
+## Premium Monetization Path
+
+AI Bracket War Room 2026 uses a judge-safe free core with visible premium upgrade paths.
+
+| Tier | Price | Value |
+|---|---:|---|
+| Free Core | $0 | Runtime demo, 104-match planner, group tracker, third-place ranking, bracket preview, Friends League demo, AI Scout preview |
+| Premium Matchday | $9 | Advanced AI Scout cards, export-ready summaries, private league export pack, ad-free planning shell |
+| Ultimate Fan Pack | $27 | 184-page GoodNotes/PDF command center, 104 match logs, office-pool kit, printable exports, sticker bundle |
+| Source License | $49+ | Deployable Gradio source bundle, templates, private league starter, deployment guide |
+
+Fan-safe boundary: unofficial fan-made planner, no gambling language, no official federation marks, no player likeness dependency, and no paid live-score requirement.

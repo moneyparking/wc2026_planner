@@ -34,6 +34,50 @@ PHASE_132_MARKER = "PHASE 1.32 — Production Visual QA Complete"
 PHASE_132A_MARKER = "PHASE 1.32A — Final Product Shell"
 PHASE_133_MARKER = "PHASE 1.33 — Real Results + Live Ingestion Ready"
 PHASE_134_MARKER = "PHASE 1.34 — Fully Clickable Fan App"
+PHASE_135_MARKER = "PHASE 1.35 — Premium Monetization + Submission Polish"
+
+GUMROAD_PREMIUM_URL = os.getenv(
+    "GUMROAD_PREMIUM_URL",
+    "https://gumroad.com/l/ai-bracket-war-room-2026-premium",
+)
+
+GUMROAD_SOURCE_URL = os.getenv(
+    "GUMROAD_SOURCE_URL",
+    "https://gumroad.com/l/ai-bracket-war-room-2026-source",
+)
+
+PREMIUM_FEATURES = {
+    "free": [
+        "104-match runtime planner",
+        "Group table + third-place ranking",
+        "Round of 32 bracket preview",
+        "Friends League demo scoring",
+        "AI Scout preview",
+        "Judge demo scenario",
+    ],
+    "premium_matchday": [
+        "Advanced AI Scout match cards",
+        "Full matchday planner exports",
+        "Private Friends League export pack",
+        "Ad-free app shell",
+        "Share-ready scenario summaries",
+    ],
+    "ultimate_fan_pack": [
+        "184-page GoodNotes/PDF command center",
+        "104 dedicated match logs",
+        "Office pool + watch party kit",
+        "500 PNG/SVG sticker bundle",
+        "Printable A4 + Letter exports",
+    ],
+    "source_license": [
+        "Deployable Gradio source bundle",
+        "Premium templates",
+        "Private league starter kit",
+        "Commercial-use setup notes",
+        "Hugging Face deployment guide",
+    ],
+}
+
 
 PHASE_126_INTERACTIVE_CSS = """
 /* Phase 1.26: judge-readable interactive UI hardening */
@@ -3397,12 +3441,293 @@ PHASE130C_EMPTY_SURFACE_FIX_STYLE = """<style>
 }
 </style>"""
 
+
+PHASE_135_PREMIUM_CSS = """
+<style>
+.premium-strip {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(220px, .7fr);
+    gap: 18px;
+    align-items: center;
+    border: 1px solid rgba(255, 209, 102, .45) !important;
+    background:
+        radial-gradient(circle at 10% 0%, rgba(167,255,0,.14), transparent 32%),
+        linear-gradient(135deg, #09111d 0%, #101827 52%, #17120a 100%) !important;
+}
+
+.premium-strip h2,
+.price-card h3 {
+    color: #fff !important;
+    margin: 0 0 8px 0;
+}
+
+.premium-strip p,
+.price-card p,
+.premium-disclaimer {
+    color: #cbd5e1 !important;
+}
+
+.premium-strip-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.premium-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-weight: 900;
+    text-decoration: none !important;
+    border: 1px solid rgba(255,255,255,.18);
+}
+
+.premium-button.primary {
+    background: linear-gradient(135deg, #A7FF00, #FFD166);
+    color: #071018 !important;
+}
+
+.premium-button.secondary {
+    background: rgba(53, 214, 232, .12);
+    color: #E6FBFF !important;
+    border-color: rgba(53, 214, 232, .38);
+}
+
+.premium-button.full {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.premium-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 14px 0;
+}
+
+.price-card {
+    border-radius: 18px;
+    padding: 16px;
+    background: #0f172a;
+    border: 1px solid #263244;
+    box-shadow: 0 14px 40px rgba(0,0,0,.18);
+}
+
+.price-card.premium,
+.price-card.ultimate {
+    border-color: rgba(255, 209, 102, .48);
+}
+
+.price-card ul {
+    margin: 12px 0 0 18px;
+    padding: 0;
+    color: #e5e7eb;
+}
+
+.price-card li {
+    margin: 7px 0;
+}
+
+.price-card-footer {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.premium-pill {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 4px 9px;
+    font-weight: 900;
+    background: rgba(255, 209, 102, .15);
+    color: #FFD166;
+    border: 1px solid rgba(255, 209, 102, .35);
+}
+
+.premium-export-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.premium-export-table th,
+.premium-export-table td {
+    padding: 10px;
+    border-bottom: 1px solid #263244;
+    text-align: left;
+}
+
+@media (max-width: 900px) {
+    .premium-strip,
+    .premium-pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .premium-strip-actions {
+        justify-content: stretch;
+    }
+
+    .premium-button {
+        width: 100%;
+    }
+}
+</style>
+"""
+
+
+def _feature_list(items: list[str]) -> str:
+    return "".join(f"<li>{escape(item)}</li>" for item in items)
+
+
+def _premium_cta_strip_html() -> str:
+    return f"""
+    <section class="premium-strip app-card card-shell" aria-label="Premium upgrade">
+        <div>
+            <div class="module-kicker">Premium Fan Mode</div>
+            <h2>Turn the free War Room into a matchday product.</h2>
+            <p>
+                Free users get the full judge demo. Premium unlocks advanced scout cards,
+                exports, ad-free planning, GoodNotes/PDF fan packs, and the Gumroad source bundle.
+            </p>
+        </div>
+        <div class="premium-strip-actions">
+            <a class="premium-button primary" href="{escape(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">
+                Unlock Premium
+            </a>
+            <a class="premium-button secondary" href="{escape(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">
+                Get Source
+            </a>
+        </div>
+    </section>
+    """
+
+
+def _premium_pricing_html() -> str:
+    return f"""
+    <section class="premium-pricing-grid" aria-label="Free and premium plans">
+        <article class="price-card free">
+            <div class="module-kicker">Free Core</div>
+            <h3>$0</h3>
+            <p>Everything needed to understand and judge the app.</p>
+            <ul>{_feature_list(PREMIUM_FEATURES["free"])}</ul>
+            <div class="price-card-footer">Best for judges, casual fans, and first-time users.</div>
+        </article>
+
+        <article class="price-card premium">
+            <div class="module-kicker">Premium Matchday</div>
+            <h3>$9</h3>
+            <p>For fans running real matchday scenarios and private leagues.</p>
+            <ul>{_feature_list(PREMIUM_FEATURES["premium_matchday"])}</ul>
+            <a class="premium-button primary full" href="{escape(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">
+                Buy Premium
+            </a>
+        </article>
+
+        <article class="price-card ultimate">
+            <div class="module-kicker">Ultimate Fan Pack</div>
+            <h3>$27</h3>
+            <p>Printable + GoodNotes command center for the whole tournament.</p>
+            <ul>{_feature_list(PREMIUM_FEATURES["ultimate_fan_pack"])}</ul>
+            <a class="premium-button primary full" href="{escape(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">
+                Get Fan Pack
+            </a>
+        </article>
+
+        <article class="price-card source">
+            <div class="module-kicker">Gumroad Source</div>
+            <h3>$49+</h3>
+            <p>For builders who want to clone, customize, and deploy their own version.</p>
+            <ul>{_feature_list(PREMIUM_FEATURES["source_license"])}</ul>
+            <a class="premium-button secondary full" href="{escape(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">
+                Buy Source
+            </a>
+        </article>
+    </section>
+    <section class="app-card card-shell premium-disclaimer">
+        <strong>Fan-safe monetization:</strong>
+        No gambling, no official federation marks, no player likeness dependency, no paid live-score requirement.
+        Premium is for exports, planning tools, templates, ad-free UI, and source access.
+    </section>
+    """
+
+
+def _premium_locked_exports_html() -> str:
+    rows = [
+        ("Scenario Summary CSV", "Premium", "Export group movement, bracket path, and Friends League swing."),
+        ("AI Scout Match Cards", "Premium", "Share-ready tactical cards for selected matches."),
+        ("Private League Pack", "Premium", "Office-pool setup, scoring guide, and printable sheets."),
+        ("GoodNotes Fan Command Center", "Ultimate", "184-page digital tournament notebook."),
+        ("Sticker Bundle", "Ultimate", "500 PNG/SVG football stickers for digital planning."),
+        ("Source Bundle", "Source", "Deployable Gradio app starter + templates."),
+    ]
+
+    body = "".join(
+        f"""
+        <tr>
+            <td>{escape(name)}</td>
+            <td><span class="premium-pill">{escape(tier)}</span></td>
+            <td>{escape(copy)}</td>
+            <td>🔒 Locked preview</td>
+        </tr>
+        """
+        for name, tier, copy in rows
+    )
+
+    return f"""
+    <section class="app-card card-shell">
+        <div class="module-kicker">Premium Export Center</div>
+        <h2>Locked exports make the business model obvious without blocking the demo.</h2>
+        <p>
+            The free app remains fully judgeable. Premium CTAs show what converts:
+            exports, advanced summaries, fan packs, and source.
+        </p>
+        <table class="premium-export-table">
+            <thead>
+                <tr><th>Export</th><th>Tier</th><th>Value</th><th>Status</th></tr>
+            </thead>
+            <tbody>{body}</tbody>
+        </table>
+        <div class="premium-strip-actions">
+            <a class="premium-button primary" href="{escape(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">
+                Unlock Export Pack
+            </a>
+            <a class="premium-button secondary" href="{escape(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">
+                Get Source Bundle
+            </a>
+        </div>
+    </section>
+    """
+
+
+def _submission_package_html() -> str:
+    return f"""
+    <section class="app-card card-shell">
+        <div class="module-kicker">Submission Package</div>
+        <h2>Build Small Hackathon final checklist</h2>
+        <ol>
+            <li><strong>Demo path:</strong> Refresh Runtime → Load Demo → Recalculate → inspect Groups, Bracket, Friends, AI Scout.</li>
+            <li><strong>Proof:</strong> 48 teams, 12 groups, 104 matches, 495 third-place combinations.</li>
+            <li><strong>Safety:</strong> unofficial fan-made planner, no gambling, no official marks.</li>
+            <li><strong>Business:</strong> Free core + Premium Matchday + Ultimate Fan Pack + Gumroad Source.</li>
+            <li><strong>Polish:</strong> mobile-first cards, sticky CTAs, premium exports, judge QA tab.</li>
+        </ol>
+        <p><strong>Deploy marker:</strong> {escape(PHASE_135_MARKER)}</p>
+    </section>
+    """
+
 with gr.Blocks(title=APP_TITLE, css=PREMIUM_DARK_SPORT_CSS) as demo:
+    gr.HTML(PHASE_135_PREMIUM_CSS)
     workbook_state = gr.State()
     gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
     gr.HTML(PHASE130C_EMPTY_SURFACE_FIX_STYLE)
     gr.HTML(_command_header_html())
     gr.HTML(value=_appstore_first_screen_html())
+    gr.HTML(value=_premium_cta_strip_html())
 
     top_checklist_html = gr.HTML(value=_product_action_status_html({}, "Initial load", "Runtime loaded from verified public results cache."), visible=True)
     modal_gpu_status_html = gr.HTML(value="", visible=False)
@@ -3450,7 +3775,24 @@ with gr.Blocks(title=APP_TITLE, css=PREMIUM_DARK_SPORT_CSS) as demo:
         with gr.Tab("📄 Google Sheet"):
             pull_sheet_tab_button = gr.Button("Pull Google Sheet", variant="primary")
             google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
-        with gr.Tab("Judge QA / Debug"):
+    
+    with gr.Tab(" Premium"):
+        gr.HTML(value=_premium_pricing_html())
+        gr.HTML(value=_premium_locked_exports_html())
+        gr.HTML(value=_submission_package_html())
+        with gr.Row():
+            gr.Button(
+                "Unlock Premium on Gumroad",
+                variant="primary",
+                link=GUMROAD_PREMIUM_URL,
+            )
+            gr.Button(
+                "Buy Source Bundle",
+                variant="secondary",
+                link=GUMROAD_SOURCE_URL,
+            )
+
+    with gr.Tab("Judge QA / Debug"):
             debug_state = load_workbook_state()
             debug_groups = pd.DataFrame()
             debug_thirds = pd.DataFrame()
