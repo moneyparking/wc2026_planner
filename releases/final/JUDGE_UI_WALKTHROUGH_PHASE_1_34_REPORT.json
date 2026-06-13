@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-06-13T06:50:31.804405+00:00",
-  "url": "http://127.0.0.1:9000",
+  "generated_at_utc": "2026-06-13T09:27:51.463099+00:00",
+  "url": "https://moneyparking-ai-bracket-war-room-2026.hf.space",
   "dataset_validation": {
     "groups_count": 12,
     "teams_count": 48,
@@ -15,7 +15,7 @@
     {
       "check": "App loads",
       "status": "PASS",
-      "detail": "http://127.0.0.1:9000"
+      "detail": "https://moneyparking-ai-bracket-war-room-2026.hf.space"
     },
     {
       "check": "Old Phase 1.30 marker hidden",
@@ -400,37 +400,37 @@
     {
       "check": "Dashboard non-empty",
       "status": "PASS",
-      "detail": "8703 visible characters."
+      "detail": "9340 visible characters."
     },
     {
       "check": "Match Planner non-empty",
       "status": "PASS",
-      "detail": "9370 visible characters."
+      "detail": "9288 visible characters."
     },
     {
       "check": "Group Tracker non-empty",
       "status": "PASS",
-      "detail": "9767 visible characters."
+      "detail": "9685 visible characters."
     },
     {
       "check": "Bracket War Room non-empty",
       "status": "PASS",
-      "detail": "9376 visible characters."
+      "detail": "9294 visible characters."
     },
     {
       "check": "Friends League non-empty",
       "status": "PASS",
-      "detail": "8704 visible characters."
+      "detail": "8622 visible characters."
     },
     {
       "check": "AI Scout non-empty",
       "status": "PASS",
-      "detail": "8448 visible characters."
+      "detail": "8366 visible characters."
     },
     {
       "check": "Google Sheet Control non-empty",
       "status": "PASS",
-      "detail": "8440 visible characters."
+      "detail": "8358 visible characters."
     }
   ]
 }

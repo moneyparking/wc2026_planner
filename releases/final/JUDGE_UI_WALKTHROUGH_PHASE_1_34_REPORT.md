@@ -1,6 +1,6 @@
 # Judge UI Walkthrough Phase 1.34
 
-- PASS: App loads — http://127.0.0.1:9000
+- PASS: App loads — https://moneyparking-ai-bracket-war-room-2026.hf.space
 - PASS: Old Phase 1.30 marker hidden — Legacy Phase 1.30 marker absent.
 - PASS: PHASE 1.31+ visible — Phase 1.31+ AppStore/Product phase detected.
 - PASS: PHASE 1.32+ visible — Phase 1.32+ production shell detected.
@@ -77,10 +77,10 @@
 - PASS: Old Tactical Slip absent — Legacy Tactical Slip copy absent from walkthrough.
 - PASS: Old local runtime engine absent — Legacy local runtime engine copy absent from walkthrough.
 - PASS: Unofficial disclaimer visible — Unofficial fan-made disclaimer detected.
-- PASS: Dashboard non-empty — 8703 visible characters.
-- PASS: Match Planner non-empty — 9370 visible characters.
-- PASS: Group Tracker non-empty — 9767 visible characters.
-- PASS: Bracket War Room non-empty — 9376 visible characters.
-- PASS: Friends League non-empty — 8704 visible characters.
-- PASS: AI Scout non-empty — 8448 visible characters.
-- PASS: Google Sheet Control non-empty — 8440 visible characters.
+- PASS: Dashboard non-empty — 9340 visible characters.
+- PASS: Match Planner non-empty — 9288 visible characters.
+- PASS: Group Tracker non-empty — 9685 visible characters.
+- PASS: Bracket War Room non-empty — 9294 visible characters.
+- PASS: Friends League non-empty — 8622 visible characters.
+- PASS: AI Scout non-empty — 8366 visible characters.
+- PASS: Google Sheet Control non-empty — 8358 visible characters.
