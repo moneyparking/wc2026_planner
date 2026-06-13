@@ -34,7 +34,7 @@ PHASE_132_MARKER = "PHASE 1.32 — Production Visual QA Complete"
 PHASE_132A_MARKER = "PHASE 1.32A — Final Product Shell"
 PHASE_133_MARKER = "PHASE 1.33 — Real Results + Live Ingestion Ready"
 PHASE_134_MARKER = "PHASE 1.34 — Fully Clickable Fan App"
-PHASE_135_MARKER = "PHASE 1.35 — Premium Monetization + Submission Polish"
+PHASE_135_MARKER = "PHASE 1.35 — Premium Monetization + Hackathon Submission Ready"
 
 GUMROAD_PREMIUM_URL = os.getenv(
     "GUMROAD_PREMIUM_URL",
@@ -3817,7 +3817,7 @@ with gr.Blocks(title=APP_TITLE, css=PREMIUM_DARK_SPORT_CSS) as demo:
             pull_sheet_tab_button = gr.Button("Pull Google Sheet", variant="primary")
             google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
     
-    with gr.Tab(" Premium"):
+    with gr.Tab("💎 Premium"):
         gr.HTML(value=_premium_pricing_html())
         gr.HTML(value=_premium_locked_exports_html())
         gr.HTML(value=_submission_package_html())

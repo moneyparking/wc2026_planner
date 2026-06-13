@@ -13,11 +13,10 @@ short_description: "Fan-made WC2026 bracket planner with AI Scout."
 tags:
   - gradio
   - football
-  - sports
   - world-cup
-  - bracket
   - predictions
   - hackathon
+  - monetization
 ---
 # AI Bracket War Room 2026
 
@@ -244,4 +243,28 @@ The free app remains fully judgeable:
 ### Monetization safety boundary
 
 Unofficial fan-made planner. No gambling, no money-staked prediction market, no official marks, no player likeness dependency, no paid live-score requirement. Premium sells exports, planning templates, ad-free experience, GoodNotes/PDF fan packs, and source access.
+
+## Phase 1.35 — Premium Monetization + Hackathon Submission Ready
+
+Phase 1.35 turns the running War Room into a monetizable fan product without blocking the judge demo.
+
+### Monetization schema
+
+| Tier | Price | Value |
+|---|---:|---|
+| Free | $0 | Judge demo, runtime planner, groups, bracket, Friends League demo, AI Scout preview |
+| Premium Matchday | $9 | Advanced AI Scout cards, matchday exports, private league export pack, ad-free planning shell |
+| Ultimate Fan Pack | $27 | 184-page GoodNotes/PDF command center, 104 match logs, sticker bundle, printable exports |
+| Source License | $49–99 | Gumroad source bundle, templates, private league starter, deployment guide |
+
+### Visible validation
+
+* Hero strip shows the Premium Fan Mode funnel.
+* `💎 Premium` tab shows Free, Premium Matchday, Ultimate Fan Pack, and Source License.
+* Locked Export Center shows premium value without blocking the free demo.
+* Header deploy marker shows `PHASE 1.35 — Premium Monetization + Hackathon Submission Ready`.
+
+### Safety boundary
+
+Unofficial fan-made planning app. No gambling, no official marks, no player likeness dependency, no paid live-score requirement.
 
