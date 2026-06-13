@@ -3397,7 +3397,7 @@ PHASE130C_EMPTY_SURFACE_FIX_STYLE = """<style>
 }
 </style>"""
 
-with gr.Blocks(title=APP_TITLE) as demo:
+with gr.Blocks(title=APP_TITLE, css=PREMIUM_DARK_SPORT_CSS) as demo:
     workbook_state = gr.State()
     gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
     gr.HTML(PHASE130C_EMPTY_SURFACE_FIX_STYLE)
@@ -3837,4 +3837,4 @@ with gr.Blocks(title=APP_TITLE) as demo:
 
 
 if __name__ == "__main__":
-    demo.launch(css=PREMIUM_DARK_SPORT_CSS)
+    demo.launch()
