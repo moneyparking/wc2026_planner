@@ -1592,7 +1592,7 @@ def _ui_payload(outputs: tuple, action_label: str, planner_filter: str = "All 10
         friends,
         _visible_friends_league_html(friends, runtime),
         dashboard,
-        _runtime_status_html(state) + _button_status_html(outputs, action_label),
+        _runtime_data_mode_html(state),
         ai_scout,
         impact_panel,
         google_sheet_control_html(state),
@@ -4534,8 +4534,23 @@ FINAL_PMW2026_PRODUCTION_CSS = r"""
   max-width: 1480px !important;
 }
 
+.pmw-action-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(12px, 2vw, 26px);
+}
+
 .product-button-row button {
   width: auto !important;
+}
+
+.pmw-action-rail button,
+.pmw-action-button {
+  min-height: 46px !important;
+  border-radius: 999px !important;
 }
 
 /* Premium shell */
@@ -4975,6 +4990,16 @@ FINAL_PMW2026_PRODUCTION_CSS = r"""
   border: 1px solid rgba(255, 209, 102, 0.20);
 }
 
+.pmw-runtime-truth-card {
+  max-width: 1480px;
+  margin: 0 auto 18px;
+  padding: 0 clamp(12px, 2vw, 26px);
+}
+
+.pmw-runtime-truth-card .pmw-card {
+  border-color: rgba(53, 214, 232, 0.22) !important;
+}
+
 .module-kicker,
 .sport-label {
   color: var(--pmw-final-cyan) !important;
@@ -5074,6 +5099,10 @@ FINAL_PMW2026_PRODUCTION_CSS = r"""
   .premium-button,
   .gradio-container button {
     width: 100% !important;
+  }
+
+  .pmw-action-rail {
+    align-items: stretch;
   }
 
   .product-button-row button {
@@ -5475,7 +5504,7 @@ def _pmw_free_vs_premium_html() -> str:
     """
 
 
-def _pmw_runtime_truth_card_html(state: dict | None = None) -> str:
+def _runtime_data_mode_html(state: dict | None = None) -> str:
     snap = _pmw_runtime_snapshot(state)
     live_status = None
     sheet_state = None
@@ -5515,13 +5544,19 @@ def _pmw_runtime_truth_card_html(state: dict | None = None) -> str:
         for label, value in rows
     )
     return f"""
-    <section class="pmw-card pmw-full" aria-label="Runtime data truth">
-      <div class="pmw-card-kicker">Runtime data mode</div>
-      <h2>Live data is provider-ready; the public demo uses verified cache/manual override.</h2>
-      <p>Live provider requires HF secret configuration; free demo uses verified cache/manual override.</p>
-      <div class="pmw-stat-grid">{body}</div>
-    </section>
+    <div class="pmw-runtime-truth-card">
+      <section class="pmw-card pmw-full" aria-label="Runtime data mode">
+        <div class="pmw-card-kicker">Runtime data mode</div>
+        <h2>Live data is provider-ready; the public demo uses verified cache/manual override.</h2>
+        <p>Real-time requires HF Space secrets. Without provider secrets, this demo uses verified cache/manual override so judges can test the full loop safely.</p>
+        <div class="pmw-stat-grid">{body}</div>
+      </section>
+    </div>
     """
+
+
+def _pmw_runtime_truth_card_html(state: dict | None = None) -> str:
+    return _runtime_data_mode_html(state)
 
 
 def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
@@ -5579,8 +5614,6 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
           </aside>
         </div>
       </section>
-
-      {_pmw_runtime_truth_card_html(state)}
 
       <section class="pmw-dashboard-grid" aria-label="Production dashboard modules">
         {_pmw_ai_scout_cards_html(state)}
@@ -5658,91 +5691,92 @@ with gr.Blocks(
         elem_id="premium-matchday-war-room",
     )
 
-    top_checklist_html = gr.HTML(value=_product_action_status_html({}, "Initial load", "Runtime loaded from verified public results cache."), visible=True)
+    runtime_truth_html = gr.HTML(value=_runtime_data_mode_html(), visible=True)
+    top_checklist_html = runtime_truth_html
     modal_gpu_status_html = gr.HTML(value="", visible=False)
-    with gr.Row(elem_classes=["product-button-row"]):
-        public_load_demo_button = gr.Button("Load Demo Scenario", variant="secondary")
-        refresh_live_button = gr.Button("Refresh Runtime", variant="primary", elem_classes=["pmw-primary-action"])
-        recalc_button = gr.Button("Recalculate Impact / War Room", variant="primary", elem_classes=["pmw-primary-action"])
-        ask_ai_scout_button = gr.Button("Ask AI Scout", variant="secondary")
-        open_friends_button = gr.Button("Open Friends League", variant="secondary")
-        pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary")
+    with gr.Row(elem_classes=["product-button-row", "pmw-action-rail"]):
+        public_load_demo_button = gr.Button("Load Demo Scenario", variant="secondary", elem_classes=["pmw-action-button"])
+        refresh_live_button = gr.Button("Refresh Runtime", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
+        recalc_button = gr.Button("Recalculate Impact", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
+        ask_ai_scout_button = gr.Button("Ask AI Scout", variant="secondary", elem_classes=["pmw-action-button"])
+        open_friends_button = gr.Button("Open Friends League", variant="secondary", elem_classes=["pmw-action-button"])
+        pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary", elem_classes=["pmw-action-button"])
     runtime_timer = gr.Timer(value=int(os.getenv("LIVE_REFRESH_SECONDS", "60")))
     impact_panel_html = gr.HTML(value="", visible=False)
 
     dashboard_html = gr.HTML(value="", visible=False)
-    with gr.Tabs(elem_classes=["pmw-tabs"]):
-        with gr.Tab("🏟️ Match Center", elem_id="match-center"):
-            gr.Markdown("**Select a match to inspect runtime details, AI Scout context, and Friends League scoring impact.**")
-            match_choice = gr.Dropdown(choices=_match_choice_options(), value=_match_choice_options()[0], label="Select match", interactive=True)
-            selected_match_detail_html = gr.HTML(value=_selected_match_detail_html())
-            with gr.Row():
-                inspect_match_button = gr.Button("Select / inspect match", variant="primary")
-                view_full_table_button = gr.Button("View full 104-match table", variant="secondary")
-            planner_filter = gr.Dropdown(choices=list(PLANNER_FILTER_CHOICES), value="All 104 matches", label="Planner quick filter", interactive=True)
-            planner_filter_html = gr.HTML(value=_visible_match_planner_html(pd.DataFrame(), "All 104 matches"))
-            matches_df = gr.Dataframe(label="Runtime match state carrier", interactive=True, wrap=True, elem_classes=["table-card"], visible=False)
-        with gr.Tab("📊 Groups"):
-            view_full_standings_button = gr.Button("View full standings", variant="primary")
-            group_tracker_html = gr.HTML(value=_visible_group_tracker_html(pd.DataFrame()))
-            groups_df = gr.Dataframe(label="Computed Group Table", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
-        with gr.Tab("🥉 3RD-PLACE RANKING"):
-            third_places_html = gr.HTML(value=_visible_third_place_html(pd.DataFrame()))
-            third_places_df = gr.Dataframe(label="Top Third-Place Ranking", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
-        with gr.Tab("🧬 Bracket"):
-            view_bracket_button = gr.Button("View bracket", variant="primary")
-            bracket_json = gr.State()
-            bracket_html = gr.HTML()
-        with gr.Tab("👥 Friends League"):
-            score_friends_button = gr.Button("Score Friends League", variant="primary")
-            friends_html = gr.HTML(value=_visible_friends_league_html(pd.DataFrame()))
-            friends_df = gr.Dataframe(label="Friends League Leaderboard", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
-        with gr.Tab("🤖 AI Scout", elem_id="ai-scout"):
-            gr.Markdown("AI Scout reads the selected match, verified runtime score, squad rows, group impact, and Friends League scoring context.")
-            ask_ai_scout_tab_button = gr.Button("Ask AI Scout", variant="primary")
-            ai_scout_html = gr.HTML()
-    with gr.Tabs(elem_classes=["pmw-tabs", "pmw-admin-tabs"]):
-        with gr.Tab("🔌 Google Sheet"):
-            pull_sheet_tab_button = gr.Button("Pull Google Sheet", variant="primary")
-            google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
+    with gr.Group(elem_classes=["pmw-workspace-shell"]):
+        with gr.Tabs(elem_classes=["pmw-tabs"]):
+            with gr.Tab("🏟️ Match Center", elem_id="match-center"):
+                gr.Markdown("**Select a match to inspect runtime details, AI Scout context, and Friends League scoring impact.**")
+                match_choice = gr.Dropdown(choices=_match_choice_options(), value=_match_choice_options()[0], label="Select match", interactive=True)
+                selected_match_detail_html = gr.HTML(value=_selected_match_detail_html())
+                with gr.Row():
+                    inspect_match_button = gr.Button("Select / inspect match", variant="primary")
+                    view_full_table_button = gr.Button("View full 104-match table", variant="secondary")
+                planner_filter = gr.Dropdown(choices=list(PLANNER_FILTER_CHOICES), value="All 104 matches", label="Planner quick filter", interactive=True)
+                planner_filter_html = gr.HTML(value=_visible_match_planner_html(pd.DataFrame(), "All 104 matches"))
+                matches_df = gr.Dataframe(label="Runtime match state carrier", interactive=True, wrap=True, elem_classes=["table-card"], visible=False)
+            with gr.Tab("📊 Groups"):
+                view_full_standings_button = gr.Button("View full standings", variant="primary")
+                group_tracker_html = gr.HTML(value=_visible_group_tracker_html(pd.DataFrame()))
+                groups_df = gr.Dataframe(label="Computed Group Table", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
+            with gr.Tab("🥉 3RD-PLACE RANKING"):
+                third_places_html = gr.HTML(value=_visible_third_place_html(pd.DataFrame()))
+                third_places_df = gr.Dataframe(label="Top Third-Place Ranking", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
+            with gr.Tab("🧬 Bracket"):
+                view_bracket_button = gr.Button("View bracket", variant="primary")
+                bracket_json = gr.State()
+                bracket_html = gr.HTML()
+            with gr.Tab("👥 Friends League"):
+                score_friends_button = gr.Button("Score Friends League", variant="primary")
+                friends_html = gr.HTML(value=_visible_friends_league_html(pd.DataFrame()))
+                friends_df = gr.Dataframe(label="Friends League Leaderboard", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
+            with gr.Tab("🤖 AI Scout", elem_id="ai-scout"):
+                gr.Markdown("AI Scout reads the selected match, verified runtime score, squad rows, group impact, and Friends League scoring context.")
+                ask_ai_scout_tab_button = gr.Button("Ask AI Scout", variant="primary")
+                ai_scout_html = gr.HTML()
+        with gr.Tabs(elem_classes=["pmw-tabs", "pmw-admin-tabs"]):
+            with gr.Tab("🔌 Google Sheet"):
+                pull_sheet_tab_button = gr.Button("Pull Google Sheet", variant="primary")
+                google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
     
-        with gr.Tab("💎 Premium", elem_id="premium"):
-            gr.HTML(value=_pmw_premium_conversion_panel_html())
-            gr.HTML(value=_premium_pricing_html())
-            gr.HTML(value=_premium_locked_exports_html())
-            gr.HTML(value=_submission_package_html())
-            with gr.Row():
-                gr.Button(
-                    "Unlock Premium on Gumroad",
-                    variant="primary",
-                    link=GUMROAD_PREMIUM_URL,
-                )
-                gr.Button(
-                    "Buy Source Bundle",
-                    variant="secondary",
-                    link=GUMROAD_SOURCE_URL,
-                )
+            with gr.Tab("💎 Premium", elem_id="premium"):
+                gr.HTML(value=_premium_pricing_html())
+                gr.HTML(value=_premium_locked_exports_html())
+                with gr.Row():
+                    gr.Button(
+                        "Unlock Premium Matchday Pack",
+                        variant="primary",
+                        link=GUMROAD_PREMIUM_URL,
+                    )
+                    gr.Button(
+                        "Get Source License",
+                        variant="secondary",
+                        link=GUMROAD_SOURCE_URL,
+                    )
 
-    with gr.Tab("Judge QA / Debug"):
-            debug_state = load_workbook_state()
-            debug_groups = pd.DataFrame()
-            debug_thirds = pd.DataFrame()
-            with gr.Accordion("Legacy product shell preview", open=False):
-                gr.HTML(value=_command_header_html())
-                gr.HTML(_appstore_first_screen_html())
-                gr.HTML(value=_premium_cta_strip_html())
-            with gr.Row():
-                load_demo_button = gr.Button("Load Demo Scenario", variant="secondary")
-                random_outcomes_button = gr.Button("Generate Random Outcomes", variant="secondary")
-                clear_edits_button = gr.Button("Clear Local Edits", variant="secondary")
-            gr.HTML(
-                value=(
-                    _summary_html(debug_state, debug_groups, debug_thirds)
-                    + _scenario_controls_html(debug_state)
-                    + check_modal_gpu_health()
-                    + build_impact_panel_html(pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), {}, pd.DataFrame())
+            with gr.Tab("Judge QA / Debug"):
+                debug_state = load_workbook_state()
+                debug_groups = pd.DataFrame()
+                debug_thirds = pd.DataFrame()
+                with gr.Accordion("Legacy / Debug Surface", open=False):
+                    gr.HTML(value=_command_header_html())
+                    gr.HTML(_appstore_first_screen_html())
+                    gr.HTML(value=_premium_cta_strip_html())
+                    gr.HTML(value=_submission_package_html())
+                with gr.Row():
+                    load_demo_button = gr.Button("Load Demo Scenario", variant="secondary")
+                    random_outcomes_button = gr.Button("Generate Random Outcomes", variant="secondary")
+                    clear_edits_button = gr.Button("Clear Local Edits", variant="secondary")
+                gr.HTML(
+                    value=(
+                        _summary_html(debug_state, debug_groups, debug_thirds)
+                        + _scenario_controls_html(debug_state)
+                        + check_modal_gpu_health()
+                        + build_impact_panel_html(pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), {}, pd.DataFrame())
+                    )
                 )
-            )
 
     demo.load(
         initial_ui_load,
