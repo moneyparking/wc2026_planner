@@ -2,14 +2,14 @@
 title: AI Bracket War Room 2026
 emoji: ⚽
 colorFrom: green
-colorTo: cyan
+colorTo: blue
 sdk: gradio
 sdk_version: 5.34.2
 python_version: '3.12'
 app_file: app.py
 pinned: false
 license: mit
-short_description: Premium AI bracket, matchday, Friends League, and scout-card command center for World Cup 2026 fans.
+short_description: Premium WC2026 bracket and scout command center.
 tags:
   - gradio
   - huggingface-spaces
