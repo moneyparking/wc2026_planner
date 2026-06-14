@@ -93,13 +93,13 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   margin: 16px 0 22px;
 }
 .pmw-first-screen-grid > .pmw-card,
-.pmw-first-screen-grid > .pmw-module-shell {
+.pmw-first-screen-grid > .pmw-final-shell {
   min-width: 0;
 }
 .pmw-first-screen-grid .pmw-full {
   grid-column: 1 / -1;
 }
-.pmw-module-shell {
+.pmw-final-shell {
   position: relative;
   overflow: hidden;
   margin: 18px 0 22px;
@@ -112,7 +112,7 @@ PMW_LOWER_MODULES_FINAL_CSS = """
     radial-gradient(circle at top right, rgba(53,214,232,.14), transparent 40%);
   box-shadow: 0 24px 80px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.06);
 }
-.pmw-module-shell::before {
+.pmw-final-shell::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -123,7 +123,7 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   background-size: 42px 42px;
   mask-image: linear-gradient(180deg, rgba(0,0,0,.7), transparent 85%);
 }
-.pmw-module-hero {
+.pmw-final-hero {
   position: relative;
   z-index: 1;
   display: grid;
@@ -145,8 +145,8 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   letter-spacing: .09em;
   text-transform: uppercase;
 }
-.pmw-module-shell h2,
-.pmw-module-shell h3 {
+.pmw-final-shell h2,
+.pmw-final-shell h3 {
   margin: 12px 0 8px;
   color: var(--pmw-text) !important;
   font-size: clamp(25px, 4vw, 44px);
@@ -154,41 +154,41 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   letter-spacing: 0;
   font-weight: 1000;
 }
-.pmw-module-shell p {
+.pmw-final-shell p {
   color: var(--pmw-muted) !important;
   line-height: 1.58;
 }
-.pmw-proof-grid,
-.pmw-scout-grid,
-.pmw-group-grid,
-.pmw-bracket-lanes,
-.pmw-action-grid {
+.pmw-final-stats,
+.pmw-final-grid,
+.pmw-final-grid,
+.pmw-final-lanes,
+.pmw-final-actions {
   position: relative;
   z-index: 1;
   display: grid;
   gap: 12px;
 }
-.pmw-proof-grid {
+.pmw-final-stats {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 18px 0;
 }
-.pmw-scout-grid,
-.pmw-action-grid {
+.pmw-final-grid,
+.pmw-final-actions {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 16px;
 }
-.pmw-group-grid,
-.pmw-bracket-lanes {
+.pmw-final-grid,
+.pmw-final-lanes {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 16px;
 }
-.pmw-proof,
+.pmw-final-stat,
 .pmw-scout,
 .pmw-group-card,
 .pmw-lane,
 .pmw-action-card,
-.pmw-side-panel,
-.pmw-data-card,
+.pmw-final-side,
+.pmw-final-data,
 .pmw-export-card {
   border-radius: 22px;
   border: 1px solid var(--pmw-line);
@@ -198,7 +198,7 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   padding: 15px;
   backdrop-filter: blur(18px);
 }
-.pmw-proof span,
+.pmw-final-stat span,
 .pmw-scout span,
 .pmw-group-card span,
 .pmw-lane span,
@@ -210,7 +210,7 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   letter-spacing: .085em;
   text-transform: uppercase;
 }
-.pmw-proof strong {
+.pmw-final-stat strong {
   display: block;
   margin-top: 8px;
   color: var(--pmw-text);
@@ -218,7 +218,7 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   line-height: 1;
   font-weight: 1000;
 }
-.pmw-proof p,
+.pmw-final-stat p,
 .pmw-scout p,
 .pmw-group-card p,
 .pmw-lane p,
@@ -226,13 +226,13 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   margin: 8px 0 0;
   font-size: 13px;
 }
-.pmw-side-panel {
+.pmw-final-side {
   min-height: 100%;
   background:
     radial-gradient(circle at 20% 0%, rgba(255,209,102,.18), transparent 35%),
     linear-gradient(180deg, rgba(15,23,42,.82), rgba(2,6,23,.68));
 }
-.pmw-side-panel .pmw-live-score {
+.pmw-final-side .pmw-live-score {
   color: var(--pmw-text);
   font-size: clamp(28px, 4vw, 48px);
   line-height: .95;
@@ -263,7 +263,7 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   font-size: 12px;
   font-weight: 950;
 }
-.pmw-cta-row {
+.pmw-final-cta-row {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -291,37 +291,37 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   border: 1px solid rgba(53,214,232,.35);
   background: rgba(53,214,232,.11);
 }
-.pmw-data-card {
+.pmw-final-data {
   position: relative;
   z-index: 1;
   margin-top: 16px;
 }
-.pmw-data-card summary {
+.pmw-final-data summary {
   cursor: pointer;
   color: var(--pmw-text);
   font-weight: 1000;
 }
-.pmw-data-card table,
-.pmw-data-card .dataframe {
+.pmw-final-data table,
+.pmw-final-data .dataframe {
   width: 100%;
   border-collapse: collapse;
   overflow: hidden;
   border-radius: 16px;
 }
-.pmw-data-card th {
+.pmw-final-data th {
   background: rgba(53,214,232,.14) !important;
   color: #E6FBFF !important;
   font-size: 11px !important;
   text-transform: uppercase;
   letter-spacing: .08em;
 }
-.pmw-data-card td {
+.pmw-final-data td {
   background: rgba(2,6,23,.52) !important;
   color: var(--pmw-text) !important;
   border-color: rgba(148,163,184,.12) !important;
 }
-.pmw-badge-live,
-.pmw-badge-premium {
+.pmw-final-pill live,
+.pmw-final-pill {
   display: inline-flex;
   border-radius: 999px;
   padding: 5px 9px;
@@ -329,24 +329,24 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   font-size: 11px;
   letter-spacing: .04em;
 }
-.pmw-badge-live {
+.pmw-final-pill live {
   color: #071018;
   background: var(--pmw-neon);
 }
-.pmw-badge-premium {
+.pmw-final-pill {
   color: #1f1300;
   background: var(--pmw-gold);
 }
 @media (max-width: 760px) {
-  .pmw-module-hero,
-  .pmw-proof-grid,
-  .pmw-scout-grid,
-  .pmw-group-grid,
-  .pmw-bracket-lanes,
-  .pmw-action-grid {
+  .pmw-final-hero,
+  .pmw-final-stats,
+  .pmw-final-grid,
+  .pmw-final-grid,
+  .pmw-final-lanes,
+  .pmw-final-actions {
     grid-template-columns: 1fr;
   }
-  .pmw-module-shell {
+  .pmw-final-shell {
     border-radius: 22px;
     padding: 15px;
   }
@@ -358,6 +358,389 @@ PMW_LOWER_MODULES_FINAL_CSS = """
   }
   .pmw-first-screen-grid .pmw-full {
     grid-column: auto;
+  }
+}
+"""
+
+
+
+PHASE_139_FINAL_PREMIUM_ALL_TABS_RC = "Phase 1.39 - final premium all-tabs release candidate"
+
+FINAL_PREMIUM_ALL_TABS_CSS = """
+/* PHASE 1.39 - Final PremiumMatchdayWarRoom2026 all-tabs polish */
+:root {
+  --pmw-bg: #071018;
+  --pmw-bg2: #0B1320;
+  --pmw-panel: rgba(15, 23, 42, .78);
+  --pmw-panel2: rgba(2, 6, 23, .72);
+  --pmw-line: rgba(148, 163, 184, .18);
+  --pmw-text: #F8FAFC;
+  --pmw-muted: #A9B8C9;
+  --pmw-dim: #718096;
+  --pmw-neon: #A7FF00;
+  --pmw-gold: #FFD166;
+  --pmw-cyan: #35D6E8;
+  --pmw-rose: #FB7185;
+}
+.gradio-container {
+  background:
+    radial-gradient(circle at 15% 0%, rgba(53,214,232,.18), transparent 34%),
+    radial-gradient(circle at 84% 3%, rgba(167,255,0,.13), transparent 30%),
+    linear-gradient(180deg, var(--pmw-bg), var(--pmw-bg2)) !important;
+  color: var(--pmw-text) !important;
+}
+.pmw-workspace-shell,
+.pmw-tabs,
+.pmw-admin-tabs,
+.tabitem,
+.gradio-tabs,
+.gradio-tabitem {
+  background: transparent !important;
+  border: 0 !important;
+}
+.pmw-tabs button,
+.gradio-tabs button,
+button,
+.gradio-container button,
+.gradio-container .gr-button,
+.gradio-container a[role="button"] {
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background-clip: padding-box !important;
+}
+.gradio-container button *,
+.gradio-container .gr-button *,
+.gradio-container a[role="button"] * {
+  border-radius: inherit !important;
+}
+.pmw-action-rail button,
+.product-button-row button,
+.pmw-action-button button,
+button.primary {
+  min-height: 48px !important;
+  background: linear-gradient(135deg, var(--pmw-neon), var(--pmw-cyan)) !important;
+  color: #04111D !important;
+  font-weight: 950 !important;
+}
+button.secondary,
+.pmw-tabs button {
+  background: rgba(15,23,42,.72) !important;
+  color: #E6FBFF !important;
+  outline: 1px solid rgba(53,214,232,.22) !important;
+}
+.pmw-final-shell {
+  position: relative;
+  overflow: hidden;
+  margin: 18px auto 22px;
+  padding: clamp(16px, 2.5vw, 28px);
+  max-width: 1480px;
+  border-radius: 30px;
+  border: 1px solid var(--pmw-line);
+  color: var(--pmw-text);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(53,214,232,.14), transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(255,209,102,.13), transparent 34%),
+    linear-gradient(135deg, rgba(15,23,42,.88), rgba(2,6,23,.76));
+  box-shadow: 0 30px 110px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.pmw-final-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.7), transparent 88%);
+}
+.pmw-final-shell > * {
+  position: relative;
+  z-index: 1;
+}
+.pmw-final-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, .85fr);
+  gap: 18px;
+  align-items: stretch;
+}
+.pmw-kicker,
+.pmw-final-kicker {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--pmw-neon), var(--pmw-cyan));
+  color: #04111D !important;
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.pmw-final-shell h2,
+.pmw-final-shell h3 {
+  margin: 12px 0 8px !important;
+  color: var(--pmw-text) !important;
+  letter-spacing: 0;
+  line-height: .98;
+  font-weight: 1000;
+}
+.pmw-final-shell h2 {
+  font-size: clamp(27px, 4.4vw, 48px);
+}
+.pmw-final-shell h3 {
+  font-size: clamp(20px, 2.4vw, 28px);
+}
+.pmw-final-shell p,
+.pmw-final-shell li,
+.pmw-final-shell span {
+  color: var(--pmw-muted);
+}
+.pmw-final-grid,
+.pmw-final-stats,
+.pmw-final-actions,
+.pmw-final-lanes,
+.pmw-final-plans {
+  display: grid;
+  gap: 12px;
+}
+.pmw-final-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 18px;
+}
+.pmw-final-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 16px;
+}
+.pmw-final-lanes {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 16px;
+}
+.pmw-final-actions {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 16px;
+}
+.pmw-final-plans {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 16px;
+}
+.pmw-final-card,
+.pmw-final-stat,
+.pmw-final-side,
+.pmw-final-data,
+.pmw-final-plan,
+.pmw-stat,
+.pmw-card,
+.pmw-plan {
+  border-radius: 24px;
+  border: 1px solid var(--pmw-line);
+  background: linear-gradient(180deg, rgba(15,23,42,.76), rgba(2,6,23,.62));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 18px 60px rgba(0,0,0,.20);
+  padding: 15px;
+  color: var(--pmw-text);
+}
+.pmw-final-stat span,
+.pmw-final-card span,
+.pmw-final-plan span,
+.pmw-stat span {
+  display: block;
+  color: var(--pmw-dim);
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.pmw-final-stat strong,
+.pmw-stat strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--pmw-text);
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1;
+  font-weight: 1000;
+}
+.pmw-final-side {
+  background:
+    radial-gradient(circle at 25% 0%, rgba(255,209,102,.18), transparent 38%),
+    linear-gradient(180deg, rgba(15,23,42,.82), rgba(2,6,23,.68));
+}
+.pmw-final-score {
+  margin: 12px 0;
+  color: var(--pmw-text);
+  font-size: clamp(28px, 4vw, 50px);
+  line-height: .96;
+  letter-spacing: 0;
+  font-weight: 1000;
+}
+.pmw-final-pill,
+.pmw-lock {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 28px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #04111D !important;
+  background: var(--pmw-gold);
+  font-size: 12px;
+  font-weight: 1000;
+}
+.pmw-final-pill.live {
+  background: var(--pmw-neon);
+}
+.pmw-final-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.pmw-final-cta,
+.premium-button,
+.pmw-cta,
+.pmw-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 0 !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  text-decoration: none !important;
+  font-weight: 1000;
+}
+.pmw-final-cta.primary,
+.premium-button.primary,
+.pmw-cta.primary,
+.pmw-action.primary {
+  color: #04111D !important;
+  background: linear-gradient(135deg, var(--pmw-neon), var(--pmw-gold)) !important;
+  box-shadow: 0 20px 46px rgba(167,255,0,.18) !important;
+}
+.pmw-final-cta.secondary,
+.premium-button.secondary,
+.pmw-cta.secondary,
+.pmw-action.secondary {
+  color: #E6FBFF !important;
+  background: rgba(53,214,232,.12) !important;
+  outline: 1px solid rgba(53,214,232,.28);
+}
+.pmw-final-meter,
+.pmw-meter {
+  height: 9px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(148,163,184,.16);
+}
+.pmw-final-meter i,
+.pmw-meter i,
+.pmw-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--pmw-neon), var(--pmw-cyan));
+}
+.pmw-final-data {
+  margin-top: 16px;
+}
+.pmw-final-data summary {
+  cursor: pointer;
+  color: var(--pmw-text);
+  font-weight: 1000;
+}
+.pmw-final-data table,
+.pmw-final-data .dataframe,
+.table-scroll table,
+.dataframe,
+.gradio-dataframe table {
+  width: 100% !important;
+  overflow: hidden !important;
+  border-collapse: collapse !important;
+  border-radius: 18px !important;
+  background: rgba(2,6,23,.62) !important;
+  color: var(--pmw-text) !important;
+}
+.pmw-final-data th,
+.table-scroll th,
+.gradio-dataframe th {
+  background: rgba(53,214,232,.16) !important;
+  color: #E6FBFF !important;
+  border-color: rgba(148,163,184,.14) !important;
+  font-size: 11px !important;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.pmw-final-data td,
+.table-scroll td,
+.gradio-dataframe td {
+  background: rgba(2,6,23,.54) !important;
+  color: var(--pmw-text) !important;
+  border-color: rgba(148,163,184,.12) !important;
+}
+textarea,
+input,
+select,
+.wrap,
+.gr-text-input,
+.gr-dropdown {
+  background: rgba(2,6,23,.72) !important;
+  color: var(--pmw-text) !important;
+  border-color: rgba(53,214,232,.22) !important;
+  border-radius: 18px !important;
+}
+.sport-card,
+.table-card,
+.runtime-card,
+.app-card,
+.card-shell,
+.price-card,
+.premium-pricing-grid article {
+  border-radius: 24px !important;
+  border: 1px solid var(--pmw-line) !important;
+  background: linear-gradient(180deg, rgba(15,23,42,.76), rgba(2,6,23,.62)) !important;
+  color: var(--pmw-text) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 18px 60px rgba(0,0,0,.20) !important;
+}
+.pmw-premium-section {
+  max-width: 1480px !important;
+  margin: 0 auto 18px !important;
+}
+@media (max-width: 760px) {
+  .pmw-final-hero,
+  .pmw-final-stats,
+  .pmw-final-grid,
+  .pmw-final-actions,
+  .pmw-final-lanes,
+  .pmw-final-plans,
+  .premium-pricing-grid,
+  .pmw-final-grid,
+  .pmw-stat-grid,
+  .pmw-plan-grid,
+  .pmw-first-screen-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .pmw-final-shell {
+    margin: 12px 0 18px;
+    padding: 14px;
+    border-radius: 22px;
+  }
+  .pmw-final-cta,
+  .premium-button,
+  .pmw-cta,
+  .pmw-action,
+  .pmw-action-rail button,
+  .product-button-row button,
+  .pmw-action-button button {
+    width: 100% !important;
+  }
+  .table-scroll {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
   }
 }
 """
@@ -1249,21 +1632,21 @@ def build_impact_panel_html(matches: pd.DataFrame, groups: pd.DataFrame, thirds:
         else waiting
     )
     return f"""
-    <section class="pmw-module-shell" aria-label="Tournament Impact Panel">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Tournament Impact Panel">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Judge QA - impact chain</div>
           <h2>One result change stays traceable across the full app.</h2>
           <p>Change one score, recalculate, then verify group movement, third-place ranking, bracket slots, Friends League scoring, and AI Scout context.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Changed match", changed_match, "First completed or demo-driven match")}
             {_pmw_metric("Before", before_score, "Baseline comparison")}
             {_pmw_metric("After", after_score, "Runtime result state")}
             {_pmw_metric("Friends rows", friends_rows, "Private league impact")}
           </div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-live">IMPACT SUMMARY</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill live">IMPACT SUMMARY</span>
           <h3>{_pmw_safe(summary)}</h3>
           <p>Groups: {_pmw_safe(group_rows)} rows - Third-place: {_pmw_safe(third_rows)} rows - Bracket slots: {_pmw_safe(bracket_slots or 'Pending')}</p>
         </aside>
@@ -1329,13 +1712,13 @@ def build_ai_scout_output(matches: pd.DataFrame, runtime: pd.DataFrame | None = 
     """
 
     return f"""
-    <section class="pmw-module-shell" aria-label="Advanced AI Scout Cards">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Advanced AI Scout Cards">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Advanced AI Scout Cards - <=32B-ready UX</div>
           <h2>AI Scout now looks like a premium analysis product.</h2>
           <p>Runtime score, source truth, squad lens and private-league impact are packaged into cards before any raw text appears.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Selected", f"{home} vs {away}", "Row-aware match context")}
             {_pmw_metric("Source", source, "Truth label visible")}
             {_pmw_metric("Squad lens", squad_note, "Dataset-backed signal")}
@@ -1345,13 +1728,13 @@ def build_ai_scout_output(matches: pd.DataFrame, runtime: pd.DataFrame | None = 
           <p><strong>Squad contract:</strong> 26 players per team when squad rows are loaded.</p>
           <p><strong>Next action:</strong> inspect Groups, score Friends League, review Bracket Impact.</p>
           <p><strong>QA sample:</strong> Mexico 2–0 South Africa</p>
-          <div class="pmw-scout-grid">{cards}</div>
+          <div class="pmw-final-grid">{cards}</div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-premium">PREMIUM SCOUT PACK</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill">PREMIUM SCOUT PACK</span>
           <h3>156 Advanced AI Scout Cards</h3>
           <p>Match Pressure, Key Matchup, and Bracket Impact cards turn every fixture into a share-ready fan briefing.</p>
-          <a class="pmw-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock scout cards</a>
+          <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock scout cards</a>
           <span class="pmw-lock">Premium value-led CTA</span>
         </aside>
       </div>
@@ -1368,21 +1751,21 @@ def _judge_checklist_html(state: dict, groups: pd.DataFrame, thirds: pd.DataFram
     matches_count = len(state.get("matches", []))
     annex_count = len(state.get("annex_c", []))
     return f"""
-    <section class="pmw-module-shell" aria-label="90-second Judge Verification">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="90-second Judge Verification">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Judge QA - 90-second verification</div>
           <h2>The full judge path is visible without debug styling.</h2>
           <p>Load Demo Scenario, recalculate the War Room, then inspect every premium tab surface from Match Center through Premium.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Matches", f"{matches_count} / {EXPECTED_MATCH_COUNT}", "104-match planner contract")}
             {_pmw_metric("Annex C", f"{annex_count} / {EXPECTED_ANNEX_C_RECORD_COUNT}", "Third-place mapping contract")}
             {_pmw_metric("Group rows", len(groups), "Runtime standings output")}
             {_pmw_metric("Third-place rows", len(thirds), "Bubble ranking output")}
           </div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-live">JUDGE PATH</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill live">JUDGE PATH</span>
           <h3>Refresh Runtime -> Load Demo -> Recalculate -> inspect tabs.</h3>
           <p>Runtime engine, recalculation, event handlers, and free demo flow remain unchanged.</p>
         </aside>
@@ -1396,16 +1779,16 @@ def _summary_html(state: dict, groups: pd.DataFrame, thirds: pd.DataFrame) -> st
     warnings_html = "".join(f"<li>{_pmw_safe(warning)}</li>" for warning in warnings) or "<li>Workbook loaded cleanly.</li>"
     return f"""
     {_judge_checklist_html(state, groups, thirds)}
-    <section class="pmw-module-shell" aria-label="Premium Build Status">
+    <section class="pmw-final-shell" aria-label="Premium Build Status">
       <div class="pmw-kicker">Build status - premium QA</div>
       <h2>Runtime contract and judge demo path.</h2>
-      <div class="pmw-proof-grid">
+      <div class="pmw-final-stats">
         {_pmw_metric("Deploy marker", DEPLOY_MARKER, "Current production marker")}
         {_pmw_metric("Workbook", state.get("spreadsheet_path", "not loaded"), "Loaded source")}
         {_pmw_metric("Matches", f"{len(state.get('matches', []))} / {EXPECTED_MATCH_COUNT}", "Planner rows")}
         {_pmw_metric("Annex C", f"{len(state.get('annex_c', []))} / {EXPECTED_ANNEX_C_RECORD_COUNT}", "Mapping rows")}
       </div>
-      <details class="pmw-data-card" open>
+      <details class="pmw-final-data" open>
         <summary>Judge demo path and warnings</summary>
         <ol>
           <li>Load Judge Demo Scenario</li>
@@ -1550,26 +1933,26 @@ def _visible_match_planner_html(matches: pd.DataFrame, planner_filter: str = "Al
     fixture_preview = _fixture_preview_for_matches(matches)
     table = _pmw_table(fixture_preview, VISIBLE_TAB_PREVIEW_MATCHES)
     return f"""
-    <section class="pmw-module-shell" aria-label="Premium Match Center">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Premium Match Center">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Match Center - runtime intelligence</div>
           <h2>Every fixture feels like a live control-room card.</h2>
           <p>Runtime is preparing. The static 104-match planner remains visible below for judge verification.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Fixtures", len(fixture_preview), "Static planner fallback")}
             {_pmw_metric("Filter", planner_filter, "Judge-readable state")}
             {_pmw_metric("Runtime", "loading", "Verified cache/manual state")}
             {_pmw_metric("Table", "ready", "Secondary data surface")}
           </div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-live">FALLBACK READY</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill live">FALLBACK READY</span>
           <h3>Static seed visible while runtime initializes.</h3>
           <p>The judge path remains available after Refresh Runtime or Load Demo Scenario.</p>
         </aside>
       </div>
-      <details class="pmw-data-card" open>
+      <details class="pmw-final-data" open>
         <summary>Fixture preview - {min(len(fixture_preview), VISIBLE_TAB_PREVIEW_MATCHES)} visible rows</summary>
         <p>Data loaded: 104 / 104 matches - Filtered rows: {len(fixture_preview)} / 104 matches - Visible preview: {min(len(fixture_preview), VISIBLE_TAB_PREVIEW_MATCHES)} / 104 matches</p>
         <div class="table-scroll">{table}</div>
@@ -1577,6 +1960,43 @@ def _visible_match_planner_html(matches: pd.DataFrame, planner_filter: str = "Al
     </section>
     """
 
+
+
+
+def _pmw_final_safe(value: object) -> str:
+    return escape(str(value if value is not None else ""))
+
+
+def _pmw_final_table(frame: pd.DataFrame, limit: int = 12) -> str:
+    if frame is None or frame.empty:
+        return "<p>No rows available yet. Use Load Demo Scenario or Recalculate Impact.</p>"
+    try:
+        return _html_table(frame, min(limit, len(frame)))
+    except Exception:
+        return frame.head(limit).to_html(index=False, escape=True)
+
+
+def _pmw_final_stat(label: str, value: object, copy: str) -> str:
+    return f"""
+    <article class="pmw-final-stat">
+      <span>{_pmw_final_safe(label)}</span>
+      <strong>{_pmw_final_safe(value)}</strong>
+      <p>{_pmw_final_safe(copy)}</p>
+    </article>
+    """
+
+
+def _pmw_final_card(kicker: str, title: str, copy: str, meter: int = 74, pill: str = "") -> str:
+    pill_html = f"<em class='pmw-final-pill'>{_pmw_final_safe(pill)}</em>" if pill else ""
+    return f"""
+    <article class="pmw-final-card">
+      <span>{_pmw_final_safe(kicker)}</span>
+      <h3>{_pmw_final_safe(title)}</h3>
+      <p>{_pmw_final_safe(copy)}</p>
+      <div class="pmw-final-meter"><i style="width:{max(8, min(100, int(meter)))}%"></i></div>
+      {pill_html}
+    </article>
+    """
 
 
 def _pmw_safe(v: object) -> str:
@@ -1592,7 +2012,7 @@ def _pmw_table(df: pd.DataFrame, limit: int = 12) -> str:
 
 def _pmw_metric(label: str, value: object, copy: str) -> str:
     return f"""
-    <div class="pmw-proof">
+    <div class="pmw-final-stat">
       <span>{_pmw_safe(label)}</span>
       <strong>{_pmw_safe(value)}</strong>
       <p>{_pmw_safe(copy)}</p>
@@ -1601,7 +2021,7 @@ def _pmw_metric(label: str, value: object, copy: str) -> str:
 
 
 def _pmw_action_card(kicker: str, title: str, copy: str, badge: str = "") -> str:
-    badge_html = f"<b class='pmw-badge-premium'>{_pmw_safe(badge)}</b>" if badge else ""
+    badge_html = f"<b class='pmw-final-pill'>{_pmw_safe(badge)}</b>" if badge else ""
     return f"""
     <article class="pmw-action-card">
       <span>{_pmw_safe(kicker)}</span>
@@ -1657,38 +2077,38 @@ def _visible_runtime_match_planner_html(runtime: pd.DataFrame, planner_filter: s
     full_table = _pmw_table(table_frame, len(table_frame))
 
     return f"""
-    <section class="pmw-module-shell" aria-label="Premium Match Center">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Premium Match Center">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Match Center - runtime intelligence</div>
           <h2>Every fixture feels like a live control-room card.</h2>
           <p>Filter the 104-match planner, inspect the next result, then push the same runtime state into Groups, Bracket, Friends League, and AI Scout.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Fixtures", len(display), "Full tournament planner")}
             {_pmw_metric("Completed", completed, "Verified cache / live source")}
             {_pmw_metric("Live now", live, "Provider-aware runtime")}
             {_pmw_metric("Filter", planner_filter, "Judge-readable state")}
           </div>
-          <div class="pmw-action-grid">
+          <div class="pmw-final-actions">
             {_pmw_action_card("Next action", "Recalculate War Room", "Push edited results into groups, bracket, league scoring and scout cards.")}
             {_pmw_action_card("Scout", "Inspect selected match", "Open row-aware tactical context without leaving the match flow.")}
             {_pmw_action_card("Premium", "Export scenario summary", "Locked CSV + share-ready recap for matchday packs.", "$9 pack")}
           </div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-live">LIVE DATA SURFACE</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill live">LIVE DATA SURFACE</span>
           <div class="pmw-live-score">{_pmw_safe(hero_score)}</div>
           <p>Active filter: <b>{_pmw_safe(planner_filter)}</b></p>
           <p>Source priority: manual override to live provider to verified public cache to static seed.</p>
-          <a class="pmw-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Premium Matchday Pack</a>
+          <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Premium Matchday Pack</a>
         </aside>
       </div>
-      <details class="pmw-data-card" open>
+      <details class="pmw-final-data" open>
         <summary>Fixture preview - {min(len(table_frame), VISIBLE_TAB_PREVIEW_MATCHES)} visible rows</summary>
         <p>Data loaded: 104 / 104 matches - Filtered rows: {len(table_frame)} / 104 matches - Visible preview: {min(len(table_frame), VISIBLE_TAB_PREVIEW_MATCHES)} / 104 matches</p>
         <div class="table-scroll">{table}</div>
       </details>
-      <details class="pmw-data-card">
+      <details class="pmw-final-data">
         <summary>View full filtered fixture table</summary>
         <div class="table-scroll">{full_table}</div>
       </details>
@@ -1730,28 +2150,28 @@ def _visible_group_tracker_html(groups: pd.DataFrame) -> str:
 
     table = _pmw_table(visible, 48)
     return f"""
-    <section class="pmw-module-shell" aria-label="Premium Groups Module">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Premium Groups Module">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Groups - qualification radar</div>
           <h2>12 groups, one clean qualification command center.</h2>
           <p>Cards summarize the race first; the full standings remain available below for judge verification and power users.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Groups", group_count, "All group tables active")}
             {_pmw_metric("Rows", len(visible), "48-team standings model")}
             {_pmw_metric("Played sum", played_total, "Runtime result impact")}
             {_pmw_metric("3rd-place", "Ready", "Feeds ranking + R32 slots")}
           </div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-premium">PREMIUM SUMMARY</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill">PREMIUM SUMMARY</span>
           <h3>Share-ready group storylines</h3>
           <p>Premium turns each group into one-screen recaps for watch parties, office pools, and private leagues.</p>
           <span class="pmw-lock">Locked export preview - Premium Matchday</span>
         </aside>
       </div>
-      <div class="pmw-group-grid">{cards}</div>
-      <details class="pmw-data-card" open>
+      <div class="pmw-final-grid">{cards}</div>
+      <details class="pmw-final-data" open>
         <summary>Standings data - card-first, table-second</summary>
         <div class="table-scroll">{table}</div>
       </details>
@@ -1795,28 +2215,28 @@ def _visible_third_place_html(thirds: pd.DataFrame) -> str:
         """
     table = _pmw_table(frame, 12)
     return f"""
-    <section class="pmw-module-shell" aria-label="Premium Third-Place Ranking">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Premium Third-Place Ranking">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Third-place ranking - bubble radar</div>
           <h2>The 48-team tiebreaker story gets a premium surface.</h2>
           <p>Third-place ranking stays readable before enough results exist, then converts into a bubble-watch command center for Round of 32 slots.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Tracked groups", len(frame), "One third-place lane per group")}
             {_pmw_metric("Active rows", active_rows, "Computed after group results")}
             {_pmw_metric("Projected advance", projected, "Top bubble teams")}
             {_pmw_metric("R32 feed", "8 slots", "Best third-place qualifiers")}
           </div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-live">QUALIFICATION RADAR</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill live">QUALIFICATION RADAR</span>
           <h3>Bubble teams become bracket fuel.</h3>
           <p>Premium summaries turn this table into watch-party explainers and share-ready qualification recaps.</p>
           <span class="pmw-lock">Table stays available for judge verification</span>
         </aside>
       </div>
-      <div class="pmw-group-grid">{cards}</div>
-      <details class="pmw-data-card" open>
+      <div class="pmw-final-grid">{cards}</div>
+      <details class="pmw-final-data" open>
         <summary>Third-place ranking data - 12 tracked rows</summary>
         <div class="table-scroll">{table}</div>
       </details>
@@ -1855,28 +2275,28 @@ def _visible_bracket_war_room_html(bracket: dict, groups: pd.DataFrame | None = 
     table = _pmw_table(preview, min(len(preview), 16)) if not preview.empty else ""
 
     return f"""
-    <section class="pmw-module-shell" aria-label="Premium Bracket War Room">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Premium Bracket War Room">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Bracket - road to final</div>
           <h2>The knockout path now looks like a premium bracket desk.</h2>
           <p>Round of 32 through Final are presented as connected lanes, with unresolved slots treated as product states rather than empty debug output.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Knockout matches", len(knockouts), "M073-M104 skeleton")}
             {_pmw_metric("Resolved slots", resolved, "From completed groups")}
             {_pmw_metric("Open slots", unresolved, "Clear pending state")}
             {_pmw_metric("Final", "M104", "Road-to-final endpoint")}
           </div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-live">BRACKET IMPACT</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill live">BRACKET IMPACT</span>
           <h3>Scenario-ready knockout story.</h3>
           <p>Every changed result can be explained as a bracket impact card for fans, judges, and premium buyers.</p>
-          <a class="pmw-cta secondary" href="{_pmw_safe(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">Get source bundle</a>
+          <a class="pmw-final-cta secondary" href="{_pmw_safe(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">Get source bundle</a>
         </aside>
       </div>
-      <div class="pmw-bracket-lanes">{lanes}</div>
-      <details class="pmw-data-card" open>
+      <div class="pmw-final-lanes">{lanes}</div>
+      <details class="pmw-final-data" open>
         <summary>Bracket contract preview</summary>
         <div class="table-scroll">{table}</div>
       </details>
@@ -1911,29 +2331,29 @@ def _visible_friends_league_html(friends: pd.DataFrame, runtime: pd.DataFrame | 
 
     table = _pmw_table(leaderboard, min(len(leaderboard), VISIBLE_TAB_PREVIEW_FRIENDS))
     return f"""
-    <section class="pmw-module-shell" aria-label="Premium Friends League">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Premium Friends League">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Friends League - private exports</div>
           <h2>Turn predictions into a private league product loop.</h2>
           <p>Free mode proves scoring. Premium packages the same state into leaderboard exports, matchday recaps, and office-pool sheets.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Players", players, "League rows loaded")}
             {_pmw_metric("Scored matches", completed, "Runtime results available")}
             {_pmw_metric("Exports", "24", "Premium pack preview")}
             {_pmw_metric("Share cards", "Ready", "Scenario summaries")}
           </div>
-          <div class="pmw-group-grid">{podium}</div>
+          <div class="pmw-final-grid">{podium}</div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-premium">LOCKED PREMIUM EXPORT</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill">LOCKED PREMIUM EXPORT</span>
           <h3>Private Friends League Pack</h3>
           <p>CSV leaderboard, printable pool sheet, share-ready recap, and no-ad planning mode.</p>
-          <a class="pmw-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Buy Premium Matchday Pack</a>
+          <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Buy Premium Matchday Pack</a>
           <span class="pmw-lock">Visible funnel - does not block judge demo</span>
         </aside>
       </div>
-      <details class="pmw-data-card" open>
+      <details class="pmw-final-data" open>
         <summary>Leaderboard preview</summary>
         <div class="table-scroll">{table}</div>
       </details>
@@ -2120,32 +2540,32 @@ def google_sheet_control_html(state: dict | None = None) -> str:
     picks_count = len(sheet_state.friends_picks or [])
     notes_count = len(sheet_state.admin_notes or [])
     return f"""
-    <section class="pmw-module-shell" aria-label="Premium Google Sheet Control">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Premium Google Sheet Control">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Google Sheet - control plane</div>
           <h2>Sheet overrides feel like a premium operations panel.</h2>
           <p>Google Sheet control plane connects external results, private picks, league settings, and admin notes without changing the judgeable free runtime path.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Status", status, "Manual override readiness")}
             {_pmw_metric("Manual results", manual_count, "Results_Override rows")}
             {_pmw_metric("Friends picks", picks_count, "Friends_Picks rows")}
             {_pmw_metric("Admin notes", notes_count, "Warnings and operator notes")}
           </div>
-          <div class="pmw-action-grid">
+          <div class="pmw-final-actions">
             {_pmw_action_card("Results_Override", "Manual results", "Connected sheet rows can override verified cache when enabled.")}
             {_pmw_action_card("Friends_Picks", "Private league picks", "Bring office-pool picks into the same scoring engine.")}
             {_pmw_action_card("League_Settings", "Scoring settings", "Keep league rules visible without exposing debug panels.")}
           </div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-live">SHEET SNAPSHOT</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill live">SHEET SNAPSHOT</span>
           <h3>{_pmw_safe(sheet_state.spreadsheet_id or 'not configured')}</h3>
           <p>Last pull: {_pmw_safe(sheet_state.last_pull_utc or 'not pulled')}</p>
           <p>Override priority remains manual sheet -> live provider -> verified cache -> static seed.</p>
         </aside>
       </div>
-      <details class="pmw-data-card" open>
+      <details class="pmw-final-data" open>
         <summary>How to connect your sheet - connection checklist and warnings</summary>
         <ol>
           <li>Create tabs: Results_Override, Friends_Picks, League_Settings, Admin_Notes.</li>
@@ -4514,7 +4934,7 @@ SF_PREMIUM_WAR_ROOM_CSS = r"""
   grid-column: 1 / -1;
 }
 
-.pmw-scout-grid {
+.pmw-final-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
@@ -4750,7 +5170,7 @@ SF_PREMIUM_WAR_ROOM_CSS = r"""
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
-  .pmw-scout-grid {
+  .pmw-final-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -5306,7 +5726,7 @@ FINAL_PMW2026_PRODUCTION_CSS = r"""
 .pmw-side { grid-column: span 5; }
 .pmw-full { grid-column: 1 / -1; }
 
-.pmw-scout-grid {
+.pmw-final-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
@@ -5496,7 +5916,7 @@ FINAL_PMW2026_PRODUCTION_CSS = r"""
     grid-column: 1 / -1;
   }
 
-  .pmw-scout-grid {
+  .pmw-final-grid {
     grid-template-columns: 1fr;
   }
 
@@ -5618,30 +6038,30 @@ def _premium_pricing_html() -> str:
         ]
     )
     return f"""
-    <section class="pmw-module-shell" aria-label="Premium Pricing">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Premium Pricing">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Premium - Gumroad funnel</div>
           <h2>Free is judgeable. Premium is clearly valuable.</h2>
           <p>No gambling, no official federation marks, no player likeness dependency, and no paid live-score requirement. Premium sells exports, planning tools, templates, ad-free UI, and source access.</p>
-          <div class="pmw-proof-grid">
+          <div class="pmw-final-stats">
             {_pmw_metric("Free Core", "$0", "Full judge path")}
             {_pmw_metric("Matchday", "$9", "Scout + exports")}
             {_pmw_metric("Fan Pack", "$27", "Printable assets")}
             {_pmw_metric("Source", "$49+", "Builder bundle")}
           </div>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-premium">VALUE-LED CTA</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill">VALUE-LED CTA</span>
           <h3>Premium Matchday Pack</h3>
           <p>Advanced AI Scout cards, scenario exports, private league export pack, and ad-free matchday mode.</p>
-          <div class="pmw-cta-row">
-            <a class="pmw-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Buy Premium</a>
-            <a class="pmw-cta secondary" href="{_pmw_safe(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">Buy Source</a>
+          <div class="pmw-final-cta-row">
+            <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Buy Premium</a>
+            <a class="pmw-final-cta secondary" href="{_pmw_safe(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">Buy Source</a>
           </div>
         </aside>
       </div>
-      <div class="pmw-group-grid">{cards}</div>
+      <div class="pmw-final-grid">{cards}</div>
     </section>
     """
 
@@ -5668,23 +6088,23 @@ def _premium_locked_exports_html() -> str:
     )
 
     return f"""
-    <section class="pmw-module-shell" aria-label="Premium Export Center">
-      <div class="pmw-module-hero">
+    <section class="pmw-final-shell" aria-label="Premium Export Center">
+      <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Premium Export Center</div>
           <h2>Locked exports make the business model obvious without blocking the demo.</h2>
           <p>The free app remains fully judgeable. Premium CTAs show what converts: exports, advanced summaries, fan packs, and source.</p>
         </div>
-        <aside class="pmw-side-panel">
-          <span class="pmw-badge-premium">LOCKED PREVIEW</span>
+        <aside class="pmw-final-side">
+          <span class="pmw-final-pill">LOCKED PREVIEW</span>
           <h3>Exports, scout cards, league packs, source.</h3>
-          <div class="pmw-cta-row">
-            <a class="pmw-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Export Pack</a>
-            <a class="pmw-cta secondary" href="{_pmw_safe(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">Get Source Bundle</a>
+          <div class="pmw-final-cta-row">
+            <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Export Pack</a>
+            <a class="pmw-final-cta secondary" href="{_pmw_safe(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">Get Source Bundle</a>
           </div>
         </aside>
       </div>
-      <details class="pmw-data-card" open>
+      <details class="pmw-final-data" open>
         <summary>Premium export table</summary>
         <table>
             <thead>
@@ -5769,29 +6189,23 @@ def _pmw_runtime_snapshot(state: dict | None = None) -> dict:
 
 
 def _pmw_dashboard_stats_html(state: dict | None = None) -> str:
-    snap = _pmw_runtime_snapshot(state)
-    runtime = snap["runtime"]
-    fixtures_total = _pmw_safe_count(runtime) or _pmw_expected_match_count()
-
     stats = [
-        ("Fixtures", f"{fixtures_total}", "104-match planner loaded"),
-        ("Completed", f"{snap['completed']}", "Verified result cache / live source"),
-        ("Live now", f"{snap['live_count']}", "Provider-aware runtime"),
-        ("Next", _pmw_escape(snap["next_match"]), "Fastest matchday action"),
+        ("Fixtures", "104", "Full match planner"),
+        ("Groups", "12", "Qualification tables"),
+        ("AI Scout", "156", "Advanced scout cards"),
+        ("Exports", "24", "Friends League + summaries"),
     ]
-
     body = "".join(
         f"""
         <div class="pmw-stat">
           <span>{_pmw_escape(label)}</span>
-          <strong>{value}</strong>
+          <strong>{_pmw_escape(value)}</strong>
           <p>{_pmw_escape(copy)}</p>
         </div>
         """
         for label, value, copy in stats
     )
     return f"<div class='pmw-stat-grid' aria-label='Dashboard stats'>{body}</div>"
-
 
 def _pmw_ai_scout_cards_html(state: dict | None = None) -> str:
     snap = _pmw_runtime_snapshot(state)
@@ -5838,7 +6252,7 @@ def _pmw_ai_scout_cards_html(state: dict | None = None) -> str:
       <div class="pmw-card-kicker">AI Scout Cards</div>
       <h2>Scout the match before opening a table.</h2>
       <p>Selected match: <strong>{_pmw_escape(snap["scoreline"])}</strong> · {_pmw_escape(snap["status"])} · source: {_pmw_escape(snap["source"])}</p>
-      <div class="pmw-scout-grid">{body}</div>
+      <div class="pmw-final-grid">{body}</div>
     </section>
     """
 
@@ -6385,7 +6799,7 @@ SHOW_INTERNAL_TOOLS = os.getenv("SHOW_INTERNAL_TOOLS", "0") == "1"
 
 with gr.Blocks(
     title=APP_TITLE,
-    css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS + "\n" + PHASE_138_CLEANUP_CSS + "\n" + FINAL_PMW2026_PRODUCTION_CSS + "\n" + PHASE_139_PUBLIC_PRODUCT_CSS + "\n" + PMW_LOWER_MODULES_FINAL_CSS,
+    css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS + "\n" + PHASE_138_CLEANUP_CSS + "\n" + FINAL_PMW2026_PRODUCTION_CSS + "\n" + PHASE_139_PUBLIC_PRODUCT_CSS + "\n" + PMW_LOWER_MODULES_FINAL_CSS + "\n" + FINAL_PREMIUM_ALL_TABS_CSS,
 ) as demo:
     gr.Markdown(PHASE_139_PUBLIC_HERO_MD, elem_classes=["phase-139-public-hero"])
     gr.HTML(PHASE_135_PREMIUM_CSS)
@@ -6421,7 +6835,7 @@ with gr.Blocks(
 
         with gr.Tabs(elem_classes=["pmw-tabs"]):
             with gr.Tab("🏟️ Match Center", elem_id="match-center"):
-                gr.Markdown("**Select a match to inspect runtime details, AI Scout context, and Friends League scoring impact.**")
+                gr.HTML("<section class=\"pmw-final-shell\"><div class=\"pmw-final-kicker\">Match selected</div><p>Pick a fixture, inspect its runtime state, then recalculate downstream modules.</p></section>")
                 match_choice = gr.Dropdown(choices=_match_choice_options(), value=_match_choice_options()[0], label="Select match", interactive=True)
                 selected_match_detail_html = gr.HTML(value=_selected_match_detail_html())
                 with gr.Row():
@@ -6446,7 +6860,7 @@ with gr.Blocks(
                 friends_html = gr.HTML(value=_visible_friends_league_html(pd.DataFrame()))
                 friends_df = gr.Dataframe(label="Friends League Leaderboard", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
             with gr.Tab("🤖 AI Scout", elem_id="ai-scout"):
-                gr.Markdown("AI Scout reads the selected match, verified runtime score, squad rows, group impact, and Friends League scoring context.")
+                gr.HTML("<section class=\"pmw-final-shell\"><div class=\"pmw-final-kicker\">Scout context</div><p>AI Scout reads selected match, verified runtime score, squad rows, group impact and Friends League scoring context.</p></section>")
                 ask_ai_scout_tab_button = gr.Button("Ask AI Scout", variant="primary")
                 ai_scout_html = gr.HTML()
         with gr.Tabs(elem_classes=["pmw-tabs", "pmw-admin-tabs"]):

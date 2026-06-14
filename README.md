@@ -1,28 +1,25 @@
 ---
 title: AI Bracket War Room 2026
 emoji: ⚽
-colorFrom: blue
-colorTo: gray
+colorFrom: green
+colorTo: cyan
 sdk: gradio
-sdk_version: 4.44.1
+sdk_version: 5.34.2
 python_version: '3.12'
 app_file: app.py
 pinned: false
 license: mit
-short_description: "WC2026 AI bracket planner and premium fan dashboard."
+short_description: Premium AI bracket, matchday, Friends League, and scout-card command center for World Cup 2026 fans.
 tags:
   - gradio
-  - ai
-  - sports
-  - football
-  - world-cup
+  - huggingface-spaces
   - world-cup-2026
+  - football
   - bracket
-  - dashboard
-  - analytics
-  - predictions
+  - ai-scout
+  - friends-league
   - hackathon
-  - monetization
+  - premium-ui
   - gumroad
 ---
 <!-- FINAL_PMW2026_SUBMISSION_COPY -->
@@ -77,6 +74,23 @@ PHASE_1_30_RUNTIME_PRODUCT_QA_PASS
 ```
 
 # AI Bracket War Room 2026
+
+AI Bracket War Room 2026 is a premium Gradio fan command center for World Cup 2026 planning: 104-match runtime planner, 12-group standings, third-place bubble watch, knockout bracket, Friends League scoring, Advanced AI Scout Cards, Google Sheet control plane, and visible Gumroad monetization.
+
+## Judge Path
+
+Refresh Runtime -> Load Demo Scenario -> Recalculate Impact -> Match Center -> Groups -> 3RD-PLACE RANKING -> Bracket -> Friends League -> AI Scout -> Google Sheet -> Premium.
+
+## Premium Funnel
+
+- Free Core: $0 judgeable app, full runtime demo, groups, bracket, Friends League and AI Scout preview.
+- Premium Matchday Pack: $9 advanced scout cards, scenario summaries, CSV exports and private league pack.
+- Ultimate Fan Pack: $27 printable/GoodNotes command center, watch-party sheets and fan assets.
+- Source Bundle: $49+ deployable Gradio source, monetization templates and setup guide.
+
+## Safety Boundary
+
+Unofficial fan-made planning tool. No gambling, betting, official marks, team crests, FIFA affiliation, or paid live-score dependency. The demo runs safely with verified cache/manual overrides and without private credentials.
 
 PremiumMatchdayWarRoom2026 is an unofficial fan-made Gradio command center for the expanded 48-team 2026 football tournament format. It turns a 104-match planner into a premium matchday surface: runtime results, group tables, third-place ranking, bracket preview, Friends League scoring, AI Scout context, and a clear Gumroad upgrade funnel.
 
@@ -252,3 +266,18 @@ PHASE_1_30_RUNTIME_PRODUCT_QA_PASS
 The lower app surface now matches the premium mockups: Match Center, Groups, Bracket, Friends League, and AI Scout use the same neon stadium product system with card-first hierarchy, mobile-first grids, visible premium exports, and Gumroad CTAs. Tables remain available for judge verification, but every module now opens with a product-quality summary surface.
 
 Judge path: Refresh Runtime -> Load Judge Demo Scenario -> Recalculate War Room -> inspect Match Center -> Groups -> Bracket -> Friends League -> AI Scout -> Premium Matchday CTA.
+
+
+## Phase 1.39 - Final PremiumMatchdayWarRoom2026 Release Candidate
+
+**short_description:** Premium AI bracket, matchday, Friends League, and scout-card command center for World Cup 2026 fans.
+
+**Submission copy:** AI Bracket War Room 2026 is a Gradio-powered premium fan command center: 104-match runtime planner, 12-group standings, third-place bubble watch, knockout bracket, Friends League scoring, Advanced AI Scout Cards, Google Sheet control plane, and visible Gumroad monetization. The free judge path stays fully open while Premium Matchday, Ultimate Fan Pack, and Source Bundle rails show a realistic sales funnel.
+
+**Tags:** gradio, huggingface-spaces, world-cup-2026, football, bracket, ai-scout, friends-league, hackathon, premium-ui, gumroad
+
+**Judge path:** Refresh Runtime -> Load Demo Scenario -> Recalculate Impact -> Match Center -> Groups -> 3RD-PLACE RANKING -> Bracket -> Friends League -> AI Scout -> Google Sheet -> Premium.
+
+**Safety boundary:** Unofficial fan-made planning tool. No gambling, betting, official marks, team crests, FIFA affiliation, or paid live-score dependency. The demo works safely with verified cache/manual overrides and without private credentials.
+
+**Premium funnel:** Free Core $0 -> Premium Matchday Pack $9 -> Ultimate Fan Pack $27 -> Gumroad Source Bundle $49+.
