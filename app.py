@@ -3624,6 +3624,724 @@ PHASE_135_PREMIUM_CSS = """
 """
 
 
+SF_PREMIUM_WAR_ROOM_CSS = r"""
+/* ==========================================================================
+   SF Design Elite — PremiumMatchdayWarRoom2026
+   Neon stadium, mobile-first, judge-readable premium product surface.
+   ========================================================================== */
+
+:root {
+  --pmw-bg-0: #020617;
+  --pmw-bg-1: #07111f;
+  --pmw-bg-2: #0b1220;
+  --pmw-card: rgba(15, 23, 42, 0.78);
+  --pmw-card-strong: rgba(2, 6, 23, 0.92);
+  --pmw-line: rgba(148, 163, 184, 0.22);
+  --pmw-line-strong: rgba(53, 214, 232, 0.36);
+  --pmw-text: #f8fafc;
+  --pmw-muted: #a7b3c7;
+  --pmw-dim: #64748b;
+  --pmw-lime: #a7ff00;
+  --pmw-cyan: #35d6e8;
+  --pmw-amber: #ffd166;
+  --pmw-rose: #fb7185;
+  --pmw-green: #34d399;
+  --pmw-blue: #60a5fa;
+  --pmw-shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+  --pmw-radius-xl: 30px;
+  --pmw-radius-lg: 22px;
+  --pmw-radius-md: 16px;
+  --pmw-radius-sm: 12px;
+}
+
+/* App canvas */
+.gradio-container {
+  max-width: 100% !important;
+  color: var(--pmw-text) !important;
+  background:
+    radial-gradient(circle at 10% -10%, rgba(53, 214, 232, 0.20), transparent 34%),
+    radial-gradient(circle at 90% 0%, rgba(167, 255, 0, 0.14), transparent 30%),
+    radial-gradient(circle at 50% 110%, rgba(255, 209, 102, 0.10), transparent 36%),
+    linear-gradient(180deg, #020617 0%, #07111f 48%, #020617 100%) !important;
+}
+
+.gradio-container::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.26;
+  background-image:
+    linear-gradient(rgba(53, 214, 232, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(53, 214, 232, 0.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at 50% 20%, black, transparent 78%);
+  z-index: 0;
+}
+
+.gradio-container > .main,
+.gradio-container .contain {
+  position: relative;
+  z-index: 1;
+}
+
+/* Global Gradio hardening */
+.gradio-container button {
+  min-height: 44px !important;
+  border-radius: 999px !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.01em !important;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease !important;
+}
+
+.gradio-container button:hover {
+  transform: translateY(-1px);
+}
+
+.gradio-container button.primary,
+.gradio-container .primary {
+  background: linear-gradient(135deg, var(--pmw-lime), var(--pmw-amber)) !important;
+  color: #04111d !important;
+  border: 0 !important;
+  box-shadow: 0 14px 42px rgba(167, 255, 0, 0.20) !important;
+}
+
+.gradio-container button.secondary {
+  background: rgba(53, 214, 232, 0.11) !important;
+  color: #e6fbff !important;
+  border: 1px solid rgba(53, 214, 232, 0.32) !important;
+}
+
+.gradio-container input,
+.gradio-container textarea,
+.gradio-container select {
+  background: rgba(2, 6, 23, 0.72) !important;
+  color: var(--pmw-text) !important;
+  border: 1px solid rgba(148, 163, 184, 0.22) !important;
+  border-radius: 14px !important;
+}
+
+.gradio-container label,
+.gradio-container .label-wrap span {
+  color: #dbeafe !important;
+  font-weight: 800 !important;
+}
+
+/* Tabs */
+.gradio-container .tab-nav,
+.gradio-container .tabs {
+  border-color: rgba(148, 163, 184, 0.16) !important;
+}
+
+.gradio-container button[role="tab"] {
+  border-radius: 999px !important;
+  color: var(--pmw-muted) !important;
+}
+
+.gradio-container button[role="tab"][aria-selected="true"] {
+  color: #04111d !important;
+  background: linear-gradient(135deg, var(--pmw-cyan), var(--pmw-lime)) !important;
+}
+
+/* Main premium shell */
+.pmw-shell {
+  position: relative;
+  isolation: isolate;
+  margin: 0 auto 22px auto;
+  max-width: 1480px;
+  padding: clamp(14px, 2.2vw, 28px);
+}
+
+.pmw-stadium-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(53, 214, 232, 0.26);
+  border-radius: var(--pmw-radius-xl);
+  background:
+    radial-gradient(circle at 16% 0%, rgba(53, 214, 232, 0.28), transparent 32%),
+    radial-gradient(circle at 82% 12%, rgba(167, 255, 0, 0.18), transparent 26%),
+    linear-gradient(135deg, rgba(3, 7, 18, 0.96), rgba(8, 18, 33, 0.92) 46%, rgba(2, 6, 23, 0.98));
+  box-shadow: var(--pmw-shadow);
+}
+
+.pmw-stadium-hero::before {
+  content: "";
+  position: absolute;
+  inset: -60% -10% auto -10%;
+  height: 420px;
+  background:
+    repeating-radial-gradient(ellipse at center, rgba(53, 214, 232, 0.16) 0 1px, transparent 1px 18px);
+  transform: perspective(900px) rotateX(62deg);
+  transform-origin: center bottom;
+  opacity: 0.55;
+}
+
+.pmw-stadium-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 8% -1px 8%;
+  height: 46%;
+  border-radius: 50% 50% 0 0 / 18% 18% 0 0;
+  background:
+    linear-gradient(90deg, transparent 0 49%, rgba(248, 250, 252, 0.16) 49% 51%, transparent 51%),
+    linear-gradient(0deg, rgba(52, 211, 153, 0.18), rgba(52, 211, 153, 0.04));
+  border: 1px solid rgba(167, 255, 0, 0.18);
+  opacity: 0.65;
+}
+
+.pmw-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(330px, 0.82fr);
+  gap: clamp(16px, 2vw, 26px);
+  padding: clamp(20px, 4vw, 44px);
+}
+
+.pmw-kicker,
+.pmw-card-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--pmw-cyan) !important;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pmw-kicker::before,
+.pmw-card-kicker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--pmw-lime);
+  box-shadow: 0 0 18px rgba(167, 255, 0, 0.78);
+}
+
+.pmw-title {
+  margin: 12px 0 10px;
+  max-width: 900px;
+  color: var(--pmw-text) !important;
+  font-size: clamp(36px, 7vw, 86px);
+  line-height: 0.88;
+  letter-spacing: -0.075em;
+  font-weight: 1000;
+}
+
+.pmw-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #dffcff 38%, var(--pmw-lime) 72%, var(--pmw-amber) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pmw-subtitle {
+  max-width: 760px;
+  color: #cbd5e1 !important;
+  font-size: clamp(15px, 1.6vw, 19px);
+  line-height: 1.58;
+  margin: 0;
+}
+
+.pmw-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.pmw-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.68);
+  color: #dbeafe !important;
+  font-size: 12px;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+}
+
+.pmw-chip.live {
+  color: #04111d !important;
+  background: linear-gradient(135deg, var(--pmw-lime), var(--pmw-green));
+  border-color: transparent;
+}
+
+.pmw-chip.premium {
+  color: #221300 !important;
+  background: linear-gradient(135deg, var(--pmw-amber), #fff3bd);
+  border-color: transparent;
+}
+
+.pmw-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.pmw-action {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 46px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration: none !important;
+  font-weight: 950;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.pmw-action.primary {
+  background: linear-gradient(135deg, var(--pmw-lime), var(--pmw-amber));
+  color: #04111d !important;
+  box-shadow: 0 16px 46px rgba(167, 255, 0, 0.22);
+}
+
+.pmw-action.secondary {
+  background: rgba(53, 214, 232, 0.12);
+  color: #e6fbff !important;
+  border-color: rgba(53, 214, 232, 0.34);
+}
+
+.pmw-live-panel {
+  border: 1px solid rgba(53, 214, 232, 0.26);
+  border-radius: var(--pmw-radius-lg);
+  background: rgba(2, 6, 23, 0.68);
+  backdrop-filter: blur(18px);
+  padding: 18px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.pmw-score-card {
+  padding: 18px;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(167, 255, 0, 0.16), transparent 36%),
+    rgba(15, 23, 42, 0.84);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.pmw-score-label {
+  color: var(--pmw-dim) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.pmw-scoreline {
+  margin-top: 8px;
+  color: var(--pmw-text) !important;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.0;
+  font-weight: 1000;
+  letter-spacing: -0.045em;
+}
+
+.pmw-source {
+  margin-top: 10px;
+  color: var(--pmw-muted) !important;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.pmw-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.pmw-stat {
+  min-height: 92px;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(15, 23, 42, 0.64);
+}
+
+.pmw-stat span {
+  display: block;
+  color: var(--pmw-dim) !important;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pmw-stat strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--pmw-text) !important;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 1000;
+}
+
+.pmw-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.pmw-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--pmw-line);
+  border-radius: var(--pmw-radius-lg);
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.74));
+  box-shadow: 0 18px 58px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(16px);
+  padding: 18px;
+}
+
+.pmw-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 38%);
+}
+
+.pmw-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.pmw-card h2,
+.pmw-card h3,
+.pmw-card h4 {
+  color: var(--pmw-text) !important;
+  margin: 8px 0 8px;
+  letter-spacing: -0.035em;
+}
+
+.pmw-card p,
+.pmw-card li {
+  color: var(--pmw-muted) !important;
+  line-height: 1.55;
+}
+
+.pmw-wide {
+  grid-column: span 7;
+}
+
+.pmw-side {
+  grid-column: span 5;
+}
+
+.pmw-third {
+  grid-column: span 4;
+}
+
+.pmw-half {
+  grid-column: span 6;
+}
+
+.pmw-full {
+  grid-column: 1 / -1;
+}
+
+.pmw-scout-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.pmw-scout-card {
+  min-height: 170px;
+  border-radius: 18px;
+  padding: 15px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(53, 214, 232, 0.12), transparent 38%),
+    rgba(2, 6, 23, 0.46);
+  border: 1px solid rgba(53, 214, 232, 0.20);
+}
+
+.pmw-scout-card strong {
+  display: block;
+  color: var(--pmw-text) !important;
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+}
+
+.pmw-meter {
+  overflow: hidden;
+  margin: 12px 0 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.18);
+}
+
+.pmw-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--pmw-cyan), var(--pmw-lime));
+  box-shadow: 0 0 22px rgba(53, 214, 232, 0.38);
+}
+
+.pmw-export-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.pmw-export-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.58);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.pmw-export-row b {
+  color: var(--pmw-text) !important;
+}
+
+.pmw-export-row span {
+  color: var(--pmw-muted) !important;
+  font-size: 13px;
+}
+
+.pmw-pill {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 28px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #04111d !important;
+  background: linear-gradient(135deg, var(--pmw-amber), var(--pmw-lime));
+  font-size: 11px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.pmw-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.pmw-plan {
+  border-radius: 20px;
+  padding: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(2, 6, 23, 0.56);
+}
+
+.pmw-plan.featured {
+  border-color: rgba(167, 255, 0, 0.42);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(167, 255, 0, 0.16), transparent 36%),
+    rgba(2, 6, 23, 0.72);
+  box-shadow: 0 18px 54px rgba(167, 255, 0, 0.10);
+}
+
+.pmw-price {
+  color: var(--pmw-text) !important;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 1000;
+  letter-spacing: -0.05em;
+}
+
+.pmw-plan ul {
+  padding-left: 18px;
+  margin-bottom: 0;
+}
+
+.pmw-table-wrap {
+  overflow-x: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.gradio-container table,
+.gradio-container .dataframe,
+.gradio-container .gradio-dataframe {
+  background: rgba(2, 6, 23, 0.76) !important;
+  color: var(--pmw-text) !important;
+}
+
+.gradio-container th {
+  background: rgba(15, 23, 42, 0.96) !important;
+  color: #e6fbff !important;
+  font-weight: 950 !important;
+}
+
+.gradio-container td {
+  background: rgba(2, 6, 23, 0.72) !important;
+  color: #dbeafe !important;
+  border-color: rgba(148, 163, 184, 0.12) !important;
+}
+
+/* Compatibility with current app classes */
+.app-card,
+.card-shell,
+.sport-card,
+.runtime-card,
+.price-card,
+.premium-export-card,
+.submission-card,
+.premium-disclaimer {
+  border-radius: var(--pmw-radius-lg) !important;
+  border: 1px solid rgba(148, 163, 184, 0.18) !important;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.72)) !important;
+  color: var(--pmw-text) !important;
+  box-shadow: 0 18px 58px rgba(0, 0, 0, 0.24) !important;
+}
+
+.app-card *,
+.card-shell *,
+.sport-card *,
+.runtime-card *,
+.price-card *,
+.premium-export-card *,
+.submission-card *,
+.premium-disclaimer * {
+  color: inherit;
+}
+
+.module-kicker,
+.sport-label {
+  color: var(--pmw-cyan) !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.10em !important;
+}
+
+.today-scoreline,
+.sport-card h2,
+.sport-card h3,
+.card-shell h2,
+.card-shell h3,
+.price-card h3 {
+  color: var(--pmw-text) !important;
+}
+
+.today-meta,
+.sport-muted,
+.card-shell p,
+.price-card p,
+.premium-disclaimer,
+.premium-export-card p {
+  color: var(--pmw-muted) !important;
+}
+
+.mini-module,
+.module-card,
+.status-card,
+.nav-card,
+.table-skeleton-card {
+  background: rgba(2, 6, 23, 0.54) !important;
+  border: 1px solid rgba(148, 163, 184, 0.16) !important;
+  color: var(--pmw-text) !important;
+}
+
+.next-action-row span,
+.premium-button.primary {
+  background: linear-gradient(135deg, var(--pmw-lime), var(--pmw-amber)) !important;
+  color: #04111d !important;
+  border-color: transparent !important;
+}
+
+.premium-button.secondary {
+  background: rgba(53, 214, 232, 0.12) !important;
+  color: #e6fbff !important;
+  border-color: rgba(53, 214, 232, 0.34) !important;
+}
+
+/* Mobile */
+@media (max-width: 1020px) {
+  .pmw-hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .pmw-wide,
+  .pmw-side,
+  .pmw-third,
+  .pmw-half {
+    grid-column: 1 / -1;
+  }
+
+  .pmw-plan-grid,
+  .premium-pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .pmw-scout-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .pmw-shell {
+    padding: 10px;
+  }
+
+  .pmw-hero-inner {
+    padding: 18px;
+  }
+
+  .pmw-title {
+    font-size: clamp(38px, 14vw, 58px);
+  }
+
+  .pmw-stat-grid,
+  .pmw-plan-grid,
+  .premium-pricing-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pmw-hero-actions,
+  .premium-strip-actions {
+    flex-direction: column;
+  }
+
+  .pmw-action,
+  .premium-button,
+  .gradio-container button {
+    width: 100% !important;
+  }
+
+  .pmw-export-row {
+    grid-template-columns: 1fr;
+  }
+
+  .pmw-chip-row {
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pmw-chip.live {
+    animation: pmwPulse 2.6s ease-in-out infinite;
+  }
+
+  @keyframes pmwPulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(167, 255, 0, 0.0); }
+    50% { box-shadow: 0 0 28px rgba(167, 255, 0, 0.28); }
+  }
+}
+"""
+
+
 def _feature_list(items: list[str]) -> str:
     return "".join(f"<li>{escape(item)}</li>" for item in items)
 
@@ -3745,6 +4463,282 @@ def _premium_locked_exports_html() -> str:
     </section>
     """
 
+
+def _pmw_safe_count(df: pd.DataFrame | None) -> int:
+    return int(len(df)) if isinstance(df, pd.DataFrame) else 0
+
+
+def _pmw_runtime_snapshot(state: dict | None = None) -> dict:
+    state = state or {}
+    runtime = state.get("runtime_matches")
+    if not isinstance(runtime, pd.DataFrame) or runtime.empty:
+        runtime, _live_results, live_status, sheet_state = _runtime_build()
+    else:
+        live_status = state.get("live_status") or get_live_score_status()
+        sheet_state = state.get("sheet_state") or pull_sheet_runtime_state()
+
+    summary = state.get("runtime_summary") or _runtime_summary(runtime, live_status, sheet_state)
+    completed = int(summary.get("completed_matches_count", 0))
+    live_count = int(summary.get("live_matches_count", 0))
+    next_match = str(summary.get("next_match", "M001"))
+
+    selected = _latest_completed(runtime, 1)
+    if selected.empty and isinstance(runtime, pd.DataFrame) and not runtime.empty:
+        selected = runtime.head(1)
+
+    if not selected.empty:
+        row = selected.iloc[0]
+        scoreline = _scoreline_label(row)
+        status = str(row.get("status") or ("FT" if bool(row.get("is_completed")) else "Scheduled"))
+        source = str(row.get("result_source") or "static_fixture")
+    else:
+        scoreline = "World Cup 2026 War Room"
+        status = "Ready"
+        source = "static fixture seed"
+
+    return {
+        "runtime": runtime,
+        "completed": completed,
+        "live_count": live_count,
+        "next_match": next_match,
+        "scoreline": scoreline,
+        "status": status,
+        "source": source,
+        "live_enabled": bool(getattr(live_status, "enabled", False)),
+        "sheet_connected": bool(getattr(sheet_state, "connected", False)),
+        "last_refresh": str(summary.get("last_refresh_utc", "")),
+    }
+
+
+def _pmw_dashboard_stats_html(state: dict | None = None) -> str:
+    snap = _pmw_runtime_snapshot(state)
+    runtime = snap["runtime"]
+    fixtures_total = _pmw_safe_count(runtime) or EXPECTED_MATCH_COUNT
+
+    stats = [
+        ("Fixtures", f"{fixtures_total}", "104-match planner loaded"),
+        ("Completed", f"{snap['completed']}", "Verified result cache / live source"),
+        ("Live now", f"{snap['live_count']}", "Provider-aware runtime"),
+        ("Next", escape(snap["next_match"]), "Fastest matchday action"),
+    ]
+
+    body = "".join(
+        f"""
+        <div class="pmw-stat">
+          <span>{escape(label)}</span>
+          <strong>{value}</strong>
+          <p>{escape(copy)}</p>
+        </div>
+        """
+        for label, value, copy in stats
+    )
+    return f"<div class='pmw-stat-grid' aria-label='Dashboard stats'>{body}</div>"
+
+
+def _pmw_ai_scout_cards_html(state: dict | None = None) -> str:
+    snap = _pmw_runtime_snapshot(state)
+    completed_pct = min(100, max(8, int((snap["completed"] / max(EXPECTED_MATCH_COUNT, 1)) * 100)))
+    source_pct = 94 if snap["live_enabled"] or snap["completed"] else 62
+    league_pct = 82 if snap["completed"] else 46
+
+    cards = [
+        (
+            "Match Signal",
+            "Runtime score, status, and source are ready for instant Scout context.",
+            completed_pct,
+            "Free"
+        ),
+        (
+            "Squad Lens",
+            "Premium card expands player rows into balance, depth, and mismatch notes.",
+            source_pct,
+            "Premium"
+        ),
+        (
+            "League Swing",
+            "Friends League scoring impact turns one result into a shareable recap.",
+            league_pct,
+            "Premium"
+        ),
+    ]
+
+    body = "".join(
+        f"""
+        <article class="pmw-scout-card">
+          <div class="pmw-card-kicker">{escape(tier)}</div>
+          <strong>{escape(title)}</strong>
+          <div class="pmw-meter"><span style="width:{int(score)}%"></span></div>
+          <p>{escape(copy)}</p>
+        </article>
+        """
+        for title, copy, score, tier in cards
+    )
+
+    return f"""
+    <section class="pmw-card pmw-wide" aria-label="AI Scout Cards">
+      <div class="pmw-card-kicker">AI Scout Cards</div>
+      <h2>Scout the match before opening a table.</h2>
+      <p>Selected match: <strong>{escape(snap["scoreline"])}</strong> · {escape(snap["status"])} · source: {escape(snap["source"])}</p>
+      <div class="pmw-scout-grid">{body}</div>
+    </section>
+    """
+
+
+def _pmw_friends_exports_html() -> str:
+    rows = [
+        ("Scenario Summary CSV", "Group movement + bracket path + league swing", "Premium"),
+        ("AI Scout Match Card", "Share-ready tactical card for one fixture", "Premium"),
+        ("Friends League Pack", "Leaderboard, scoring guide, printable pool sheet", "Premium"),
+        ("Source Bundle", "Cloneable Gradio app + monetization templates", "Gumroad"),
+    ]
+    body = "".join(
+        f"""
+        <div class="pmw-export-row">
+          <div>
+            <b>{escape(name)}</b><br>
+            <span>{escape(copy)}</span>
+          </div>
+          <em class="pmw-pill">{escape(tier)}</em>
+        </div>
+        """
+        for name, copy, tier in rows
+    )
+    return f"""
+    <section class="pmw-card pmw-side" aria-label="Friends League Exports">
+      <div class="pmw-card-kicker">Friends League Exports</div>
+      <h2>Make private leagues shareable.</h2>
+      <p>Free demo shows scoring. Premium converts the same loop into exports, recaps, and fan packs.</p>
+      <div class="pmw-export-list">{body}</div>
+    </section>
+    """
+
+
+def _pmw_free_vs_premium_html() -> str:
+    plans = [
+        (
+            "Free Core",
+            "$0",
+            [
+                "Runtime match center",
+                "Groups + third-place ranking",
+                "Bracket preview",
+                "Basic AI Scout",
+                "Judge QA path"
+            ],
+            ""
+        ),
+        (
+            "Premium Matchday",
+            "$9",
+            [
+                "Advanced AI Scout cards",
+                "Scenario CSV exports",
+                "Friends League export pack",
+                "Ad-free matchday mode"
+            ],
+            "featured"
+        ),
+        (
+            "Ultimate Fan Pack",
+            "$27",
+            [
+                "GoodNotes/PDF command center",
+                "Printable tournament sheets",
+                "Sticker pack",
+                "Watch-party planning assets"
+            ],
+            ""
+        ),
+        (
+            "Gumroad Source",
+            "$49+",
+            [
+                "Deployable Gradio source",
+                "Templates and docs",
+                "Customization license",
+                "Builder monetization kit"
+            ],
+            ""
+        ),
+    ]
+
+    cards = "".join(
+        f"""
+        <article class="pmw-plan {escape(featured)}">
+          <div class="pmw-card-kicker">{escape(name)}</div>
+          <div class="pmw-price">{escape(price)}</div>
+          <ul>{''.join(f'<li>{escape(item)}</li>' for item in items)}</ul>
+        </article>
+        """
+        for name, price, items, featured in plans
+    )
+
+    return f"""
+    <section class="pmw-card pmw-full" aria-label="Free versus Premium">
+      <div class="pmw-card-kicker">Free vs Premium</div>
+      <h2>Fully judgeable free core. Obvious premium upgrade path.</h2>
+      <p>No gambling, no official marks dependency, no paid live-score requirement. Premium sells exports, planning, ad-free UX, and source access.</p>
+      <div class="pmw-plan-grid">{cards}</div>
+    </section>
+    """
+
+
+def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
+    snap = _pmw_runtime_snapshot(state)
+    live_chip_class = "live" if snap["live_enabled"] or snap["live_count"] else ""
+    sheet_chip_class = "live" if snap["sheet_connected"] else ""
+
+    return f"""
+    <main class="pmw-shell" aria-label="Premium Matchday War Room 2026">
+      <section class="pmw-stadium-hero">
+        <div class="pmw-hero-inner">
+          <div>
+            <div class="pmw-kicker">PremiumMatchdayWarRoom2026</div>
+            <h1 class="pmw-title">
+              AI Bracket<br>
+              <span class="pmw-gradient-text">War Room</span>
+            </h1>
+            <p class="pmw-subtitle">
+              A neon matchday command center for predictions, brackets, squad analytics,
+              private leagues, and premium exports — built for football fans and judges.
+            </p>
+
+            <div class="pmw-chip-row" aria-label="Runtime chips">
+              <span class="pmw-chip {live_chip_class}">Live scores: {'ON' if snap["live_enabled"] else 'cache-ready'}</span>
+              <span class="pmw-chip {sheet_chip_class}">Google Sheet: {'connected' if snap["sheet_connected"] else 'ready'}</span>
+              <span class="pmw-chip">Source: {escape(snap["source"])}</span>
+              <span class="pmw-chip premium">Premium exports visible</span>
+            </div>
+
+            <div class="pmw-hero-actions">
+              <a class="pmw-action primary" href="#match-center">Open Match Center</a>
+              <a class="pmw-action secondary" href="#ai-scout">Ask AI Scout</a>
+              <a class="pmw-action secondary" href="#premium">View Premium</a>
+            </div>
+          </div>
+
+          <aside class="pmw-live-panel" aria-label="Live dashboard panel">
+            <div class="pmw-score-card">
+              <div class="pmw-score-label">Selected / latest match</div>
+              <div class="pmw-scoreline">{escape(snap["scoreline"])}</div>
+              <div class="pmw-source">
+                Status: {escape(snap["status"])} · Last refresh: {escape(snap["last_refresh"] or "ready")}
+              </div>
+            </div>
+            {_pmw_dashboard_stats_html(state)}
+          </aside>
+        </div>
+      </section>
+
+      <section class="pmw-dashboard-grid" aria-label="Premium dashboard modules">
+        {_pmw_ai_scout_cards_html(state)}
+        {_pmw_friends_exports_html()}
+        {_pmw_free_vs_premium_html()}
+      </section>
+    </main>
+    """
+
+
 def _submission_package_html() -> str:
     return f"""
     <section class="submission-card">
@@ -3761,12 +4755,23 @@ def _submission_package_html() -> str:
     </section>
     """
 
-with gr.Blocks(title=APP_TITLE, css=PREMIUM_DARK_SPORT_CSS) as demo:
+with gr.Blocks(
+    title=APP_TITLE,
+    css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS,
+) as demo:
     gr.HTML(PHASE_135_PREMIUM_CSS)
     workbook_state = gr.State()
     gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
     gr.HTML(PHASE130C_EMPTY_SURFACE_FIX_STYLE)
     gr.HTML(_command_header_html())
+
+    # SF Design Elite first screen: premium mockup-quality dashboard
+    premium_shell_html = gr.HTML(
+        value=_premium_matchday_war_room_shell_html(),
+        elem_id="premium-matchday-war-room",
+    )
+
+    # Keep existing appstore screen below the premium hero for continuity
     gr.HTML(value=_appstore_first_screen_html())
     gr.HTML(value=_premium_cta_strip_html())
 
@@ -3782,8 +4787,8 @@ with gr.Blocks(title=APP_TITLE, css=PREMIUM_DARK_SPORT_CSS) as demo:
     impact_panel_html = gr.HTML(value="", visible=False)
 
     dashboard_html = gr.HTML(value="", visible=False)
-    with gr.Tabs():
-        with gr.Tab("🏟 Match Center"):
+    with gr.Tabs(elem_classes=["pmw-tabs"]):
+        with gr.Tab("🏟️ Match Center", elem_id="match-center"):
             gr.Markdown("**Select a match to inspect runtime details, AI Scout context, and Friends League scoring impact.**")
             match_choice = gr.Dropdown(choices=_match_choice_options(), value=_match_choice_options()[0], label="Select match", interactive=True)
             selected_match_detail_html = gr.HTML(value=_selected_match_detail_html())
@@ -3797,41 +4802,41 @@ with gr.Blocks(title=APP_TITLE, css=PREMIUM_DARK_SPORT_CSS) as demo:
             view_full_standings_button = gr.Button("View full standings", variant="primary")
             group_tracker_html = gr.HTML(value=_visible_group_tracker_html(pd.DataFrame()))
             groups_df = gr.Dataframe(label="Computed Group Table", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
-        with gr.Tab("📊 3RD-PLACE RANKING"):
+        with gr.Tab("🥉 3RD-PLACE RANKING"):
             third_places_html = gr.HTML(value=_visible_third_place_html(pd.DataFrame()))
             third_places_df = gr.Dataframe(label="Top Third-Place Ranking", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
-        with gr.Tab("🧩 Bracket"):
+        with gr.Tab("🧬 Bracket"):
             view_bracket_button = gr.Button("View bracket", variant="primary")
             bracket_json = gr.State()
             bracket_html = gr.HTML()
-        with gr.Tab("🏆 Friends League"):
+        with gr.Tab("👥 Friends League"):
             score_friends_button = gr.Button("Score Friends League", variant="primary")
             friends_html = gr.HTML(value=_visible_friends_league_html(pd.DataFrame()))
             friends_df = gr.Dataframe(label="Friends League Leaderboard", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
-        with gr.Tab("🧠 AI Scout"):
+        with gr.Tab("🤖 AI Scout", elem_id="ai-scout"):
             gr.Markdown("AI Scout reads the selected match, verified runtime score, squad rows, group impact, and Friends League scoring context.")
             ask_ai_scout_tab_button = gr.Button("Ask AI Scout", variant="primary")
             ai_scout_html = gr.HTML()
-    with gr.Tabs():
-        with gr.Tab("📄 Google Sheet"):
+    with gr.Tabs(elem_classes=["pmw-tabs", "pmw-admin-tabs"]):
+        with gr.Tab("🔌 Google Sheet"):
             pull_sheet_tab_button = gr.Button("Pull Google Sheet", variant="primary")
             google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
     
-    with gr.Tab("💎 Premium"):
-        gr.HTML(value=_premium_pricing_html())
-        gr.HTML(value=_premium_locked_exports_html())
-        gr.HTML(value=_submission_package_html())
-        with gr.Row():
-            gr.Button(
-                "Unlock Premium on Gumroad",
-                variant="primary",
-                link=GUMROAD_PREMIUM_URL,
-            )
-            gr.Button(
-                "Buy Source Bundle",
-                variant="secondary",
-                link=GUMROAD_SOURCE_URL,
-            )
+        with gr.Tab("💎 Premium", elem_id="premium"):
+            gr.HTML(value=_premium_pricing_html())
+            gr.HTML(value=_premium_locked_exports_html())
+            gr.HTML(value=_submission_package_html())
+            with gr.Row():
+                gr.Button(
+                    "Unlock Premium on Gumroad",
+                    variant="primary",
+                    link=GUMROAD_PREMIUM_URL,
+                )
+                gr.Button(
+                    "Buy Source Bundle",
+                    variant="secondary",
+                    link=GUMROAD_SOURCE_URL,
+                )
 
     with gr.Tab("Judge QA / Debug"):
             debug_state = load_workbook_state()
