@@ -3752,9 +3752,15 @@ SF_PREMIUM_WAR_ROOM_CSS = r"""
   padding: clamp(14px, 2.2vw, 28px);
 }
 
+#premium-matchday-war-room {
+  display: block;
+  margin: 0 auto 18px;
+}
+
 .pmw-stadium-hero {
   position: relative;
   overflow: hidden;
+  min-height: clamp(520px, 70vh, 760px);
   border: 1px solid rgba(53, 214, 232, 0.26);
   border-radius: var(--pmw-radius-xl);
   background:
@@ -3794,8 +3800,10 @@ SF_PREMIUM_WAR_ROOM_CSS = r"""
   z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(330px, 0.82fr);
+  align-items: center;
   gap: clamp(16px, 2vw, 26px);
   padding: clamp(20px, 4vw, 44px);
+  min-height: inherit;
 }
 
 .pmw-kicker,
@@ -3909,6 +3917,18 @@ SF_PREMIUM_WAR_ROOM_CSS = r"""
   border-color: rgba(53, 214, 232, 0.34);
 }
 
+.pmw-action.gumroad {
+  background: linear-gradient(135deg, #ffffff, var(--pmw-cyan));
+  color: #03111d !important;
+  border-color: transparent;
+}
+
+.pmw-action.source {
+  background: rgba(15, 23, 42, 0.76);
+  color: #f8fafc !important;
+  border-color: rgba(255, 209, 102, 0.46);
+}
+
 .pmw-live-panel {
   border: 1px solid rgba(53, 214, 232, 0.26);
   border-radius: var(--pmw-radius-lg);
@@ -3982,6 +4002,13 @@ SF_PREMIUM_WAR_ROOM_CSS = r"""
   font-size: 25px;
   line-height: 1;
   font-weight: 1000;
+}
+
+.pmw-stat p {
+  margin: 8px 0 0;
+  color: var(--pmw-muted) !important;
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .pmw-dashboard-grid {
@@ -4271,6 +4298,7 @@ SF_PREMIUM_WAR_ROOM_CSS = r"""
 @media (max-width: 1020px) {
   .pmw-hero-inner {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 
   .pmw-wide,
@@ -4293,6 +4321,10 @@ SF_PREMIUM_WAR_ROOM_CSS = r"""
 @media (max-width: 760px) {
   .pmw-shell {
     padding: 10px;
+  }
+
+  .pmw-stadium-hero {
+    min-height: auto;
   }
 
   .pmw-hero-inner {
@@ -4464,25 +4496,50 @@ def _premium_locked_exports_html() -> str:
     """
 
 
-def _pmw_safe_count(df: pd.DataFrame | None) -> int:
-    return int(len(df)) if isinstance(df, pd.DataFrame) else 0
+def _pmw_escape(value) -> str:
+    return escape(str(value))
+
+
+def _pmw_safe_count(df) -> int:
+    try:
+        return int(len(df)) if df is not None else 0
+    except Exception:
+        return 0
+
+
+def _pmw_expected_match_count() -> int:
+    try:
+        return int(EXPECTED_MATCH_COUNT)
+    except Exception:
+        return 104
 
 
 def _pmw_runtime_snapshot(state: dict | None = None) -> dict:
     state = state or {}
-    runtime = state.get("runtime_matches")
-    if not isinstance(runtime, pd.DataFrame) or runtime.empty:
-        runtime, _live_results, live_status, sheet_state = _runtime_build()
-    else:
-        live_status = state.get("live_status") or get_live_score_status()
-        sheet_state = state.get("sheet_state") or pull_sheet_runtime_state()
+    runtime = state.get("runtime_matches") if isinstance(state, dict) else None
+    live_status = state.get("live_status") if isinstance(state, dict) else None
+    sheet_state = state.get("sheet_state") if isinstance(state, dict) else None
 
-    summary = state.get("runtime_summary") or _runtime_summary(runtime, live_status, sheet_state)
-    completed = int(summary.get("completed_matches_count", 0))
-    live_count = int(summary.get("live_matches_count", 0))
+    if not isinstance(runtime, pd.DataFrame) or runtime.empty:
+        try:
+            runtime, _live_results, live_status, sheet_state = _runtime_build()
+        except Exception:
+            runtime = pd.DataFrame()
+            live_status = live_status or get_live_score_status()
+            sheet_state = sheet_state or pull_sheet_runtime_state()
+    else:
+        live_status = live_status or get_live_score_status()
+        sheet_state = sheet_state or pull_sheet_runtime_state()
+
+    try:
+        summary = state.get("runtime_summary") or _runtime_summary(runtime, live_status, sheet_state)
+    except Exception:
+        summary = {}
+    completed = int(summary.get("completed_matches_count", 0) or 0)
+    live_count = int(summary.get("live_matches_count", 0) or 0)
     next_match = str(summary.get("next_match", "M001"))
 
-    selected = _latest_completed(runtime, 1)
+    selected = _latest_completed(runtime, 1) if isinstance(runtime, pd.DataFrame) else pd.DataFrame()
     if selected.empty and isinstance(runtime, pd.DataFrame) and not runtime.empty:
         selected = runtime.head(1)
 
@@ -4513,21 +4570,21 @@ def _pmw_runtime_snapshot(state: dict | None = None) -> dict:
 def _pmw_dashboard_stats_html(state: dict | None = None) -> str:
     snap = _pmw_runtime_snapshot(state)
     runtime = snap["runtime"]
-    fixtures_total = _pmw_safe_count(runtime) or EXPECTED_MATCH_COUNT
+    fixtures_total = _pmw_safe_count(runtime) or _pmw_expected_match_count()
 
     stats = [
         ("Fixtures", f"{fixtures_total}", "104-match planner loaded"),
         ("Completed", f"{snap['completed']}", "Verified result cache / live source"),
         ("Live now", f"{snap['live_count']}", "Provider-aware runtime"),
-        ("Next", escape(snap["next_match"]), "Fastest matchday action"),
+        ("Next", _pmw_escape(snap["next_match"]), "Fastest matchday action"),
     ]
 
     body = "".join(
         f"""
         <div class="pmw-stat">
-          <span>{escape(label)}</span>
+          <span>{_pmw_escape(label)}</span>
           <strong>{value}</strong>
-          <p>{escape(copy)}</p>
+          <p>{_pmw_escape(copy)}</p>
         </div>
         """
         for label, value, copy in stats
@@ -4537,7 +4594,8 @@ def _pmw_dashboard_stats_html(state: dict | None = None) -> str:
 
 def _pmw_ai_scout_cards_html(state: dict | None = None) -> str:
     snap = _pmw_runtime_snapshot(state)
-    completed_pct = min(100, max(8, int((snap["completed"] / max(EXPECTED_MATCH_COUNT, 1)) * 100)))
+    expected = max(_pmw_expected_match_count(), 1)
+    completed_pct = min(100, max(8, int((snap["completed"] / expected) * 100)))
     source_pct = 94 if snap["live_enabled"] or snap["completed"] else 62
     league_pct = 82 if snap["completed"] else 46
 
@@ -4565,10 +4623,10 @@ def _pmw_ai_scout_cards_html(state: dict | None = None) -> str:
     body = "".join(
         f"""
         <article class="pmw-scout-card">
-          <div class="pmw-card-kicker">{escape(tier)}</div>
-          <strong>{escape(title)}</strong>
+          <div class="pmw-card-kicker">{_pmw_escape(tier)}</div>
+          <strong>{_pmw_escape(title)}</strong>
           <div class="pmw-meter"><span style="width:{int(score)}%"></span></div>
-          <p>{escape(copy)}</p>
+          <p>{_pmw_escape(copy)}</p>
         </article>
         """
         for title, copy, score, tier in cards
@@ -4578,7 +4636,7 @@ def _pmw_ai_scout_cards_html(state: dict | None = None) -> str:
     <section class="pmw-card pmw-wide" aria-label="AI Scout Cards">
       <div class="pmw-card-kicker">AI Scout Cards</div>
       <h2>Scout the match before opening a table.</h2>
-      <p>Selected match: <strong>{escape(snap["scoreline"])}</strong> · {escape(snap["status"])} · source: {escape(snap["source"])}</p>
+      <p>Selected match: <strong>{_pmw_escape(snap["scoreline"])}</strong> · {_pmw_escape(snap["status"])} · source: {_pmw_escape(snap["source"])}</p>
       <div class="pmw-scout-grid">{body}</div>
     </section>
     """
@@ -4595,10 +4653,10 @@ def _pmw_friends_exports_html() -> str:
         f"""
         <div class="pmw-export-row">
           <div>
-            <b>{escape(name)}</b><br>
-            <span>{escape(copy)}</span>
+            <b>{_pmw_escape(name)}</b><br>
+            <span>{_pmw_escape(copy)}</span>
           </div>
-          <em class="pmw-pill">{escape(tier)}</em>
+          <em class="pmw-pill">{_pmw_escape(tier)}</em>
         </div>
         """
         for name, copy, tier in rows
@@ -4664,10 +4722,10 @@ def _pmw_free_vs_premium_html() -> str:
 
     cards = "".join(
         f"""
-        <article class="pmw-plan {escape(featured)}">
-          <div class="pmw-card-kicker">{escape(name)}</div>
-          <div class="pmw-price">{escape(price)}</div>
-          <ul>{''.join(f'<li>{escape(item)}</li>' for item in items)}</ul>
+        <article class="pmw-plan {_pmw_escape(featured)}">
+          <div class="pmw-card-kicker">{_pmw_escape(name)}</div>
+          <div class="pmw-price">{_pmw_escape(price)}</div>
+          <ul>{''.join(f'<li>{_pmw_escape(item)}</li>' for item in items)}</ul>
         </article>
         """
         for name, price, items, featured in plans
@@ -4706,7 +4764,7 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
             <div class="pmw-chip-row" aria-label="Runtime chips">
               <span class="pmw-chip {live_chip_class}">Live scores: {'ON' if snap["live_enabled"] else 'cache-ready'}</span>
               <span class="pmw-chip {sheet_chip_class}">Google Sheet: {'connected' if snap["sheet_connected"] else 'ready'}</span>
-              <span class="pmw-chip">Source: {escape(snap["source"])}</span>
+              <span class="pmw-chip">Source: {_pmw_escape(snap["source"])}</span>
               <span class="pmw-chip premium">Premium exports visible</span>
             </div>
 
@@ -4714,15 +4772,17 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
               <a class="pmw-action primary" href="#match-center">Open Match Center</a>
               <a class="pmw-action secondary" href="#ai-scout">Ask AI Scout</a>
               <a class="pmw-action secondary" href="#premium">View Premium</a>
+              <a class="pmw-action gumroad" href="{_pmw_escape(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock $9 Premium</a>
+              <a class="pmw-action source" href="{_pmw_escape(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">Get Source</a>
             </div>
           </div>
 
           <aside class="pmw-live-panel" aria-label="Live dashboard panel">
             <div class="pmw-score-card">
               <div class="pmw-score-label">Selected / latest match</div>
-              <div class="pmw-scoreline">{escape(snap["scoreline"])}</div>
+              <div class="pmw-scoreline">{_pmw_escape(snap["scoreline"])}</div>
               <div class="pmw-source">
-                Status: {escape(snap["status"])} · Last refresh: {escape(snap["last_refresh"] or "ready")}
+                Status: {_pmw_escape(snap["status"])} · Last refresh: {_pmw_escape(snap["last_refresh"] or "ready")}
               </div>
             </div>
             {_pmw_dashboard_stats_html(state)}
@@ -4736,6 +4796,28 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
         {_pmw_free_vs_premium_html()}
       </section>
     </main>
+    """
+
+
+def _pmw_premium_conversion_panel_html() -> str:
+    return f"""
+    <section class="pmw-card pmw-full" aria-label="PremiumMatchdayWarRoom2026 Gumroad conversion">
+      <div class="pmw-card-kicker">PremiumMatchdayWarRoom2026 Gumroad Funnel</div>
+      <h2>Upgrade from judgeable free core to a premium fan product.</h2>
+      <p>
+        Premium Matchday unlocks Advanced AI Scout cards, scenario CSV exports,
+        Friends League export packs, and ad-free matchday mode. Source buyers get
+        the deployable Gradio app, templates, customization notes, and monetization kit.
+      </p>
+      <div class="pmw-hero-actions">
+        <a class="pmw-action primary" href="{_pmw_escape(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">
+          Buy Premium Matchday — $9
+        </a>
+        <a class="pmw-action source" href="{_pmw_escape(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">
+          Buy Gumroad Source — $49+
+        </a>
+      </div>
+    </section>
     """
 
 
@@ -4760,6 +4842,7 @@ with gr.Blocks(
     css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS,
 ) as demo:
     gr.HTML(PHASE_135_PREMIUM_CSS)
+    gr.HTML("<style>" + SF_PREMIUM_WAR_ROOM_CSS + "</style>")
     workbook_state = gr.State()
     gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
     gr.HTML(PHASE130C_EMPTY_SURFACE_FIX_STYLE)
@@ -4823,6 +4906,7 @@ with gr.Blocks(
             google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
     
         with gr.Tab("💎 Premium", elem_id="premium"):
+            gr.HTML(value=_pmw_premium_conversion_panel_html())
             gr.HTML(value=_premium_pricing_html())
             gr.HTML(value=_premium_locked_exports_html())
             gr.HTML(value=_submission_package_html())
