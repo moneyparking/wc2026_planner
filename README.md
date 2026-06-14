@@ -90,6 +90,8 @@ PremiumMatchdayWarRoom2026 is an unofficial fan-made Gradio command center for t
 
 ## Runtime Data Mode
 
+Runtime truth note: **Real-time provider secrets are not configured** by default. The public demo should show Verified Cache Mode unless a live provider and API secret are configured in Hugging Face Space Settings.
+
 The public Space is safe-by-default: it uses `LIVE_SCORE_PROVIDER=verified_cache` unless live-provider secrets are configured in Hugging Face. That means the free judge demo can always run from verified cache, static fixtures, and manual override rows without exposing credentials or depending on a paid feed.
 
 For production live updates after matches are played, configure these HF Space variables/secrets:

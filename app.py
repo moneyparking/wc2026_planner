@@ -5547,8 +5547,8 @@ def _runtime_data_mode_html(state: dict | None = None) -> str:
     <div class="pmw-runtime-truth-card">
       <section class="pmw-card pmw-full" aria-label="Runtime data mode">
         <div class="pmw-card-kicker">Runtime data mode</div>
-        <h2>Live data is provider-ready; the public demo uses verified cache/manual override.</h2>
-        <p>Real-time requires HF Space secrets. Without provider secrets, this demo uses verified cache/manual override so judges can test the full loop safely.</p>
+        <h2>Verified Cache Mode</h2>
+        <p>Real-time provider secrets are not configured. This demo uses verified public cache/manual override so judges can test the full loop safely.</p>
         <div class="pmw-stat-grid">{body}</div>
       </section>
     </div>
@@ -5615,26 +5615,6 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
         </div>
       </section>
 
-      <section class="pmw-dashboard-grid" aria-label="Production dashboard modules">
-        {_pmw_ai_scout_cards_html(state)}
-        {_pmw_friends_exports_html()}
-        {_pmw_free_vs_premium_html()}
-      </section>
-
-      <section class="pmw-final-buy-strip" aria-label="Gumroad premium funnel">
-        <div class="pmw-card-kicker">Gumroad Funnel</div>
-        <h3>Free core for judges. Premium packs for matchday fans.</h3>
-        <p>
-          Premium Matchday $9 unlocks advanced scout cards and exports.
-          Ultimate $27 adds printable and GoodNotes fan assets.
-          Source $49+ gives builders the deployable Gradio app bundle.
-        </p>
-        <div class="pmw-buy-row">
-          <a class="pmw-action primary" href="{_pmw_escape(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Buy Premium Matchday $9</a>
-          <a class="pmw-action secondary" href="{_pmw_escape(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Get Ultimate $27</a>
-          <a class="pmw-action secondary" href="{_pmw_escape(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">Source Bundle $49+</a>
-        </div>
-      </section>
     </main>
     """
 
@@ -5676,9 +5656,171 @@ def _submission_package_html() -> str:
     </section>
     """
 
+PHASE_138_CLEANUP_CSS = r"""
+/* PHASE 1.38 — Premium Workspace Cleanup + Readability Fix */
+
+.gradio-container hr,
+.gradio-container .section-divider,
+.gradio-container .divider,
+.gradio-container .legacy-divider,
+.gradio-container .pmw-separator {
+  display: none !important;
+}
+
+.pmw-workspace-shell,
+.pmw-action-rail,
+.product-button-row,
+.pmw-runtime-truth-card,
+.runtime-data-mode-card {
+  max-width: 1480px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.pmw-action-rail,
+.product-button-row {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(150px, 1fr)) !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+  padding: 18px 20px !important;
+  border: 1px solid rgba(53, 214, 232, 0.18) !important;
+  border-radius: 26px !important;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(53, 214, 232, 0.14), transparent 34%),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.82)) !important;
+}
+
+.pmw-action-rail button,
+.product-button-row button,
+.pmw-action-button button,
+button.pmw-action-button {
+  min-height: 48px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(53, 214, 232, 0.28) !important;
+  background:
+    linear-gradient(135deg, rgba(53, 214, 232, 0.22), rgba(167, 255, 0, 0.12)),
+    rgba(15, 23, 42, 0.88) !important;
+  color: #f8fafc !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.015em !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.20) !important;
+}
+
+.pmw-action-rail button:hover,
+.product-button-row button:hover,
+.pmw-action-button button:hover {
+  transform: translateY(-1px) !important;
+  border-color: rgba(167, 255, 0, 0.46) !important;
+}
+
+.pmw-runtime-truth-card,
+.runtime-data-mode-card {
+  border-radius: 26px !important;
+  border: 1px solid rgba(53, 214, 232, 0.22) !important;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(167, 255, 0, 0.10), transparent 34%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.90), rgba(2, 6, 23, 0.80)) !important;
+  color: #f8fafc !important;
+}
+
+.pmw-card,
+.pmw-card *,
+.pmw-scout-card,
+.pmw-scout-card *,
+.pmw-plan,
+.pmw-plan *,
+.pmw-export-row,
+.pmw-export-row *,
+.premium-strip,
+.premium-strip *,
+.price-card,
+.price-card *,
+.premium-export-card,
+.premium-export-card *,
+.pmw-runtime-truth-card *,
+.runtime-data-mode-card * {
+  color: inherit;
+}
+
+.pmw-card p,
+.pmw-card li,
+.pmw-scout-card p,
+.pmw-plan li,
+.pmw-export-row span,
+.premium-strip p,
+.price-card p,
+.price-card li,
+.premium-export-card p,
+.premium-export-card li,
+.pmw-runtime-truth-card p,
+.runtime-data-mode-card p {
+  color: #cbd5e1 !important;
+}
+
+.pmw-card h1,
+.pmw-card h2,
+.pmw-card h3,
+.pmw-card h4,
+.pmw-card strong,
+.pmw-scout-card strong,
+.pmw-plan strong,
+.pmw-price,
+.price-card h2,
+.price-card h3,
+.price-card strong,
+.premium-export-card h2,
+.premium-export-card h3,
+.premium-export-card strong {
+  color: #f8fafc !important;
+}
+
+.gradio-container button[role="tab"] {
+  min-height: 42px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(53, 214, 232, 0.18) !important;
+  background: rgba(15, 23, 42, 0.86) !important;
+  color: #cbd5e1 !important;
+  font-weight: 950 !important;
+  box-shadow: none !important;
+}
+
+.gradio-container button[role="tab"][aria-selected="true"] {
+  background: linear-gradient(135deg, #35d6e8, #a7ff00) !important;
+  color: #04111d !important;
+  border-color: transparent !important;
+}
+
+.pmw-premium-section {
+  max-width: 1480px !important;
+  margin: 0 auto 18px auto !important;
+}
+
+@media (max-width: 1100px) {
+  .pmw-action-rail,
+  .product-button-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .pmw-action-rail,
+  .product-button-row {
+    grid-template-columns: 1fr !important;
+    padding: 14px !important;
+  }
+
+  .pmw-action-rail button,
+  .product-button-row button,
+  .pmw-action-button button {
+    width: 100% !important;
+    min-height: 48px !important;
+  }
+}
+"""
 with gr.Blocks(
     title=APP_TITLE,
-    css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS + "\n" + FINAL_PMW2026_PRODUCTION_CSS,
+    css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS + "\n" + PHASE_138_CLEANUP_CSS + "\n" + FINAL_PMW2026_PRODUCTION_CSS,
 ) as demo:
     gr.HTML(PHASE_135_PREMIUM_CSS)
     workbook_state = gr.State()
@@ -5742,6 +5884,15 @@ with gr.Blocks(
                 google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
     
             with gr.Tab("💎 Premium", elem_id="premium"):
+    
+                # PHASE 1.38 premium previews moved from public path
+    
+                gr.HTML(value=_pmw_free_vs_premium_html(), elem_classes=["pmw-premium-section"])
+    
+                gr.HTML(value=_pmw_ai_scout_cards_html(), elem_classes=["pmw-premium-section"])
+    
+                gr.HTML(value=_pmw_friends_exports_html(), elem_classes=["pmw-premium-section"])
+
                 gr.HTML(value=_premium_pricing_html())
                 gr.HTML(value=_premium_locked_exports_html())
                 with gr.Row():
