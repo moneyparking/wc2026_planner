@@ -4529,10 +4529,6 @@ FINAL_PMW2026_PRODUCTION_CSS = r"""
 }
 
 /* Hide non-essential first-screen duplicate controls, without deleting wiring */
-.product-button-row button:nth-child(n+3) {
-  display: none !important;
-}
-
 .product-button-row {
   margin: 8px auto 16px !important;
   max-width: 1480px !important;
@@ -5479,6 +5475,55 @@ def _pmw_free_vs_premium_html() -> str:
     """
 
 
+def _pmw_runtime_truth_card_html(state: dict | None = None) -> str:
+    snap = _pmw_runtime_snapshot(state)
+    live_status = None
+    sheet_state = None
+    summary = {}
+    if isinstance(state, dict):
+        live_status = state.get("live_status")
+        sheet_state = state.get("sheet_state")
+        summary = state.get("runtime_summary") or {}
+    live_status = live_status or get_live_score_status()
+    sheet_state = sheet_state or pull_sheet_runtime_state()
+
+    provider = str(getattr(live_status, "provider", "") or os.getenv("LIVE_SCORE_PROVIDER", "verified_cache"))
+    status_label = str(getattr(live_status, "status_label", "") or ("ON" if getattr(live_status, "enabled", False) else "OFF"))
+    last_refresh = (
+        str(summary.get("last_refresh_utc") or "")
+        or str(getattr(live_status, "last_sync_utc", "") or "")
+        or str(getattr(sheet_state, "last_pull_utc", "") or "")
+        or snap["last_refresh"]
+        or "ready"
+    )
+    sheet_label = "connected" if getattr(sheet_state, "connected", False) else "ready"
+    verified_cache_label = "active fallback" if provider in {"verified_cache", "none", ""} or not getattr(live_status, "enabled", False) else "provider override active"
+
+    rows = [
+        ("Live source mode", f"{provider} · {status_label}"),
+        ("Verified cache status", verified_cache_label),
+        ("Google Sheet", sheet_label),
+        ("Last refresh UTC", last_refresh),
+    ]
+    body = "".join(
+        f"""
+        <div class="pmw-stat">
+          <span>{_pmw_escape(label)}</span>
+          <strong>{_pmw_escape(value)}</strong>
+        </div>
+        """
+        for label, value in rows
+    )
+    return f"""
+    <section class="pmw-card pmw-full" aria-label="Runtime data truth">
+      <div class="pmw-card-kicker">Runtime data mode</div>
+      <h2>Live data is provider-ready; the public demo uses verified cache/manual override.</h2>
+      <p>Live provider requires HF secret configuration; free demo uses verified cache/manual override.</p>
+      <div class="pmw-stat-grid">{body}</div>
+    </section>
+    """
+
+
 def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
     """Production first screen for PremiumMatchdayWarRoom2026.
 
@@ -5515,9 +5560,9 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
             </div>
 
             <div class="pmw-hero-actions" aria-label="Primary actions">
-              <a class="pmw-action primary" href="#match-center">Open Match Center</a>
-              <a class="pmw-action secondary" href="#ai-scout">Preview AI Scout</a>
-              <a class="pmw-action secondary" href="#premium">See Premium Packs</a>
+              <a class="pmw-action primary" href="#match-center">Scroll to Match Center</a>
+              <a class="pmw-action secondary" href="#ai-scout">Scroll to AI Scout</a>
+              <a class="pmw-action secondary" href="#premium">Scroll to Premium</a>
             </div>
           </div>
 
@@ -5534,6 +5579,8 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
           </aside>
         </div>
       </section>
+
+      {_pmw_runtime_truth_card_html(state)}
 
       <section class="pmw-dashboard-grid" aria-label="Production dashboard modules">
         {_pmw_ai_scout_cards_html(state)}
@@ -5601,11 +5648,9 @@ with gr.Blocks(
     css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS + "\n" + FINAL_PMW2026_PRODUCTION_CSS,
 ) as demo:
     gr.HTML(PHASE_135_PREMIUM_CSS)
-    gr.HTML("<style>" + FINAL_PMW2026_PRODUCTION_CSS + "</style>")
     workbook_state = gr.State()
     gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
     gr.HTML(PHASE130C_EMPTY_SURFACE_FIX_STYLE)
-    gr.HTML(_command_header_html())
 
     # SF Design Elite first screen: premium mockup-quality dashboard
     premium_shell_html = gr.HTML(
@@ -5613,18 +5658,15 @@ with gr.Blocks(
         elem_id="premium-matchday-war-room",
     )
 
-    # Keep existing appstore screen below the premium hero for continuity
-    gr.HTML(value=_appstore_first_screen_html())
-    gr.HTML(value=_premium_cta_strip_html())
-
     top_checklist_html = gr.HTML(value=_product_action_status_html({}, "Initial load", "Runtime loaded from verified public results cache."), visible=True)
     modal_gpu_status_html = gr.HTML(value="", visible=False)
     with gr.Row(elem_classes=["product-button-row"]):
+        public_load_demo_button = gr.Button("Load Demo Scenario", variant="secondary")
         refresh_live_button = gr.Button("Refresh Runtime", variant="primary", elem_classes=["pmw-primary-action"])
         recalc_button = gr.Button("Recalculate Impact / War Room", variant="primary", elem_classes=["pmw-primary-action"])
-        ask_ai_scout_button = gr.Button("Ask AI Scout", variant="secondary", visible=False)
-        open_friends_button = gr.Button("Open Friends League", variant="secondary", visible=False)
-        pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary", visible=False)
+        ask_ai_scout_button = gr.Button("Ask AI Scout", variant="secondary")
+        open_friends_button = gr.Button("Open Friends League", variant="secondary")
+        pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary")
     runtime_timer = gr.Timer(value=int(os.getenv("LIVE_REFRESH_SECONDS", "60")))
     impact_panel_html = gr.HTML(value="", visible=False)
 
@@ -5685,6 +5727,10 @@ with gr.Blocks(
             debug_state = load_workbook_state()
             debug_groups = pd.DataFrame()
             debug_thirds = pd.DataFrame()
+            with gr.Accordion("Legacy product shell preview", open=False):
+                gr.HTML(value=_command_header_html())
+                gr.HTML(_appstore_first_screen_html())
+                gr.HTML(value=_premium_cta_strip_html())
             with gr.Row():
                 load_demo_button = gr.Button("Load Demo Scenario", variant="secondary")
                 random_outcomes_button = gr.Button("Generate Random Outcomes", variant="secondary")
@@ -5744,6 +5790,28 @@ with gr.Blocks(
     )
     pull_sheet_button.click(
         pull_google_sheet_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=[
+            workbook_state,
+            matches_df,
+            planner_filter_html,
+            groups_df,
+            group_tracker_html,
+            third_places_df,
+            third_places_html,
+            bracket_json,
+            bracket_html,
+            friends_df,
+            friends_html,
+            dashboard_html,
+            top_checklist_html,
+            ai_scout_html,
+            impact_panel_html,
+            google_sheet_control_panel,
+        ],
+    )
+    public_load_demo_button.click(
+        load_demo_ui_outputs,
         inputs=[workbook_state, matches_df],
         outputs=[
             workbook_state,

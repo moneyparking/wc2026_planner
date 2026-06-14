@@ -88,6 +88,27 @@ PremiumMatchdayWarRoom2026 is an unofficial fan-made Gradio command center for t
 
 **design_language:** Neon stadium, dark glass cards, lime/cyan/amber highlights, mobile-first one-column fallback, judge-readable stats above the tabs, and premium conversion visible without blocking the demo.
 
+## Runtime Data Mode
+
+The public Space is safe-by-default: it uses `LIVE_SCORE_PROVIDER=verified_cache` unless live-provider secrets are configured in Hugging Face. That means the free judge demo can always run from verified cache, static fixtures, and manual override rows without exposing credentials or depending on a paid feed.
+
+For production live updates after matches are played, configure these HF Space variables/secrets:
+
+```bash
+LIVE_SCORE_PROVIDER=football_data  # or api_football, sportmonks, live_score_api
+LIVE_SCORE_API_KEY=<provider key when used>
+LIVE_SCORE_COMPETITION_ID=<provider competition or league id>
+LIVE_REFRESH_SECONDS=60
+```
+
+Provider-specific adapters may also require their own secret names, for example `FOOTBALL_DATA_API_KEY`, `API_FOOTBALL_KEY`, `SPORTMONKS_API_KEY`, or `LIVE_SCORE_API_SECRET`. Google Sheet manual overrides remain available through `GOOGLE_SHEET_ENABLED`, `GOOGLE_SHEET_ID`, and `GOOGLE_SERVICE_ACCOUNT_JSON`.
+
+Runtime source priority remains:
+
+```text
+Manual override > live provider > verified public cache > static fixture seed
+```
+
 ## One-Sentence Pitch
 
 Open the Space, refresh the runtime, select one match, and watch a fan-made World Cup 2026 War Room update groups, bracket paths, Friends League scoring, and AI Scout context from the same runtime engine.

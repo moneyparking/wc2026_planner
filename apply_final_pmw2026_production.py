@@ -162,11 +162,6 @@ FINAL_PMW2026_PRODUCTION_CSS = r"""
   box-shadow: 0 14px 38px rgba(53, 214, 232, 0.20) !important;
 }
 
-/* Hide non-essential first-screen duplicate controls, without deleting wiring */
-.product-button-row button:nth-child(n+3) {
-  display: none !important;
-}
-
 .product-button-row {
   margin: 8px auto 16px !important;
   max-width: 1480px !important;
@@ -782,9 +777,9 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
             </div>
 
             <div class="pmw-hero-actions" aria-label="Primary actions">
-              <a class="pmw-action primary" href="#match-center">Open Match Center</a>
-              <a class="pmw-action secondary" href="#ai-scout">Preview AI Scout</a>
-              <a class="pmw-action secondary" href="#premium">See Premium Packs</a>
+              <a class="pmw-action primary" href="#match-center">Scroll to Match Center</a>
+              <a class="pmw-action secondary" href="#ai-scout">Scroll to AI Scout</a>
+              <a class="pmw-action secondary" href="#premium">Scroll to Premium</a>
             </div>
           </div>
 
@@ -904,10 +899,11 @@ def insert_final_css(text: str) -> str:
     if old in text and new not in text:
         text = text.replace(old, new, 1)
 
-    old_inline = 'gr.HTML("<style>" + SF_PREMIUM_WAR_ROOM_CSS + "</style>")'
-    new_inline = 'gr.HTML("<style>" + FINAL_PMW2026_PRODUCTION_CSS + "</style>")'
-    if old_inline in text:
-        text = text.replace(old_inline, new_inline, 1)
+    for inline_css in (
+        '    gr.HTML("<style>" + SF_PREMIUM_WAR_ROOM_CSS + "</style>")\n',
+        '    gr.HTML("<style>" + FINAL_PMW2026_PRODUCTION_CSS + "</style>")\n',
+    ):
+        text = text.replace(inline_css, "")
 
     return text
 
@@ -922,11 +918,17 @@ def replace_function(text: str, name: str, replacement: str) -> str:
 def patch_buttons_and_labels(text: str) -> str:
     replacements = {
         'ask_ai_scout_button = gr.Button("Ask AI Scout", variant="secondary")':
-            'ask_ai_scout_button = gr.Button("Ask AI Scout", variant="secondary", visible=False)',
+            'ask_ai_scout_button = gr.Button("Ask AI Scout", variant="secondary")',
         'open_friends_button = gr.Button("Open Friends League", variant="secondary")':
-            'open_friends_button = gr.Button("Open Friends League", variant="secondary", visible=False)',
+            'open_friends_button = gr.Button("Open Friends League", variant="secondary")',
         'pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary")':
-            'pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary", visible=False)',
+            'pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary")',
+        'ask_ai_scout_button = gr.Button("Ask AI Scout", variant="secondary", visible=False)':
+            'ask_ai_scout_button = gr.Button("Ask AI Scout", variant="secondary")',
+        'open_friends_button = gr.Button("Open Friends League", variant="secondary", visible=False)':
+            'open_friends_button = gr.Button("Open Friends League", variant="secondary")',
+        'pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary", visible=False)':
+            'pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary")',
         'refresh_live_button = gr.Button("Refresh Runtime", variant="primary")':
             'refresh_live_button = gr.Button("Refresh Runtime", variant="primary", elem_classes=["pmw-primary-action"])',
         'recalc_button = gr.Button("Recalculate Impact / War Room", variant="primary")':
