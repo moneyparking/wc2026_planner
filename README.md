@@ -25,6 +25,57 @@ tags:
   - monetization
   - gumroad
 ---
+<!-- FINAL_PMW2026_SUBMISSION_COPY -->
+
+## Final Build Small Submission
+
+**Short description:** Premium World Cup 2026 matchday command center for predictions, brackets, squad analytics, Friends League scoring, and share-ready fan exports.
+
+**Tags:** `gradio`, `agents`, `sports`, `football`, `world-cup-2026`, `bracket`, `predictions`, `fan-tools`, `premium`, `gumroad`, `hackathon`
+
+### Submission Copy
+
+AI Bracket War Room 2026 turns a football fan’s matchday into a live command center: inspect runtime match results, recompute group impact, preview the bracket path, score a private Friends League, and ask AI Scout for tactical context. The free core is fully judgeable without credentials. Premium is a fan-safe monetization layer for exports, advanced scout cards, printable planning assets, ad-free matchday UX, and a Gumroad source bundle.
+
+### Judge Path
+
+1. Open the Space.
+2. Confirm the first screen shows the neon stadium hero, dashboard stats, AI Scout Cards, Friends League Exports, and Free vs Premium funnel.
+3. Click **Open Match Center**.
+4. Inspect a selected match and runtime source.
+5. Click **Refresh Runtime** and **Recalculate Impact / War Room**.
+6. Open **AI Scout** and generate/preview selected-match context.
+7. Open **Friends League** and score demo picks.
+8. Open **Premium** and verify Gumroad funnel and locked export previews.
+9. Open **Judge QA / Debug** and run demo scenario checks.
+
+### Monetization Funnel
+
+- **Free Core — $0:** runtime match center, group table, third-place ranking, bracket preview, Friends League demo, AI Scout preview, judge QA.
+- **Premium Matchday Pack — $9:** advanced AI Scout match cards, scenario CSV exports, Friends League export pack, ad-free matchday mode, share-ready summaries.
+- **Ultimate Fan Pack — $27:** GoodNotes/PDF command center, printable sheets, office pool kit, watch-party assets, sticker bundle.
+- **Source Bundle — $49+:** deployable Gradio source, premium templates, private league starter kit, commercial setup notes.
+
+### Safety Boundary
+
+This is an unofficial football fan planning and analytics app. It does not provide gambling advice, wagering prices, book integrations, official federation marks, player likeness dependencies, paid live-score requirements, or real-money contest logic. Premium sells planning tools, exports, templates, ad-free UX, and source access.
+
+### Final QA Commands
+
+```bash
+python -m py_compile app.py
+python -m compileall app.py models src layout scripts
+python scripts/run_hackathon_smoke_tests.py
+python scripts/qa_phase_130_runtime_product.py
+```
+
+Expected markers:
+
+```text
+HACKATHON_SMOKE_TESTS_PASS
+PHASE_1_30_RUNTIME_PRODUCT_QA_PASS
+```
+
 # AI Bracket War Room 2026
 
 PremiumMatchdayWarRoom2026 is an unofficial fan-made Gradio command center for the expanded 48-team 2026 football tournament format. It turns a 104-match planner into a premium matchday surface: runtime results, group tables, third-place ranking, bracket preview, Friends League scoring, AI Scout context, and a clear Gumroad upgrade funnel.
