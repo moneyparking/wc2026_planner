@@ -245,3 +245,10 @@ PHASE_1_30_RUNTIME_PRODUCT_QA_PASS
 - `scripts/run_hackathon_smoke_tests.py` - hackathon smoke QA.
 - `scripts/qa_phase_130_runtime_product.py` - runtime product QA.
 - `requirements.txt` - runtime dependencies.
+
+
+## Phase 1.39 - Final Premium Lower Modules
+
+The lower app surface now matches the premium mockups: Match Center, Groups, Bracket, Friends League, and AI Scout use the same neon stadium product system with card-first hierarchy, mobile-first grids, visible premium exports, and Gumroad CTAs. Tables remain available for judge verification, but every module now opens with a product-quality summary surface.
+
+Judge path: Refresh Runtime -> Load Judge Demo Scenario -> Recalculate War Room -> inspect Match Center -> Groups -> Bracket -> Friends League -> AI Scout -> Premium Matchday CTA.
