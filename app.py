@@ -6434,8 +6434,8 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
               <span class="pmw-gradient-text">War Room</span>
             </h1>
             <p class="pmw-subtitle">
-              A finished premium matchday command center for predictions, brackets,
-              squad intelligence, private Friends Leagues, and share-ready exports.
+              AI Bracket War Room 2026 is a finished premium matchday command center for predictions, brackets,
+              Advanced AI Scout Cards, private Friends Leagues, and share-ready exports.
               Built for fans, judgeable without credentials, and safe for sales.
             </p>
 
