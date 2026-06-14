@@ -48,6 +48,7 @@ GUMROAD_SOURCE_URL = os.getenv(
 
 
 PHASE_139_FINAL_LOWER_MODULES_PREMIUM_PRODUCT_UI = "PHASE 1.39 - Final lower modules premium product UI"
+PHASE_1_40_DEMO_FIRST_MOBILE_PRODUCT_SHELL = "PHASE_1_40_DEMO_FIRST_MOBILE_PRODUCT_SHELL"
 
 PMW_LOWER_MODULES_FINAL_CSS = """
 /* PHASE 1.39 - final lower modules premium product UI */
@@ -1085,7 +1086,7 @@ def _runtime_status_html(state: dict | None) -> str:
         <p><strong>Google Sheet:</strong> {sheet_line}</p>
         <p><strong>Runtime mode:</strong> {escape(mode)}</p>
         <p><strong>Last sync:</strong> {escape(live_status.last_sync_utc or sheet_state.last_pull_utc or 'not synced')}</p>
-        <p><strong>Source priority:</strong> Manual override &gt; live provider &gt; verified public cache &gt; static fixture seed</p>
+        <p><strong>Result path:</strong> Manual override &gt; live provider &gt; verified public cache &gt; static fixture seed</p>
         <p><strong>Completed matches:</strong> {completed} · <strong>Live matches:</strong> {live_count} · <strong>Next match:</strong> {escape(next_match)}</p>
         <ul>{warning_html}</ul>
     </div>
@@ -1145,7 +1146,7 @@ def _runtime_status_cards_html(state: dict | None = None) -> str:
         <div class="app-card card-shell status-card"><span>Completed matches</span><strong>{completed}</strong></div>
         <div class="app-card card-shell status-card"><span>Live matches</span><strong>{live_count}</strong></div>
         <div class="app-card card-shell status-card"><span>Next match</span><strong>{escape(str(summary["next_match"]))}</strong></div>
-        <div class="app-card card-shell status-card"><span>Source priority</span><strong>Manual override &gt; live provider &gt; verified public cache &gt; static fixture seed</strong></div>
+        <div class="app-card card-shell status-card"><span>Result path</span><strong>Manual override &gt; live provider &gt; verified public cache &gt; static fixture seed</strong></div>
     </section>
     """
 
@@ -1242,11 +1243,11 @@ def _product_modules_html(state: dict | None = None) -> str:
         <div class="app-card card-shell module-card runtime-module">
             <div class="module-kicker">Runtime</div>
             <h3>Live scores status</h3>
-            <p>{escape(live_label)} · {completed} completed match(es) · source priority Manual override &gt; live provider &gt; verified public cache &gt; static fixture seed.</p>
+            <p>{escape(live_label)} · {completed} completed match(es) · verified fallback ready.</p>
         </div>
         <div class="app-card card-shell module-card google-sheet-card">
             <div class="module-kicker">📄 Sheet</div>
-            <h3>Google Sheet Control explanation</h3>
+            <h3>Operator sync panel</h3>
             <p>Results_Override, Friends_Picks, League_Settings, and Admin_Notes can drive manual updates when the sheet is {escape(sheet_label)}.</p>
         </div>
         <div class="app-card card-shell module-card groups-card">
@@ -1543,12 +1544,12 @@ def _command_header_html() -> str:
                 <span class="abw-chip pending">Live scores: OFF — using verified public results cache</span>
                 <span class="abw-chip pending">Google Sheet: OFF — ready to connect</span>
                 <span class="abw-chip live">Completed matches: 4</span>
-                <span class="abw-chip">Source priority: Manual override &gt; live provider &gt; verified public cache &gt; static fixture seed</span>
+                <span class="abw-chip">Result path: Manual override &gt; live provider &gt; verified public cache &gt; static fixture seed</span>
             </div>
             <div class="sport-demo-rail">
                 <span>1 Refresh Runtime</span><span>2 Review Results</span><span>3 Recalculate</span><span>4 Inspect Impact</span><span>5 Read AI Scout</span><span>6 Compare Friends League</span>
             </div>
-            <p><strong>Runtime source priority:</strong> Manual override &gt; Live provider &gt; Verified public cache &gt; Static fixture seed</p>
+            <p><strong>Runtime result path:</strong> Manual override &gt; Live provider &gt; Verified public cache &gt; Static fixture seed</p>
             <p><strong>Fan path:</strong> Refresh Runtime → Recalculate War Room → inspect Match Center, Groups, Bracket, Friends, AI Scout, and Sheet.</p>
             <p class="sport-muted">Unofficial fan-made planning app. No official logos, crests, sponsor marks, player likenesses, or paid API key required.</p>
         </div>
@@ -1954,7 +1955,7 @@ def _visible_match_planner_html(matches: pd.DataFrame, planner_filter: str = "Al
       </div>
       <details class="pmw-final-data" open>
         <summary>Fixture preview - {min(len(fixture_preview), VISIBLE_TAB_PREVIEW_MATCHES)} visible rows</summary>
-        <p>Data loaded: 104 / 104 matches - Filtered rows: {len(fixture_preview)} / 104 matches - Visible preview: {min(len(fixture_preview), VISIBLE_TAB_PREVIEW_MATCHES)} / 104 matches</p>
+        <p>Tournament planner: 104 / 104 matches - Filtered rows: {len(fixture_preview)} / 104 matches - Visible preview: {min(len(fixture_preview), VISIBLE_TAB_PREVIEW_MATCHES)} / 104 matches</p>
         <div class="table-scroll">{table}</div>
       </details>
     </section>
@@ -2096,16 +2097,16 @@ def _visible_runtime_match_planner_html(runtime: pd.DataFrame, planner_filter: s
           </div>
         </div>
         <aside class="pmw-final-side">
-          <span class="pmw-final-pill live">LIVE DATA SURFACE</span>
+          <span class="pmw-final-pill live">MATCH CENTER</span>
           <div class="pmw-live-score">{_pmw_safe(hero_score)}</div>
           <p>Active filter: <b>{_pmw_safe(planner_filter)}</b></p>
-          <p>Source priority: manual override to live provider to verified public cache to static seed.</p>
+          <p>Result path: manual override to live provider to verified public cache to static seed.</p>
           <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Premium Matchday Pack</a>
         </aside>
       </div>
       <details class="pmw-final-data" open>
         <summary>Fixture preview - {min(len(table_frame), VISIBLE_TAB_PREVIEW_MATCHES)} visible rows</summary>
-        <p>Data loaded: 104 / 104 matches - Filtered rows: {len(table_frame)} / 104 matches - Visible preview: {min(len(table_frame), VISIBLE_TAB_PREVIEW_MATCHES)} / 104 matches</p>
+        <p>Tournament planner: 104 / 104 matches - Filtered rows: {len(table_frame)} / 104 matches - Visible preview: {min(len(table_frame), VISIBLE_TAB_PREVIEW_MATCHES)} / 104 matches</p>
         <div class="table-scroll">{table}</div>
       </details>
       <details class="pmw-final-data">
@@ -2167,7 +2168,7 @@ def _visible_group_tracker_html(groups: pd.DataFrame) -> str:
           <span class="pmw-final-pill">PREMIUM SUMMARY</span>
           <h3>Share-ready group storylines</h3>
           <p>Premium turns each group into one-screen recaps for watch parties, office pools, and private leagues.</p>
-          <span class="pmw-lock">Locked export preview - Premium Matchday</span>
+          <span class="pmw-lock">Premium export preview - Matchday</span>
         </aside>
       </div>
       <div class="pmw-final-grid">{cards}</div>
@@ -6092,7 +6093,7 @@ def _premium_locked_exports_html() -> str:
       <div class="pmw-final-hero">
         <div>
           <div class="pmw-kicker">Premium Export Center</div>
-          <h2>Locked exports make the business model obvious without blocking the demo.</h2>
+          <h2>Premium exports make the business model obvious without blocking the demo.</h2>
           <p>The free app remains fully judgeable. Premium CTAs show what converts: exports, advanced summaries, fan packs, and source.</p>
         </div>
         <aside class="pmw-final-side">
@@ -6412,67 +6413,34 @@ def _pmw_runtime_truth_card_html(state: dict | None = None) -> str:
 
 
 def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
-    """Production first screen for PremiumMatchdayWarRoom2026.
-
-    Ontology:
-    - Free core remains fully judgeable.
-    - Premium sells advanced scout cards, exports, fan packs, and source access.
-    - Safety: no gambling, no official marks, no paid live-score dependency.
-    """
     snap = _pmw_runtime_snapshot(state)
-    live_chip_class = "live" if snap["live_enabled"] or snap["live_count"] else ""
-    sheet_chip_class = "live" if snap["sheet_connected"] else ""
+    completed = snap.get("completed", 0)
 
     return f"""
-    <main class="pmw-shell" aria-label="Premium Matchday War Room 2026">
-      <section class="pmw-stadium-hero">
-        <div class="pmw-hero-inner">
+    <main class="pmw-shell phase-140-mobile-shell" aria-label="AI Bracket War Room 2026">
+      <section class="phase-140-hero" aria-label="{PHASE_1_40_DEMO_FIRST_MOBILE_PRODUCT_SHELL}">
+        <div class="phase-140-hero-grid">
           <div>
-            <div class="pmw-kicker">PremiumMatchdayWarRoom2026</div>
-            <h1 class="pmw-title">
-              AI Bracket<br>
-              <span class="pmw-gradient-text">War Room</span>
-            </h1>
-            <p class="pmw-subtitle">
-              AI Bracket War Room 2026 is a finished premium matchday command center for predictions, brackets,
-              Advanced AI Scout Cards, private Friends Leagues, and share-ready exports.
-              Built for fans, judgeable without credentials, and safe for sales.
-            </p>
-
-            <div class="pmw-chip-row" aria-label="Runtime chips">
-              <span class="pmw-chip {live_chip_class}">Live scores: {'ON' if snap["live_enabled"] else 'cache-ready'}</span>
-              <span class="pmw-chip {sheet_chip_class}">Google Sheet: {'connected' if snap["sheet_connected"] else 'ready'}</span>
-              <span class="pmw-chip">Source: {_pmw_escape(snap["source"])}</span>
-              <span class="pmw-chip premium">Premium funnel: $9 / $27 / $49+</span>
-            </div>
-
-            <div class="pmw-hero-actions" aria-label="Primary actions">
-              <a class="pmw-action primary" href="#match-center">Scroll to Match Center</a>
-              <a class="pmw-action secondary" href="#ai-scout">Scroll to AI Scout</a>
-              <a class="pmw-action secondary" href="#premium">Scroll to Premium</a>
-            </div>
+            <div class="phase-140-kicker">Demo-first matchday command center</div>
+            <h1>AI Bracket War Room 2026</h1>
+            <p class="phase-140-value">Change one result and instantly see the group table, bracket path, Friends League swing, and AI Scout readout.</p>
           </div>
-
-          <aside class="pmw-live-panel" aria-label="Live dashboard panel">
-            <div class="pmw-score-card">
-              <div class="pmw-score-label">Selected / latest match</div>
-              <div class="pmw-scoreline">{_pmw_escape(snap["scoreline"])}</div>
-              <div class="pmw-source">
-                Status: {_pmw_escape(snap["status"])}
-                · Last refresh: {_pmw_escape(snap["last_refresh"] or "ready")}
-              </div>
-            </div>
-            {_pmw_dashboard_stats_html(state)}
+          <aside class="phase-140-score-card" aria-label="Demo status">
+            <span>Demo scenario</span>
+            <strong>{_pmw_escape(snap["scoreline"])}</strong>
+            <p>{_pmw_escape(str(completed))} completed match(es) ready for downstream impact.</p>
           </aside>
         </div>
+        <div class="phase-140-proof-grid" aria-label="Tournament proof cards">
+          <article><strong>48</strong><span>Teams</span></article>
+          <article><strong>12</strong><span>Groups</span></article>
+          <article><strong>104</strong><span>Matches</span></article>
+          <article><strong>495</strong><span>Bracket paths</span></article>
+        </div>
+        <div class="phase-140-secondary-note">
+          <span>Google Sheet controls are available in internal tools for operators.</span>
+        </div>
       </section>
-
-      <section class="pmw-first-screen-grid" aria-label="Premium first-screen modules">
-        {_pmw_ai_scout_cards_html(state)}
-        {_pmw_friends_exports_html()}
-        {_pmw_free_vs_premium_html()}
-      </section>
-
     </main>
     """
 
@@ -6784,6 +6752,157 @@ PHASE_139_PUBLIC_PRODUCT_CSS = r"""
 }
 """
 
+PHASE_140_DEMO_FIRST_MOBILE_PRODUCT_CSS = r"""
+/* PHASE_1_40_DEMO_FIRST_MOBILE_PRODUCT_SHELL */
+.phase-140-mobile-shell {
+  max-width: 1180px !important;
+  margin: 0 auto 14px !important;
+}
+
+.phase-140-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(248, 201, 107, 0.30);
+  background:
+    radial-gradient(circle at 78% 0%, rgba(248, 201, 107, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(10, 18, 31, 0.98), rgba(16, 28, 46, 0.94));
+  color: #F8FAFC;
+  padding: clamp(18px, 3vw, 34px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+}
+
+.phase-140-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.phase-140-kicker {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 255, 0, 0.36);
+  background: rgba(167, 255, 0, 0.13);
+  color: #D9FF77;
+  padding: 7px 11px;
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0;
+}
+
+.phase-140-hero h1 {
+  margin: 14px 0 10px !important;
+  color: #FFFFFF !important;
+  font-size: clamp(34px, 7vw, 64px) !important;
+  line-height: 0.98 !important;
+  letter-spacing: 0 !important;
+  font-weight: 1000 !important;
+}
+
+.phase-140-value {
+  max-width: 760px;
+  margin: 0 !important;
+  color: #DDE7F3 !important;
+  font-size: clamp(16px, 2.1vw, 22px) !important;
+  line-height: 1.42 !important;
+  font-weight: 750 !important;
+}
+
+.phase-140-score-card,
+.phase-140-proof-grid article {
+  border-radius: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background: rgba(2, 6, 23, 0.46);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.phase-140-score-card {
+  padding: 18px;
+}
+
+.phase-140-score-card span,
+.phase-140-proof-grid span,
+.phase-140-secondary-note {
+  color: #AAB7C7;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0;
+}
+
+.phase-140-score-card strong {
+  display: block;
+  margin-top: 10px;
+  color: #FFFFFF;
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.02;
+}
+
+.phase-140-score-card p {
+  margin: 10px 0 0 !important;
+  color: #CBD5E1 !important;
+}
+
+.phase-140-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.phase-140-proof-grid article {
+  min-height: 96px;
+  padding: 16px;
+}
+
+.phase-140-proof-grid strong {
+  display: block;
+  color: #FFFFFF;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 0.95;
+}
+
+.phase-140-proof-grid span {
+  display: block;
+  margin-top: 8px;
+  color: #DDE7F3;
+}
+
+.phase-140-secondary-note {
+  margin-top: 14px;
+  color: #B9C6D8 !important;
+}
+
+.phase-140-internal-tools {
+  max-width: 1180px !important;
+  margin: 0 auto 14px !important;
+  opacity: 0.86;
+}
+
+.phase-140-internal-tools button {
+  background: rgba(15, 23, 42, 0.82) !important;
+  border-color: rgba(148, 163, 184, 0.26) !important;
+  color: #CBD5E1 !important;
+}
+
+@media (max-width: 760px) {
+  .phase-140-hero {
+    border-radius: 22px;
+    padding: 16px;
+  }
+
+  .phase-140-hero-grid,
+  .phase-140-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .phase-140-proof-grid article {
+    min-height: 82px;
+  }
+}
+"""
+
 PHASE_139_PUBLIC_HERO_MD = """
 <div class="pmw-hero phase-139-public-hero">
   <div class="pmw-pill">Unofficial fan-made tournament command center</div>
@@ -6799,9 +6918,8 @@ SHOW_INTERNAL_TOOLS = os.getenv("SHOW_INTERNAL_TOOLS", "0") == "1"
 
 with gr.Blocks(
     title=APP_TITLE,
-    css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS + "\n" + PHASE_138_CLEANUP_CSS + "\n" + FINAL_PMW2026_PRODUCTION_CSS + "\n" + PHASE_139_PUBLIC_PRODUCT_CSS + "\n" + PMW_LOWER_MODULES_FINAL_CSS + "\n" + FINAL_PREMIUM_ALL_TABS_CSS,
+    css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS + "\n" + PHASE_138_CLEANUP_CSS + "\n" + FINAL_PMW2026_PRODUCTION_CSS + "\n" + PHASE_139_PUBLIC_PRODUCT_CSS + "\n" + PHASE_140_DEMO_FIRST_MOBILE_PRODUCT_CSS + "\n" + PMW_LOWER_MODULES_FINAL_CSS + "\n" + FINAL_PREMIUM_ALL_TABS_CSS,
 ) as demo:
-    gr.Markdown(PHASE_139_PUBLIC_HERO_MD, elem_classes=["phase-139-public-hero"])
     gr.HTML(PHASE_135_PREMIUM_CSS)
     workbook_state = gr.State()
     gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
@@ -6813,16 +6931,15 @@ with gr.Blocks(
         elem_id="premium-matchday-war-room",
     )
 
-    runtime_truth_html = gr.HTML(value=_runtime_data_mode_html(), visible=True)
+    runtime_truth_html = gr.HTML(value=_runtime_data_mode_html(), visible=False)
     top_checklist_html = runtime_truth_html
     modal_gpu_status_html = gr.HTML(value="", visible=False)
     with gr.Row(elem_classes=["product-button-row", "pmw-action-rail"]):
-        public_load_demo_button = gr.Button("Load Demo Scenario", variant="secondary", elem_classes=["pmw-action-button"])
+        public_load_demo_button = gr.Button("Load Demo Scenario", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
         refresh_live_button = gr.Button("Refresh Runtime", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
         recalc_button = gr.Button("Recalculate Impact", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
-        ask_ai_scout_button = gr.Button("Ask AI Scout", variant="secondary", elem_classes=["pmw-action-button"])
-        open_friends_button = gr.Button("Open Friends League", variant="secondary", elem_classes=["pmw-action-button"])
-        pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary", elem_classes=["pmw-action-button"])
+        ask_ai_scout_button = gr.Button("Ask AI Scout", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
+        open_friends_button = gr.Button("Open Friends League", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
     runtime_timer = gr.Timer(value=int(os.getenv("LIVE_REFRESH_SECONDS", "60")))
     impact_panel_html = gr.HTML(value="", visible=False)
 
@@ -6914,6 +7031,9 @@ with gr.Blocks(
                             + build_impact_panel_html(pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), {}, pd.DataFrame())
                         )
                     )
+
+    with gr.Accordion("Internal data connection", open=False, elem_classes=["phase-140-internal-tools"]):
+        pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary", elem_classes=["pmw-action-button"])
 
     demo.load(
         initial_ui_load,
