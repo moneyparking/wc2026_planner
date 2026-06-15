@@ -1567,6 +1567,86 @@ def _phase_142_premium_cta_strip_html() -> str:
         </div>
     """
 
+
+# === PHASE 1.42 VISUAL PACK HELPERS ===
+PHASE_142_HERO_VISUAL = "assets/product_visuals/hero_command_center_16x9.png"
+PHASE_142_AI_SCOUT_VISUAL = "assets/product_visuals/ai_scout_analytics_4x3.png"
+PHASE_142_FRIENDS_VISUAL = "assets/product_visuals/friends_league_exports_16x9.png"
+PHASE_142_PREMIUM_VISUAL = "assets/product_visuals/premium_matchday_pack_16x9.png"
+
+
+def _phase_142_file_src(path: str) -> str:
+    return f"file={path}"
+
+
+def _phase_142_visual_panel_html(
+    *,
+    kicker: str,
+    title: str,
+    body: str,
+    image_path: str,
+    alt_text: str,
+) -> str:
+    return f"""
+    <section class="pmw-card pmw-full phase-142-visual-panel"
+      style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding:18px;border-radius:24px;">
+      <div style="flex:1 1 280px;min-width:0;">
+        <div class="pmw-card-kicker">{_pmw_safe(kicker)}</div>
+        <h2 style="margin:6px 0 10px 0;">{_pmw_safe(title)}</h2>
+        <p style="margin:0;color:#C9D6E5;line-height:1.55;">{_pmw_safe(body)}</p>
+      </div>
+      <div style="flex:1 1 340px;min-width:0;">
+        <img
+          src="{_phase_142_file_src(image_path)}"
+          alt="{_pmw_safe(alt_text)}"
+          loading="lazy"
+          style="display:block;width:100%;max-width:100%;height:auto;border-radius:22px;border:1px solid rgba(148,163,184,.22);box-shadow:0 20px 60px rgba(2,6,23,.38);background:#071018;"
+        />
+      </div>
+    </section>
+    """
+
+
+def _phase_142_hero_visual_html() -> str:
+    return _phase_142_visual_panel_html(
+        kicker="Hero Football Visual",
+        title="A premium football command center, not a generic app.",
+        body="Stadium-night energy, elite #7 and #10 silhouettes from behind, a premium match ball, bracket logic, and sports-tech overlays to instantly communicate the product story.",
+        image_path=PHASE_142_HERO_VISUAL,
+        alt_text="Premium football command center hero visual",
+    )
+
+
+def _phase_142_ai_scout_visual_html() -> str:
+    return _phase_142_visual_panel_html(
+        kicker="AI Scout Visual",
+        title="AI Scout should look as smart as it feels.",
+        body="Use circular charts, donut diagrams, trend lines, tactical overlays, and premium analytics cards to make the AI Scout area feel richer and more advanced.",
+        image_path=PHASE_142_AI_SCOUT_VISUAL,
+        alt_text="AI Scout analytics visual with circular charts and premium graphs",
+    )
+
+
+def _phase_142_friends_visual_html() -> str:
+    return _phase_142_visual_panel_html(
+        kicker="Friends League Visual",
+        title="Private league energy with premium sharing cues.",
+        body="Leaderboard, exports, scenario comparison, and tournament tension — presented like a polished social product feature rather than a plain utility block.",
+        image_path=PHASE_142_FRIENDS_VISUAL,
+        alt_text="Friends League premium product visual",
+    )
+
+
+def _phase_142_premium_visual_html() -> str:
+    return _phase_142_visual_panel_html(
+        kicker="Premium Matchday Pack",
+        title="Show the upgrade visually, not only in copy.",
+        body="Use a premium in-app visual that suggests extra value: exports, AI Scout cards, scenario summaries, and fan-planning toolkit energy.",
+        image_path=PHASE_142_PREMIUM_VISUAL,
+        alt_text="Premium Matchday Pack upgrade visual",
+    )
+
+
 def _selected_match_detail_html(state: dict | None = None, choice: object = None) -> str:
     state = state or {}
     runtime = state.get("runtime_matches")
@@ -1931,6 +2011,7 @@ def build_ai_scout_output(matches: pd.DataFrame, runtime: pd.DataFrame | None = 
         <div>
           <div class="pmw-kicker">Advanced AI Scout Cards - <=32B-ready UX</div>
           <h2>AI Scout now looks like a premium analysis product.</h2>
+{_phase_142_ai_scout_visual_html()}
           <p>Runtime score, source truth, squad lens and private-league impact are packaged into cards before any raw text appears.</p>
           <div class="pmw-final-stats">
             {_pmw_metric("Selected", f"{home} vs {away}", "Row-aware match context")}
@@ -2608,6 +2689,7 @@ def _visible_friends_league_html(friends: pd.DataFrame, runtime: pd.DataFrame | 
         <div>
           <div class="pmw-kicker">Friends League - private exports</div>
           <h2>Turn predictions into a private league product loop.</h2>
+{_phase_142_friends_visual_html()}
           <p>Free mode proves scoring. Premium packages the same state into leaderboard exports, matchday recaps, and office-pool sheets.</p>
           <div class="pmw-final-stats">
             {_pmw_metric("Players", players, "League rows loaded")}
@@ -6359,6 +6441,7 @@ def _premium_pricing_html() -> str:
         <div>
           <div class="pmw-kicker">Premium - Gumroad funnel</div>
           <h2>Free is judgeable. Premium is clearly valuable.</h2>
+{_phase_142_premium_visual_html()}
           <p>Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms. Premium sells exports, planning tools, templates, ad-free UI, and source access.</p>
           <div class="pmw-final-stats">
             {_pmw_metric("Free Core", "$0", "Full judge path")}
@@ -6754,6 +6837,7 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
         </div>
 {_phase_142_verified_proof_strip_html()}
 {_phase_142_premium_cta_strip_html()}
+{_phase_142_hero_visual_html()}
         <div class="phase-140-proof-grid" aria-label="Tournament proof cards">
           <article><strong>104</strong><span>Matches<br>Complete tournament planner</span></article>
           <article><strong>12</strong><span>Groups<br>Expanded format tracker</span></article>

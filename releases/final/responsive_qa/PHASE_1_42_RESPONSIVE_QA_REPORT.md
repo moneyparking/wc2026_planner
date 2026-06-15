@@ -1,7 +1,7 @@
 # PHASE 1.42 Responsive QA Report
 
 - URL: `http://127.0.0.1:7860`
-- Created UTC: `2026-06-15T16:49:38.742260+00:00`
+- Created UTC: `2026-06-15T18:10:37.941368+00:00`
 - Overall: `PASS`
 - Average score: `97/100`
 
@@ -24,7 +24,7 @@
 
 | Check | Result | Detail |
 |---|---|---|
-| app_loads | PASS | body text chars=5176 |
+| app_loads | PASS | body text chars=5423 |
 | no_horizontal_scroll | PASS | scrollWidth=375 clientWidth=375 |
 | hero_product_name | PASS | pattern=AI Bracket War Room 2026 |
 | demo_cta | PASS | pattern=Load Demo Scenario/Open Match Center/Demo Scenario |
@@ -44,7 +44,7 @@
 
 | Check | Result | Detail |
 |---|---|---|
-| app_loads | PASS | body text chars=5176 |
+| app_loads | PASS | body text chars=5423 |
 | no_horizontal_scroll | PASS | scrollWidth=390 clientWidth=390 |
 | hero_product_name | PASS | pattern=AI Bracket War Room 2026 |
 | demo_cta | PASS | pattern=Load Demo Scenario/Open Match Center/Demo Scenario |
@@ -64,7 +64,7 @@
 
 | Check | Result | Detail |
 |---|---|---|
-| app_loads | PASS | body text chars=5176 |
+| app_loads | PASS | body text chars=5423 |
 | no_horizontal_scroll | PASS | scrollWidth=430 clientWidth=430 |
 | hero_product_name | PASS | pattern=AI Bracket War Room 2026 |
 | demo_cta | PASS | pattern=Load Demo Scenario/Open Match Center/Demo Scenario |
@@ -84,7 +84,7 @@
 
 | Check | Result | Detail |
 |---|---|---|
-| app_loads | PASS | body text chars=5176 |
+| app_loads | PASS | body text chars=5423 |
 | no_horizontal_scroll | PASS | scrollWidth=360 clientWidth=360 |
 | hero_product_name | PASS | pattern=AI Bracket War Room 2026 |
 | demo_cta | PASS | pattern=Load Demo Scenario/Open Match Center/Demo Scenario |
@@ -104,7 +104,7 @@
 
 | Check | Result | Detail |
 |---|---|---|
-| app_loads | PASS | body text chars=5176 |
+| app_loads | PASS | body text chars=5423 |
 | no_horizontal_scroll | PASS | scrollWidth=412 clientWidth=412 |
 | hero_product_name | PASS | pattern=AI Bracket War Room 2026 |
 | demo_cta | PASS | pattern=Load Demo Scenario/Open Match Center/Demo Scenario |
@@ -124,7 +124,7 @@
 
 | Check | Result | Detail |
 |---|---|---|
-| app_loads | PASS | body text chars=5188 |
+| app_loads | PASS | body text chars=5435 |
 | no_horizontal_scroll | PASS | scrollWidth=768 clientWidth=768 |
 | hero_product_name | PASS | pattern=AI Bracket War Room 2026 |
 | demo_cta | PASS | pattern=Load Demo Scenario/Open Match Center/Demo Scenario |
@@ -144,7 +144,7 @@
 
 | Check | Result | Detail |
 |---|---|---|
-| app_loads | PASS | body text chars=5188 |
+| app_loads | PASS | body text chars=5435 |
 | no_horizontal_scroll | PASS | scrollWidth=1366 clientWidth=1366 |
 | hero_product_name | PASS | pattern=AI Bracket War Room 2026 |
 | demo_cta | PASS | pattern=Load Demo Scenario/Open Match Center/Demo Scenario |
@@ -164,7 +164,7 @@
 
 | Check | Result | Detail |
 |---|---|---|
-| app_loads | PASS | body text chars=5188 |
+| app_loads | PASS | body text chars=5435 |
 | no_horizontal_scroll | PASS | scrollWidth=1920 clientWidth=1920 |
 | hero_product_name | PASS | pattern=AI Bracket War Room 2026 |
 | demo_cta | PASS | pattern=Load Demo Scenario/Open Match Center/Demo Scenario |
