@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import os
+import re
 import sys
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +25,27 @@ VALID_BRACKET_STATUSES = {
     "ready",
 }
 BLOCKED_AI_SCOUT_TERMS = ("bet" + "ting", "od" + "ds", "sports" + "book")
+
+
+def _find_blocked_ai_scout_terms(text: str) -> list[str]:
+    """Return blocked public-copy terms using token boundaries.
+
+    The Gradio page payload can include long encoded/static strings where short
+    substrings such as "odds" appear accidentally. This helper flags only
+    readable token occurrences, not base64/hash substrings.
+    """
+    lowered = text.lower()
+    offenders: list[str] = []
+    for term in BLOCKED_AI_SCOUT_TERMS:
+        escaped = re.escape(term.lower())
+        if " " in term:
+            pattern = rf"(?<![a-z0-9]){escaped}(?![a-z0-9])"
+        else:
+            pattern = rf"(?<![a-z0-9]){escaped}(?![a-z0-9])"
+        if re.search(pattern, lowered):
+            offenders.append(term)
+    return offenders
+
 FORBIDDEN_README_PHRASES = (
     "official fifa app",
     "official world cup app",
@@ -157,7 +179,10 @@ def main() -> None:
         assert required_copy in first_screen_copy, f"First-screen copy missing: {required_copy}"
     assert "PHASE_1_18H_HONEST_PREVIEW_LABELS" not in first_screen_copy
     lowered_ai_scout = ai_scout_output.lower()
-    assert not any(term in lowered_ai_scout for term in BLOCKED_AI_SCOUT_TERMS)
+    ai_scout_offenders = _find_blocked_ai_scout_terms(lowered_ai_scout)
+    if ai_scout_offenders:
+        print("\nAI_SCOUT_BLOCKED_TERMS:", ai_scout_offenders)
+    assert not ai_scout_offenders
 
     print("phase_1_25_offgrid_acceptance=PASS")
     print("HACKATHON_SMOKE_TESTS_PASS")
