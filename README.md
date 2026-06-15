@@ -21,6 +21,10 @@ tags:
   - hackathon
   - premium-ui
   - gumroad
+  - track:backyard
+  - sponsor:openai
+  - achievement:offbrand
+  - achievement:fieldnotes
 ---
 <!-- FINAL_PMW2026_SUBMISSION_COPY -->
 
