@@ -19,3 +19,6 @@ releases/final/artifacts/*Sticker*
 releases/final/artifacts/*Video*
 releases/final/artifacts/*Buyer*
 releases/final/artifacts/*BUYER*
+
+# Local responsive QA screenshots are binary artifacts; keep reports in git, not PNGs.
+releases/final/responsive_qa/screenshots/*.png

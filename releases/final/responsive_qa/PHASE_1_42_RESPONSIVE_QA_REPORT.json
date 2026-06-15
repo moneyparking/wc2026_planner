@@ -1,0 +1,698 @@
+{
+  "phase": "1.42",
+  "qa_type": "responsive_cross_device",
+  "url": "http://127.0.0.1:7860",
+  "created_at": "2026-06-15T16:34:38.409277+00:00",
+  "overall_passed": true,
+  "average_score": 97,
+  "viewports": [
+    {
+      "name": "iphone_se_mini_like",
+      "width": 375,
+      "height": 812,
+      "device": "iOS compact",
+      "passed": true,
+      "score": 100,
+      "screenshot": "releases/final/responsive_qa/screenshots/iphone_se_mini_like_375x812.png",
+      "checks": [
+        {
+          "name": "app_loads",
+          "passed": true,
+          "detail": "body text chars=5176"
+        },
+        {
+          "name": "no_horizontal_scroll",
+          "passed": true,
+          "detail": "scrollWidth=375 clientWidth=375"
+        },
+        {
+          "name": "hero_product_name",
+          "passed": true,
+          "detail": "pattern=AI Bracket War Room 2026"
+        },
+        {
+          "name": "demo_cta",
+          "passed": true,
+          "detail": "pattern=Load Demo Scenario|Open Match Center|Demo Scenario"
+        },
+        {
+          "name": "recalculate_cta",
+          "passed": true,
+          "detail": "pattern=Recalculate Impact|Recalculate.*War Room|Refresh Runtime"
+        },
+        {
+          "name": "match_center",
+          "passed": true,
+          "detail": "pattern=Match Center|Match Planner"
+        },
+        {
+          "name": "ai_scout",
+          "passed": true,
+          "detail": "pattern=AI Scout"
+        },
+        {
+          "name": "friends_league",
+          "passed": true,
+          "detail": "pattern=Friends League"
+        },
+        {
+          "name": "premium_cta",
+          "passed": true,
+          "detail": "pattern=Premium|Upgrade|Gumroad|Matchday Pack"
+        },
+        {
+          "name": "stats_visible_above_fold",
+          "passed": true,
+          "detail": "above-fold stat hits=2/2"
+        },
+        {
+          "name": "demo_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible demo/start CTA"
+        },
+        {
+          "name": "recalculate_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible recalculation CTA"
+        },
+        {
+          "name": "touch_targets_25px_minimum",
+          "passed": true,
+          "detail": "small targets=0; minInteractiveHeight=44.0px"
+        },
+        {
+          "name": "interactive_controls_present",
+          "passed": true,
+          "detail": "interactive controls=31"
+        },
+        {
+          "name": "no_white_gradio_blocks_dominating_above_fold",
+          "passed": true,
+          "detail": "white blocks above fold=0"
+        }
+      ]
+    },
+    {
+      "name": "iphone_12_13_14",
+      "width": 390,
+      "height": 844,
+      "device": "iOS standard",
+      "passed": true,
+      "score": 100,
+      "screenshot": "releases/final/responsive_qa/screenshots/iphone_12_13_14_390x844.png",
+      "checks": [
+        {
+          "name": "app_loads",
+          "passed": true,
+          "detail": "body text chars=5176"
+        },
+        {
+          "name": "no_horizontal_scroll",
+          "passed": true,
+          "detail": "scrollWidth=390 clientWidth=390"
+        },
+        {
+          "name": "hero_product_name",
+          "passed": true,
+          "detail": "pattern=AI Bracket War Room 2026"
+        },
+        {
+          "name": "demo_cta",
+          "passed": true,
+          "detail": "pattern=Load Demo Scenario|Open Match Center|Demo Scenario"
+        },
+        {
+          "name": "recalculate_cta",
+          "passed": true,
+          "detail": "pattern=Recalculate Impact|Recalculate.*War Room|Refresh Runtime"
+        },
+        {
+          "name": "match_center",
+          "passed": true,
+          "detail": "pattern=Match Center|Match Planner"
+        },
+        {
+          "name": "ai_scout",
+          "passed": true,
+          "detail": "pattern=AI Scout"
+        },
+        {
+          "name": "friends_league",
+          "passed": true,
+          "detail": "pattern=Friends League"
+        },
+        {
+          "name": "premium_cta",
+          "passed": true,
+          "detail": "pattern=Premium|Upgrade|Gumroad|Matchday Pack"
+        },
+        {
+          "name": "stats_visible_above_fold",
+          "passed": true,
+          "detail": "above-fold stat hits=2/2"
+        },
+        {
+          "name": "demo_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible demo/start CTA"
+        },
+        {
+          "name": "recalculate_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible recalculation CTA"
+        },
+        {
+          "name": "touch_targets_25px_minimum",
+          "passed": true,
+          "detail": "small targets=0; minInteractiveHeight=44.0px"
+        },
+        {
+          "name": "interactive_controls_present",
+          "passed": true,
+          "detail": "interactive controls=31"
+        },
+        {
+          "name": "no_white_gradio_blocks_dominating_above_fold",
+          "passed": true,
+          "detail": "white blocks above fold=0"
+        }
+      ]
+    },
+    {
+      "name": "iphone_pro_max",
+      "width": 430,
+      "height": 932,
+      "device": "iOS large",
+      "passed": true,
+      "score": 100,
+      "screenshot": "releases/final/responsive_qa/screenshots/iphone_pro_max_430x932.png",
+      "checks": [
+        {
+          "name": "app_loads",
+          "passed": true,
+          "detail": "body text chars=5176"
+        },
+        {
+          "name": "no_horizontal_scroll",
+          "passed": true,
+          "detail": "scrollWidth=430 clientWidth=430"
+        },
+        {
+          "name": "hero_product_name",
+          "passed": true,
+          "detail": "pattern=AI Bracket War Room 2026"
+        },
+        {
+          "name": "demo_cta",
+          "passed": true,
+          "detail": "pattern=Load Demo Scenario|Open Match Center|Demo Scenario"
+        },
+        {
+          "name": "recalculate_cta",
+          "passed": true,
+          "detail": "pattern=Recalculate Impact|Recalculate.*War Room|Refresh Runtime"
+        },
+        {
+          "name": "match_center",
+          "passed": true,
+          "detail": "pattern=Match Center|Match Planner"
+        },
+        {
+          "name": "ai_scout",
+          "passed": true,
+          "detail": "pattern=AI Scout"
+        },
+        {
+          "name": "friends_league",
+          "passed": true,
+          "detail": "pattern=Friends League"
+        },
+        {
+          "name": "premium_cta",
+          "passed": true,
+          "detail": "pattern=Premium|Upgrade|Gumroad|Matchday Pack"
+        },
+        {
+          "name": "stats_visible_above_fold",
+          "passed": true,
+          "detail": "above-fold stat hits=2/2"
+        },
+        {
+          "name": "demo_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible demo/start CTA"
+        },
+        {
+          "name": "recalculate_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible recalculation CTA"
+        },
+        {
+          "name": "touch_targets_25px_minimum",
+          "passed": true,
+          "detail": "small targets=0; minInteractiveHeight=44.0px"
+        },
+        {
+          "name": "interactive_controls_present",
+          "passed": true,
+          "detail": "interactive controls=31"
+        },
+        {
+          "name": "no_white_gradio_blocks_dominating_above_fold",
+          "passed": true,
+          "detail": "white blocks above fold=0"
+        }
+      ]
+    },
+    {
+      "name": "android_compact",
+      "width": 360,
+      "height": 800,
+      "device": "Android compact",
+      "passed": true,
+      "score": 100,
+      "screenshot": "releases/final/responsive_qa/screenshots/android_compact_360x800.png",
+      "checks": [
+        {
+          "name": "app_loads",
+          "passed": true,
+          "detail": "body text chars=5176"
+        },
+        {
+          "name": "no_horizontal_scroll",
+          "passed": true,
+          "detail": "scrollWidth=360 clientWidth=360"
+        },
+        {
+          "name": "hero_product_name",
+          "passed": true,
+          "detail": "pattern=AI Bracket War Room 2026"
+        },
+        {
+          "name": "demo_cta",
+          "passed": true,
+          "detail": "pattern=Load Demo Scenario|Open Match Center|Demo Scenario"
+        },
+        {
+          "name": "recalculate_cta",
+          "passed": true,
+          "detail": "pattern=Recalculate Impact|Recalculate.*War Room|Refresh Runtime"
+        },
+        {
+          "name": "match_center",
+          "passed": true,
+          "detail": "pattern=Match Center|Match Planner"
+        },
+        {
+          "name": "ai_scout",
+          "passed": true,
+          "detail": "pattern=AI Scout"
+        },
+        {
+          "name": "friends_league",
+          "passed": true,
+          "detail": "pattern=Friends League"
+        },
+        {
+          "name": "premium_cta",
+          "passed": true,
+          "detail": "pattern=Premium|Upgrade|Gumroad|Matchday Pack"
+        },
+        {
+          "name": "stats_visible_above_fold",
+          "passed": true,
+          "detail": "above-fold stat hits=2/2"
+        },
+        {
+          "name": "demo_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible demo/start CTA"
+        },
+        {
+          "name": "recalculate_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible recalculation CTA"
+        },
+        {
+          "name": "touch_targets_25px_minimum",
+          "passed": true,
+          "detail": "small targets=0; minInteractiveHeight=44.0px"
+        },
+        {
+          "name": "interactive_controls_present",
+          "passed": true,
+          "detail": "interactive controls=31"
+        },
+        {
+          "name": "no_white_gradio_blocks_dominating_above_fold",
+          "passed": true,
+          "detail": "white blocks above fold=0"
+        }
+      ]
+    },
+    {
+      "name": "pixel_samsung_common",
+      "width": 412,
+      "height": 915,
+      "device": "Android common",
+      "passed": true,
+      "score": 100,
+      "screenshot": "releases/final/responsive_qa/screenshots/pixel_samsung_common_412x915.png",
+      "checks": [
+        {
+          "name": "app_loads",
+          "passed": true,
+          "detail": "body text chars=5176"
+        },
+        {
+          "name": "no_horizontal_scroll",
+          "passed": true,
+          "detail": "scrollWidth=412 clientWidth=412"
+        },
+        {
+          "name": "hero_product_name",
+          "passed": true,
+          "detail": "pattern=AI Bracket War Room 2026"
+        },
+        {
+          "name": "demo_cta",
+          "passed": true,
+          "detail": "pattern=Load Demo Scenario|Open Match Center|Demo Scenario"
+        },
+        {
+          "name": "recalculate_cta",
+          "passed": true,
+          "detail": "pattern=Recalculate Impact|Recalculate.*War Room|Refresh Runtime"
+        },
+        {
+          "name": "match_center",
+          "passed": true,
+          "detail": "pattern=Match Center|Match Planner"
+        },
+        {
+          "name": "ai_scout",
+          "passed": true,
+          "detail": "pattern=AI Scout"
+        },
+        {
+          "name": "friends_league",
+          "passed": true,
+          "detail": "pattern=Friends League"
+        },
+        {
+          "name": "premium_cta",
+          "passed": true,
+          "detail": "pattern=Premium|Upgrade|Gumroad|Matchday Pack"
+        },
+        {
+          "name": "stats_visible_above_fold",
+          "passed": true,
+          "detail": "above-fold stat hits=2/2"
+        },
+        {
+          "name": "demo_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible demo/start CTA"
+        },
+        {
+          "name": "recalculate_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible recalculation CTA"
+        },
+        {
+          "name": "touch_targets_25px_minimum",
+          "passed": true,
+          "detail": "small targets=0; minInteractiveHeight=44.0px"
+        },
+        {
+          "name": "interactive_controls_present",
+          "passed": true,
+          "detail": "interactive controls=31"
+        },
+        {
+          "name": "no_white_gradio_blocks_dominating_above_fold",
+          "passed": true,
+          "detail": "white blocks above fold=0"
+        }
+      ]
+    },
+    {
+      "name": "ipad_portrait",
+      "width": 768,
+      "height": 1024,
+      "device": "iPad portrait",
+      "passed": true,
+      "score": 93,
+      "screenshot": "releases/final/responsive_qa/screenshots/ipad_portrait_768x1024.png",
+      "checks": [
+        {
+          "name": "app_loads",
+          "passed": true,
+          "detail": "body text chars=5188"
+        },
+        {
+          "name": "no_horizontal_scroll",
+          "passed": true,
+          "detail": "scrollWidth=768 clientWidth=768"
+        },
+        {
+          "name": "hero_product_name",
+          "passed": true,
+          "detail": "pattern=AI Bracket War Room 2026"
+        },
+        {
+          "name": "demo_cta",
+          "passed": true,
+          "detail": "pattern=Load Demo Scenario|Open Match Center|Demo Scenario"
+        },
+        {
+          "name": "recalculate_cta",
+          "passed": true,
+          "detail": "pattern=Recalculate Impact|Recalculate.*War Room|Refresh Runtime"
+        },
+        {
+          "name": "match_center",
+          "passed": true,
+          "detail": "pattern=Match Center|Match Planner"
+        },
+        {
+          "name": "ai_scout",
+          "passed": true,
+          "detail": "pattern=AI Scout"
+        },
+        {
+          "name": "friends_league",
+          "passed": true,
+          "detail": "pattern=Friends League"
+        },
+        {
+          "name": "premium_cta",
+          "passed": true,
+          "detail": "pattern=Premium|Upgrade|Gumroad|Matchday Pack"
+        },
+        {
+          "name": "stats_visible_above_fold",
+          "passed": true,
+          "detail": "above-fold stat hits=2/2"
+        },
+        {
+          "name": "demo_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible demo/start CTA"
+        },
+        {
+          "name": "recalculate_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible recalculation CTA"
+        },
+        {
+          "name": "touch_targets_25px_minimum",
+          "passed": false,
+          "detail": "small targets=2; minInteractiveHeight=18.0px"
+        },
+        {
+          "name": "interactive_controls_present",
+          "passed": true,
+          "detail": "interactive controls=32"
+        },
+        {
+          "name": "no_white_gradio_blocks_dominating_above_fold",
+          "passed": true,
+          "detail": "white blocks above fold=0"
+        }
+      ]
+    },
+    {
+      "name": "laptop",
+      "width": 1366,
+      "height": 768,
+      "device": "Desktop laptop",
+      "passed": true,
+      "score": 93,
+      "screenshot": "releases/final/responsive_qa/screenshots/laptop_1366x768.png",
+      "checks": [
+        {
+          "name": "app_loads",
+          "passed": true,
+          "detail": "body text chars=5188"
+        },
+        {
+          "name": "no_horizontal_scroll",
+          "passed": true,
+          "detail": "scrollWidth=1366 clientWidth=1366"
+        },
+        {
+          "name": "hero_product_name",
+          "passed": true,
+          "detail": "pattern=AI Bracket War Room 2026"
+        },
+        {
+          "name": "demo_cta",
+          "passed": true,
+          "detail": "pattern=Load Demo Scenario|Open Match Center|Demo Scenario"
+        },
+        {
+          "name": "recalculate_cta",
+          "passed": true,
+          "detail": "pattern=Recalculate Impact|Recalculate.*War Room|Refresh Runtime"
+        },
+        {
+          "name": "match_center",
+          "passed": true,
+          "detail": "pattern=Match Center|Match Planner"
+        },
+        {
+          "name": "ai_scout",
+          "passed": true,
+          "detail": "pattern=AI Scout"
+        },
+        {
+          "name": "friends_league",
+          "passed": true,
+          "detail": "pattern=Friends League"
+        },
+        {
+          "name": "premium_cta",
+          "passed": true,
+          "detail": "pattern=Premium|Upgrade|Gumroad|Matchday Pack"
+        },
+        {
+          "name": "stats_visible_above_fold",
+          "passed": true,
+          "detail": "above-fold stat hits=2/2"
+        },
+        {
+          "name": "demo_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible demo/start CTA"
+        },
+        {
+          "name": "recalculate_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible recalculation CTA"
+        },
+        {
+          "name": "touch_targets_25px_minimum",
+          "passed": false,
+          "detail": "small targets=2; minInteractiveHeight=18.0px"
+        },
+        {
+          "name": "interactive_controls_present",
+          "passed": true,
+          "detail": "interactive controls=32"
+        },
+        {
+          "name": "no_white_gradio_blocks_dominating_above_fold",
+          "passed": true,
+          "detail": "white blocks above fold=0"
+        }
+      ]
+    },
+    {
+      "name": "desktop",
+      "width": 1920,
+      "height": 1080,
+      "device": "Desktop wide",
+      "passed": true,
+      "score": 93,
+      "screenshot": "releases/final/responsive_qa/screenshots/desktop_1920x1080.png",
+      "checks": [
+        {
+          "name": "app_loads",
+          "passed": true,
+          "detail": "body text chars=5188"
+        },
+        {
+          "name": "no_horizontal_scroll",
+          "passed": true,
+          "detail": "scrollWidth=1920 clientWidth=1920"
+        },
+        {
+          "name": "hero_product_name",
+          "passed": true,
+          "detail": "pattern=AI Bracket War Room 2026"
+        },
+        {
+          "name": "demo_cta",
+          "passed": true,
+          "detail": "pattern=Load Demo Scenario|Open Match Center|Demo Scenario"
+        },
+        {
+          "name": "recalculate_cta",
+          "passed": true,
+          "detail": "pattern=Recalculate Impact|Recalculate.*War Room|Refresh Runtime"
+        },
+        {
+          "name": "match_center",
+          "passed": true,
+          "detail": "pattern=Match Center|Match Planner"
+        },
+        {
+          "name": "ai_scout",
+          "passed": true,
+          "detail": "pattern=AI Scout"
+        },
+        {
+          "name": "friends_league",
+          "passed": true,
+          "detail": "pattern=Friends League"
+        },
+        {
+          "name": "premium_cta",
+          "passed": true,
+          "detail": "pattern=Premium|Upgrade|Gumroad|Matchday Pack"
+        },
+        {
+          "name": "stats_visible_above_fold",
+          "passed": true,
+          "detail": "above-fold stat hits=2/2"
+        },
+        {
+          "name": "demo_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible demo/start CTA"
+        },
+        {
+          "name": "recalculate_action_clickable",
+          "passed": true,
+          "detail": "clicked first visible recalculation CTA"
+        },
+        {
+          "name": "touch_targets_25px_minimum",
+          "passed": false,
+          "detail": "small targets=2; minInteractiveHeight=18.0px"
+        },
+        {
+          "name": "interactive_controls_present",
+          "passed": true,
+          "detail": "interactive controls=32"
+        },
+        {
+          "name": "no_white_gradio_blocks_dominating_above_fold",
+          "passed": true,
+          "detail": "white blocks above fold=0"
+        }
+      ]
+    }
+  ]
+}
