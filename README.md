@@ -1,4 +1,14 @@
 ---
+
+## Judge Demo Video
+
+Download the hackathon judge walkthrough:
+
+[Download demo video ZIP](releases/final/ai_bracket_war_room_2026_hackathon_demo_video.zip)
+
+Flow shown: first-screen clarity → Load Demo Scenario → Recalculate War Room → Match Center → Groups → Third-place pressure → Bracket War Room → Friends League → AI Scout → Premium-ready product shell.
+
+
 title: AI Bracket War Room 2026
 emoji: ⚽
 colorFrom: green
