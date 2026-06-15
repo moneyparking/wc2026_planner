@@ -1102,13 +1102,13 @@ def _today_match_center_html(state: dict | None = None) -> str:
     if not isinstance(runtime, pd.DataFrame) or runtime.empty:
         runtime, _live_results, _live_status, _sheet_state = _runtime_build()
     completed = _latest_completed(runtime, 4)
-    match = completed.iloc[0] if not completed.empty else runtime.iloc[0]
+    match = _phase_142_latest_completed_runtime_row(completed if not completed.empty else runtime)
     source = str(match.get("result_source") or "static_fixture")
     latest = "".join(
         f"<li>{escape(_scoreline_label(row))} · {escape(str(row.get('status') or 'FT'))}</li>"
         for _, row in completed.iterrows()
     ) or "<li>No completed results yet.</li>"
-    impact = "Group A impact: Mexico +3 pts · South Africa 0 pts, GD -2"
+    impact = "Latest completed result loaded · groups, Match Center, Friends League, and AI Scout are ready to recalculate"
     return f"""
     <section class="app-card card-shell today-match-center" aria-label="Today's Match Center">
         <div class="module-kicker">Today’s Match Center</div>
@@ -1119,7 +1119,7 @@ def _today_match_center_html(state: dict | None = None) -> str:
         <div class="today-module-grid">
             <div class="mini-module"><span>Runtime source</span><strong>{escape(source)}</strong></div>
             <div class="mini-module"><span>Score state</span><strong>{escape(_scoreline_label(match))} · FT</strong></div>
-            <div class="mini-module"><span>Group A impact</span><strong>Mexico +3 pts</strong></div>
+            <div class="mini-module"><span>Latest completed</span><strong>Verified result cache active</strong></div>
             <div class="mini-module"><span>Next action</span><strong>Refresh Runtime / Recalculate War Room</strong></div>
         </div>
         <div class="next-action-row" aria-label="next action buttons">
@@ -1156,7 +1156,7 @@ def _runtime_status_cards_html(state: dict | None = None) -> str:
 
 def _quick_navigation_cards_html() -> str:
     cards = [
-        ("🏟", "Match Center", "M001 result, source, and fixture table."),
+        ("🏟", "Match Center", "Latest completed result, source, and fixture table."),
         ("📊", "Groups", "Group A impact first, full standings second."),
         ("🧩", "Bracket", "Unresolved knockout path summary and skeleton."),
         ("🏆", "Friends", "Scoring status, actual result, leaderboard."),
@@ -1190,7 +1190,7 @@ def _what_changed_panel_html() -> str:
             <div class="mini-module"><span>Group A</span><strong>Mexico 3 pts · Korea Republic 3 pts</strong></div>
             <div class="mini-module"><span>Group B</span><strong>Canada 1 pt · Bosnia & Herzegovina 1 pt</strong></div>
             <div class="mini-module"><span>Group D</span><strong>United States 3 pts</strong></div>
-            <div class="mini-module"><span>Friends League</span><strong>Friends League can score M001–M004</strong></div>
+            <div class="mini-module"><span>Friends League</span><strong>Friends League can score verified completed results</strong></div>
             <div class="mini-module"><span>Bracket</span><strong>Bracket remains unresolved until more group results are complete</strong></div>
         </div>
     </section>
@@ -1256,12 +1256,12 @@ def _product_modules_html(state: dict | None = None) -> str:
         <div class="app-card card-shell module-card groups-card">
             <div class="module-kicker">📊 Groups</div>
             <h3>Group A impact card</h3>
-            <p>Mexico +3 pts from M001. South Africa waits on remaining Group A results. Full standings stay below in the Groups module.</p>
+            <p>Latest completed verified result is loaded into the runtime. Full standings stay below in the Groups module.</p>
         </div>
         <div class="app-card card-shell module-card friends-league-card">
             <div class="module-kicker">🏆 Friends</div>
             <h3>League scoring table ready</h3>
-            <p>Actual result card: Mexico 2–0 South Africa · completed result rows score immediately; scheduled matches remain pending.</p>
+            <p>Actual result card: latest verified completed match · completed result rows score immediately; scheduled matches remain pending.</p>
         </div>
         <div class="app-card card-shell module-card bracket-card">
             <div class="module-kicker">🧩 Bracket</div>
@@ -1357,6 +1357,118 @@ def _match_no_from_choice(choice: object) -> int:
     return int(match.group(1)) if match else 1
 
 
+
+# PHASE_1_42_LATEST_COMPLETED_CONTEXT_EXACT_HELPERS
+def _phase_142_bool_series(frame, column: str):
+    try:
+        return frame[column].astype(bool)
+    except Exception:
+        try:
+            return frame[column].astype(str).str.lower().isin(["true", "1", "yes", "ft", "completed", "final"])
+        except Exception:
+            return None
+
+
+def _phase_142_match_no_series(frame):
+    for col in ("match_no", "Match No", "Match Number", "match_number"):
+        if col in getattr(frame, "columns", []):
+            try:
+                return frame[col].astype(int)
+            except Exception:
+                pass
+
+    for col in ("Match ID", "Match", "match_id"):
+        if col in getattr(frame, "columns", []):
+            try:
+                return frame[col].astype(str).str.extract(r"(\d+)")[0].fillna("0").astype(int)
+            except Exception:
+                pass
+
+    return None
+
+
+def _phase_142_latest_completed_runtime_frame(frame):
+    """Return one-row frame for latest completed match, preserving DataFrame contract."""
+    try:
+        if frame is None or frame.empty:
+            return frame
+
+        candidate = frame
+
+        for completed_col in ("is_completed", "completed"):
+            if completed_col in frame.columns:
+                mask = _phase_142_bool_series(frame, completed_col)
+                if mask is not None and mask.any():
+                    candidate = frame[mask]
+                break
+
+        # If score columns exist, prefer rows with actual scores.
+        score_cols = [c for c in ("home_score", "away_score", "Home Score", "Away Score") if c in candidate.columns]
+        if len(score_cols) >= 2:
+            scored = candidate.dropna(subset=score_cols[:2])
+            if not scored.empty:
+                candidate = scored
+
+        nums = _phase_142_match_no_series(candidate)
+        if nums is not None and len(nums):
+            max_no = int(nums.max())
+            return candidate.loc[nums.eq(max_no)].tail(1)
+
+        return candidate.tail(1)
+    except Exception:
+        try:
+            return frame.tail(1)
+        except Exception:
+            return frame
+
+
+def _phase_142_latest_completed_runtime_row(frame):
+    try:
+        selected = _phase_142_latest_completed_runtime_frame(frame)
+        if selected is not None and not selected.empty:
+            return selected.iloc[0]
+    except Exception:
+        pass
+
+    try:
+        return frame.iloc[-1]
+    except Exception:
+        return frame.iloc[0]
+
+
+def _phase_142_latest_completed_table_row(frame):
+    try:
+        if frame is None or frame.empty:
+            return {}
+
+        nums = _phase_142_match_no_series(frame)
+        if nums is not None and len(nums):
+            max_no = int(nums.max())
+            return frame.loc[nums.eq(max_no)].tail(1).iloc[0]
+
+        return frame.tail(1).iloc[0]
+    except Exception:
+        try:
+            return frame.iloc[-1]
+        except Exception:
+            return {}
+
+
+def _phase_142_latest_match_option(options):
+    """Pick latest completed M### option from a Gradio dropdown/list."""
+    try:
+        target = _phase_142_latest_completed_match_key()
+    except Exception:
+        target = "M001"
+
+    try:
+        for option in options:
+            if target in str(option):
+                return option
+        return options[-1] if options else None
+    except Exception:
+        return options[0] if options else None
+
 def _selected_match_detail_html(state: dict | None = None, choice: object = None) -> str:
     state = state or {}
     runtime = state.get("runtime_matches")
@@ -1365,7 +1477,7 @@ def _selected_match_detail_html(state: dict | None = None, choice: object = None
     match_no = _match_no_from_choice(choice) if choice else 1
     selected = runtime[runtime["match_no"].astype(int).eq(match_no)]
     if selected.empty:
-        selected = runtime.head(1)
+        selected = _phase_142_latest_completed_runtime_frame(runtime)
     row = selected.iloc[0]
     status = "FT" if bool(row.get("is_completed")) else str(row.get("status") or "Scheduled")
     score = _scoreline_label(row)
@@ -1618,7 +1730,7 @@ def _first_completed_match(matches: pd.DataFrame) -> tuple[str, str, str]:
     if completed.empty:
         return "Waiting for demo scenario", "Before: no completed result", "After: no completed result"
     index = int(completed.index[0])
-    row = completed.iloc[0]
+    row = _phase_142_latest_completed_runtime_row(completed)
     return _match_label(row, index), "Baseline preview score", str(row.get("Result", "Updated score"))
 
 
@@ -1671,9 +1783,9 @@ def build_ai_scout_output(matches: pd.DataFrame, runtime: pd.DataFrame | None = 
         if match_no is not None:
             selected_runtime = runtime[runtime["match_no"].astype(int).eq(match_no)].head(1)
     if selected_runtime.empty:
-        selected_runtime = runtime[runtime["is_completed"].astype(bool)].head(1)
+        selected_runtime = _phase_142_latest_completed_runtime_frame(runtime[runtime["is_completed"].astype(bool)])
     if selected_runtime.empty:
-        selected_runtime = runtime.head(1)
+        selected_runtime = _phase_142_latest_completed_runtime_frame(runtime)
 
     runtime_row = selected_runtime.iloc[0]
     selected = fixtures[fixtures["match_no"].astype(int).eq(int(runtime_row["match_no"]))].iloc[0]
@@ -1731,7 +1843,7 @@ def build_ai_scout_output(matches: pd.DataFrame, runtime: pd.DataFrame | None = 
           <p><strong>Result impact:</strong> {_pmw_safe(score)} - runtime score drives Groups, Bracket, Friends League, and AI Scout summaries.</p>
           <p><strong>Squad contract:</strong> 26 players per team when squad rows are loaded.</p>
           <p><strong>Next action:</strong> inspect Groups, score Friends League, review Bracket Impact.</p>
-          <p><strong>QA sample:</strong> Mexico 2–0 South Africa</p>
+          <p><strong>QA sample:</strong> verified completed result cache</p>
           <div class="pmw-final-grid">{cards}</div>
         </div>
         <aside class="pmw-final-side">
@@ -2133,7 +2245,7 @@ def _visible_runtime_match_planner_html(runtime: pd.DataFrame, planner_filter: s
 
     completed = int(display["is_completed"].sum()) if "is_completed" in display else 0
     live = int(display["is_live"].sum()) if "is_live" in display else 0
-    first = table_frame.iloc[0] if not table_frame.empty else {}
+    first = _phase_142_latest_completed_table_row(table_frame) if not table_frame.empty else {}
     hero_score = f"{first.get('Match', 'M001')} - {first.get('Home', 'Mexico')} {first.get('Score', '2-0')} {first.get('Away', 'South Africa')}"
     table = _pmw_table(table_frame, VISIBLE_TAB_PREVIEW_MATCHES)
     full_table = _pmw_table(table_frame, len(table_frame))
@@ -2492,6 +2604,38 @@ def _button_status_html(outputs: tuple, action_label: str) -> str:
     )
     return _product_action_status_html(state, action_label, detail)
 
+
+
+# PHASE_1_42_LATEST_COMPLETED_DEFAULT_HELPERS
+def _phase_142_latest_completed_match_no(default: int = 1) -> int:
+    """Return latest completed verified-cache match_no for default UI context.
+
+    Scope:
+    - no runtime engine changes
+    - no fixture mutation
+    - no paid/live API call
+    - only chooses the default visible Match Center / AI Scout context
+    """
+    try:
+        from src.live_score_adapter import fetch_live_results
+
+        results = fetch_live_results()
+        completed = []
+        for result in results or []:
+            status = str(getattr(result, "status", "") or "").upper()
+            home_score = getattr(result, "home_score", None)
+            away_score = getattr(result, "away_score", None)
+            match_no = int(getattr(result, "match_no", 0) or 0)
+            if match_no and home_score is not None and away_score is not None and status in {"FT", "FULL_TIME", "COMPLETED", "FINAL"}:
+                completed.append(match_no)
+
+        return max(completed) if completed else default
+    except Exception:
+        return default
+
+
+def _phase_142_latest_completed_match_key(default: str = "M001") -> str:
+    return f"M{_phase_142_latest_completed_match_no():03d}"
 
 def _ui_payload(outputs: tuple, action_label: str, planner_filter: str = "All 104 matches") -> tuple:
     state, matches, groups, thirds, bracket, bracket_summary, friends, dashboard, _top_checklist, ai_scout, impact_panel = outputs
@@ -6232,11 +6376,11 @@ def _pmw_runtime_snapshot(state: dict | None = None) -> dict:
         summary = {}
     completed = int(summary.get("completed_matches_count", 0) or 0)
     live_count = int(summary.get("live_matches_count", 0) or 0)
-    next_match = str(summary.get("next_match", "M001"))
+    next_match = str(summary.get("next_match", _phase_142_latest_completed_match_key()))
 
     selected = _latest_completed(runtime, 1) if isinstance(runtime, pd.DataFrame) else pd.DataFrame()
     if selected.empty and isinstance(runtime, pd.DataFrame) and not runtime.empty:
-        selected = runtime.head(1)
+        selected = _phase_142_latest_completed_runtime_frame(runtime)
 
     if not selected.empty:
         row = selected.iloc[0]
@@ -7545,13 +7689,13 @@ with gr.Blocks(
                 match_options = _match_choice_options(INITIAL_UI_PAYLOAD[0].get("runtime_matches"))
                 match_choice = gr.Dropdown(
                     choices=match_options,
-                    value=match_options[0],
+                    value=_phase_142_latest_match_option(match_options),
                     label="Select match",
                     interactive=True,
                     container=False,
                     elem_classes=["pmw-dark-control"],
                 )
-                selected_match_detail_html = gr.HTML(value=_selected_match_detail_html(INITIAL_UI_PAYLOAD[0], match_options[0]))
+                selected_match_detail_html = gr.HTML(value=_selected_match_detail_html(INITIAL_UI_PAYLOAD[0], _phase_142_latest_match_option(match_options)))
                 with gr.Row():
                     inspect_match_button = gr.Button("Select / inspect match", variant="primary")
                     view_full_table_button = gr.Button("View full 104-match table", variant="secondary")
