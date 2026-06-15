@@ -1576,7 +1576,15 @@ PHASE_142_PREMIUM_VISUAL = "assets/product_visuals/premium_matchday_pack_16x9.pn
 
 
 def _phase_142_file_src(path: str) -> str:
-    return f"file={path}"
+    import base64
+    import mimetypes
+    from pathlib import Path
+
+    resolved = (Path(__file__).resolve().parent / path).resolve()
+    mime = mimetypes.guess_type(str(resolved))[0] or "image/png"
+    data = base64.b64encode(resolved.read_bytes()).decode("ascii")
+    return f"data:{mime};base64,{data}"
+
 
 
 def _phase_142_visual_panel_html(
@@ -8315,7 +8323,7 @@ with gr.Blocks(
     )
 
 if __name__ == "__main__":
-    demo.launch(
+    demo.launch(allowed_paths=[str((Path(__file__).resolve().parent / "assets").resolve())], 
         server_name="0.0.0.0",
         server_port=int(os.environ.get("PORT", 7860)),
         show_error=True,
