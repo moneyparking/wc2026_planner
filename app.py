@@ -1174,7 +1174,7 @@ def _primary_actions_html() -> str:
     return """
     <div class="next-action-row product-primary-actions" aria-label="Primary actions">
         <span>Refresh Runtime</span>
-        <span>Recalculate Impact</span>
+        <span>Recalculate War Room</span>
         <span>Ask AI Scout</span>
         <span>Open Friends League</span>
     </div>
@@ -1542,6 +1542,30 @@ def _phase_142_latest_completed_hero_card_html() -> str:
 def _phase_142_latest_completed_score_text() -> str:
     item = _phase_142_latest_completed_result_summary()
     return str(item.get("label", "M012 Sweden 5–1 Tunisia"))
+
+
+def _phase_142_verified_proof_strip_html() -> str:
+    latest = _pmw_safe(_phase_142_latest_completed_score_text())
+    return f"""
+        <div class="phase-142-proof-strip" aria-label="Phase 1.42 verified proof">
+          <span>Phase 1.42 Verified</span>
+          <span>Latest completed: {latest}</span>
+          <span>Verified public results cache</span>
+          <span>104 matches · 12 groups · 156 AI Scout cards · 24 export packs</span>
+        </div>
+    """
+
+
+def _phase_142_premium_cta_strip_html() -> str:
+    return """
+        <div class="phase-142-premium-strip" aria-label="Premium Matchday Pack summary">
+          <strong>Premium Matchday Pack</strong>
+          <span>Advanced AI Scout Cards</span>
+          <span>Private Friends League Exports</span>
+          <span>Share-Ready Scenario Summaries</span>
+          <span>Starter $9 · League Pack $27 · Source $49+</span>
+        </div>
+    """
 
 def _selected_match_detail_html(state: dict | None = None, choice: object = None) -> str:
     state = state or {}
@@ -2159,7 +2183,7 @@ def _pmw_final_safe(value: object) -> str:
 
 def _pmw_final_table(frame: pd.DataFrame, limit: int = 12) -> str:
     if frame is None or frame.empty:
-        return "<p>No rows available yet. Use Load Demo Scenario or Recalculate Impact.</p>"
+        return "<p>No rows available yet. Use Load Demo Scenario or Recalculate War Room.</p>"
     try:
         return _html_table(frame, min(limit, len(frame)))
     except Exception:
@@ -4443,7 +4467,7 @@ def phase128_onboarding_html() -> str:
 
         <div class="phase128-status-chip">Ready · Run the demo scenario to populate the War Room</div>
         <div class="phase128-note">
-            Independent fan-made project · No live federation data feed · No gambling flow · Built as a visible, testable Gradio vertical slice.
+            Independent fan-made project · No official affiliation · No live federation data feed · Built as a visible, testable Gradio vertical slice.
         </div>
     </section>
     """
@@ -6335,7 +6359,7 @@ def _premium_pricing_html() -> str:
         <div>
           <div class="pmw-kicker">Premium - Gumroad funnel</div>
           <h2>Free is judgeable. Premium is clearly valuable.</h2>
-          <p>No gambling, no official federation marks, no player likeness dependency, and no paid live-score requirement. Premium sells exports, planning tools, templates, ad-free UI, and source access.</p>
+          <p>Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms. Premium sells exports, planning tools, templates, ad-free UI, and source access.</p>
           <div class="pmw-final-stats">
             {_pmw_metric("Free Core", "$0", "Full judge path")}
             {_pmw_metric("Matchday", "$9", "Scout + exports")}
@@ -6642,7 +6666,7 @@ def _pmw_free_vs_premium_html() -> str:
     <section class="pmw-card pmw-full" aria-label="Free versus Premium">
       <div class="pmw-card-kicker">Free vs Premium</div>
       <h2>Fully judgeable free core. Obvious premium upgrade path.</h2>
-      <p>No gambling, no official marks dependency, no paid live-score requirement. Premium sells exports, planning, ad-free UX, and source access.</p>
+      <p>Unofficial fan-made project with no official marks dependency and no paid live-score requirement. Premium sells exports, planning, ad-free UX, and source access.</p>
       <div class="pmw-plan-grid">{cards}</div>
     </section>
     """
@@ -6728,6 +6752,8 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
 {_phase_142_latest_completed_hero_card_html()}
           </aside>
         </div>
+{_phase_142_verified_proof_strip_html()}
+{_phase_142_premium_cta_strip_html()}
         <div class="phase-140-proof-grid" aria-label="Tournament proof cards">
           <article><strong>104</strong><span>Matches<br>Complete tournament planner</span></article>
           <article><strong>12</strong><span>Groups<br>Expanded format tracker</span></article>
@@ -6735,7 +6761,7 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
           <article><strong>24</strong><span>Exports<br>Friends League + scenario packs</span></article>
         </div>
         <div class="phase-140-secondary-note">
-          <span>Unofficial fan-made planner. No gambling, no official marks, no affiliation with tournament organizers, teams, sponsors, broadcasters, or official platforms.</span>
+          <span>Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms.</span>
         </div>
       </section>
     </main>
@@ -6769,9 +6795,9 @@ def _submission_package_html() -> str:
         <div class="module-kicker">Submission Package</div>
         <h2>Build Small Hackathon final checklist</h2>
         <ol>
-            <li><strong>Demo path:</strong> Refresh Runtime → Load Demo → Recalculate → inspect Groups, Bracket, Friends, AI Scout.</li>
+            <li><strong>Demo path:</strong> Open Space → Load Demo Scenario → Recalculate War Room → Match Center → AI Scout → Friends League → Premium CTA.</li>
             <li><strong>Proof:</strong> 48 teams, 12 groups, 104 matches, 495 third-place combinations.</li>
-            <li><strong>Safety:</strong> unofficial fan-made planner, no gambling, no official marks.</li>
+            <li><strong>Safety:</strong> unofficial fan-made project, no affiliation claims, no official marks.</li>
             <li><strong>Business:</strong> Free core + Premium Matchday + Ultimate Fan Pack + Gumroad Source.</li>
             <li><strong>Polish:</strong> mobile-first cards, sticky CTAs, premium exports, judge QA tab.</li>
         </ol>
@@ -7166,6 +7192,39 @@ PHASE_140_DEMO_FIRST_MOBILE_PRODUCT_CSS = r"""
   color: #DDE7F3;
 }
 
+.phase-142-proof-strip,
+.phase-142-premium-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.phase-142-proof-strip span,
+.phase-142-premium-strip span,
+.phase-142-premium-strip strong {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 7px 11px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(2, 6, 23, 0.44);
+  color: #E6FBFF;
+  font-size: 12px;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.phase-142-proof-strip span:first-child,
+.phase-142-premium-strip strong {
+  color: #071018;
+  background: linear-gradient(135deg, #A7FF00, #FFD166);
+  border-color: transparent;
+}
+
 .phase-140-secondary-note {
   margin-top: 14px;
   color: #B9C6D8 !important;
@@ -7196,6 +7255,20 @@ PHASE_140_DEMO_FIRST_MOBILE_PRODUCT_CSS = r"""
 
   .phase-140-proof-grid article {
     min-height: 82px;
+  }
+
+  .phase-142-proof-strip,
+  .phase-142-premium-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .phase-142-proof-strip span,
+  .phase-142-premium-strip span,
+  .phase-142-premium-strip strong {
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 14px;
   }
 }
 """
@@ -7621,6 +7694,71 @@ PHASE_141_PIXEL_PERFECT_PREMIUM_UNIFIED_CSS = """
 .table-scroll table {
   border: 1px solid rgba(148,163,184,.22) !important;
 }
+html,
+body,
+.gradio-container,
+.gradio-container * {
+  box-sizing: border-box !important;
+}
+html,
+body,
+.gradio-container {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+.gradio-container img,
+.gradio-container svg,
+.gradio-container canvas,
+.gradio-container video {
+  max-width: 100% !important;
+}
+.gradio-container p,
+.gradio-container li,
+.gradio-container span,
+.gradio-container strong,
+.gradio-container h1,
+.gradio-container h2,
+.gradio-container h3,
+.gradio-container h4,
+.gradio-container label,
+.gradio-container button {
+  overflow-wrap: anywhere !important;
+}
+.table-scroll,
+.table-card,
+.gradio-dataframe,
+.gradio-container .ag-root-wrapper,
+.gradio-container .ag-center-cols-viewport,
+.gradio-container .dataframe {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+.pmw-tabs,
+.gradio-tabs,
+.gradio-container .tabs,
+.pmw-tabs [role="tablist"],
+.gradio-container [role="tablist"] {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  flex-wrap: nowrap !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+.pmw-tabs button,
+.gradio-container [role="tab"] {
+  min-height: 44px !important;
+  white-space: nowrap !important;
+  font-size: 13px !important;
+}
+.gradio-container input,
+.gradio-container textarea,
+.gradio-container select,
+.gradio-container .wrap,
+.gradio-container .wrap-inner,
+.gradio-container .secondary-wrap,
+.gradio-container [data-testid="dropdown"] {
+  max-width: 100% !important;
+}
 @media (max-width: 760px) {
   html,
   body,
@@ -7669,6 +7807,8 @@ PHASE_141_PIXEL_PERFECT_PREMIUM_UNIFIED_CSS = """
   }
   .pmw-happy-path-rail {
     position: static !important;
+    top: auto !important;
+    z-index: 1 !important;
   }
   .pmw-ripple-board {
     border-radius: 20px !important;
@@ -7677,6 +7817,78 @@ PHASE_141_PIXEL_PERFECT_PREMIUM_UNIFIED_CSS = """
   .pmw-action,
   .pmw-happy-path-rail button {
     width: 100% !important;
+  }
+  .pmw-happy-path-rail,
+  .product-button-row,
+  .pmw-action-rail,
+  .pmw-hero-actions,
+  .premium-strip-actions,
+  .pmw-final-cta-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  .pmw-stat-grid,
+  .phase126-metrics,
+  .runtime-status-cards,
+  .quick-navigation-cards,
+  .today-module-grid,
+  .product-module-grid,
+  .pmw-dashboard-grid,
+  .pmw-final-stats,
+  .pmw-final-grid,
+  .pmw-final-actions,
+  .pmw-final-lanes,
+  .pmw-final-plans,
+  .premium-pricing-grid,
+  .pmw-plan-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .gradio-container button,
+  .gradio-container .gr-button,
+  .gradio-container a[role="button"],
+  .gradio-container input,
+  .gradio-container textarea,
+  .gradio-container select,
+  .gradio-container .wrap,
+  .gradio-container .wrap-inner,
+  .gradio-container .secondary-wrap,
+  .gradio-container [data-testid="dropdown"] {
+    width: 100% !important;
+    min-height: 44px !important;
+    background-color: rgba(2,6,23,.86) !important;
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
+  }
+  .phase-140-hero {
+    padding: 14px !important;
+  }
+  .phase-140-hero h1 {
+    font-size: 25px !important;
+    line-height: 1.06 !important;
+  }
+  .phase-140-score-card,
+  .phase-140-proof-grid article,
+  .pmw-card,
+  .pmw-final-shell,
+  .sport-card,
+  .app-card,
+  .card-shell {
+    border-radius: 18px !important;
+  }
+  .pmw-tabs [role="tablist"],
+  .gradio-container [role="tablist"] {
+    gap: 6px !important;
+  }
+  .pmw-tabs button,
+  .gradio-container [role="tab"] {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: 180px !important;
+    padding: 8px 10px !important;
+    font-size: 12px !important;
   }
 }
 .gradio-container div.form.svelte-633qhp,
