@@ -1,14 +1,4 @@
 ---
-
-## Judge Demo Video
-
-Download the hackathon judge walkthrough:
-
-[Download demo video ZIP](releases/final/ai_bracket_war_room_2026_hackathon_demo_video.zip)
-
-Flow shown: first-screen clarity → Load Demo Scenario → Recalculate War Room → Match Center → Groups → Third-place pressure → Bracket War Room → Friends League → AI Scout → Premium-ready product shell.
-
-
 title: AI Bracket War Room 2026
 emoji: ⚽
 colorFrom: green
@@ -38,7 +28,8 @@ tags:
 
 ### Final Submission Links
 
-- Demo video: https://huggingface.co/spaces/Moneyparking/ai-bracket-war-room-2026
+- Demo video ZIP: [Download judge walkthrough](releases/final/ai_bracket_war_room_2026_hackathon_demo_video.zip)
+- Live app: https://huggingface.co/spaces/Moneyparking/ai-bracket-war-room-2026
 - Social post: https://x.com/moneyparking/status/2066602528884580615
 - Team HF usernames: @Moneyparking
 
