@@ -6,6 +6,7 @@ import re
 import time
 from datetime import datetime, timezone
 from html import escape
+from pathlib import Path
 
 
 
@@ -26,6 +27,8 @@ from src.runtime_engine import build_runtime_match_state, runtime_to_match_plann
 
 
 os.environ.setdefault("LIVE_SCORE_PROVIDER", "verified_cache")
+OUTPUT_DIR = Path("output")
+SIMULATION_REPORT_PATH = OUTPUT_DIR / "phase_126_runtime_report.txt"
 DEPLOY_MARKER = "PHASE_1_29A_UI_TRUTH_FULL_INTERACTION_FIX"
 PHASE_130_MARKER = "PHASE_1_30_PRODUCTION_FAN_APP_RUNTIME"
 PHASE_130B_MARKER = "PHASE 1.30B Visual Surface + AppStore Shell"
@@ -2004,6 +2007,64 @@ def _pmw_safe(v: object) -> str:
     return escape(str(v if v is not None else ""))
 
 
+def _pmw_ripple_review_html(
+    state: dict | None,
+    groups: pd.DataFrame | None,
+    thirds: pd.DataFrame | None,
+    bracket: dict | None,
+    friends: pd.DataFrame | None,
+) -> str:
+    snap = _pmw_runtime_snapshot(state)
+    group_count = 0 if groups is None or groups.empty else len(groups)
+    third_count = 0 if thirds is None or thirds.empty else len(thirds)
+    friends_count = 0 if friends is None or friends.empty else len(friends)
+    bracket_status = "Bracket preview redrawn" if bracket else "Bracket preview ready"
+
+    return f"""
+    <section class="pmw-ripple-board" aria-label="Scenario ripple effects">
+      <div class="pmw-card-kicker">One-click ripple effects</div>
+      <h2>Demo scenario recalculated across the whole War Room.</h2>
+      <p>
+        Selected/latest match: <strong>{_pmw_safe(snap["scoreline"])}</strong>
+        &middot; Status: {_pmw_safe(snap["status"])}
+        &middot; Source: {_pmw_safe(snap["source"])}
+      </p>
+      <div class="pmw-ripple-grid">
+        <article class="pmw-ripple-card lime">
+          <span>01</span>
+          <strong>Match Center</strong>
+          <p>Runtime score and selected match context updated.</p>
+        </article>
+        <article class="pmw-ripple-card cyan">
+          <span>02</span>
+          <strong>Groups</strong>
+          <p>{group_count} group rows recalculated from the scenario.</p>
+        </article>
+        <article class="pmw-ripple-card cyan">
+          <span>03</span>
+          <strong>Third-place pool</strong>
+          <p>{third_count} contenders ranked for knockout slots.</p>
+        </article>
+        <article class="pmw-ripple-card amber">
+          <span>04</span>
+          <strong>Bracket</strong>
+          <p>{_pmw_safe(bracket_status)} after group movement.</p>
+        </article>
+        <article class="pmw-ripple-card cyan">
+          <span>05</span>
+          <strong>AI Scout</strong>
+          <p>Pressure, key matchup, and bracket impact cards refreshed.</p>
+        </article>
+        <article class="pmw-ripple-card amber">
+          <span>06</span>
+          <strong>Friends League</strong>
+          <p>{friends_count} private league rows ready for scoring/export.</p>
+        </article>
+      </div>
+    </section>
+    """
+
+
 def _pmw_table(df: pd.DataFrame, limit: int = 12) -> str:
     try:
         return _html_table(df, limit)
@@ -2101,7 +2162,7 @@ def _visible_runtime_match_planner_html(runtime: pd.DataFrame, planner_filter: s
           <div class="pmw-live-score">{_pmw_safe(hero_score)}</div>
           <p>Active filter: <b>{_pmw_safe(planner_filter)}</b></p>
           <p>Result path: manual override to live provider to verified public cache to static seed.</p>
-          <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Premium Matchday Pack</a>
+          <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Premium Matchday Pack — $9</a>
         </aside>
       </div>
       <details class="pmw-final-data" open>
@@ -2350,7 +2411,7 @@ def _visible_friends_league_html(friends: pd.DataFrame, runtime: pd.DataFrame | 
           <span class="pmw-final-pill">LOCKED PREMIUM EXPORT</span>
           <h3>Private Friends League Pack</h3>
           <p>CSV leaderboard, printable pool sheet, share-ready recap, and no-ad planning mode.</p>
-          <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Buy Premium Matchday Pack</a>
+          <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Premium Matchday Pack — $9</a>
           <span class="pmw-lock">Visible funnel - does not block judge demo</span>
         </aside>
       </div>
@@ -2435,6 +2496,13 @@ def _button_status_html(outputs: tuple, action_label: str) -> str:
 def _ui_payload(outputs: tuple, action_label: str, planner_filter: str = "All 104 matches") -> tuple:
     state, matches, groups, thirds, bracket, bracket_summary, friends, dashboard, _top_checklist, ai_scout, impact_panel = outputs
     runtime = state.get("runtime_matches", pd.DataFrame())
+    ripple_html = _pmw_ripple_review_html(
+        state=state,
+        groups=groups,
+        thirds=thirds,
+        bracket=bracket,
+        friends=friends,
+    )
     return (
         state,
         matches,
@@ -2451,6 +2519,7 @@ def _ui_payload(outputs: tuple, action_label: str, planner_filter: str = "All 10
         _runtime_data_mode_html(state),
         ai_scout,
         impact_panel,
+        ripple_html,
         google_sheet_control_html(state),
     )
 
@@ -2464,7 +2533,11 @@ def load_demo_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
 
 
 def recalculate_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
-    return _ui_payload(compute_outputs(_ensure_workbook_state(state), matches), "Recalculate Impact / War Room")
+    return _ui_payload(compute_outputs(_ensure_workbook_state(state), matches), "Recalculate War Room")
+
+
+def open_ripple_review_ui_outputs(state: dict | None, matches: pd.DataFrame | None = None):
+    return _ui_payload(compute_outputs(_ensure_workbook_state(state), matches), "Review Ripple Effects")
 
 
 def random_outcomes_ui_outputs(state: dict, matches: pd.DataFrame | None = None):
@@ -6012,7 +6085,7 @@ def _premium_cta_strip_html() -> str:
         </div>
         <div class="premium-strip-actions">
             <a class="premium-button primary" href="{escape(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">
-                Unlock Premium
+                Unlock Premium Matchday Pack — $9
             </a>
             <a class="premium-button secondary" href="{escape(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">
                 Get Source
@@ -6057,7 +6130,7 @@ def _premium_pricing_html() -> str:
           <h3>Premium Matchday Pack</h3>
           <p>Advanced AI Scout cards, scenario exports, private league export pack, and ad-free matchday mode.</p>
           <div class="pmw-final-cta-row">
-            <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Buy Premium</a>
+            <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Premium Matchday Pack — $9</a>
             <a class="pmw-final-cta secondary" href="{_pmw_safe(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">Buy Source</a>
           </div>
         </aside>
@@ -6100,7 +6173,7 @@ def _premium_locked_exports_html() -> str:
           <span class="pmw-final-pill">LOCKED PREVIEW</span>
           <h3>Exports, scout cards, league packs, source.</h3>
           <div class="pmw-final-cta-row">
-            <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Export Pack</a>
+            <a class="pmw-final-cta primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">Unlock Premium Matchday Pack — $9</a>
             <a class="pmw-final-cta secondary" href="{_pmw_safe(GUMROAD_SOURCE_URL)}" target="_blank" rel="noopener">Get Source Bundle</a>
           </div>
         </aside>
@@ -6119,7 +6192,7 @@ def _premium_locked_exports_html() -> str:
 
 
 def _pmw_escape(value) -> str:
-    return escape(str(value))
+    return escape(str(value if value is not None else ""))
 
 
 def _pmw_safe_count(df) -> int:
@@ -6191,9 +6264,9 @@ def _pmw_runtime_snapshot(state: dict | None = None) -> dict:
 
 def _pmw_dashboard_stats_html(state: dict | None = None) -> str:
     stats = [
-        ("Fixtures", "104", "Full match planner"),
-        ("Groups", "12", "Qualification tables"),
-        ("AI Scout", "156", "Advanced scout cards"),
+        ("Matches", "104", "Complete tournament planner"),
+        ("Groups", "12", "Expanded format tracker"),
+        ("AI Scout Cards", "156", "Match Pressure · Key Matchup · Bracket Impact"),
         ("Exports", "24", "Friends League + summaries"),
     ]
     body = "".join(
@@ -6217,20 +6290,20 @@ def _pmw_ai_scout_cards_html(state: dict | None = None) -> str:
 
     cards = [
         (
-            "Match Signal",
-            "Runtime score, status, and source are ready for instant Scout context.",
+            "Match Pressure",
+            "Reads score state, group stakes, and urgency for the selected fixture.",
             completed_pct,
             "Free"
         ),
         (
-            "Squad Lens",
-            "Premium card expands player rows into balance, depth, and mismatch notes.",
+            "Key Matchup",
+            "Highlights squad balance, depth, and tactical mismatch notes.",
             source_pct,
             "Premium"
         ),
         (
-            "League Swing",
-            "Friends League scoring impact turns one result into a shareable recap.",
+            "Bracket Impact",
+            "Shows how one result changes knockout path and Friends League swing.",
             league_pct,
             "Premium"
         ),
@@ -6422,8 +6495,16 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
         <div class="phase-140-hero-grid">
           <div>
             <div class="phase-140-kicker">Demo-first matchday command center</div>
-            <h1>AI Bracket War Room 2026</h1>
-            <p class="phase-140-value">Change one result and instantly see the group table, bracket path, Friends League swing, and AI Scout readout.</p>
+            <h1>AI Bracket War Room 2026 — One score in. Every consequence out.</h1>
+            <p class="phase-140-value">Load a demo scenario, recalculate the War Room, then inspect group movement, third-place pressure, bracket impact, AI Scout cards, and private Friends League swing.</p>
+            <div class="pmw-hero-actions" aria-label="Primary actions">
+              <a class="pmw-action primary" href="{_pmw_safe(GUMROAD_PREMIUM_URL)}" target="_blank" rel="noopener">
+                Unlock Premium Matchday Pack — $9
+              </a>
+              <a class="pmw-action secondary" href="#match-center">Open Match Center</a>
+              <a class="pmw-action secondary" href="#ai-scout">Open AI Scout</a>
+              <a class="pmw-action secondary" href="#premium">Open Premium</a>
+            </div>
           </div>
           <aside class="phase-140-score-card" aria-label="Demo status">
             <span>Demo scenario</span>
@@ -6432,13 +6513,13 @@ def _premium_matchday_war_room_shell_html(state: dict | None = None) -> str:
           </aside>
         </div>
         <div class="phase-140-proof-grid" aria-label="Tournament proof cards">
-          <article><strong>48</strong><span>Teams</span></article>
-          <article><strong>12</strong><span>Groups</span></article>
-          <article><strong>104</strong><span>Matches</span></article>
-          <article><strong>495</strong><span>Bracket paths</span></article>
+          <article><strong>104</strong><span>Matches<br>Complete tournament planner</span></article>
+          <article><strong>12</strong><span>Groups<br>Expanded format tracker</span></article>
+          <article><strong>156</strong><span>AI Scout Cards<br>Match Pressure · Key Matchup · Bracket Impact</span></article>
+          <article><strong>24</strong><span>Exports<br>Friends League + scenario packs</span></article>
         </div>
         <div class="phase-140-secondary-note">
-          <span>Google Sheet controls are available in internal tools for operators.</span>
+          <span>Unofficial fan-made planner. No gambling, no official marks, no affiliation with tournament organizers, teams, sponsors, broadcasters, or official platforms.</span>
         </div>
       </section>
     </main>
@@ -6903,6 +6984,496 @@ PHASE_140_DEMO_FIRST_MOBILE_PRODUCT_CSS = r"""
 }
 """
 
+PHASE_141_PIXEL_PERFECT_PREMIUM_UNIFIED_CSS = """
+/* PHASE 1.41 - final happy-path + pixel-perfect premium command center */
+:root {
+  --pmw-bg: #071018;
+  --pmw-bg-2: #0B1320;
+  --pmw-panel: rgba(15, 23, 42, 0.78);
+  --pmw-line: rgba(148, 163, 184, 0.18);
+  --pmw-text: #F8FAFC;
+  --pmw-muted: #A9B8C9;
+  --pmw-dim: #7D8DA4;
+  --pmw-neon: #A7FF00;
+  --pmw-gold: #FFD166;
+  --pmw-cyan: #35D6E8;
+  --background-fill-primary: #071018;
+  --background-fill-secondary: #0B1320;
+  --block-background-fill: rgba(7,16,24,.90);
+  --block-border-color: rgba(148,163,184,.18);
+  --input-background-fill: rgba(2,6,23,.82);
+  --input-border-color: rgba(148,163,184,.24);
+  --body-text-color: #F8FAFC;
+  --block-title-text-color: #F8FAFC;
+}
+.gradio-container {
+  --background-fill-primary: #071018 !important;
+  --background-fill-secondary: #0B1320 !important;
+  --block-background-fill: rgba(7,16,24,.90) !important;
+  --block-border-color: rgba(148,163,184,.18) !important;
+  --input-background-fill: rgba(2,6,23,.82) !important;
+  --input-border-color: rgba(148,163,184,.24) !important;
+  --body-text-color: #F8FAFC !important;
+  --block-title-text-color: #F8FAFC !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(53,214,232,.18), transparent 32%),
+    radial-gradient(circle at 82% 8%, rgba(167,255,0,.12), transparent 28%),
+    linear-gradient(180deg, var(--pmw-bg), var(--pmw-bg-2)) !important;
+  color: var(--pmw-text) !important;
+}
+.phase-140-hero {
+  padding: clamp(16px, 2.1vw, 24px) !important;
+}
+.phase-140-hero h1 {
+  font-size: clamp(34px, 5.2vw, 52px) !important;
+  line-height: 1.02 !important;
+}
+.phase-140-value {
+  font-size: clamp(16px, 1.7vw, 20px) !important;
+}
+.phase-140-score-card strong {
+  font-size: clamp(24px, 3vw, 38px) !important;
+}
+.phase-140-proof-grid article {
+  min-height: 82px !important;
+  padding: 12px !important;
+}
+.gradio-container .block,
+.gradio-container .form,
+.gradio-container .panel,
+.gradio-container .contain,
+.gradio-container .wrap,
+.gradio-container .tabitem,
+.gradio-container .gradio-tabs,
+.gradio-container .gradio-tabitem {
+  background: transparent !important;
+  border-color: rgba(148,163,184,.12) !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.pmw-card,
+.pmw-final-card,
+.pmw-final-stat,
+.sport-card,
+.app-card,
+.card-shell,
+.price-card,
+.phase-140-score-card,
+.premium-pricing-grid article,
+.pmw-ripple-card,
+.pmw-final-side,
+.pmw-final-data,
+.pmw-action-card,
+.pmw-group-card,
+.pmw-lane {
+  border-radius: 24px !important;
+  border: 1px solid rgba(148,163,184,.18) !important;
+  background: linear-gradient(180deg, rgba(15,23,42,.78), rgba(2,6,23,.64)) !important;
+  color: #F8FAFC !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 18px 60px rgba(0,0,0,.22) !important;
+  backdrop-filter: blur(18px) !important;
+}
+.pmw-happy-path-rail {
+  position: sticky !important;
+  top: 8px !important;
+  z-index: 20 !important;
+  border: 1px solid rgba(167,255,0,.28) !important;
+  border-radius: 28px !important;
+  padding: 12px !important;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(167,255,0,.16), transparent 32%),
+    linear-gradient(180deg, rgba(7,16,24,.96), rgba(11,19,32,.92)) !important;
+  box-shadow: 0 18px 70px rgba(0,0,0,.36), 0 0 30px rgba(167,255,0,.10) !important;
+}
+.gradio-container button,
+.gradio-container .gr-button,
+.gradio-container a[role="button"],
+.gradio-container .premium-button,
+.gradio-container .pmw-action,
+.gradio-container .pmw-action-button,
+.pmw-final-cta,
+.pmw-cta {
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  background-clip: padding-box !important;
+  min-height: 48px !important;
+  font-weight: 950 !important;
+}
+.pmw-demo-primary button,
+.pmw-impact-primary button {
+  min-height: 58px !important;
+  font-size: 15px !important;
+  letter-spacing: 0 !important;
+}
+.pmw-demo-primary button {
+  background: linear-gradient(135deg, #A7FF00, #35D6E8) !important;
+  color: #061018 !important;
+  border: 0 !important;
+  box-shadow: 0 18px 44px rgba(167,255,0,.18) !important;
+}
+.pmw-impact-primary button {
+  background: linear-gradient(135deg, #35D6E8, #FFD166) !important;
+  color: #061018 !important;
+  border: 0 !important;
+  box-shadow: 0 18px 44px rgba(53,214,232,.15) !important;
+}
+.pmw-action.primary,
+.pmw-final-cta.primary,
+.pmw-cta.primary,
+.premium-button.primary {
+  background: linear-gradient(135deg, #A7FF00, #FFD166) !important;
+  color: #061018 !important;
+  border: 0 !important;
+  box-shadow: 0 18px 44px rgba(167,255,0,.20) !important;
+}
+.pmw-action.secondary,
+.pmw-final-cta.secondary,
+.pmw-cta.secondary,
+.premium-button.secondary {
+  background: rgba(53,214,232,.10) !important;
+  color: #E6FBFF !important;
+  border: 1px solid rgba(53,214,232,.25) !important;
+  box-shadow: none !important;
+}
+.pmw-card-kicker,
+.pmw-kicker,
+.module-kicker,
+.pmw-final-kicker {
+  color: #DDE7F3 !important;
+  background: rgba(255,255,255,.06) !important;
+  border: 1px solid rgba(148,163,184,.16) !important;
+  box-shadow: none !important;
+}
+.pmw-ripple-board {
+  margin: 18px auto !important;
+  padding: 22px !important;
+  max-width: 1480px !important;
+  border-radius: 28px !important;
+  border: 1px solid rgba(53,214,232,.24) !important;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(53,214,232,.12), transparent 30%),
+    linear-gradient(180deg, rgba(15,23,42,.92), rgba(2,6,23,.88)) !important;
+}
+.pmw-ripple-board h2 {
+  color: #f8fafc !important;
+  font-size: clamp(26px, 3vw, 44px) !important;
+  margin: 6px 0 10px !important;
+}
+.pmw-ripple-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  margin-top: 16px !important;
+}
+.pmw-ripple-card {
+  min-height: 150px !important;
+  padding: 18px !important;
+}
+.pmw-ripple-card span {
+  display: inline-flex !important;
+  width: 34px !important;
+  height: 34px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  font-weight: 950 !important;
+  margin-bottom: 12px !important;
+  background: rgba(255,255,255,.08) !important;
+  color: #F8FAFC !important;
+}
+.pmw-ripple-card strong {
+  display: block !important;
+  color: #f8fafc !important;
+  font-size: 18px !important;
+}
+.pmw-ripple-card p {
+  color: #cbd5e1 !important;
+  margin: 8px 0 0 !important;
+}
+.pmw-ripple-card.lime {
+  border-color: rgba(167,255,0,.34) !important;
+  box-shadow: 0 0 28px rgba(167,255,0,.08) !important;
+}
+.pmw-ripple-card.cyan {
+  border-color: rgba(53,214,232,.32) !important;
+  box-shadow: 0 0 28px rgba(53,214,232,.07) !important;
+}
+.pmw-ripple-card.amber {
+  border-color: rgba(255,209,102,.34) !important;
+  box-shadow: 0 0 28px rgba(255,209,102,.07) !important;
+}
+.pmw-operator-tools {
+  max-width: 1480px !important;
+  margin: 18px auto !important;
+  opacity: .84 !important;
+}
+.pmw-operator-tools:hover {
+  opacity: 1 !important;
+}
+.pmw-workspace-shell,
+.pmw-workspace-shell .tabs,
+.pmw-workspace-shell .tabitem,
+.pmw-workspace-shell [role="tabpanel"],
+.pmw-tabs,
+.gradio-container div.block,
+.gradio-container div.block.hide-container,
+.gradio-container div.block.padded,
+.gradio-container div.block.auto-margin,
+.gradio-container div.block.hide-container.auto-margin,
+.gradio-container div.block.padded.auto-margin,
+.gradio-container div.block.pmw-dark-control,
+.gradio-container div.block.pmw-dark-control.auto-margin,
+.gradio-container div.form,
+.gradio-container div.form.svelte-633qhp,
+.gradio-container [class*="svelte-633qhp"],
+.gradio-container [class*="svelte-1hfxrpf"].container,
+.gradio-container [class*="svelte-1nguped"],
+.gradio-container div.styler,
+.gradio-container .tabs,
+.gradio-container .tabitem,
+.gradio-container [role="tabpanel"] {
+  border-color: rgba(148,163,184,.18) !important;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(53,214,232,.10), transparent 32%),
+    linear-gradient(180deg, rgba(7,16,24,.96), rgba(11,19,32,.92)) !important;
+  background-color: rgba(7,16,24,.96) !important;
+  color: #F8FAFC !important;
+  box-shadow: none !important;
+}
+.gradio-container .pmw-dark-control,
+.gradio-container .pmw-dark-control * {
+  background-color: rgba(2,6,23,.72) !important;
+  color: #F8FAFC !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+}
+.gradio-container .pmw-style-injector,
+.gradio-container .pmw-style-injector *,
+.gradio-container div.block.pmw-style-injector {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+}
+.pmw-final-shell,
+.pmw-card,
+.sport-card,
+.app-card,
+.card-shell,
+.table-card,
+.pmw-ripple-board {
+  color: #F8FAFC !important;
+  -webkit-text-fill-color: initial !important;
+}
+.pmw-final-shell h1,
+.pmw-final-shell h2,
+.pmw-final-shell h3,
+.pmw-final-shell h4,
+.pmw-final-shell strong,
+.pmw-card h1,
+.pmw-card h2,
+.pmw-card h3,
+.pmw-card h4,
+.pmw-card strong,
+.sport-card h1,
+.sport-card h2,
+.sport-card h3,
+.sport-card h4,
+.sport-card strong,
+.app-card h1,
+.app-card h2,
+.app-card h3,
+.app-card h4,
+.app-card strong,
+.card-shell h1,
+.card-shell h2,
+.card-shell h3,
+.card-shell h4,
+.card-shell strong,
+.pmw-ripple-board h1,
+.pmw-ripple-board h2,
+.pmw-ripple-board h3,
+.pmw-ripple-board h4,
+.pmw-ripple-board strong {
+  color: #F8FAFC !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+}
+.pmw-final-shell p,
+.pmw-final-shell li,
+.pmw-card p,
+.pmw-card li,
+.sport-card p,
+.sport-card li,
+.app-card p,
+.app-card li,
+.card-shell p,
+.card-shell li,
+.pmw-ripple-board p,
+.pmw-ripple-board li {
+  color: #E2E8F0 !important;
+  -webkit-text-fill-color: #E2E8F0 !important;
+}
+.gradio-container label,
+.gradio-container input,
+.gradio-container textarea,
+.gradio-container select,
+.gradio-container input.border-none,
+.gradio-container input[role="listbox"],
+.gradio-container .wrap,
+.gradio-container .wrap-inner,
+.gradio-container .secondary-wrap,
+.gradio-container .wrap *,
+.gradio-container .gr-dropdown,
+.gradio-container .gr-dropdown *,
+.gradio-container [data-testid="dropdown"],
+.gradio-container [data-testid="dropdown"] * {
+  color: #F8FAFC !important;
+  border-color: rgba(148,163,184,.24) !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+}
+.gradio-container input,
+.gradio-container textarea,
+.gradio-container select,
+.gradio-container .wrap,
+.gradio-container .wrap-inner,
+.gradio-container .secondary-wrap {
+  background: rgba(2,6,23,.72) !important;
+}
+.abw-chip,
+.pmw-final-pill,
+.pmw-lock {
+  -webkit-text-fill-color: currentColor !important;
+}
+.gradio-container table,
+.gradio-container .dataframe,
+.gradio-container .gradio-dataframe,
+.gradio-container .gradio-dataframe table,
+.gradio-container .table-card,
+.gradio-container .ag-root-wrapper,
+.gradio-container .ag-theme-quartz,
+.gradio-container .ag-theme-balham,
+.gradio-container .ag-theme-material {
+  background: rgba(2,6,23,.78) !important;
+  color: #F8FAFC !important;
+  border-color: rgba(148,163,184,.20) !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+}
+.gradio-container thead,
+.gradio-container th,
+.gradio-container th *,
+.gradio-container .ag-header,
+.gradio-container .ag-header *,
+.gradio-container .ag-header-cell,
+.gradio-container .ag-header-cell *,
+.gradio-container .header-cell,
+.gradio-container .header-cell * {
+  background: #E2E8F0 !important;
+  color: #0B1320 !important;
+  border-color: rgba(148,163,184,.28) !important;
+  opacity: 1 !important;
+  font-weight: 950 !important;
+  -webkit-text-fill-color: #0B1320 !important;
+}
+.gradio-container tbody,
+.gradio-container tr,
+.gradio-container td,
+.gradio-container td *,
+.gradio-container .ag-row,
+.gradio-container .ag-row *,
+.gradio-container .ag-cell,
+.gradio-container .ag-cell *,
+.gradio-container .cell,
+.gradio-container .cell * {
+  background: rgba(7,16,24,.92) !important;
+  color: #F8FAFC !important;
+  border-color: rgba(148,163,184,.16) !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+}
+.gradio-container tr:nth-child(even) td,
+.gradio-container .ag-row-even,
+.gradio-container .ag-row-even * {
+  background: rgba(15,23,42,.92) !important;
+}
+.pmw-final-data table,
+.pmw-final-data .dataframe,
+.table-scroll table {
+  border: 1px solid rgba(148,163,184,.22) !important;
+}
+@media (max-width: 760px) {
+  html,
+  body,
+  .gradio-container {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  .phase-140-mobile-shell,
+  .pmw-workspace-shell,
+  .pmw-ripple-board,
+  .pmw-final-shell,
+  .pmw-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .phase-140-hero,
+  .phase-140-hero * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere !important;
+  }
+  .phase-140-hero h1 {
+    font-size: 26px !important;
+    line-height: 1.04 !important;
+  }
+  .phase-140-value {
+    font-size: 15px !important;
+    line-height: 1.42 !important;
+  }
+  .pmw-happy-path-rail button,
+  .pmw-action-button button,
+  .product-button-row button {
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
+    min-height: 50px !important;
+    white-space: normal !important;
+  }
+  .pmw-demo-primary button,
+  .pmw-impact-primary button {
+    color: #061018 !important;
+    -webkit-text-fill-color: #061018 !important;
+  }
+  .pmw-ripple-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .pmw-happy-path-rail {
+    position: static !important;
+  }
+  .pmw-ripple-board {
+    border-radius: 20px !important;
+    padding: 16px !important;
+  }
+  .pmw-action,
+  .pmw-happy-path-rail button {
+    width: 100% !important;
+  }
+}
+.gradio-container div.form.svelte-633qhp,
+.gradio-container div.form.svelte-633qhp *,
+.gradio-container .form.svelte-633qhp,
+.gradio-container .form.svelte-633qhp * {
+  background-color: rgba(2,6,23,.72) !important;
+  background-image: none !important;
+  color: #F8FAFC !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+}
+"""
+
 PHASE_139_PUBLIC_HERO_MD = """
 <div class="pmw-hero phase-139-public-hero">
   <div class="pmw-pill">Unofficial fan-made tournament command center</div>
@@ -6915,93 +7486,113 @@ PHASE_139_PUBLIC_HERO_MD = """
 """
 
 SHOW_INTERNAL_TOOLS = os.getenv("SHOW_INTERNAL_TOOLS", "0") == "1"
+INITIAL_UI_PAYLOAD = initial_ui_load()
 
 with gr.Blocks(
     title=APP_TITLE,
-    css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS + "\n" + PHASE_138_CLEANUP_CSS + "\n" + FINAL_PMW2026_PRODUCTION_CSS + "\n" + PHASE_139_PUBLIC_PRODUCT_CSS + "\n" + PHASE_140_DEMO_FIRST_MOBILE_PRODUCT_CSS + "\n" + PMW_LOWER_MODULES_FINAL_CSS + "\n" + FINAL_PREMIUM_ALL_TABS_CSS,
+    css=PREMIUM_DARK_SPORT_CSS + "\n" + SF_PREMIUM_WAR_ROOM_CSS + "\n" + PHASE_138_CLEANUP_CSS + "\n" + FINAL_PMW2026_PRODUCTION_CSS + "\n" + PHASE_139_PUBLIC_PRODUCT_CSS + "\n" + PHASE_140_DEMO_FIRST_MOBILE_PRODUCT_CSS + "\n" + PMW_LOWER_MODULES_FINAL_CSS + "\n" + FINAL_PREMIUM_ALL_TABS_CSS + "\n" + PHASE_141_PIXEL_PERFECT_PREMIUM_UNIFIED_CSS,
 ) as demo:
-    gr.HTML(PHASE_135_PREMIUM_CSS)
-    workbook_state = gr.State()
-    gr.HTML(PHASE126R_CONTRAST_STYLE_TAG)
-    gr.HTML(PHASE130C_EMPTY_SURFACE_FIX_STYLE)
+    gr.HTML(PHASE_135_PREMIUM_CSS, padding=False, min_height=0, elem_classes=["pmw-style-injector"])
+    workbook_state = gr.State(value=INITIAL_UI_PAYLOAD[0])
+    gr.HTML(PHASE126R_CONTRAST_STYLE_TAG, padding=False, min_height=0, elem_classes=["pmw-style-injector"])
+    gr.HTML(PHASE130C_EMPTY_SURFACE_FIX_STYLE, padding=False, min_height=0, elem_classes=["pmw-style-injector"])
+    gr.HTML(f"<style>{PHASE_141_PIXEL_PERFECT_PREMIUM_UNIFIED_CSS}</style>", padding=False, min_height=0, elem_classes=["pmw-style-injector"])
 
     # SF Design Elite first screen: premium mockup-quality dashboard
     premium_shell_html = gr.HTML(
-        value=_premium_matchday_war_room_shell_html(),
+        value=_premium_matchday_war_room_shell_html(INITIAL_UI_PAYLOAD[0]),
         elem_id="premium-matchday-war-room",
     )
 
-    runtime_truth_html = gr.HTML(value=_runtime_data_mode_html(), visible=False)
+    runtime_truth_html = gr.HTML(value=INITIAL_UI_PAYLOAD[12], visible=False)
     top_checklist_html = runtime_truth_html
     modal_gpu_status_html = gr.HTML(value="", visible=False)
-    with gr.Row(elem_classes=["product-button-row", "pmw-action-rail"]):
-        public_load_demo_button = gr.Button("Load Demo Scenario", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
-        refresh_live_button = gr.Button("Refresh Runtime", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
-        recalc_button = gr.Button("Recalculate Impact", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
-        ask_ai_scout_button = gr.Button("Ask AI Scout", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
-        open_friends_button = gr.Button("Open Friends League", variant="primary", elem_classes=["pmw-action-button", "pmw-primary-action"])
+    with gr.Row(elem_classes=["product-button-row", "pmw-action-rail", "pmw-happy-path-rail"]):
+        public_load_demo_button = gr.Button(
+            "1 · Load Demo Scenario",
+            variant="primary",
+            elem_classes=["pmw-action-button", "pmw-demo-primary"],
+        )
+        recalc_button = gr.Button(
+            "2 · Recalculate War Room",
+            variant="primary",
+            elem_classes=["pmw-action-button", "pmw-impact-primary"],
+        )
+        open_ripple_button = gr.Button(
+            "3 · Review Ripple Effects",
+            variant="secondary",
+            elem_classes=["pmw-action-button"],
+        )
+        ask_ai_scout_button = gr.Button(
+            "Open AI Scout",
+            variant="secondary",
+            elem_classes=["pmw-action-button"],
+        )
+        open_friends_button = gr.Button(
+            "Open Friends League",
+            variant="secondary",
+            elem_classes=["pmw-action-button"],
+        )
     runtime_timer = gr.Timer(value=int(os.getenv("LIVE_REFRESH_SECONDS", "60")))
-    impact_panel_html = gr.HTML(value="", visible=False)
+    impact_panel_html = gr.HTML(value=INITIAL_UI_PAYLOAD[14], visible=False)
+    ripple_review_html = gr.HTML(value=INITIAL_UI_PAYLOAD[15], visible=True)
 
-    dashboard_html = gr.HTML(value="", visible=False)
+    dashboard_html = gr.HTML(value=INITIAL_UI_PAYLOAD[11], visible=False)
     with gr.Group(elem_classes=["pmw-workspace-shell"]):
-        # PHASE 1.39: public-safe hidden placeholder for google_sheet_control_panel.
-        # Required because legacy callback outputs still reference this component
-        # while the visible Google Sheet control panel is internal-gated.
-        google_sheet_control_panel = gr.HTML(value="", visible=False)
-
         with gr.Tabs(elem_classes=["pmw-tabs"]):
             with gr.Tab("🏟️ Match Center", elem_id="match-center"):
                 gr.HTML("<section class=\"pmw-final-shell\"><div class=\"pmw-final-kicker\">Match selected</div><p>Pick a fixture, inspect its runtime state, then recalculate downstream modules.</p></section>")
-                match_choice = gr.Dropdown(choices=_match_choice_options(), value=_match_choice_options()[0], label="Select match", interactive=True)
-                selected_match_detail_html = gr.HTML(value=_selected_match_detail_html())
+                match_options = _match_choice_options(INITIAL_UI_PAYLOAD[0].get("runtime_matches"))
+                match_choice = gr.Dropdown(
+                    choices=match_options,
+                    value=match_options[0],
+                    label="Select match",
+                    interactive=True,
+                    container=False,
+                    elem_classes=["pmw-dark-control"],
+                )
+                selected_match_detail_html = gr.HTML(value=_selected_match_detail_html(INITIAL_UI_PAYLOAD[0], match_options[0]))
                 with gr.Row():
                     inspect_match_button = gr.Button("Select / inspect match", variant="primary")
                     view_full_table_button = gr.Button("View full 104-match table", variant="secondary")
-                planner_filter = gr.Dropdown(choices=list(PLANNER_FILTER_CHOICES), value="All 104 matches", label="Planner quick filter", interactive=True)
-                planner_filter_html = gr.HTML(value=_visible_match_planner_html(pd.DataFrame(), "All 104 matches"))
-                matches_df = gr.Dataframe(label="Runtime match state carrier", interactive=True, wrap=True, elem_classes=["table-card"], visible=False)
+                planner_filter = gr.Dropdown(
+                    choices=list(PLANNER_FILTER_CHOICES),
+                    value="All 104 matches",
+                    label="Planner quick filter",
+                    interactive=True,
+                    container=False,
+                    elem_classes=["pmw-dark-control"],
+                )
+                planner_filter_html = gr.HTML(value=INITIAL_UI_PAYLOAD[2])
+                matches_df = gr.Dataframe(value=INITIAL_UI_PAYLOAD[1], label="Runtime match state carrier", interactive=True, wrap=True, elem_classes=["table-card"], visible=False)
             with gr.Tab("📊 Groups"):
                 view_full_standings_button = gr.Button("View full standings", variant="primary")
-                group_tracker_html = gr.HTML(value=_visible_group_tracker_html(pd.DataFrame()))
-                groups_df = gr.Dataframe(label="Computed Group Table", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
+                group_tracker_html = gr.HTML(value=INITIAL_UI_PAYLOAD[4])
+                groups_df = gr.Dataframe(value=INITIAL_UI_PAYLOAD[3], label="Computed Group Table", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
             with gr.Tab("🥉 3RD-PLACE RANKING"):
-                third_places_html = gr.HTML(value=_visible_third_place_html(pd.DataFrame()))
-                third_places_df = gr.Dataframe(label="Top Third-Place Ranking", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
+                third_places_html = gr.HTML(value=INITIAL_UI_PAYLOAD[6])
+                third_places_df = gr.Dataframe(value=INITIAL_UI_PAYLOAD[5], label="Top Third-Place Ranking", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
             with gr.Tab("🧬 Bracket"):
                 view_bracket_button = gr.Button("View bracket", variant="primary")
-                bracket_json = gr.State()
-                bracket_html = gr.HTML()
+                bracket_json = gr.State(value=INITIAL_UI_PAYLOAD[7])
+                bracket_html = gr.HTML(value=INITIAL_UI_PAYLOAD[8])
             with gr.Tab("👥 Friends League"):
                 score_friends_button = gr.Button("Score Friends League", variant="primary")
-                friends_html = gr.HTML(value=_visible_friends_league_html(pd.DataFrame()))
-                friends_df = gr.Dataframe(label="Friends League Leaderboard", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
+                friends_html = gr.HTML(value=INITIAL_UI_PAYLOAD[10])
+                friends_df = gr.Dataframe(value=INITIAL_UI_PAYLOAD[9], label="Friends League Leaderboard", interactive=False, wrap=True, elem_classes=["table-card"], visible=False)
             with gr.Tab("🤖 AI Scout", elem_id="ai-scout"):
                 gr.HTML("<section class=\"pmw-final-shell\"><div class=\"pmw-final-kicker\">Scout context</div><p>AI Scout reads selected match, verified runtime score, squad rows, group impact and Friends League scoring context.</p></section>")
                 ask_ai_scout_tab_button = gr.Button("Ask AI Scout", variant="primary")
-                ai_scout_html = gr.HTML()
-        with gr.Tabs(elem_classes=["pmw-tabs", "pmw-admin-tabs"]):
-
-            if SHOW_INTERNAL_TOOLS:
-                with gr.Tab("🔌 Google Sheet"):
-                    pull_sheet_tab_button = gr.Button("Pull Google Sheet", variant="primary")
-                    google_sheet_control_panel = gr.HTML(value=google_sheet_control_html())
-    
+                ai_scout_html = gr.HTML(value=INITIAL_UI_PAYLOAD[13])
             with gr.Tab("💎 Premium", elem_id="premium"):
-    
-                # PHASE 1.38 premium previews moved from public path
-    
                 gr.HTML(value=_pmw_free_vs_premium_html(), elem_classes=["pmw-premium-section"])
-    
                 gr.HTML(value=_pmw_ai_scout_cards_html(), elem_classes=["pmw-premium-section"])
-    
                 gr.HTML(value=_pmw_friends_exports_html(), elem_classes=["pmw-premium-section"])
-
                 gr.HTML(value=_premium_pricing_html())
                 gr.HTML(value=_premium_locked_exports_html())
                 with gr.Row():
                     gr.Button(
-                        "Unlock Premium Matchday Pack",
+                        "Unlock Premium Matchday Pack — $9",
                         variant="primary",
                         link=GUMROAD_PREMIUM_URL,
                     )
@@ -7011,29 +7602,44 @@ with gr.Blocks(
                         link=GUMROAD_SOURCE_URL,
                     )
 
-            if SHOW_INTERNAL_TOOLS:
-                with gr.Tab("Judge QA"):
-                    debug_state = load_workbook_state()
-                    debug_groups = pd.DataFrame()
-                    debug_thirds = pd.DataFrame()
-                    with gr.Accordion("Premium QA Surface", open=False):
-                        gr.HTML(value=_premium_matchday_war_room_shell_html(debug_state))
-                        gr.HTML(value=_premium_cta_strip_html())
-                    with gr.Row():
-                        load_demo_button = gr.Button("Load Demo Scenario", variant="secondary")
-                        random_outcomes_button = gr.Button("Generate Random Outcomes", variant="secondary")
-                        clear_edits_button = gr.Button("Clear Local Edits", variant="secondary")
-                    gr.HTML(
-                        value=(
-                            _summary_html(debug_state, debug_groups, debug_thirds)
-                            + _scenario_controls_html(debug_state)
-                            + check_modal_gpu_health()
-                            + build_impact_panel_html(pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), {}, pd.DataFrame())
-                        )
-                    )
-
-    with gr.Accordion("Internal data connection", open=False, elem_classes=["phase-140-internal-tools"]):
-        pull_sheet_button = gr.Button("Pull Google Sheet", variant="secondary", elem_classes=["pmw-action-button"])
+    with gr.Accordion("Operator Tools", open=False, elem_classes=["pmw-operator-tools"]):
+        gr.Markdown("Runtime provider, Google Sheet override, and legacy QA controls. Hidden from the main fan/judge path.")
+        with gr.Row(elem_classes=["product-button-row"]):
+            refresh_live_button = gr.Button(
+                "Refresh Runtime",
+                variant="secondary",
+                elem_classes=["pmw-action-button"],
+            )
+            pull_sheet_button = gr.Button(
+                "Pull Google Sheet",
+                variant="secondary",
+                elem_classes=["pmw-action-button"],
+            )
+            pull_sheet_tab_button = gr.Button(
+                "Pull Google Sheet from Operator Tools",
+                variant="secondary",
+                elem_classes=["pmw-action-button"],
+            )
+        google_sheet_control_panel = gr.HTML(value=INITIAL_UI_PAYLOAD[16])
+        with gr.Accordion("Legacy / Debug Surface", open=False):
+            debug_state = load_workbook_state()
+            debug_groups = pd.DataFrame()
+            debug_thirds = pd.DataFrame()
+            with gr.Accordion("Premium QA Surface", open=False):
+                gr.HTML(value=_premium_matchday_war_room_shell_html(debug_state))
+                gr.HTML(value=_premium_cta_strip_html())
+            with gr.Row():
+                load_demo_button = gr.Button("Load Demo Scenario", variant="secondary")
+                random_outcomes_button = gr.Button("Generate Random Outcomes", variant="secondary")
+                clear_edits_button = gr.Button("Clear Local Edits", variant="secondary")
+            gr.HTML(
+                value=(
+                    _summary_html(debug_state, debug_groups, debug_thirds)
+                    + _scenario_controls_html(debug_state)
+                    + check_modal_gpu_health()
+                    + build_impact_panel_html(pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), {}, pd.DataFrame())
+                )
+            )
 
     demo.load(
         initial_ui_load,
@@ -7054,285 +7660,109 @@ with gr.Blocks(
             top_checklist_html,
             ai_scout_html,
             impact_panel_html,
+            ripple_review_html,
             google_sheet_control_panel,
         ],
     )
-    if SHOW_INTERNAL_TOOLS:
-        refresh_live_button.click(
-            refresh_live_runtime_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        pull_sheet_button.click(
-            pull_google_sheet_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        public_load_demo_button.click(
-            load_demo_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        recalc_button.click(
-            recalculate_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        ask_ai_scout_button.click(
-            ask_ai_scout_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        ask_ai_scout_tab_button.click(
-            ask_ai_scout_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        open_friends_button.click(
-            open_friends_league_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        view_full_table_button.click(
-            view_full_table_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        view_full_standings_button.click(
-            view_full_standings_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        view_bracket_button.click(
-            view_bracket_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        score_friends_button.click(
-            score_friends_league_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        pull_sheet_tab_button.click(
-            pull_google_sheet_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
+    shared_ui_outputs = [
+        workbook_state,
+        matches_df,
+        planner_filter_html,
+        groups_df,
+        group_tracker_html,
+        third_places_df,
+        third_places_html,
+        bracket_json,
+        bracket_html,
+        friends_df,
+        friends_html,
+        dashboard_html,
+        top_checklist_html,
+        ai_scout_html,
+        impact_panel_html,
+        ripple_review_html,
+        google_sheet_control_panel,
+    ]
+    public_load_demo_button.click(
+        load_demo_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    recalc_button.click(
+        recalculate_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    open_ripple_button.click(
+        open_ripple_review_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    ask_ai_scout_button.click(
+        ask_ai_scout_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    ask_ai_scout_tab_button.click(
+        ask_ai_scout_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    open_friends_button.click(
+        open_friends_league_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    view_full_table_button.click(
+        view_full_table_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    view_full_standings_button.click(
+        view_full_standings_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    view_bracket_button.click(
+        view_bracket_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    score_friends_button.click(
+        score_friends_league_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    refresh_live_button.click(
+        refresh_live_runtime_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    pull_sheet_button.click(
+        pull_google_sheet_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    pull_sheet_tab_button.click(
+        pull_google_sheet_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    random_outcomes_button.click(
+        random_outcomes_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
+    clear_edits_button.click(
+        clear_local_edits_ui_outputs,
+        inputs=[workbook_state],
+        outputs=shared_ui_outputs,
+    )
+    load_demo_button.click(
+        load_demo_ui_outputs,
+        inputs=[workbook_state, matches_df],
+        outputs=shared_ui_outputs,
+    )
     inspect_match_button.click(
         inspect_selected_match_ui,
         inputs=[workbook_state, match_choice],
@@ -7348,75 +7778,6 @@ with gr.Blocks(
         inputs=[matches_df, planner_filter, workbook_state],
         outputs=planner_filter_html,
     )
-    if SHOW_INTERNAL_TOOLS:
-        random_outcomes_button.click(
-            random_outcomes_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        clear_edits_button.click(
-            clear_local_edits_ui_outputs,
-            inputs=[workbook_state],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
-    if SHOW_INTERNAL_TOOLS:
-        load_demo_button.click(
-            load_demo_ui_outputs,
-            inputs=[workbook_state, matches_df],
-            outputs=[
-                workbook_state,
-                matches_df,
-                planner_filter_html,
-                groups_df,
-                group_tracker_html,
-                third_places_df,
-                third_places_html,
-                bracket_json,
-                bracket_html,
-                friends_df,
-                friends_html,
-                dashboard_html,
-                top_checklist_html,
-                ai_scout_html,
-                impact_panel_html,
-                google_sheet_control_panel,
-            ],
-        )
     runtime_timer.tick(
         refresh_live_runtime_ui_outputs,
         inputs=[workbook_state, matches_df],
@@ -7436,6 +7797,7 @@ with gr.Blocks(
             top_checklist_html,
             ai_scout_html,
             impact_panel_html,
+            ripple_review_html,
             google_sheet_control_panel,
         ],
     )
