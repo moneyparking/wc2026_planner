@@ -112,7 +112,7 @@ def main() -> None:
             page.set_default_navigation_timeout(args.timeout)
 
             page.goto(args.url, wait_until="domcontentloaded", timeout=args.timeout)
-            page.get_by_text(TITLE, exact=True).first.wait_for(state="visible", timeout=args.timeout)
+            page.get_by_text(re.compile(r"AI Bracket War Room", re.I)).first.wait_for(state="visible", timeout=args.timeout)
 
             assert_visible_text(page, [TITLE])
             assert_no_visible_error(page)
