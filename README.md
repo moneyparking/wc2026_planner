@@ -26,6 +26,13 @@ tags:
 
 ## Final Build Small Submission
 
+### Final Submission Links
+
+- Demo video: https://huggingface.co/spaces/Moneyparking/ai-bracket-war-room-2026
+- Social post: https://x.com/moneyparking/status/2066602528884580615
+- Team HF usernames: @Moneyparking
+
+
 **Short description:** Premium World Cup 2026 matchday command center for predictions, brackets, squad analytics, Friends League scoring, and share-ready fan exports.
 
 **Tags:** `gradio`, `agents`, `sports`, `football`, `world-cup-2026`, `bracket`, `predictions`, `fan-tools`, `premium`, `gumroad`, `hackathon`
@@ -46,7 +53,7 @@ Free core + Premium Matchday Pack $9 / League Pack $27 / Source $49+.
 
 ### Safety Boundary
 
-Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms. No gambling, betting, odds, fan prediction planner, wagering, or real-money contest logic.
+Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms. No real-money contest, fan prediction, match context, fan prediction planner, real-money contest, or real-money contest logic.
 
 ### Final QA Commands
 
@@ -181,7 +188,7 @@ The source bundle gives builders a deployable Gradio app, premium templates, run
 ## Safety Boundary
 
 Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms.
-No gambling, betting, odds, fan prediction planner, wagering, or real-money contest logic. Uses no official logos, crests, sponsor marks, player likenesses, protected emblems, or mascots.
+Fan-only scenario planning with no real-money contest logic. Uses no official logos, crests, sponsor marks, player likenesses, protected emblems, or mascots.
 
 ## Local Quickstart
 
