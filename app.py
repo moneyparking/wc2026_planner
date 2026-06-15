@@ -1459,7 +1459,7 @@ def _phase_142_latest_match_option(options):
     try:
         target = _phase_142_latest_completed_match_key()
     except Exception:
-        target = "M001"
+        target = "M012"
 
     try:
         for option in options:
@@ -2246,7 +2246,7 @@ def _visible_runtime_match_planner_html(runtime: pd.DataFrame, planner_filter: s
     completed = int(display["is_completed"].sum()) if "is_completed" in display else 0
     live = int(display["is_live"].sum()) if "is_live" in display else 0
     first = _phase_142_latest_completed_table_row(table_frame) if not table_frame.empty else {}
-    hero_score = f"{first.get('Match', 'M001')} - {first.get('Home', 'Mexico')} {first.get('Score', '2-0')} {first.get('Away', 'South Africa')}"
+    hero_score = f"{first.get('Match', 'M012')} - {first.get('Home', 'Mexico')} {first.get('Score', '2-0')} {first.get('Away', 'South Africa')}"
     table = _pmw_table(table_frame, VISIBLE_TAB_PREVIEW_MATCHES)
     full_table = _pmw_table(table_frame, len(table_frame))
 
@@ -2634,7 +2634,7 @@ def _phase_142_latest_completed_match_no(default: int = 1) -> int:
         return default
 
 
-def _phase_142_latest_completed_match_key(default: str = "M001") -> str:
+def _phase_142_latest_completed_match_key(default: str = "M012") -> str:
     return f"M{_phase_142_latest_completed_match_no():03d}"
 
 def _ui_payload(outputs: tuple, action_label: str, planner_filter: str = "All 104 matches") -> tuple:
