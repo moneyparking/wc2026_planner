@@ -34,9 +34,9 @@ tags:
 - Team HF usernames: @Moneyparking
 
 
-**Short description:** Premium World Cup 2026 matchday command center for predictions, brackets, squad analytics, Friends League scoring, and share-ready fan exports.
+**Short description:** Premium World Cup 2026 matchday command center for scenario picks, brackets, squad analytics, Friends League scoring, and share-ready fan exports.
 
-**Tags:** `gradio`, `agents`, `sports`, `football`, `world-cup-2026`, `bracket`, `predictions`, `fan-tools`, `premium`, `gumroad`, `hackathon`
+**Tags:** `gradio`, `agents`, `sports`, `football`, `world-cup-2026`, `bracket`, `scenario-planning`, `fan-tools`, `premium`, `gumroad`, `hackathon`
 
 ### Submission Copy
 
@@ -54,7 +54,7 @@ Free core + Premium Matchday Pack $9 / League Pack $27 / Source $49+.
 
 ### Safety Boundary
 
-Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms. No real-money contest, fan prediction, match context, fan prediction planner, real-money contest, or real-money contest logic.
+Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms. Built for fan scenario planning, private leagues, match context, and share-ready exports. No real-money contest logic.
 
 ### Final QA Commands
 
