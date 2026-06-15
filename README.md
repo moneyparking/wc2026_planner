@@ -38,24 +38,15 @@ AI Bracket War Room 2026 turns a football fan’s matchday into a live command c
 
 1. Open the Space.
 2. Confirm the first screen shows the neon stadium hero, dashboard stats, AI Scout Cards, Friends League Exports, and Free vs Premium funnel.
-3. Click **Open Match Center**.
-4. Inspect a selected match and runtime source.
-5. Click **Refresh Runtime** and **Recalculate Impact / War Room**.
-6. Open **AI Scout** and generate/preview selected-match context.
-7. Open **Friends League** and score demo picks.
-8. Open **Premium** and verify Gumroad funnel and locked export previews.
-9. Open **Judge QA / Debug** and run demo scenario checks.
+3. Follow the final judge path: **Open Space -> Load Demo Scenario -> Recalculate War Room -> Match Center -> AI Scout -> Friends League -> Premium CTA**.
 
 ### Monetization Funnel
 
-- **Free Core — $0:** runtime match center, group table, third-place ranking, bracket preview, Friends League demo, AI Scout preview, judge QA.
-- **Premium Matchday Pack — $9:** advanced AI Scout match cards, scenario CSV exports, Friends League export pack, ad-free matchday mode, share-ready summaries.
-- **Ultimate Fan Pack — $27:** GoodNotes/PDF command center, printable sheets, office pool kit, watch-party assets, sticker bundle.
-- **Source Bundle — $49+:** deployable Gradio source, premium templates, private league starter kit, commercial setup notes.
+Free core + Premium Matchday Pack $9 / League Pack $27 / Source $49+.
 
 ### Safety Boundary
 
-This is an unofficial football fan planning and analytics app. It does not provide gambling advice, wagering prices, book integrations, official federation marks, player likeness dependencies, paid live-score requirements, or real-money contest logic. Premium sells planning tools, exports, templates, ad-free UX, and source access.
+Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms. No gambling, betting, odds, fan prediction planner, wagering, or real-money contest logic.
 
 ### Final QA Commands
 
@@ -79,18 +70,15 @@ AI Bracket War Room 2026 is a premium Gradio fan command center for World Cup 20
 
 ## Judge Path
 
-Refresh Runtime -> Load Demo Scenario -> Recalculate Impact -> Match Center -> Groups -> 3RD-PLACE RANKING -> Bracket -> Friends League -> AI Scout -> Google Sheet -> Premium.
+Open Space -> Load Demo Scenario -> Recalculate War Room -> Match Center -> AI Scout -> Friends League -> Premium CTA.
 
 ## Premium Funnel
 
-- Free Core: $0 judgeable app, full runtime demo, groups, bracket, Friends League and AI Scout preview.
-- Premium Matchday Pack: $9 advanced scout cards, scenario summaries, CSV exports and private league pack.
-- Ultimate Fan Pack: $27 printable/GoodNotes command center, watch-party sheets and fan assets.
-- Source Bundle: $49+ deployable Gradio source, monetization templates and setup guide.
+Free core + Premium Matchday Pack $9 / League Pack $27 / Source $49+.
 
 ## Safety Boundary
 
-Unofficial fan-made planning tool. No gambling, betting, official marks, team crests, FIFA affiliation, or paid live-score dependency. The demo runs safely with verified cache/manual overrides and without private credentials.
+Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms.
 
 PremiumMatchdayWarRoom2026 is an unofficial fan-made Gradio command center for the expanded 48-team 2026 football tournament format. It turns a 104-match planner into a premium matchday surface: runtime results, group tables, third-place ranking, bracket preview, Friends League scoring, AI Scout context, and a clear Gumroad upgrade funnel.
 
@@ -119,7 +107,7 @@ LIVE_REFRESH_SECONDS=60
 
 Provider-specific adapters may also require their own secret names, for example `FOOTBALL_DATA_API_KEY`, `API_FOOTBALL_KEY`, `SPORTMONKS_API_KEY`, or `LIVE_SCORE_API_SECRET`. Google Sheet manual overrides remain available through `GOOGLE_SHEET_ENABLED`, `GOOGLE_SHEET_ID`, and `GOOGLE_SERVICE_ACCOUNT_JSON`.
 
-Runtime source priority remains:
+Runtime data context remains:
 
 ```text
 Manual override > live provider > verified public cache > static fixture seed
@@ -132,16 +120,12 @@ Open the Space, refresh the runtime, select one match, and watch a fan-made Worl
 ## Judge Path
 
 1. Open the Hugging Face Space or run `python app.py`.
-2. Confirm the first screen shows the neon PremiumMatchdayWarRoom2026 stadium hero.
-3. Review dashboard stats: Fixtures, Completed, Live now, and Next.
-4. Click **Refresh Runtime**.
-5. Click **Load Demo Scenario** in Judge QA / Debug.
-6. Click **Recalculate Impact / War Room**.
-7. Open **Match Center** and inspect a match.
-8. Open **Groups**, **3RD-PLACE RANKING**, and **Bracket**.
-9. Open **Friends League** and score the demo league.
-10. Open **AI Scout** and generate the selected-match context.
-11. Open **Premium** and confirm the Gumroad funnel is visible.
+2. Click **Load Demo Scenario**.
+3. Click **Recalculate War Room**.
+4. Open **Match Center**.
+5. Open **AI Scout**.
+6. Open **Friends League**.
+7. Confirm the **Premium Matchday Pack** CTA is visible and non-blocking.
 
 ## What Works Now
 
@@ -182,13 +166,13 @@ GUMROAD_SOURCE_URL=https://gumroad.com/l/ai-bracket-war-room-2026-source
 | Tier | Price | Buyer | Value |
 |---|---:|---|---|
 | Free Core | $0 | Judges and casual fans | Runtime match center, groups, third-place ranking, bracket preview, basic AI Scout, Friends League demo, Judge QA path |
-| Premium Matchday | $9 | Matchday fans and office-pool hosts | Advanced AI Scout cards, scenario CSV exports, Friends League export pack, ad-free matchday mode |
+| Premium Matchday Pack | $9 | Matchday fans and private league hosts | Advanced AI Scout cards, scenario summaries, Friends League export pack, ad-free matchday mode |
 | Ultimate Fan Pack | $27 | Digital planners and watch-party hosts | GoodNotes/PDF command center, printable tournament sheets, sticker pack, watch-party planning assets |
 | Gumroad Source | $49-99 | Builders and indie sellers | Full Gradio source, templates, customization license, deployment notes, monetization kit |
 
 ### Gumroad Premium Pitch
 
-AI Bracket War Room 2026 Premium turns the free fan-made tournament planner into a complete matchday command center. Free users can judge the full runtime. Premium buyers get advanced AI Scout cards, scenario exports, private Friends League packs, ad-free planning mode, and fan-ready assets for watch parties and office pools.
+AI Bracket War Room 2026 Premium turns the free fan-made tournament planner into a complete matchday command center. Free users can judge the full runtime. Premium buyers get advanced AI Scout cards, scenario exports, private Friends League packs, ad-free planning mode, and fan-ready assets for watch parties.
 
 ### Gumroad Source Pitch
 
@@ -196,9 +180,8 @@ The source bundle gives builders a deployable Gradio app, premium templates, run
 
 ## Safety Boundary
 
-This is an unofficial fan-made planning app. It is not affiliated with FIFA, the FIFA World Cup, host committees, national federations, broadcasters, teams, players, or sponsors.
-
-The app uses no official logos, crests, sponsor marks, player likenesses, protected emblems, mascots, gambling workflow, money-staked prediction market, betting language, paid live-score requirement, or real-money contest logic. Premium sells exports, planning templates, ad-free UX, fan packs, and source access.
+Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms.
+No gambling, betting, odds, fan prediction planner, wagering, or real-money contest logic. Uses no official logos, crests, sponsor marks, player likenesses, protected emblems, or mascots.
 
 ## Local Quickstart
 
@@ -233,8 +216,8 @@ PHASE_1_30_RUNTIME_PRODUCT_QA_PASS
 6. Navigation anchors work: `#match-center`, `#ai-scout`, `#premium`.
 7. Existing tabs still work: Match Center, Groups, 3RD-PLACE RANKING, Bracket, Friends League, AI Scout, Google Sheet, Premium, Judge QA.
 8. Mobile 375-760px collapses to one column with full-width buttons.
-9. Judge path works: Refresh -> Load Demo -> Recalculate -> inspect tabs.
-10. Safety copy is clear: fan-made, no gambling, no official marks.
+9. Judge path works: Open Space -> Load Demo Scenario -> Recalculate War Room -> Match Center -> AI Scout -> Friends League -> Premium CTA.
+10. Safety copy is clear: unofficial fan-made project, no affiliation claims, no official marks.
 
 ## 60-Second Demo Video Script
 
@@ -248,7 +231,7 @@ PHASE_1_30_RUNTIME_PRODUCT_QA_PASS
 
 **42-52s:** "Premium is the business model: advanced AI Scout cards, CSV exports, private league packs, fan PDFs, stickers, and the Gumroad source bundle."
 
-**52-60s:** "It is fan-made, no gambling, no official marks, and no paid live-score dependency. Free judges the engine. Premium sells planning and exports."
+**52-60s:** "It is an unofficial fan-made project with no affiliation claims and no official marks. Free judges the engine. Premium sells planning and exports."
 
 ## Core Files
 
@@ -265,7 +248,7 @@ PHASE_1_30_RUNTIME_PRODUCT_QA_PASS
 
 The lower app surface now matches the premium mockups: Match Center, Groups, Bracket, Friends League, and AI Scout use the same neon stadium product system with card-first hierarchy, mobile-first grids, visible premium exports, and Gumroad CTAs. Tables remain available for judge verification, but every module now opens with a product-quality summary surface.
 
-Judge path: Refresh Runtime -> Load Judge Demo Scenario -> Recalculate War Room -> inspect Match Center -> Groups -> Bracket -> Friends League -> AI Scout -> Premium Matchday CTA.
+Judge path: Open Space -> Load Demo Scenario -> Recalculate War Room -> Match Center -> AI Scout -> Friends League -> Premium CTA.
 
 
 ## Phase 1.39 - Final PremiumMatchdayWarRoom2026 Release Candidate
@@ -276,8 +259,8 @@ Judge path: Refresh Runtime -> Load Judge Demo Scenario -> Recalculate War Room 
 
 **Tags:** gradio, huggingface-spaces, world-cup-2026, football, bracket, ai-scout, friends-league, hackathon, premium-ui, gumroad
 
-**Judge path:** Refresh Runtime -> Load Demo Scenario -> Recalculate Impact -> Match Center -> Groups -> 3RD-PLACE RANKING -> Bracket -> Friends League -> AI Scout -> Google Sheet -> Premium.
+**Judge path:** Open Space -> Load Demo Scenario -> Recalculate War Room -> Match Center -> AI Scout -> Friends League -> Premium CTA.
 
-**Safety boundary:** Unofficial fan-made planning tool. No gambling, betting, official marks, team crests, FIFA affiliation, or paid live-score dependency. The demo works safely with verified cache/manual overrides and without private credentials.
+**Safety boundary:** Unofficial fan-made project. Not affiliated with FIFA, tournament organizers, teams, sponsors, broadcasters, or official platforms.
 
-**Premium funnel:** Free Core $0 -> Premium Matchday Pack $9 -> Ultimate Fan Pack $27 -> Gumroad Source Bundle $49+.
+**Premium funnel:** Free core + Premium Matchday Pack $9 / League Pack $27 / Source $49+.
