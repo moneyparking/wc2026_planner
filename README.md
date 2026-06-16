@@ -80,6 +80,25 @@ PHASE_1_30_RUNTIME_PRODUCT_QA_PASS
 
 AI Bracket War Room 2026 is a premium Gradio fan command center for World Cup 2026 planning: 104-match runtime planner, 12-group standings, third-place bubble watch, knockout bracket, Friends League scoring, Advanced AI Scout Cards, Google Sheet control plane, and visible Gumroad monetization.
 
+
+<!-- CODEX_BUILD_WORKFLOW -->
+
+## Built with Codex
+
+AI Bracket War Room 2026 was built and hardened through an iterative Codex-assisted engineering workflow.
+
+Codex was used as the coding agent for:
+
+- Gradio product-shell implementation and UI hardening;
+- demo-first interaction flow refinement;
+- runtime score/cache integration checks;
+- smoke-test and judge-walkthrough script updates;
+- README/Hugging Face metadata validation;
+- syntax, dependency, and deployment debugging;
+- final hackathon submission packaging.
+
+The project keeps the core tournament logic deterministic and fan-safe while using AI-assisted development to turn the app into a polished, testable Gradio product. The final repo includes smoke tests, responsive QA checks, README validation work, demo-video packaging, and deployment fixes produced through this iterative Codex workflow.
+
 ## Judge Path
 
 Open Space -> Load Demo Scenario -> Recalculate War Room -> Match Center -> AI Scout -> Friends League -> Premium CTA.
